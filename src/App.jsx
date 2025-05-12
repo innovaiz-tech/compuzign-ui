@@ -6,11 +6,12 @@ import About from "./Components/About";
 import RootLayouts from "./Layout/RootLayouts";
 
 function App() {
+  const theme = 'theme3';
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<RootLayouts />}>
-        <Route index element={<HomePage />} />
+      <Route path='/' element={<RootLayouts theme={theme} />}>
+        <Route index element={<HomePage theme={theme} />} />
         <Route path='about' element={<About />} />
 
         {/* <Route path='contact' element={<ContactLayout />} >

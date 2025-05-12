@@ -33,8 +33,8 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
-                        <div className="flex flex-wrap gap-8 md:gap-16 px-10">
+                        <h3 className="text-xl font-semibold py-4">Quick Links</h3>
+                        <div className="flex flex-wrap gap-8 py-10">
                             <div>
                                 <ul className="space-y-3">
                                     <li>

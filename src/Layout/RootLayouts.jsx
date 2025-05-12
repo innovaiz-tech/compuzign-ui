@@ -3,10 +3,10 @@ import { Outlet } from 'react-router'
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 
-const RootLayouts = () => {
+const RootLayouts = ({theme}) => {
   return (
-    <div className='flex flex-col min-h-screen'>
-      <Navbar theme="theme2" />
+    <div className='relative flex flex-col min-h-screen'>
+      <Navbar theme={theme} />
       <main className='flex-grow'>
         <Outlet />
       </main>
