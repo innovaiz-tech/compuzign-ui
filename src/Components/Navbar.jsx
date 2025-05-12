@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
-import AccordionDemo from "./Accordion/Accordion";
-
+import AccordionComponent from "./Accordion/Accordion";
 
 export default function Navbar({ theme = 'theme1' }) {
     const themeClasses = {
@@ -89,7 +88,6 @@ export default function Navbar({ theme = 'theme1' }) {
         }
     ];
 
-
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 1200);
@@ -103,7 +101,7 @@ export default function Navbar({ theme = 'theme1' }) {
 
     return (
         !isMobile ? (
-            <section className={`flex items-center justify-between gap-8 p-4 ${currentTheme.bg}`}>
+            <section className={`fixed w-full flex items-center justify-between gap-8 p-4 ${currentTheme.bg}`}>
                 <div className={`font-bold ${theme === 'theme3' ? 'text-emerald-400' : theme === 'theme2' ? 'text-blue-500' : 'text-red-500'}`}>
                     <Link to='/'>Logo</Link>
                 </div>
@@ -141,21 +139,20 @@ export default function Navbar({ theme = 'theme1' }) {
                 </div>
             </section>
         ) : (
-
             <section className="w-full h-full relative">
-                <div className="flex justify-between px-4 py-2">
+                <div className="fixed w-full bg-white flex justify-between px-4 py-2">
                     <div className={`font-bold ${theme === 'theme3' ? 'text-emerald-400' : theme === 'theme2' ? 'text-blue-500' : 'text-red-500'}`}>
                         <Link to='/'>Logo</Link>
                     </div>
                     <GiHamburgerMenu
                         onClick={() => setIsOpen(true)}
-                        className="text-2xl cursor-pointer" // Added some styling for the icon
+                        className="text-2xl cursor-pointer"
                     />
                 </div>
 
                 {isOpen && (
                     <div className="fixed inset-0 z-50 flex">
-                        <div className="w-1/4 h-full bg-white absolute left-0 top-0 p-4 shadow-lg">
+                        <div className="w-3/4 sm:w-1/4 h-full bg-white absolute left-0 top-0 p-4 shadow-lg">
                             <div className="flex justify-between items-center mb-8">
                                 <div className={`font-bold ${theme === 'theme3' ? 'text-emerald-400' : theme === 'theme2' ? 'text-blue-500' : 'text-red-500'}`}>
                                     <Link to='/' onClick={() => setIsOpen(false)}>Logo</Link>
@@ -167,21 +164,21 @@ export default function Navbar({ theme = 'theme1' }) {
                             </div>
 
                             <div className="flex flex-col gap-4">
+                                <div className={`${currentTheme.text} ${currentTheme.hoverText}`}>Home</div>
                                 {navItems.map((item, index) => {
                                     if (item.dropdown.length === 0) {
-                                        return <div key={item.title}>{item.title}</div>;
+                                        return <div className={`${currentTheme.text} ${currentTheme.hoverText}`} key={item.title}>{item.title}</div>;
                                     } else {
-                                        return <AccordionDemo key={item.title} accordionContent={item} index={index} />;
+                                        return <AccordionComponent className={`${currentTheme.text} ${currentTheme.hoverText}`} key={item.title} accordionContent={item} index={index} />;
                                     }
                                 })}
+                                <div className={`${currentTheme.text} ${currentTheme.hoverText}`}>Support</div>
+                                <div className={`${currentTheme.text} ${currentTheme.hoverText}`}>Contact Us</div>
                             </div>
-
-
                         </div>
-
                         <div
                             onClick={() => setIsOpen(false)}
-                            className="w-3/4 h-full bg-black bg-opacity-50 backdrop-blur-sm ml-auto"
+                            className="w-1/4 sm:w-3/4 h-full bg-black bg-opacity-50 backdrop-blur-sm ml-auto"
                         ></div>
                     </div>
                 )}

@@ -6,7 +6,7 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 
 
-const AccordionDemo = ({ accordionContent, index }) => (
+const AccordionComponent = ({ accordionContent, index }) => (
 	<Accordion.Root className="AccordionRoot" type="single" collapsible>
 		<Accordion.Item className="AccordionItem" value={`index-${index}`}>
 			<AccordionTrigger>{accordionContent.title}</AccordionTrigger>
@@ -50,4 +50,4 @@ const AccordionContent = React.forwardRef(
 	),
 );
 
-export default AccordionDemo;
+export default AccordionComponent;
