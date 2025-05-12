@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
+import AccordionDemo from "./Accordion/Accordion";
+
 
 export default function Navbar({ theme = 'theme1' }) {
     const themeClasses = {
@@ -61,6 +63,31 @@ export default function Navbar({ theme = 'theme1' }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
+    const navItems = [
+        {
+            title: "Services",
+            dropdown: [
+                { label: 'Support-as-a-service', href: '/support' },
+                { label: 'Migration-as-a-service', href: '/migration' },
+                { label: 'Cloud and Infrastructure-as-a-service', href: '/cloud' }
+            ]
+        },
+        {
+            title: "Pricing",
+            dropdown: []
+        },
+        {
+            title: "Careers",
+            dropdown: []
+        },
+        {
+            title: "Company",
+            dropdown: [
+                { label: "About Us", href: "/about" },
+                { label: "Contact Us" }
+            ]
+        }
+    ];
 
 
     useEffect(() => {
@@ -82,46 +109,30 @@ export default function Navbar({ theme = 'theme1' }) {
                 </div>
 
                 <div className="flex gap-8">
-                    <div className="group relative py-2">
-                        <div className="cursor-pointer relative inline-block">
-                            <span className={`relative ${currentTheme.text}`}>Services</span>
-                            <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${currentTheme.accent} transition-all duration-300 group-hover:w-full`}></span>
-                        </div>
-                        <div className={`absolute hidden group-hover:block ${currentTheme.dropdown} rounded mt-2`}>
-                            <p className={`p-2 text-nowrap ${currentTheme.dropdownItem} ${currentTheme.text}`}>Support-as-a-service</p>
-                            <p className={`p-2 text-nowrap ${currentTheme.dropdownItem} ${currentTheme.text}`}>Migration-as-a-service</p>
-                            <p className={`p-2 text-nowrap ${currentTheme.dropdownItem} ${currentTheme.text}`}>Cloud and Infrastructure-as-a-service</p>
-                        </div>
-                    </div>
+                    {navItems.map((item, index) => (
+                        <div key={index} className="group relative py-2">
+                            <div className="cursor-pointer relative inline-block">
+                                <span className={`relative ${currentTheme.text}`}>{item.title}</span>
+                                <span
+                                    className={`absolute bottom-0 left-0 w-0 h-0.5 ${currentTheme.accent} transition-all duration-300 group-hover:w-full`}
+                                ></span>
+                            </div>
 
-                    <div className="relative group py-2">
-                        <div className="cursor-pointer relative inline-block">
-                            <span className={`relative ${currentTheme.text}`}>Pricing</span>
-                            <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${currentTheme.accent} transition-all duration-300 group-hover:w-full`}></span>
+                            {item.dropdown && (
+                                <div className={`absolute hidden group-hover:block ${currentTheme.dropdown} rounded mt-2`}>
+                                    {item.dropdown.map((dropdownItem, i) => (
+                                        <p key={i} className={`p-2 text-nowrap ${currentTheme.dropdownItem} ${currentTheme.text}`}>
+                                            {dropdownItem.href ? (
+                                                <Link to={dropdownItem.href}>{dropdownItem.label}</Link>
+                                            ) : (
+                                                dropdownItem.label || dropdownItem
+                                            )}
+                                        </p>
+                                    ))}
+                                </div>
+                            )}
                         </div>
-                    </div>
-
-                    <div className="relative group py-2">
-                        <div className="cursor-pointer relative inline-block">
-                            <span className={`relative ${currentTheme.text}`}>Careers</span>
-                            <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${currentTheme.accent} transition-all duration-300 group-hover:w-full`}></span>
-                        </div>
-                    </div>
-
-                    <div className="group relative py-2">
-                        <div className="cursor-pointer relative inline-block">
-                            <span className={`relative ${currentTheme.text}`}>Company</span>
-                            <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${currentTheme.accent} transition-all duration-300 group-hover:w-full`}></span>
-                        </div>
-                        <div className={`absolute hidden group-hover:block ${currentTheme.dropdown} rounded mt-2`}>
-                            <p className={`p-2 text-nowrap ${currentTheme.dropdownItem} ${currentTheme.text}`}>
-                                <Link to="/about">
-                                    About Us
-                                </Link>
-                            </p>
-                            <p className={`p-2 text-nowrap ${currentTheme.dropdownItem} ${currentTheme.text}`}>Contact Us</p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
                 <div className="flex gap-4">
@@ -156,8 +167,16 @@ export default function Navbar({ theme = 'theme1' }) {
                             </div>
 
                             <div className="flex flex-col gap-4">
-
+                                {navItems.map((item, index) => {
+                                    if (item.dropdown.length === 0) {
+                                        return <div key={item.title}>{item.title}</div>;
+                                    } else {
+                                        return <AccordionDemo key={item.title} accordionContent={item} index={index} />;
+                                    }
+                                })}
                             </div>
+
+
                         </div>
 
                         <div
