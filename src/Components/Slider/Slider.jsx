@@ -3,62 +3,65 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import './styles.css';
 import { Pagination } from 'swiper/modules';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-import Slider1 from '../../assets/slider1.png';
-import Slider2 from '../../assets/slider2.png';
-import Slider3 from '../../assets/slider3.png';
-import Slider4 from '../../assets/slider4.png';
-import Slider5 from '../../assets/slider5.png';
+export default function SwiperComponent({ slideContent }) {
 
-export default function SwiperComponent() {
+    const breakpoints = slideContent.breakPoints.reduce((acc, item) => {
+        return {
+            ...acc,
+            [item.screen]: {
+                slidesPerView: item.slidesPerView,
+                spaceBetween: item.spaceBetween
+            }
+        };
+    }, {});
+
     return (
         <>
             <div className='flex flex-col bg-yellow-400'>
-                <h3 className='text-black pt-10 text-center tracking-[.28em] uppercase mt-0 mb-0 px-5 text-xs font-semibold leading-[22px] no-underline'>Supporting Diverse Sectors</h3>
-                <h2 className='text-black py-5 text-center mt-0 mb-0 pt-[5px] px-5 text-[40px] font-bold leading-[56px] no-underline'>Industries we focus</h2>
+                <h3 className='text-black pt-10 text-center tracking-[.28em] uppercase mt-0 mb-0 px-5 text-xs font-semibold leading-[22px] no-underline'>{slideContent.heading1}</h3>
+                <h2 className='text-black py-5 text-center mt-0 mb-0 pt-[5px] px-5 text-[40px] font-bold leading-[56px] no-underline'>{slideContent.heading2}</h2>
                 <Swiper
-                    slidesPerView={4}
-                    slidesPerGroup={4}
+                    slidesPerView={1}
                     spaceBetween={30}
                     pagination={{
                         clickable: true,
-
                     }}
                     modules={[Pagination]}
-                    breakpoints={{
-                        640: {
-                            slidesPerView: 2,
-                            spaceBetween: 10,
-                        },
-                        768: {
-                            slidesPerView: 3,
-                            spaceBetween: 20,
-                        },
-                        1024: {
-                            slidesPerView: 4,
-                            spaceBetween: 30,
-                        },
-                    }}
+                    breakpoints={breakpoints}
+
                     className="mySwiper"
                 >
-                    <SwiperSlide>
-                        <img src={Slider1} className='my-10 w-[250px] h-[360px] ' alt="slider1" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={Slider2} className='my-10 w-[250px] h-[360px] ' alt="slider2" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={Slider3} className='my-10 w-[250px] h-[360px] ' alt="slider3" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={Slider4} className='my-10 w-[250px] h-[360px] ' alt="slider4" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={Slider5} className='my-10 w-[250px] h-[360px] ' alt="slider5" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={Slider5} className='my-10 w-[250px] h-[360px] ' alt="slider6" />
-                    </SwiperSlide>
+                    {slideContent.bodyContent.length === 0 ?
+                        slideContent.imageContainer.map((image, index) => (
+                            <SwiperSlide key={index}>
+                                <img src={image} className={`my-10 w-[${slideContent.imageWidth}] h-[${slideContent.imageHeight}]`} alt={`slider${index + 1}`} />
+                            </SwiperSlide>
+                        )) : (
+                            slideContent.bodyContent.map((i, index) => (
+                                <SwiperSlide key={index}>
+                                    <div className='text-left [background-color:#fff] [background-clip:border-box] rounded-[15px] w-auto h-auto pb-0 mb-10'>
+                                        <img src={i.image} className={`w-[${slideContent.imageWidth}] h-[${slideContent.imageHeight}] rounded-t-[15px]`} alt={`slider${index + 1}`} />
+                                        <div className='w-[370px] flex flex-col justify-start items-start py-[19px] px-[24px]'>
+                                            <div className='text-[#0f1032] mt-0 mb-0 text-xl font-semibold leading-[28px] no-underline'>
+                                                {i.heading}
+                                            </div>
+                                            <Link to='#' className=' flex justify-start items-center text-[#1a1b1f] text-sm'>
+                                                <div className='text-[#4f4f4f] mt-0 mb-0 pt-[15px] text-sm font-normal leading-[22px] no-underline'>
+                                                    {/* {i.content} */}
+                                                    At CompuZign, our dedicated technical support team provides comprehensive tech support services for your organization's network systems.
+                                                </div>
+                                            </Link>
+                                            <button className="mt-10 bg-black px-8 py-2 text-white rounded-md">Know more</button>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            )
+                            ))
+                    }
+
                 </Swiper>
             </div>
         </>
