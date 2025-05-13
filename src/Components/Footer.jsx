@@ -8,8 +8,8 @@ export default function Footer() {
     return (
         <footer className="bg-gray-900 text-white py-12 px-4">
             <div className="max-w-6xl mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-start mb-12">
-                    <div className="mb-8 md:mb-0">
+                <div className="flex flex-col md:flex-row justify-between w-full items-start mb-12">
+                    <div className="w-2/4 mb-8 md:mb-0">
                         <div className="flex items-center mb-4">
                             <span className="text-2xl font-bold bg-blue-600 px-2 py-1 mr-2">CC</span>
                         </div>
@@ -32,7 +32,7 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    <div>
+                    <div className="w-2/4">
                         <h3 className="text-xl font-semibold py-4">Quick Links</h3>
                         <div className="flex flex-wrap gap-8 py-10">
                             <div>
@@ -47,11 +47,7 @@ export default function Footer() {
                                             Services
                                         </Link>
                                     </li>
-                                    <li>
-                                        <Link href="/centers" className="text-gray-300 hover:text-white transition-colors">
-                                            Centers
-                                        </Link>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                             <div>
@@ -62,8 +58,8 @@ export default function Footer() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
-                                            About us
+                                        <Link href="/centers" className="text-gray-300 hover:text-white transition-colors">
+                                            Centers
                                         </Link>
                                     </li>
                                 </ul>
@@ -78,6 +74,15 @@ export default function Footer() {
                                     <li>
                                         <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
                                             Contact
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul className="space-y-3">
+                                    <li>
+                                        <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
+                                            About us
                                         </Link>
                                     </li>
                                 </ul>
