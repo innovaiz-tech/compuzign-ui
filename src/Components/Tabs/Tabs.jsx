@@ -3,6 +3,7 @@ import { Tabs } from "radix-ui";
 import "./styles.css";
 import AboutUsBanner from "../../assets/about-us-banner.png"
 import TechnicalSupportBanner from "../../assets/technical-support-banner.png"
+import SwiperComponent from "../Slider/Slider";
 
 const TabsContainer = () => (
     <div direction="column" gap="4" pb="2">
@@ -112,7 +113,7 @@ const TabsContainer = () => (
             </Tabs.Content>
             <Tabs.Content className="TabsContent" value="tab5">
                 <div>
-                    5
+                    <SwiperComponent />
                 </div>
             </Tabs.Content>
             <Tabs.Content className="TabsContent" value="tab6">
