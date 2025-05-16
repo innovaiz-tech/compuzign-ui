@@ -10,6 +10,14 @@ import Slider2 from '../../assets/slider2.png';
 import Slider3 from '../../assets/slider3.png';
 import Slider4 from '../../assets/slider4.png';
 import Slider5 from '../../assets/slider5.png';
+
+import WhoWeAreIcon1 from "../../assets/who_we_are_icon_1.png"
+import WhoWeAreIcon2 from "../../assets/who_we_are_icon_2.png"
+import WhoWeAreIcon3 from "../../assets/who_we_are_icon_3.png"
+import WhoWeAreIcon4 from "../../assets/who_we_are_icon_4.png"
+import WhoWeAreIcon5 from "../../assets/who_we_are_icon_5.png"
+import WhoWeAreIcon6 from "../../assets/who_we_are_icon_6.png"
+
 import MigrationAsAService from '../../assets/migration-as-a-service.png';
 import SupportAsAService from '../../assets/support-as-a-service.png';
 import CloudAndInfrastructure from '../../assets/cloud-and-infrastructure.png';
@@ -62,6 +70,43 @@ const TabsContainer = () => {
             { screen: 640, slidesPerView: 1, spaceBetween: 10 },
             { screen: 867, slidesPerView: 2, spaceBetween: 20 },
             { screen: 1224, slidesPerView: 3, spaceBetween: 30 }
+        ]
+    }
+
+    const whoWeAre = {
+        heading1: 'Expertise Across Industries',
+        heading2: 'Understanding Industry Challenges is Key',
+        bodyContent: [
+            {
+                icon: WhoWeAreIcon1,
+                title: 'Customer First',
+                content: 'Success starts with you, our customers. We help envision your future.'
+            },
+            {
+                icon: WhoWeAreIcon2,
+                title: 'Industry Awareness',
+                content: "Let's face it, tech moves fast. We at CCI are always on the edge with the latest and greatest."
+            },
+            {
+                icon: WhoWeAreIcon3,
+                title: 'Enterprise',
+                content: "With competition growing, it's more important than ever to bring higher levels of productivity & efficiency to business operations."
+            },
+            {
+                icon: WhoWeAreIcon4,
+                title: 'Customer First',
+                content: 'Success starts with you, our customers. We help envision your future.'
+            },
+            {
+                icon: WhoWeAreIcon5,
+                title: 'Industry Awareness',
+                content: "Let's face it, tech moves fast. We at CCI are always on the edge with the latest and greatest."
+            },
+            {
+                icon: WhoWeAreIcon6,
+                title: 'Enterprise',
+                content: "With competition growing, it's more important than ever to bring higher levels of productivity & efficiency to business operations."
+            },
         ]
     }
 
@@ -128,7 +173,7 @@ const TabsContainer = () => {
                 <Tabs.Content className="TabsContent" value="tab2">
                     <div>
                         <SwiperComponent slideContent={services} />
-                        <div className="bg-yellow-400 flex justify-around py-8 items-center">
+                        <div className="bg-yellow-400 flex justify-between py-8 px-4 items-center">
                             <div></div>
                             <Link to='#' className="underline">Know More</Link>
                         </div>
@@ -171,8 +216,15 @@ const TabsContainer = () => {
                     </div>
                 </Tabs.Content>
                 <Tabs.Content className="TabsContent" value="tab4">
-                    <div>
-                        4
+                    <div className="bg-yellow-400 flex flex-wrap justify-center gap-5 p-10">
+                        {whoWeAre.bodyContent.map((item, index) => (
+                            <div className={`max-w-[360px] h-[276px] ${index%2 === 0 ? 'bg-black':'bg-white'} p-3`}>
+                                <img src={item.icon} alt={item.icon} />
+                                <h2 className={`${index%2 !== 0 ? 'text-black':'text-white'} mt-0 mb-0 pt-[15px] text-[20px] font-semibold leading-[28px] no-underline`}>{item.title}</h2>
+                                <div className={`${index%2 !== 0 ? 'text-black':'text-white'} mt-0 mb-0 pt-[15px] text-[14px] font-normal leading-[22px] no-underline`}>{item.content}</div>
+                            </div>
+
+                        ))}
                     </div>
                 </Tabs.Content>
                 <Tabs.Content className="TabsContent" value="tab5">

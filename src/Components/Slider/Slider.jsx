@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 export default function SwiperComponent({ slideContent }) {
-
+    console.log(slideContent.imageWidth)
     const breakpoints = slideContent.breakPoints.reduce((acc, item) => {
         return {
             ...acc,
@@ -43,8 +43,8 @@ export default function SwiperComponent({ slideContent }) {
                             slideContent.bodyContent.map((i, index) => (
                                 <SwiperSlide key={index}>
                                     <div className='text-left [background-color:#fff] [background-clip:border-box] rounded-[15px] w-auto h-auto pb-0 mb-10'>
-                                        <img src={i.image} className={`w-[${slideContent.imageWidth}] h-[${slideContent.imageHeight}] rounded-t-[15px]`} alt={`slider${index + 1}`} />
-                                        <div className='w-[370px] flex flex-col justify-start items-start py-[19px] px-[24px]'>
+                                        <img src={i.image} className={`w-[250px] sm:w-[${slideContent.imageWidth}] h-[${slideContent.imageHeight}] rounded-t-[15px]`} alt={`slider${index + 1}`} />
+                                        <div className={`w-[250px] sm:w-[${slideContent.imageWidth}] flex flex-col justify-start items-start py-[19px] px-[24px]`}>
                                             <div className='text-[#0f1032] mt-0 mb-0 text-xl font-semibold leading-[28px] no-underline'>
                                                 {i.heading}
                                             </div>
