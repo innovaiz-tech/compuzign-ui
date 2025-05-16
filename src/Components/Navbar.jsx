@@ -101,7 +101,7 @@ export default function Navbar({ theme = 'theme1' }) {
 
     return (
         !isMobile ? (
-            <section className={`fixed w-full flex items-center justify-between gap-8 p-4 ${currentTheme.bg}`}>
+            <section className={`fixed w-full z-50 flex items-center justify-between gap-8 p-4 ${currentTheme.bg}`}>
                 <div className={`font-bold ${theme === 'theme3' ? 'text-emerald-400' : theme === 'theme2' ? 'text-blue-500' : 'text-red-500'}`}>
                     <Link to='/'>Logo</Link>
                 </div>
