@@ -4,14 +4,13 @@ import HomePage from "./Components/HomePage";
 import PageNotFound from "./Components/PageNotFound";
 import About from "./Components/About";
 import RootLayouts from "./Layout/RootLayouts";
+import ThemeProvider from "./context/ThemeContext";
 
 function App() {
-  const theme = 'theme3';
-
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<RootLayouts theme={theme} />}>
-        <Route index element={<HomePage theme={theme} />} />
+      <Route path='/' element={<RootLayouts />}>
+        <Route index element={<HomePage />} />
         <Route path='about' element={<About />} />
 
         {/* <Route path='contact' element={<ContactLayout />} >
@@ -24,12 +23,11 @@ function App() {
     )
   )
 
-
   return (
-    <>
-      <RouterProvider router={router}/>
-    </>
-  )
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
 
 export default App;

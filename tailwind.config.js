@@ -7,6 +7,38 @@ export default {
   theme: {
     extend: {
       colors: {
+        // CCI Theme - Based on client-provided colors
+        cci: {
+          // Core brand colors
+          primary: '#5DA6A7',       // Teal
+          'primary-hover': '#4D8D8E', // Teal hover
+          secondary: '#5E457E',     // Purple
+          'secondary-hover': '#4D3969',
+          accent: '#BFA8E3',        // Lavender
+          
+          // Text colors
+          text: {
+            primary: '#1B1E2F',     // Dark Text
+            secondary: '#5C5F70',   // Muted Text
+            light: '#FFFFFF'
+          },
+          
+          // Background colors
+          background: {
+            light: '#F5F4F8',       // Light background
+            white: '#FFFFFF'
+          },
+          
+          // Footer color
+          footer: '#947CA9',        // Footer background
+          
+          // UI colors for consistency
+          success: '#27ae60',
+          warning: '#f39c12',
+          error: '#e74c3c',
+        },
+        
+        // Keep existing themes for backward compatibility
         // Theme 1 (Red Vibrant)
         theme1: {
           primary: '#ef4444',

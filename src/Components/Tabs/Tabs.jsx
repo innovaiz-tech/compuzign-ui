@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Tabs } from "radix-ui";
+import { useTheme } from "../../hooks/useTheme";
 import "./styles.css";
 import AboutUsBanner from "../../assets/about-us-banner.png"
 import TechnicalSupportBanner from "../../assets/technical-support-banner.png"
@@ -24,6 +25,7 @@ import CloudAndInfrastructure from '../../assets/cloud-and-infrastructure.png';
 import { Link } from "react-router-dom";
 
 const TabsContainer = () => {
+    const { themeClasses } = useTheme();
     const industries = {
         slidesPerView: 4,
         heading1: 'Supporting Diverse Sectors',
@@ -113,23 +115,23 @@ const TabsContainer = () => {
     return (
         <div direction="column" gap="4" pb="2">
             <Tabs.Root className="TabsRoot" defaultValue="tab1">
-                <Tabs.List className="flex flex-wrap px-14 text-white" aria-label="Manage your account">
-                    <Tabs.Trigger className="TabsTrigger" value="tab1">
+                <Tabs.List className={`${themeClasses.components.tabs.tabsList} bg-black`} aria-label="Manage your account">
+                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab1">
                         ABOUT US
                     </Tabs.Trigger>
-                    <Tabs.Trigger className="TabsTrigger" value="tab2">
+                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab2">
                         OUR SERVICES
                     </Tabs.Trigger>
-                    <Tabs.Trigger className="TabsTrigger" value="tab3">
+                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab3">
                         TECHNICAL SUPPORT
                     </Tabs.Trigger>
-                    <Tabs.Trigger className="TabsTrigger" value="tab4">
+                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab4">
                         WHO WE ARE?
                     </Tabs.Trigger>
-                    <Tabs.Trigger className="TabsTrigger" value="tab5">
+                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab5">
                         INDUSTRIES
                     </Tabs.Trigger>
-                    <Tabs.Trigger className="TabsTrigger" value="tab6">
+                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab6">
                         CLIENT TESTIMONIAL
                     </Tabs.Trigger>
                 </Tabs.List>
@@ -218,12 +220,11 @@ const TabsContainer = () => {
                 <Tabs.Content className="TabsContent" value="tab4">
                     <div className="bg-yellow-400 flex flex-wrap justify-center gap-5 p-10">
                         {whoWeAre.bodyContent.map((item, index) => (
-                            <div className={`max-w-[360px] h-[276px] ${index%2 === 0 ? 'bg-black':'bg-white'} p-3`}>
-                                <img src={item.icon} alt={item.icon} />
+                            <div key={`who-we-are-item-${index}`} className={`max-w-[360px] h-[276px] ${index%2 === 0 ? 'bg-black':'bg-white'} p-3`}>
+                                <img src={item.icon} alt={item.title} />
                                 <h2 className={`${index%2 !== 0 ? 'text-black':'text-white'} mt-0 mb-0 pt-[15px] text-[20px] font-semibold leading-[28px] no-underline`}>{item.title}</h2>
                                 <div className={`${index%2 !== 0 ? 'text-black':'text-white'} mt-0 mb-0 pt-[15px] text-[14px] font-normal leading-[22px] no-underline`}>{item.content}</div>
                             </div>
-
                         ))}
                     </div>
                 </Tabs.Content>
