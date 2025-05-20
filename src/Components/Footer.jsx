@@ -1,101 +1,62 @@
-import { FaFacebook } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { AiFillTwitterCircle } from "react-icons/ai";
-import { FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { FaTwitter, FaLinkedin, FaFacebookF } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { useTheme } from '../hooks/useTheme';
 
-export default function Footer() {
+const Footer = () => {
+    const { themeClasses } = useTheme();
+    
     return (
-        <footer className="bg-gray-900 text-white py-12 px-4">
-            <div className="max-w-6xl mx-auto">
-                <div className="flex flex-col md:flex-row justify-between w-full items-start mb-12">
-                    <div className="w-2/4 mb-8 md:mb-0">
-                        <div className="flex items-center mb-4">
-                            <span className="text-2xl font-bold bg-blue-600 px-2 py-1 mr-2">CC</span>
+        <footer className={themeClasses.components.footer.container}>
+            <div className="container mx-auto px-4">
+                <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+                    <div className="flex flex-col items-start">
+                        <div className={themeClasses.components.footer.logo}>
+                            <Link to="/" className={themeClasses.components.footer.logoText}>
+                                CCI
+                            </Link>
                         </div>
-                        <p className="text-gray-300 text-lg">One Goal, One Aim</p>
-
-                        <div className="flex items-center gap-4">
-
-                            <div className="text-yellow-300 text-2xl flex items-center justify-center">
-                                <FaFacebook className="text-3xl" />
-                            </div>
-                            <div className="w-8 h-8 rounded-full bg-yellow-300 flex items-center justify-center">
-                                <FaInstagram className="text-black text-xl" />
-                            </div>
-                            <div className="text-yellow-300 text-2xl flex items-center justify-center">
-                                <AiFillTwitterCircle className="text-4xl" />
-                            </div>
-                            <div className="w-8 h-8 rounded-full bg-yellow-300 flex items-center justify-center">
-                                <p className="text-black font-bold text-base">in</p>
-                            </div>
+                        <p className="mt-4 text-white">Cloud service solutions</p>
+                        <div className="flex mt-4 space-x-4">
+                            <a href="#" className={themeClasses.components.footer.socialIcon}>
+                                <FaTwitter size={18} />
+                            </a>
+                            <a href="#" className={themeClasses.components.footer.socialIcon}>
+                                <FaFacebookF size={18} />
+                            </a>
+                            <a href="#" className={themeClasses.components.footer.socialIcon}>
+                                <FaLinkedin size={18} />
+                            </a>
                         </div>
                     </div>
 
-                    <div className="w-2/4">
-                        <h3 className="text-xl font-semibold py-4">Quick Links</h3>
-                        <div className="flex flex-wrap gap-8 py-10">
-                            <div>
-                                <ul className="space-y-3">
-                                    <li>
-                                        <Link href="/" className="text-gray-300 hover:text-white transition-colors">
-                                            Home
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
-                                            Services
-                                        </Link>
-                                    </li>
-                                    
-                                </ul>
-                            </div>
-                            <div>
-                                <ul className="space-y-3">
-                                    <li>
-                                        <Link href="/support" className="text-gray-300 hover:text-white transition-colors">
-                                            Support
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/centers" className="text-gray-300 hover:text-white transition-colors">
-                                            Centers
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <ul className="space-y-3">
-                                    <li>
-                                        <Link href="/pricing" className="text-gray-300 hover:text-white transition-colors">
-                                            Pricing
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
-                                            Contact
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <ul className="space-y-3">
-                                    <li>
-                                        <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
-                                            About us
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div className="grid grid-cols-2 md:grid-cols-2 gap-x-16 gap-y-8">
+                        <div>
+                            <h3 className="text-lg font-semibold mb-4">Quick links</h3>
+                            <ul className="space-y-2">
+                                <li><Link to="/" className={themeClasses.components.footer.link}>Home</Link></li>
+                                <li><Link to="/support" className={themeClasses.components.footer.link}>Support</Link></li>
+                                <li><Link to="/pricing" className={themeClasses.components.footer.link}>Pricing</Link></li>
+                                <li><Link to="/about" className={themeClasses.components.footer.link}>About us</Link></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-semibold mb-4">Services</h3>
+                            <ul className="space-y-2">
+                                <li><Link to="/careers" className={themeClasses.components.footer.link}>Careers</Link></li>
+                                <li><Link to="/contact" className={themeClasses.components.footer.link}>Contact</Link></li>
+                                <li><Link to="/blog" className={themeClasses.components.footer.link}>Blog</Link></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
-                {/* Bottom Section */}
-                <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
-                    <p>© {new Date().getFullYear()} CC Business. All rights reserved.</p>
+                <div className={themeClasses.components.footer.copyright}>
+                    <p>© {new Date().getFullYear()} CCI Cloud services. All rights reserved.</p>
                 </div>
             </div>
         </footer>
     );
-}
+};
+
+export default Footer;
