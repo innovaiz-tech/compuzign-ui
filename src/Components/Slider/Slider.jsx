@@ -4,7 +4,7 @@ import 'swiper/css/pagination';
 import './styles.css';
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React from 'react';
 
 export default function SwiperComponent({ slideContent }) {
     console.log(slideContent.imageWidth)
@@ -20,7 +20,7 @@ export default function SwiperComponent({ slideContent }) {
 
     return (
         <>
-            <div className='flex flex-col bg-yellow-400'>
+            <div className='flex flex-col bg-white'>
                 <h3 className='text-black pt-10 text-center tracking-[.28em] uppercase mt-0 mb-0 px-5 text-xs font-semibold leading-[22px] no-underline'>{slideContent.heading1}</h3>
                 <h2 className='text-black py-5 text-center mt-0 mb-0 pt-[5px] px-5 text-[40px] font-bold leading-[56px] no-underline'>{slideContent.heading2}</h2>
                 <Swiper

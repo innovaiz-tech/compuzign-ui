@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Tabs } from "radix-ui";
-import { useTheme } from "../../hooks/useTheme";
 import "./styles.css";
 import AboutUsBanner from "../../assets/about-us-banner.png"
 import TechnicalSupportBanner from "../../assets/technical-support-banner.png"
@@ -25,7 +24,6 @@ import CloudAndInfrastructure from '../../assets/cloud-and-infrastructure.png';
 import { Link } from "react-router-dom";
 
 const TabsContainer = () => {
-    const { themeClasses } = useTheme();
     const industries = {
         slidesPerView: 4,
         heading1: 'Supporting Diverse Sectors',
@@ -115,33 +113,33 @@ const TabsContainer = () => {
     return (
         <div direction="column" gap="4" pb="2">
             <Tabs.Root className="TabsRoot" defaultValue="tab1">
-                <Tabs.List className={`${themeClasses.components.tabs.tabsList} bg-black`} aria-label="Manage your account">
-                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab1">
+                <Tabs.List className="TabsList" aria-label="Manage your account">
+                    <Tabs.Trigger className="TabsTrigger uppercase font-medium hover:text-gray-300 cursor-pointer px-3 py-2" value="tab1">
                         ABOUT US
                     </Tabs.Trigger>
-                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab2">
+                    <Tabs.Trigger className="TabsTrigger uppercase font-medium hover:text-gray-300 cursor-pointer px-3 py-2" value="tab2">
                         OUR SERVICES
                     </Tabs.Trigger>
-                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab3">
+                    <Tabs.Trigger className="TabsTrigger uppercase font-medium hover:text-gray-300 cursor-pointer px-3 py-2" value="tab3">
                         TECHNICAL SUPPORT
                     </Tabs.Trigger>
-                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab4">
+                    <Tabs.Trigger className="TabsTrigger uppercase font-medium hover:text-gray-300 cursor-pointer px-3 py-2" value="tab4">
                         WHO WE ARE?
                     </Tabs.Trigger>
-                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab5">
+                    <Tabs.Trigger className="TabsTrigger uppercase font-medium hover:text-gray-300 cursor-pointer px-3 py-2" value="tab5">
                         INDUSTRIES
                     </Tabs.Trigger>
-                    <Tabs.Trigger className={`TabsTrigger ${themeClasses.components.tabs.tab}`} value="tab6">
+                    <Tabs.Trigger className="TabsTrigger uppercase font-medium hover:text-gray-300 cursor-pointer px-3 py-2" value="tab6">
                         CLIENT TESTIMONIAL
                     </Tabs.Trigger>
                 </Tabs.List>
-                <Tabs.Content className="TabsContent" value="tab1">
+                <Tabs.Content className="TabsContent bg-white" value="tab1">
                     <div className="flex flex-row flex-wrap justify-between w-full">
-                        <div className="w-full md:w-1/2 bg-yellow-400 flex justify-center items-center">
+                        <div className="w-full md:w-1/2 bg-white flex justify-center items-center">
                             <img className="1/2 md-w-2/3" src={AboutUsBanner} alt="about-us-banner" />
                         </div>
 
-                        <div className="w-full md:w-1/2 bg-yellow-400 py-20 px-10 md:px-10 lg:pr-28">
+                        <div className="w-full md:w-1/2 bg-white py-20 px-10 md:px-10 lg:pr-28">
                             <p className="text-black text-left tracking-[.28em] uppercase mt-0 mb-0 text-xs font-semibold leading-[22px] no-underline">about us</p>
                             <div className="text-black text-left mt-0 mb-0 pt-5 pb-5 text-4xl font-bold leading-[56px] no-underline">
                                 World Class Technical Support
@@ -172,21 +170,21 @@ const TabsContainer = () => {
                         </div>
                     </div>
                 </Tabs.Content>
-                <Tabs.Content className="TabsContent" value="tab2">
+                <Tabs.Content className="TabsContent bg-white" value="tab2">
                     <div>
                         <SwiperComponent slideContent={services} />
-                        <div className="bg-yellow-400 flex justify-between py-8 px-4 items-center">
+                        <div className="bg-white flex justify-between py-8 px-4 items-center">
                             <div></div>
                             <Link to='#' className="underline">Know More</Link>
                         </div>
                     </div>
                 </Tabs.Content>
-                <Tabs.Content className="TabsContent" value="tab3">
+                <Tabs.Content className="TabsContent bg-white" value="tab3">
                     <div className="flex flex-row flex-wrap justify-between w-full">
-                        <div className="w-full md:w-1/2 bg-yellow-400 flex justify-center items-center">
+                        <div className="w-full md:w-1/2 bg-white flex justify-center items-center">
                             <img className="1/2 md-w-2/3" src={TechnicalSupportBanner} alt="tech-support-banner" />
                         </div>
-                        <div className="w-full md:w-1/2 bg-yellow-400 py-20 px-10 md:px-10 lg:pr-28">
+                        <div className="w-full md:w-1/2 bg-white py-20 px-10 md:px-10 lg:pr-28">
                             <p className="text-black text-left tracking-[.28em] uppercase mt-0 mb-0 text-xs font-semibold leading-[22px] no-underline">We're Here to Help</p>
                             <div className="text-black text-left mt-0 mb-0 pt-5 pb-5 text-4xl font-bold leading-[56px] no-underline">
                                 Reach Out To Our Technical Support
@@ -217,8 +215,8 @@ const TabsContainer = () => {
                         </div>
                     </div>
                 </Tabs.Content>
-                <Tabs.Content className="TabsContent" value="tab4">
-                    <div className="bg-yellow-400 flex flex-wrap justify-center gap-5 p-10">
+                <Tabs.Content className="TabsContent bg-white" value="tab4">
+                    <div className="bg-white flex flex-wrap justify-center gap-5 p-10">
                         {whoWeAre.bodyContent.map((item, index) => (
                             <div key={`who-we-are-item-${index}`} className={`max-w-[360px] h-[276px] ${index%2 === 0 ? 'bg-black':'bg-white'} p-3`}>
                                 <img src={item.icon} alt={item.title} />

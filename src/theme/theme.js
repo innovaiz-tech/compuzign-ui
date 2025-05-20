@@ -1,78 +1,97 @@
 /**
- * Central theme configuration matching the mockup exactly
+ * Theme colors for the application
+ * Based on the mockup design with teal, white, and black color scheme
  */
-export const theme = {
-  // Core brand colors based on the mockup
-  colors: {
-    primary: "#5DA6A7",        // Teal header color - header background
-    secondary: "#5E457E",      // Purple hero section background
-    accent: "#BFA8E3",         // Lavender accent for "Innovative Solutions"
-    textPrimary: "#1B1E2F",    // Dark text color for primary content
-    textSecondary: "#5C5F70",  // Muted text for secondary content
-    bgLight: "#F5F4F8",        // Light background
-    footer: "#947CA9",         // Footer purple background
-    buttonHover: "#4D8D8E",     // Teal button hover state
-    yellow: "#FFCB05",         // Yellow from About Us section
-    navBlack: "#000000",       // Black navigation bar
-    white: "#FFFFFF",          // White text and elements
-    socialBg: "#5DA6A7"         // Background for social media icons
-  }
+
+const COLORS = {
+  // Primary colors
+  primary: "#5DA6A7",        // Teal - Main brand color
+  primaryHover: "#4D8D8E",   // Teal hover state
+  secondary: "#3D3151",      // Dark purple - For hero section
+  secondaryHover: "#332843", // Dark purple hover state
+  accent: "#BFA8E3",         // Light purple - For accents
+  black: "#000000",          // Black - For text and dark elements
+  white: "#FFFFFF",          // White - For backgrounds and light text
+  
+  // Text colors
+  text: {
+    primary: "#1B1E2F",    // Dark text
+    secondary: "#5C5F70",   // Muted text
+    light: "#FFFFFF"        // Light text (white)
+  },
+  
+  // Background colors
+  background: {
+    light: "#F5F4F8",  // Light gray background
+    white: "#FFFFFF",     // White background
+    dark: "#1B1E2F"      // Dark background
+  },
+  
+  // UI elements
+  footer: "#3D3151",       // Footer background (dark purple)
+  border: "#E5E7EB"       // Light border color
 };
 
-/**
- * Reusable component styles using the theme colors
- */
-export const themeClasses = {
-  // Header/Navbar
-  nav: {
-    container: 'bg-[#5DA6A7] text-white fixed w-full z-50 flex items-center justify-between p-4',
-    link: 'text-white hover:text-white/80',
-    button: 'bg-white text-[#5DA6A7] px-4 py-1 rounded',
-    supportButton: 'text-white hover:text-white/80 px-3 py-1',
-    mobileMenu: 'bg-white text-[#5DA6A7]'
+// Component styles using direct color values
+// This provides a pragmatic way to maintain consistent styling
+// without the complexity of a context system
+export const styles = {
+  // Header/Navbar styles
+  navbar: {
+    container: `bg-[${COLORS.primary}] text-white fixed w-full z-50 flex items-center justify-between p-4`,
+    link: "text-white hover:text-white/80",
+    button: "bg-white text-[#5DA6A7] px-4 py-1 rounded",
+    contactButton: "bg-white text-[#5DA6A7] hover:bg-gray-100 px-4 py-1 rounded",
+    supportButton: "text-white hover:text-white/80 px-3 py-1"
   },
-  // Hero section
+  
+  // Hero section styles
   hero: {
-    container: 'bg-[#5E457E] text-white',
-    title: 'text-white font-bold text-[40px] leading-tight',
-    accent: 'text-[#BFA8E3] ml-2',
-    description: 'text-[#f0f0f0] mt-6 text-sm leading-relaxed max-w-2xl',
-    stats: 'text-white text-2xl font-bold',
-    statsLabel: 'text-white/70 uppercase text-xs',
-    button: 'bg-[#5DA6A7] hover:bg-[#4D8D8E] text-white px-6 py-2 rounded'
+    container: `bg-[${COLORS.secondary}] text-white`,
+    title: "text-white font-bold text-4xl md:text-5xl leading-tight",
+    accent: `text-[${COLORS.accent}] ml-2`,
+    description: "text-white/90 mt-6 text-sm leading-relaxed max-w-2xl",
+    stats: "text-white text-2xl font-bold",
+    statsLabel: "text-white/70 uppercase text-xs",
+    button: `bg-[${COLORS.primary}] hover:bg-[${COLORS.primaryHover}] text-white px-6 py-2 rounded`
   },
-  // Nav Tabs section (black bar)
-  navTabs: {
-    container: 'bg-black text-white py-4',
-    tab: 'font-medium uppercase'
-  },
-  // About Us section
-  aboutUs: {
-    container: 'bg-[#FFCB05]',
-    title: 'text-[#1B1E2F] font-bold text-3xl mb-4',
-    text: 'text-[#1B1E2F] mb-4',
-    button: 'bg-black text-white px-6 py-2 rounded'
-  },
-  // Tab component
+  
+  // Navigation tabs styles
   tabs: {
-    container: 'bg-[#000000] text-white',
-    tabsList: 'flex flex-wrap px-14 text-white',
-    tab: 'text-white hover:text-[#5DA6A7] uppercase',
-    activeTab: 'text-[#5DA6A7] border-b-2 border-[#5DA6A7]'
+    container: "bg-black text-white py-3",
+    tabsList: "flex flex-wrap px-4 md:px-14 text-white",
+    tab: "uppercase font-medium hover:text-gray-300 cursor-pointer px-3 py-2"
   },
-  // Footer
+  
+  // About Us section styles
+  aboutUs: {
+    container: `bg-[${COLORS.yellow}]`,
+    title: `text-[${COLORS.textPrimary}] font-bold text-3xl mb-4`,
+    text: `text-[${COLORS.textPrimary}] mb-4`,
+    button: `bg-[${COLORS.black}] text-white px-6 py-2 rounded hover:bg-gray-800`
+  },
+  
+  // Footer styles
   footer: {
-    container: 'bg-[#947CA9] text-white py-12',
-    logo: 'bg-white p-2 rounded-md inline-block',
-    logoText: 'text-[#5DA6A7] text-2xl font-bold',
-    socialIcon: 'text-white hover:text-white/80 bg-[#5DA6A7] p-2 rounded-full',
-    link: 'text-white/80 hover:text-white transition-colors',
-    copyright: 'border-t border-white/20 mt-12 pt-6 text-center'
+    container: `bg-[${COLORS.footer}] text-white py-10`,
+    logo: "text-xl font-bold",
+    logoText: "text-white text-2xl font-bold",
+    link: "text-white hover:text-white/80",
+    socialIcon: "text-white hover:text-white/80 p-2 rounded-full inline-flex items-center justify-center",
+    copyright: "mt-8 pt-8 border-t border-white/20 text-sm text-white/80"
   },
+  
+  // Common button styles
+  buttons: {
+    primary: `bg-[${COLORS.primary}] hover:bg-[${COLORS.primaryHover}] text-white px-6 py-2 rounded`,
+    secondary: `bg-[${COLORS.secondary}] hover:bg-[${COLORS.secondaryHover}] text-white px-6 py-2 rounded`,
+    black: `bg-[${COLORS.black}] hover:bg-gray-800 text-white px-6 py-2 rounded`
+  },
+  
   // Services
   services: {
-    title: 'text-[#1B1E2F] font-bold text-2xl',
+    title: `text-[${COLORS.textPrimary}] font-bold text-2xl`,
     card: 'bg-white rounded-lg shadow-md p-6',
-    button: 'bg-[#5DA6A7] hover:bg-[#4D8D8E] text-white px-4 py-2 rounded'
+    button: `bg-[${COLORS.primary}] hover:bg-[${COLORS.primaryHover}] text-white px-4 py-2 rounded`
   }
 };

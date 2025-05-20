@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { GrClose } from "react-icons/gr";
+import { FaBars, FaTimes } from "react-icons/fa";
 import AccordionComponent from "./Accordion/Accordion";
-import { useTheme } from "../hooks/useTheme";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const { themeClasses } = useTheme();
 
     const navItems = [
         {
@@ -56,7 +53,7 @@ export default function Navbar() {
 
     return (
         !isMobile ? (
-            <section className={themeClasses.components.nav.container}>
+            <section className="bg-primary text-white fixed w-full z-50 flex items-center justify-between p-4">
                 <Logo />
 
                 <div className="flex gap-8">
@@ -72,7 +69,7 @@ export default function Navbar() {
                             {item.dropdown && item.dropdown.length > 0 && (
                                 <div className="absolute hidden group-hover:block bg-white shadow-md rounded mt-2">
                                     {item.dropdown.map((dropdownItem, i) => (
-                                        <p key={i} className="p-2 text-nowrap hover:bg-gray-100 text-[#5E457E]">
+                                        <p key={i} className="p-2 text-nowrap hover:bg-gray-100 text-secondary">
                                             {dropdownItem.href ? (
                                                 <Link to={dropdownItem.href}>{dropdownItem.label}</Link>
                                             ) : (
@@ -87,15 +84,15 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex gap-4">
-                    <button className={themeClasses.components.nav.supportButton}>Support</button>
-                    <button className={themeClasses.components.nav.button}>Contact Us</button>
+                    <button className="text-white hover:text-white/80 px-3 py-1">Support</button>
+                    <button className="bg-white text-primary hover:bg-gray-100 px-4 py-1 rounded">Contact Us</button>
                 </div>
             </section>
         ) : (
             <section className="w-full h-full relative">
-                <div className="fixed w-full bg-[#5DA6A7] flex justify-between px-4 py-2">
+                <div className="fixed w-full bg-primary flex justify-between px-4 py-2">
                     <Logo />
-                    <GiHamburgerMenu
+                    <FaBars
                         onClick={() => setIsOpen(true)}
                         className="text-2xl cursor-pointer text-white"
                     />
@@ -105,26 +102,26 @@ export default function Navbar() {
                     <div className="fixed inset-0 z-50 flex">
                         <div className="w-3/4 sm:w-1/4 h-full bg-white absolute left-0 top-0 p-4 shadow-lg">
                             <div className="flex justify-between items-center mb-8">
-                                <div className="font-bold text-[#5DA6A7]">
+                                <div className="font-bold text-primary">
                                     <Link to='/' onClick={() => setIsOpen(false)}>CCI</Link>
                                 </div>
-                                <GrClose
+                                <FaTimes
                                     onClick={() => setIsOpen(false)}
                                     className="text-xl cursor-pointer"
                                 />
                             </div>
 
                             <div className="flex flex-col gap-4">
-                                <div className="text-[#5DA6A7] hover:text-[#4D8D8E]">Home</div>
+                                                <div className="text-primary hover:text-primary-hover">Home</div>
                                 {navItems.map((item, index) => {
                                     if (item.dropdown.length === 0) {
-                                        return <div className="text-[#5DA6A7] hover:text-[#4D8D8E]" key={item.title}>{item.title}</div>;
+                                        return <div className="text-primary hover:text-primary-hover" key={item.title}>{item.title}</div>;
                                     } else {
-                                        return <AccordionComponent className="text-[#5DA6A7] hover:text-[#4D8D8E]" key={item.title} accordionContent={item} index={index} />;
+                                        return <AccordionComponent className="text-primary hover:text-primary-hover" key={item.title} accordionContent={item} index={index} />;
                                     }
                                 })}
-                                <div className="text-[#5DA6A7] hover:text-[#4D8D8E]">Support</div>
-                                <div className="text-[#5DA6A7] hover:text-[#4D8D8E]">Contact Us</div>
+                                <div className="text-primary hover:text-primary-hover">Support</div>
+                                <div className="text-primary hover:text-primary-hover">Contact Us</div>
                             </div>
                         </div>
                         <div

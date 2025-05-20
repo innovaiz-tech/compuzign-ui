@@ -1,10 +1,10 @@
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
-import "./App.css";
-import HomePage from "./Components/HomePage";
-import PageNotFound from "./Components/PageNotFound";
+// App.jsx - Main application component
+import './App.css'
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 import About from "./Components/About";
 import RootLayouts from "./Layout/RootLayouts";
-import ThemeProvider from "./context/ThemeContext";
+import PageNotFound from "./Components/PageNotFound";
+import HomePage from "./Components/HomePage";
 
 function App() {
   const router = createBrowserRouter(
@@ -23,11 +23,7 @@ function App() {
     )
   )
 
-  return (
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
