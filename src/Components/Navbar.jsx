@@ -10,25 +10,29 @@ export default function Navbar() {
     const navItems = [
         {
             title: "Services",
+            href: '/services',
             dropdown: [
-                { label: 'Support-as-a-service', href: '/support' },
-                { label: 'Migration-as-a-service', href: '/migration' },
-                { label: 'Cloud and Infrastructure-as-a-service', href: '/cloud' }
+                { label: 'Support as a service', href: '/csaas' },
+                { label: 'Migration as a service', href: '/maas' },
+                { label: 'Cloud and Infrastructure as a service', href: '/ciaas' }
             ]
         },
         {
             title: "Pricing",
+            href: '/pricing',
             dropdown: []
         },
         {
             title: "Careers",
+            href: '/careers',
             dropdown: []
         },
         {
             title: "Company",
+            href: '/company',
             dropdown: [
                 { label: "About Us", href: "/about" },
-                { label: "Contact Us" }
+                { label: "Contact Us", href: "/contact-us" }
             ]
         }
     ];
@@ -46,8 +50,8 @@ export default function Navbar() {
 
     // Logo component with consistent styling
     const Logo = () => (
-        <div className="font-bold text-white">
-            <Link to='/'>CCI</Link>
+        <div className="font-bold text-text-light active:text-secondary-light">
+            <Link to='/'>COMPUZIGN</Link>
         </div>
     );
 
@@ -60,7 +64,7 @@ export default function Navbar() {
                     {navItems.map((item, index) => (
                         <div key={index} className="group relative py-2">
                             <div className="cursor-pointer relative inline-block">
-                                <span className="relative text-white">{item.title}</span>
+                                <Link className="relative text-text-light hover:text-text-dark/70 active:text-secondary-light" to={item.href}>{item.title}</Link>
                                 <span
                                     className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
                                 ></span>
@@ -69,9 +73,9 @@ export default function Navbar() {
                             {item.dropdown && item.dropdown.length > 0 && (
                                 <div className="absolute hidden group-hover:block bg-white shadow-md rounded mt-2">
                                     {item.dropdown.map((dropdownItem, i) => (
-                                        <p key={i} className="p-2 text-nowrap hover:bg-gray-100 text-secondary">
+                                        <p key={i} className="pl-3 pr-12 py-2 text-primary-dark text-nowrap hover:bg-primary-dark hover:rounded cursor-pointer hover:text-text-light">
                                             {dropdownItem.href ? (
-                                                <Link to={dropdownItem.href}>{dropdownItem.label}</Link>
+                                                <Link className="relative hover:text-text-light" to={dropdownItem.href}>{dropdownItem.label}</Link>
                                             ) : (
                                                 dropdownItem.label || dropdownItem
                                             )}
@@ -84,8 +88,8 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex gap-4">
-                    <button className="text-white hover:text-white/80 px-3 py-1">Support</button>
-                    <button className="bg-white text-primary hover:bg-gray-100 px-4 py-1 rounded">Contact Us</button>
+                    <button className="text-text-light hover:text-text-light/80 px-3 py-1 cursor-pointer">Support</button>
+                    <button className="bg-primary-dark hover:bg-primary-dark/70 text-text-light px-4 py-2 rounded-lg cursor-pointer">Contact Us</button>
                 </div>
             </section>
         ) : (
@@ -112,16 +116,16 @@ export default function Navbar() {
                             </div>
 
                             <div className="flex flex-col gap-4">
-                                                <div className="text-primary hover:text-primary-hover">Home</div>
+                                <Link to='/'>Home</Link>
                                 {navItems.map((item, index) => {
                                     if (item.dropdown.length === 0) {
-                                        return <div className="text-primary hover:text-primary-hover" key={item.title}>{item.title}</div>;
+                                        return <Link to={item.href} key={item.title}>{item.title}</Link>;
                                     } else {
                                         return <AccordionComponent className="text-primary hover:text-primary-hover" key={item.title} accordionContent={item} index={index} />;
                                     }
                                 })}
-                                <div className="text-primary hover:text-primary-hover">Support</div>
-                                <div className="text-primary hover:text-primary-hover">Contact Us</div>
+                                <Link to='/support'>Support</Link>
+                                <Link to='/contact-us'>Contact Us</Link>
                             </div>
                         </div>
                         <div
