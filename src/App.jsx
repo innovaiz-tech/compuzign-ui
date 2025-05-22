@@ -5,6 +5,7 @@ import About from "./Components/About";
 import RootLayouts from "./Layout/RootLayouts";
 import PageNotFound from "./Components/PageNotFound";
 import HomePage from "./Components/HomePage";
+import Services from "./Components/services/Services.jsx";
 
 function App() {
   const router = createBrowserRouter(
@@ -12,6 +13,7 @@ function App() {
       <Route path='/' element={<RootLayouts />}>
         <Route index element={<HomePage />} />
         <Route path='about' element={<About />} />
+        <Route path='services' element={<Services />} />
 
         {/* <Route path='contact' element={<ContactLayout />} >
           <Route path='mail' element={<Mail />} />
