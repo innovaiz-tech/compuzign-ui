@@ -1,13 +1,14 @@
-import homepageBanner from "../assets/home-page-banner.jpg";
+import homepageBanner from "../assets/home-page-banner.png";
 import customerImage from "../assets/Customers.png";
 import TabsContainer from "./Tabs/Tabs";
+import useScrollToTop from "../hooks/useScrollToTop.JS";
 
 export default function HomePage() {
-
+  useScrollToTop();
   return (
     <div className="home">
       <div
-        className="bg-cover bg-[position:50%] pb-[60px] pt-[120px] bg-secondary text-text-light"
+        className="bg-cover bg-[position:50%] pb-[70px] pt-[150px] bg-secondary text-text-light"
         style={{ backgroundImage: `url(${homepageBanner})` }}
       >
         <div className="m-auto w-full px-4 md:px-8 max-w-[1200px]">
@@ -28,7 +29,7 @@ export default function HomePage() {
             See how we drive success in rapidly evolving digital lands.
           </div>
           <div className="mt-8 flex items-center gap-4">
-            <button className="bg-secondary-light hover:bg-accent-purple-hover text-text-light px-6 py-2 rounded-lg">Get Started</button>
+            <button className="bg-primary hover:bg-primary-hover text-text-light px-6 py-2 rounded-lg">Get Started</button>
             <div className="flex items-center gap-2">
               <img src={customerImage} alt="Happy customers" className="h-8" />
               <p className="text-text-light text-sm">+ Mr. Happy Customers</p>

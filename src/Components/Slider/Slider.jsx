@@ -43,8 +43,8 @@ export default function SwiperComponent({ slideContent }) {
                             slideContent.bodyContent.map((i, index) => (
                                 <SwiperSlide key={index}>
                                     <div className='text-left [background-color:#fff] [background-clip:border-box] rounded-[15px] w-auto h-auto pb-0 mb-10'>
-                                        <img src={i.image} className={`w-[250px] sm:w-[${slideContent.imageWidth}] h-[${slideContent.imageHeight}] rounded-t-[15px]`} alt={`slider${index + 1}`} />
-                                        <div className={`w-[250px] h-[250px] bg-accent sm:w-[${slideContent.imageWidth}] flex flex-col justify-between items-start p-6 rounded-b-[15px]`}>
+                                        <img src={i.image} className={`w-[250px] sm:w-[370px] h-[170px] rounded-t-[15px]`} alt={`slider${index + 1}`} />
+                                        <div className={`w-[250px] h-[250px] bg-accent sm:w-[370px] flex flex-col justify-between items-start p-6 rounded-b-[15px]`}>
                                             <div>
                                                 <div className='mt-0 mb-0 text-xl font-semibold leading-[28px] no-underline'>
                                                     {i.heading}

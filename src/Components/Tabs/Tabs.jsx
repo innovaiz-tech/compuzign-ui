@@ -43,8 +43,6 @@ const TabsContainer = () => {
         slidesPerView: 3,
         heading1: 'Explore our services',
         heading2: 'IT Support Services',
-        imageWidth: '370px',
-        imageHeight: '170px',
         imageContainer: [MigrationAsAService, SupportAsAService, CloudAndInfrastructure],
         bodyContent: [
             {
@@ -139,9 +137,9 @@ const TabsContainer = () => {
                             <img className="1/2 md-w-2/3" src={AboutUsBanner} alt="about-us-banner" />
                         </div>
 
-                        <div className="w-full md:w-1/2 py-20 px-10 md:px-10 lg:pr-28">
+                        <div className="w-full flex flex-col gap-5 md:w-1/2 py-20 px-10 md:px-10 lg:pr-28">
                             <p className="text-black text-left tracking-[.28em] uppercase mt-0 mb-0 text-xs font-semibold leading-[22px] no-underline">about us</p>
-                            <div className="text-black text-left mt-0 mb-0 pt-5 pb-5 text-4xl font-bold leading-[56px] no-underline">
+                            <div className="text-black text-left mt-0 mb-0 text-4xl font-bold leading-[56px] no-underline">
                                 World Class Technical Support
                             </div>
                             <div className="flex flex-col gap-4">
@@ -166,7 +164,11 @@ const TabsContainer = () => {
                                     </strong>
                                 </div>
                             </div>
-                            <button className="mt-10 bg-primary hover:bg-primary-hover cursor-pointer px-8 py-3 text-text-light rounded-md">Know more</button>
+
+                            <Link className="w-fit bg-primary hover:bg-primary-hover cursor-pointer px-8 py-3 text-text-light rounded-md" to='about'>
+                                Know more
+                            </Link>
+
                         </div>
                     </div>
                 </Tabs.Content>
