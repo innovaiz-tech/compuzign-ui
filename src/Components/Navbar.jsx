@@ -48,7 +48,6 @@ export default function Navbar() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Logo component with consistent styling
     const Logo = () => (
         <div className="font-bold text-text-light active:text-secondary-light">
             <Link to='/'>COMPUZIGN</Link>
@@ -57,7 +56,7 @@ export default function Navbar() {
 
     return (
         !isMobile ? (
-            <section className="bg-primary text-white fixed w-full z-50 flex items-center justify-between p-4">
+            <section className="bg-primary text-text-light fixed w-full z-50 flex items-center justify-between p-4">
                 <Logo />
 
                 <div className="flex gap-8">
@@ -66,12 +65,12 @@ export default function Navbar() {
                             <div className="cursor-pointer relative inline-block">
                                 <Link className="relative text-text-light hover:text-text-dark/70 active:text-secondary-light" to={item.href}>{item.title}</Link>
                                 <span
-                                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
+                                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-content transition-all duration-300 group-hover:w-full"
                                 ></span>
                             </div>
 
                             {item.dropdown && item.dropdown.length > 0 && (
-                                <div className="absolute hidden group-hover:block bg-white shadow-md rounded mt-2">
+                                <div className="absolute hidden group-hover:block bg-content shadow-md rounded-md mt-2">
                                     {item.dropdown.map((dropdownItem, i) => (
                                         <p key={i} className="pl-3 pr-12 py-2 text-primary-dark text-nowrap hover:bg-primary-dark hover:rounded cursor-pointer hover:text-text-light">
                                             {dropdownItem.href ? (
@@ -98,16 +97,16 @@ export default function Navbar() {
                     <Logo />
                     <FaBars
                         onClick={() => setIsOpen(true)}
-                        className="text-2xl cursor-pointer text-white"
+                        className="text-2xl cursor-pointer text-text-light"
                     />
                 </div>
 
                 {isOpen && (
                     <div className="fixed inset-0 z-50 flex">
-                        <div className="w-3/4 sm:w-1/4 h-full bg-white absolute left-0 top-0 p-4 shadow-lg">
+                        <div className="w-3/4 sm:w-1/4 h-full bg-content absolute left-0 top-0 p-4 shadow-lg">
                             <div className="flex justify-between items-center mb-8">
                                 <div className="font-bold text-primary">
-                                    <Link to='/' onClick={() => setIsOpen(false)}>CCI</Link>
+                                    <Link to='/' onClick={() => setIsOpen(false)}>COMPUZIGN</Link>
                                 </div>
                                 <FaTimes
                                     onClick={() => setIsOpen(false)}

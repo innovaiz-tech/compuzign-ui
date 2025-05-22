@@ -1,58 +1,57 @@
 import React from 'react';
-import { FaTwitter, FaLinkedin, FaFacebookF } from 'react-icons/fa';
+import { AiFillTwitterCircle } from 'react-icons/ai';
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="bg-secondary text-white py-10 px-4 md:px-8">
-            <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+        <footer className="bg-secondary-light text-text-light py-10 px-4 md:px-8">
+            <div className="mx-auto px-4">
+                <div className="flex flex-row flex-wrap gap-5 justify-start sm:justify-around ">
                     <div className="flex flex-col items-start">
                         <div className="text-xl font-bold">
-                            <Link to="/" className="text-white text-2xl font-bold hover:opacity-80 transition-opacity">
-                                CCI
+                            <Link to="/" className="text-text-light text-2xl font-bold hover:opacity-80 transition-opacity">
+                                COMPUZIGN
                             </Link>
                         </div>
-                        <p className="mt-4 text-white">Cloud service solutions</p>
-                        <div className="flex mt-4 space-x-4">
-                            <a href="#" aria-label="Twitter" className="text-white hover:opacity-80 p-2 rounded-full inline-flex items-center justify-center transition-opacity">
-                                <FaTwitter size={18} />
-                            </a>
-                            <a href="#" aria-label="Facebook" className="text-white hover:opacity-80 p-2 rounded-full inline-flex items-center justify-center transition-opacity">
-                                <FaFacebookF size={18} />
-                            </a>
-                            <a href="#" aria-label="LinkedIn" className="text-white hover:opacity-80 p-2 rounded-full inline-flex items-center justify-center transition-opacity">
-                                <FaLinkedin size={18} />
-                            </a>
+                        <p className="mt-4 text-text-light">Cloud service solutions</p>
+                        <div className="flex items-center gap-4">
+
+                            <Link to='#' className="text-text-light hover:text-secondary cursor-pointer text-2xl flex items-center justify-center">
+                                <FaFacebook className="text-3xl " />
+                            </Link>
+                            <Link to='#' className="w-8 h-8 rounded-full bg-content hover:bg-secondary cursor-pointer flex items-center justify-center">
+                                <FaInstagram className="text-footer text-xl " />
+                            </Link>
+                            <Link to='#' className="text-text-light hover:text-secondary cursor-pointer text-2xl flex items-center justify-center">
+                                <AiFillTwitterCircle className="text-4xl " />
+                            </Link>
+                            <Link to='#' className="w-8 h-8 rounded-full bg-content hover:bg-secondary cursor-pointer flex items-center justify-center">
+                                <p className="text-footer font-bold text-base">in</p>
+                            </Link>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-2 gap-x-16 gap-y-8">
-                        <div>
-                            <h3 className="text-lg font-semibold mb-4">Quick links</h3>
-                            <ul className="space-y-2">
-                                <li><Link to="/" className="text-white hover:opacity-80 transition-opacity">Home</Link></li>
-                                <li><Link to="/support" className="text-white hover:opacity-80 transition-opacity">Support</Link></li>
-                                <li><Link to="/pricing" className="text-white hover:opacity-80 transition-opacity">Pricing</Link></li>
-                                <li><Link to="/about" className="text-white hover:opacity-80 transition-opacity">About us</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-semibold mb-4">Services</h3>
-                            <ul className="space-y-2">
-                                <li><Link to="/careers" className="text-white hover:opacity-80 transition-opacity">Careers</Link></li>
-                                <li><Link to="/contact" className="text-white hover:opacity-80 transition-opacity">Contact</Link></li>
-                                <li><Link to="/blog" className="text-white hover:opacity-80 transition-opacity">Blog</Link></li>
-                            </ul>
-                        </div>
+                    <div className="flex flex-col gap-5">
+                        <h2 className='text-text-light mt-0 mb-0 text-xl font-bold leading-6 no-underline'>Quick Links</h2>
+                        <ul className="flex gap-8 flex-wrap max-w-80">
+                            <li><Link to="/" className="text-text-light hover:opacity-80 transition-opacity">Home</Link></li>
+                            <li><Link to="/support" className="text-text-light hover:opacity-80 transition-opacity">Services</Link></li>
+                            <li><Link to="/pricing" className="text-text-light hover:opacity-80 transition-opacity">Careers</Link></li>
+                            <li><Link to="/about" className="text-text-light hover:opacity-80 transition-opacity">Pricing</Link></li>
+                            <li><Link to="/careers" className="text-text-light hover:opacity-80 transition-opacity">Support</Link></li>
+                            <li><Link to="/contact" className="text-text-light hover:opacity-80 transition-opacity">Contact</Link></li>
+                            <li><Link to="/blog" className="text-text-light hover:opacity-80 transition-opacity">About Us</Link></li>
+                        </ul>
                     </div>
+                    <div></div>
                 </div>
 
-                <div className="mt-8 pt-8 border-t border-white/20 text-sm text-white/80">
+                <div className="flex items-center gap-4 justify-between flex-wrap mt-8 pt-8 border-t border-white/20 text-sm text-text-light/80">
                     <p>© {new Date().getFullYear()} CCI Cloud services. All rights reserved.</p>
-                    <p className="mt-2 text-sm">
-                        <Link to="/privacy" className="hover:underline mr-4">Privacy Policy</Link>
-                        <Link to="/terms" className="hover:underline">Terms of Service</Link>
+                    <p className="text-sm flex flex-wrap">
+                        <Link to="/privacy" className="underline mr-4">Privacy Policy</Link>
+                        <Link to="/terms" className="underline">Terms of Service</Link>
                     </p>
                 </div>
             </div>

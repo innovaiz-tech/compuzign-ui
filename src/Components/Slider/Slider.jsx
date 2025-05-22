@@ -1,13 +1,13 @@
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './styles.css';
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import React from 'react';
 
 export default function SwiperComponent({ slideContent }) {
-    console.log(slideContent.imageWidth)
+    console.log(slideContent.imageWidth, slideContent.imageHeight);
     const breakpoints = slideContent.breakPoints.reduce((acc, item) => {
         return {
             ...acc,
@@ -20,9 +20,9 @@ export default function SwiperComponent({ slideContent }) {
 
     return (
         <>
-            <div className='flex flex-col bg-white'>
-                <h3 className='text-black pt-10 text-center tracking-[.28em] uppercase mt-0 mb-0 px-5 text-xs font-semibold leading-[22px] no-underline'>{slideContent.heading1}</h3>
-                <h2 className='text-black py-5 text-center mt-0 mb-0 pt-[5px] px-5 text-[40px] font-bold leading-[56px] no-underline'>{slideContent.heading2}</h2>
+            <div className='flex flex-col bg-content'>
+                <h3 className='pt-10 text-center tracking-[.28em] uppercase mt-0 mb-0 px-5 text-xs font-semibold leading-[22px] no-underline'>{slideContent.heading1}</h3>
+                <h2 className='py-5 text-center mt-0 mb-0 pt-[5px] px-5 text-[40px] font-bold leading-[56px] no-underline'>{slideContent.heading2}</h2>
                 <Swiper
                     slidesPerView={1}
                     spaceBetween={30}
@@ -43,18 +43,19 @@ export default function SwiperComponent({ slideContent }) {
                             slideContent.bodyContent.map((i, index) => (
                                 <SwiperSlide key={index}>
                                     <div className='text-left [background-color:#fff] [background-clip:border-box] rounded-[15px] w-auto h-auto pb-0 mb-10'>
-                                        <img src={i.image} className={`w-[250px] sm:w-[${slideContent.imageWidth}] h-[${slideContent.imageHeight}] rounded-t-[15px]`} alt={`slider${index + 1}`} />
-                                        <div className={`w-[250px] sm:w-[${slideContent.imageWidth}] flex flex-col justify-start items-start py-[19px] px-[24px]`}>
-                                            <div className='text-[#0f1032] mt-0 mb-0 text-xl font-semibold leading-[28px] no-underline'>
-                                                {i.heading}
-                                            </div>
-                                            <Link to='#' className=' flex justify-start items-center text-[#1a1b1f] text-sm'>
-                                                <div className='text-[#4f4f4f] mt-0 mb-0 pt-[15px] text-sm font-normal leading-[22px] no-underline'>
-                                                    {/* {i.content} */}
-                                                    At CompuZign, our dedicated technical support team provides comprehensive tech support services for your organization's network systems.
+                                        <img src={i.image} className={`w-[250px] sm:w-[370px] h-[170px] rounded-t-[15px]`} alt={`slider${index + 1}`} />
+                                        <div className={`w-[250px] h-[250px] bg-accent sm:w-[370px] flex flex-col justify-between items-start p-6 rounded-b-[15px]`}>
+                                            <div>
+                                                <div className='mt-0 mb-0 text-xl font-semibold leading-[28px] no-underline'>
+                                                    {i.heading}
                                                 </div>
-                                            </Link>
-                                            <button className="mt-10 bg-black px-8 py-2 text-white rounded-md">Know more</button>
+                                                <Link to='#' className=' flex justify-start items-center text-[#1a1b1f] text-sm'>
+                                                    <div className='mt-0 mb-0 pt-[15px] text-sm font-normal leading-[22px] no-underline'>
+                                                        {i.content}
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                            <button className="bg-secondary hover:bg-secondary-hover cursor-pointer px-8 py-2 text-white rounded-md">Know more</button>
                                         </div>
                                     </div>
                                 </SwiperSlide>
