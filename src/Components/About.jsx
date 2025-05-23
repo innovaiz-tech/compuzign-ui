@@ -7,9 +7,25 @@ import Innovation from "../assets/innovation.png"
 import Collaboration from "../assets/collaboration.png"
 import AboutUsSection from "../assets/about-us-section-img.jpg"
 import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import {
+  motion,
+  useInView,
+  animate,
+  inView,
+  stagger,
+} from "framer-motion";
 
 export default function About() {
   useScrollToTop();
+  const bannerRef = useRef(null);
+  const coreValuesRef = useRef(null);
+
+  const isCoreInView = useInView(coreValuesRef, {
+    once: false,
+    margin: "-200px 0px -200px 0px"
+  });
+
   const coreValues = [
     {
       icon: Integrity,
@@ -32,30 +48,98 @@ export default function About() {
       description: 'Success is built on teamwork. We collaborate with our clients to tailor solutions that fit their unique goals.'
     }
   ]
+
+  const cardVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: (i) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: i * 0.15,
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    })
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  useEffect(() => {
+    if (bannerRef.current) {
+      inView(bannerRef.current, () => {
+        animate(
+          bannerRef.current.querySelector("h4"),
+          { opacity: [0, 1], y: [20, 0] },
+          { delay: 0.2, duration: 0.6, easing: "ease-out" }
+        );
+
+        animate(
+          bannerRef.current.querySelector("h1"),
+          { opacity: [0, 1], y: [30, 0] },
+          { delay: 0.4, duration: 0.6, easing: "ease-out" }
+        );
+
+        animate(
+          bannerRef.current.querySelectorAll("p"),
+          { opacity: [0, 1], y: [20, 0] },
+          {
+            delay: stagger(0.2, { start: 0.6 }),
+            duration: 0.6,
+            easing: "ease-out",
+          }
+        );
+
+        animate(
+          bannerRef.current.querySelector("button"),
+          { opacity: [0, 1], scale: [0.9, 1] },
+          { delay: 1.2, duration: 0.5, easing: "ease-out" }
+        );
+      });
+    }
+
+  }, []);
+
   return (
     <>
       <section
-        className="bg-[position:50%] bg-cover pt-[100px] pb-[250px]"
+        ref={bannerRef}
+        className="bg-center bg-cover bg-no-repeat relative min-h-[400px] md:min-h-[500px] lg:min-h-[600px] w-full flex items-center overflow-hidden"
         style={{ backgroundImage: `url(${AboutUsBanner})` }}
       >
-        <div className="max-w-[700px] px-4 md:pl-24 flex flex-col gap-4">
-          <h1 className="text-primary tracking-[.28em] uppercase mt-0 mb-0 font-poppins text-xs font-semibold leading-[22px] no-underline">Empowering Business with End-to-End IT Solutions</h1>
-          <div className="flex flex-col gap-4">
-            <span className="text-text-light mt-0 mb-0 font-poppins text-[40px] font-bold leading-[48px] no-underline">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24">
+          <div className="max-w-[800px] flex flex-col gap-4 md:gap-5 lg:gap-6">
+            <h4 className="text-primary tracking-[.28em] uppercase font-poppins text-xs sm:text-sm font-semibold leading-tight">
               Empowering Businesses with
-            </span>
-            <span className="text-primary mt-0 mb-0 font-poppins text-[40px] font-bold leading-[48px] no-underline">
-              Reliable IT Solutions
-            </span>
+            </h4>
+
+            <h1 className="font-poppins text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+              <span className="text-text-light">
+                Reliable IT Solutions{" "}
+              </span>
+              <span className="text-primary">for Your Success</span>
+            </h1>
+
+            <div className="text-text-light font-poppins text-sm sm:text-base max-w-[600px] mt-2 space-y-4">
+              Ensure your business stays online and optimized with proactive, around-the-clock IT support. Our experts monitor, manage, and maintain your IT infrastructure, providing quick resolutions to issues before they impact your productivity.
+            </div>
+
+            <div className="mt-4 md:mt-6">
+              <button className="bg-primary hover:bg-primary-hover text-text-light px-6 py-3 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base">
+                Get in Touch
+              </button>
+            </div>
           </div>
-          <div className="text-text-light mt-0 mb-0 pt-[25px] font-poppins text-sm font-normal leading-[22px] no-underline">
-            Ensure your business stays online and optimized with proactive, around-the-clock IT support. Our experts monitor, manage, and maintain your IT infrastructure, providing quick resolutions to issues before they impact your productivity.
-          </div>
-          <button className="bg-primary hover:bg-primary-hover text-text-light px-6 py-2 rounded-lg w-fit">Get in Touch</button>
         </div>
       </section>
       <section
-        className="bg-[position:50%] bg-cover pt-[100px] pb-[250px]"
+        className="bg-[position:50%] bg-cover pt-[100px] pb-[100px]"
         style={{ backgroundImage: `url(${AboutUsContainer})` }}
       >
         <div className="flex w-full justify-center items-center">
@@ -78,17 +162,40 @@ export default function About() {
         <h2 className="text-black text-center my-5 font-poppins text-[36px] font-bold leading-[44px] no-underline">
           Our Core Values
         </h2>
-        <div className="flex flex-row flex-wrap justify-center items-start gap-5">
+        <div
+          ref={coreValuesRef}
+          className="flex flex-row flex-wrap justify-center items-start gap-5"
+        >
           {coreValues.map((value, index) => (
-            <div key={index} className="bg-secondary-dark border-0 border-black rounded-[10px] flex flex-col justify-center items-center p-[40px_15px] w-[258px]">
-              <img className="" width={90} src={value.icon} alt={`core-icon ${index + 1}`} />
-              <h3 className="text-text-light text-left mt-0 mb-0 font-poppins text-[24px] font-bold leading-[32px] no-underline">
+            <motion.div
+              key={index}
+              className="bg-secondary-dark rounded-[10px] flex flex-col justify-center items-center p-[40px_15px] w-[258px] h-[300px]"
+              custom={index}
+              initial="hidden"
+              animate={isCoreInView ? "visible" : "hidden"}
+              variants={cardVariants}
+            >
+              <motion.img
+                width={90}
+                src={value.icon}
+                alt={`core-icon ${index + 1}`}
+                variants={itemVariants}
+              />
+
+              <motion.h3
+                className="text-text-light text-center mt-4 mb-0 font-poppins text-[24px] font-bold leading-[32px]"
+                variants={itemVariants}
+              >
                 {value.title}
-              </h3>
-              <p className="text-text-light text-left mt-0 mb-0 pt-5 font-poppins text-sm font-normal leading-[22px] no-underline">
+              </motion.h3>
+
+              <motion.p
+                className="text-text-light text-center mt-4 mb-0 px-2 font-poppins text-sm font-normal leading-[22px]"
+                variants={itemVariants}
+              >
                 {value.description}
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           ))}
         </div>
         <div className="flex flex-row flex-wrap gap-5 justify-center items-center my-16">
