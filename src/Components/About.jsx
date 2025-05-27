@@ -22,7 +22,7 @@ export default function About() {
   const coreValuesRef = useRef(null);
 
   const isCoreInView = useInView(coreValuesRef, {
-    once: false,
+    once: true,
     margin: "-200px 0px -200px 0px"
   });
 
@@ -206,7 +206,7 @@ export default function About() {
             </p>
             <Link className="bg-primary hover:bg-primary-hover text-text-light px-5 py-2 rounded-lg w-fit">
               <button>
-                MEET OUR SUPPORT TEAM
+                Meet Our Support Team
               </button>
             </Link>
           </div>

@@ -72,13 +72,17 @@ export default function Navbar() {
                             {item.dropdown && item.dropdown.length > 0 && (
                                 <div className="absolute hidden group-hover:block bg-content shadow-md rounded-md mt-2">
                                     {item.dropdown.map((dropdownItem, i) => (
-                                        <p key={i} className="pl-3 pr-12 py-2 text-primary-dark text-nowrap hover:bg-primary-dark hover:rounded cursor-pointer hover:text-text-light">
+                                        <Link
+                                            key={i}
+                                            to={dropdownItem.href}
+                                            className="block pl-3 pr-8 py-2 text-primary-dark hover:bg-primary-dark hover:text-text-light hover:rounded-md transition-colors"
+                                        >
                                             {dropdownItem.href ? (
-                                                <Link className="relative hover:text-text-light" to={dropdownItem.href}>{dropdownItem.label}</Link>
+                                                <div className="relative whitespace-nowrap rounded-md">{dropdownItem.label}</div>
                                             ) : (
                                                 dropdownItem.label || dropdownItem
                                             )}
-                                        </p>
+                                        </Link>
                                     ))}
                                 </div>
                             )}
