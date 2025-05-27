@@ -177,7 +177,7 @@ const TabsContainer = () => {
                         <SwiperComponent slideContent={services} />
                         <div className="bg-content flex justify-between py-8 px-4 items-center">
                             <div></div>
-                            <Link to='#' className="underline">Know More</Link>
+                            <Link to='/services' className="underline">Know More</Link>
                         </div>
                     </div>
                 </Tabs.Content>
@@ -186,7 +186,7 @@ const TabsContainer = () => {
                         <div className="w-full md:w-1/2 bg-content flex justify-center items-center">
                             <img className="1/2 md-w-2/3" src={TechnicalSupportBanner} alt="tech-support-banner" />
                         </div>
-                        <div className="w-full md:w-1/2 bg-content py-20 px-10 md:px-10 lg:pr-28">
+                        <div className="w-full md:w-1/2 bg-content py-20 px-10 md:px-10 lg:pr-28 flex flex-col gap-4">
                             <p className="text-left tracking-[.28em] uppercase mt-0 mb-0 text-xs font-semibold leading-[22px] no-underline">We're Here to Help</p>
                             <div className="text-left mt-0 mb-0 pt-5 pb-5 text-4xl font-bold leading-[56px] no-underline">
                                 Reach Out to Our Technical Support
@@ -210,7 +210,7 @@ const TabsContainer = () => {
                                 </div>
                                 <strong>Power up your business with systems that run flawlessly - let us handle the tech!</strong>
                             </div>
-                            <button className="mt-10 bg-primary hover:bg-primary-hover cursor-pointer px-8 py-3 text-text-light rounded-md">Know more</button>
+                            <Link to='/support' className="bg-primary w-fit hover:bg-primary-hover cursor-pointer px-8 py-3 text-text-light rounded-md">Know more</Link>
                         </div>
                     </div>
                 </Tabs.Content>

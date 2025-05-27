@@ -2,6 +2,7 @@ import homepageBanner from "../assets/home-page-banner.png";
 import customerImage from "../assets/Customers.png";
 import TabsContainer from "./Tabs/Tabs";
 import useScrollToTop from "../hooks/useScrollToTop.JS";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   useScrollToTop();
@@ -29,7 +30,7 @@ export default function HomePage() {
             See how we drive success in rapidly evolving digital lands.
           </div>
           <div className="mt-8 flex items-center gap-4">
-            <button className="bg-primary hover:bg-primary-hover text-text-light px-6 py-2 rounded-lg">Get Started</button>
+            <Link to='/contact-us' className="bg-primary hover:bg-primary-hover text-text-light px-6 py-2 rounded-lg">Get Started</Link>
             <div className="flex items-center gap-2">
               <img src={customerImage} alt="Happy customers" className="h-8" />
               <p className="text-text-light text-sm">+ Mr. Happy Customers</p>

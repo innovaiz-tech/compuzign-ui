@@ -29,9 +29,9 @@ export default function Navbar() {
         },
         {
             title: "Company",
-            href: '/company',
+            href: '/about-us',
             dropdown: [
-                { label: "About Us", href: "/about" },
+                { label: "About Us", href: "/about-us" },
                 { label: "Contact Us", href: "/contact-us" }
             ]
         }
@@ -90,9 +90,9 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                <div className="flex gap-4">
-                    <button className="text-text-light hover:text-text-light/80 px-3 py-1 cursor-pointer">Support</button>
-                    <button className="bg-primary-dark hover:bg-primary-dark/70 text-text-light px-4 py-2 rounded-lg cursor-pointer">Contact Us</button>
+                <div className="flex gap-4 items-center">
+                    <Link to='/support' className="text-text-light hover:text-text-light/80 px-3 py-1 cursor-pointer">Support</Link>
+                    <Link to='/contact-us' className="bg-primary-dark hover:bg-primary-dark/70 text-text-light px-4 py-2 rounded-lg cursor-pointer">Contact Us</Link>
                 </div>
             </section>
         ) : (

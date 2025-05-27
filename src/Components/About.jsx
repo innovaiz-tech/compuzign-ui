@@ -131,9 +131,7 @@ export default function About() {
             </div>
 
             <div className="mt-4 md:mt-6">
-              <button className="bg-primary hover:bg-primary-hover text-text-light px-6 py-3 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base">
-                Get in Touch
-              </button>
+              <Link to='/contact-us' className="bg-primary hover:bg-primary-hover text-text-light px-6 py-3 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base">Get in Touch</Link>
             </div>
           </div>
         </div>
@@ -204,10 +202,8 @@ export default function About() {
             <p className="mt-0 mb-0 pt-5 font-poppins text-sm font-normal leading-[22px] no-underline">
               Unlock your business's potential with our tailored expertise. We dive deep into your technical landscape to connect you with the perfect IT support professional, ensuring a seamless fit for your unique needs.
             </p>
-            <Link className="bg-primary hover:bg-primary-hover text-text-light px-5 py-2 rounded-lg w-fit">
-              <button>
+            <Link to='/support' className="bg-primary hover:bg-primary-hover text-text-light px-5 py-2 rounded-lg w-fit">
                 Meet Our Support Team
-              </button>
             </Link>
           </div>
           <img className="w-[80vw] sm:w-[50vw] lg:w-[40vw]" src={AboutUsSection} alt="about-us-section-banner" />
