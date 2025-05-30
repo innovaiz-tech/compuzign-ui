@@ -2,6 +2,7 @@ import React from 'react';
 import { AiFillTwitterCircle } from 'react-icons/ai';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import QuickLinkIcon from "../assets/QuickLinkIcon.png"
 
 const Footer = () => {
     return (
@@ -32,16 +33,16 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-5">
-                        <h2 className='text-text-light mt-0 mb-0 text-xl font-bold leading-6 no-underline'>Quick Links</h2>
-                        <ul className="flex gap-8 flex-wrap max-w-80">
-                            <li><Link to="/" className="text-text-light hover:opacity-80 transition-opacity">Home</Link></li>
-                            <li><Link to="/support" className="text-text-light hover:opacity-80 transition-opacity">Services</Link></li>
-                            <li><Link to="/pricing" className="text-text-light hover:opacity-80 transition-opacity">Careers</Link></li>
-                            <li><Link to="/about" className="text-text-light hover:opacity-80 transition-opacity">Pricing</Link></li>
-                            <li><Link to="/careers" className="text-text-light hover:opacity-80 transition-opacity">Support</Link></li>
-                            <li><Link to="/contact" className="text-text-light hover:opacity-80 transition-opacity">Contact</Link></li>
-                            <li><Link to="/blog" className="text-text-light hover:opacity-80 transition-opacity">About Us</Link></li>
+                    <div className="flex flex-col gap-5 justify-center items-start">
+                        <img src={QuickLinkIcon} className='w-12' alt="quick-link" />
+                        <ul className="flex gap-8 flex-wrap max-w-[500px]">
+                            <li className='w-24 '><Link to="/" className="text-text-light hover:opacity-80 transition-opacity">Home</Link></li>
+                            <li className='w-24 '><Link to="/services" className="text-text-light hover:opacity-80 transition-opacity">Services</Link></li>
+                            <li className='w-24 '><Link to="/careers" className="text-text-light hover:opacity-80 transition-opacity">Careers</Link></li>
+                            <li className='w-24 '><Link to="/pricing" className="text-text-light hover:opacity-80 transition-opacity">Pricing</Link></li>
+                            <li className='w-24 '><Link to="/support" className="text-text-light hover:opacity-80 transition-opacity">Support</Link></li>
+                            <li className='w-24 '><Link to="/contact-us" className="text-text-light hover:opacity-80 transition-opacity">Contact</Link></li>
+                            <li className='w-24 '><Link to="/about-us" className="text-text-light hover:opacity-80 transition-opacity">About Us</Link></li>
                         </ul>
                     </div>
                     <div></div>

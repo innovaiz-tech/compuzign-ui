@@ -29,9 +29,9 @@ export default function Navbar() {
         },
         {
             title: "Company",
-            href: '/company',
+            href: '/about-us',
             dropdown: [
-                { label: "About Us", href: "/about" },
+                { label: "About Us", href: "/about-us" },
                 { label: "Contact Us", href: "/contact-us" }
             ]
         }
@@ -72,13 +72,17 @@ export default function Navbar() {
                             {item.dropdown && item.dropdown.length > 0 && (
                                 <div className="absolute hidden group-hover:block bg-content shadow-md rounded-md mt-2">
                                     {item.dropdown.map((dropdownItem, i) => (
-                                        <p key={i} className="pl-3 pr-12 py-2 text-primary-dark text-nowrap hover:bg-primary-dark hover:rounded cursor-pointer hover:text-text-light">
+                                        <Link
+                                            key={i}
+                                            to={dropdownItem.href}
+                                            className="block pl-3 pr-8 py-2 text-primary-dark hover:bg-primary-dark hover:text-text-light hover:rounded-md transition-colors"
+                                        >
                                             {dropdownItem.href ? (
-                                                <Link className="relative hover:text-text-light" to={dropdownItem.href}>{dropdownItem.label}</Link>
+                                                <div className="relative whitespace-nowrap rounded-md">{dropdownItem.label}</div>
                                             ) : (
                                                 dropdownItem.label || dropdownItem
                                             )}
-                                        </p>
+                                        </Link>
                                     ))}
                                 </div>
                             )}
@@ -86,9 +90,9 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                <div className="flex gap-4">
-                    <button className="text-text-light hover:text-text-light/80 px-3 py-1 cursor-pointer">Support</button>
-                    <button className="bg-primary-dark hover:bg-primary-dark/70 text-text-light px-4 py-2 rounded-lg cursor-pointer">Contact Us</button>
+                <div className="flex gap-4 items-center">
+                    <Link to='/support' className="text-text-light hover:text-text-light/80 px-3 py-1 cursor-pointer">Support</Link>
+                    <Link to='/contact-us' className="bg-primary-dark hover:bg-primary-dark/70 text-text-light px-4 py-2 rounded-lg cursor-pointer">Contact Us</Link>
                 </div>
             </section>
         ) : (

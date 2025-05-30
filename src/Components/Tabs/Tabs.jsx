@@ -177,7 +177,7 @@ const TabsContainer = () => {
                         <SwiperComponent slideContent={services} />
                         <div className="bg-content flex justify-between py-8 px-4 items-center">
                             <div></div>
-                            <Link to='#' className="underline">Know More</Link>
+                            <Link to='/services' className="underline">Know More</Link>
                         </div>
                     </div>
                 </Tabs.Content>
@@ -186,10 +186,10 @@ const TabsContainer = () => {
                         <div className="w-full md:w-1/2 bg-content flex justify-center items-center">
                             <img className="1/2 md-w-2/3" src={TechnicalSupportBanner} alt="tech-support-banner" />
                         </div>
-                        <div className="w-full md:w-1/2 bg-content py-20 px-10 md:px-10 lg:pr-28">
+                        <div className="w-full md:w-1/2 bg-content py-20 px-10 md:px-10 lg:pr-28 flex flex-col gap-4">
                             <p className="text-left tracking-[.28em] uppercase mt-0 mb-0 text-xs font-semibold leading-[22px] no-underline">We're Here to Help</p>
                             <div className="text-left mt-0 mb-0 pt-5 pb-5 text-4xl font-bold leading-[56px] no-underline">
-                                Reach Out To Our Technical Support
+                                Reach Out to Our Technical Support
                             </div>
                             <div className="flex flex-col gap-4">
                                 <div>
@@ -197,23 +197,20 @@ const TabsContainer = () => {
                                     <strong>
                                         &nbsp;CompuZign
                                     </strong>
-                                    , we know that seamless technology is key to your success, and we're here to ensure it never slows you down. "Your technology, our priority"—our expert support team is available 24/7 to solve problems, optimize your systems, and keep your business running at its best.
+                                    , we understand that seamless technology is essential to your success. That’s why we’re committed to ensuring your systems run smoothly.
                                 </div>
                                 <div>
-                                    From instant remote troubleshooting to on-site assistance, we provide
                                     <strong>
-                                        &nbsp;custom solutions designed for your unique needs.
+                                        Your technology, our priority
                                     </strong>
-                                    &nbsp;"We don't just fix problems; we prevent them." Our proactive approach ensures minimal downtime, so you can focus on growing your business without the tech headaches.
+                                    {" "}- Our expert support team is always available to resolve issues, optimize your systems, and keep your business operating at its best.
                                 </div>
                                 <div>
-                                    Contact us today—
-                                    <strong>
-                                        where support meets excellence.
-                                    </strong>
+                                    Whether through remote support or on-site assistance, we deliver solutions tailored to meet your unique requirements.
                                 </div>
+                                <strong>Power up your business with systems that run flawlessly - let us handle the tech!</strong>
                             </div>
-                            <button className="mt-10 bg-primary hover:bg-primary-hover cursor-pointer px-8 py-3 text-text-light rounded-md">Know more</button>
+                            <Link to='/support' className="bg-primary w-fit hover:bg-primary-hover cursor-pointer px-8 py-3 text-text-light rounded-md">Know more</Link>
                         </div>
                     </div>
                 </Tabs.Content>

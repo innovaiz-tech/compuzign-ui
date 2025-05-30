@@ -6,14 +6,16 @@ import RootLayouts from "./Layout/RootLayouts";
 import PageNotFound from "./Components/PageNotFound";
 import HomePage from "./Components/HomePage";
 import Services from "./Components/services/Services.jsx";
+import Support from './Components/support/Support.jsx';
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RootLayouts />}>
         <Route index element={<HomePage />} />
-        <Route path='about' element={<About />} />
-        <Route path='services' element={<Services />} />
+        <Route path='/about-us' element={<About />} />
+        <Route path='/services' element={<Services />} />
+        <Route path='/support' element={<Support />} />
 
         {/* <Route path='contact' element={<ContactLayout />} >
           <Route path='mail' element={<Mail />} />
