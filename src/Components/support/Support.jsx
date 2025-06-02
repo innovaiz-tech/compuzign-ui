@@ -133,9 +133,18 @@ export const Support = () => {
                         </div>
 
                         <div className="mt-4 md:mt-6">
-                            <button className="bg-primary hover:bg-primary-hover text-text-light px-6 py-3 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base">
-                                Login Now
-                            </button>
+                            <motion.div
+                                whileHover={{ scale: 1.01 }}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                <motion.button 
+                                    className="bg-primary hover:bg-primary/80 text-text-light px-6 py-3 rounded-lg font-medium shadow-md transition-all duration-300 text-sm sm:text-base flex items-center"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    Login Now
+                                </motion.button>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
@@ -192,12 +201,18 @@ export const Support = () => {
                             Create your free Compuzign account today and unlock a seamless way to connect with customers. Better experience tailored to your business needs. Sign up now and take the first step toward growth and efficiency!
                         </div>
 
-                        <Link
-                            to="/login"
-                            className="inline-block text-text-light text-center tracking-normal capitalize align-baseline bg-primary rounded-[6px] w-[115px] h-[38px] mt-6 mx-auto md:mx-[5px] px-[12px] py-[8px] font-poppins text-[14px] font-medium leading-[20px] no-underline transition-all duration-200 hover:bg-primary-hover"
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-block"
                         >
-                            Sign up
-                        </Link>
+                            <Link
+                                to="/login"
+                                className="inline-flex items-center text-text-light text-center tracking-normal capitalize align-baseline bg-primary rounded-[6px] w-[115px] h-[38px] mt-6 mx-auto md:mx-[5px] px-[12px] py-[8px] font-poppins text-[14px] font-medium leading-[20px] no-underline transition-all duration-200 hover:bg-primary/80 shadow-md"
+                            >
+                                Sign up
+                            </Link>
+                        </motion.div>
                     </div>
                     <div className="w-full md:w-1/2 lg:w-2/5 flex justify-center">
                         <img

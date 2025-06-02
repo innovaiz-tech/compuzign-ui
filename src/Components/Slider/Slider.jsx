@@ -5,6 +5,7 @@ import 'swiper/css/pagination';
 import './styles.css';
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function SwiperComponent({ slideContent }) {
     console.log(slideContent.imageWidth, slideContent.imageHeight);
@@ -17,10 +18,20 @@ export default function SwiperComponent({ slideContent }) {
             }
         };
     }, {});
+    
+    // Animation variants for swiper slides
+    const slideVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { duration: 0.5 }
+        }
+    };
 
     return (
         <>
-            <div className='flex flex-col bg-content'>
+            <div className='flex flex-col bg-secondary/70 backdrop-blur-sm text-text-light'>
                 <h3 className='pt-10 text-center tracking-[.28em] uppercase mt-0 mb-0 px-5 text-xs font-semibold leading-[22px] no-underline'>{slideContent.heading1}</h3>
                 <h2 className='py-5 text-center mt-0 mb-0 pt-[5px] px-5 text-[40px] font-bold leading-[56px] no-underline'>{slideContent.heading2}</h2>
                 <Swiper
@@ -37,7 +48,14 @@ export default function SwiperComponent({ slideContent }) {
                     {slideContent.bodyContent.length === 0 ?
                         slideContent.imageContainer.map((image, index) => (
                             <SwiperSlide key={index}>
-                                <img src={image} className={`my-10 w-[${slideContent.imageWidth}] h-[${slideContent.imageHeight}]`} alt={`slider${index + 1}`} />
+                                <motion.div
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    variants={slideVariants}
+                                    viewport={{ once: true, amount: 0.3 }}
+                                >
+                                    <img src={image} className={`my-10 w-[${slideContent.imageWidth}] h-[${slideContent.imageHeight}]`} alt={`slider${index + 1}`} />
+                                </motion.div>
                             </SwiperSlide>
                         )) : (
                             slideContent.bodyContent.map((i, index) => (
@@ -49,13 +67,27 @@ export default function SwiperComponent({ slideContent }) {
                                                 <div className='mt-0 mb-0 text-xl font-semibold leading-[28px] no-underline'>
                                                     {i.heading}
                                                 </div>
-                                                <Link to='#' className=' flex justify-start items-center text-[#1a1b1f] text-sm'>
-                                                    <div className='mt-0 mb-0 pt-[15px] text-sm font-normal leading-[22px] no-underline'>
-                                                        {i.content}
-                                                    </div>
-                                                </Link>
+                                                <motion.div
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                >
+                                                    <Link to={i.linkUrl}>
+                                                        <div className="flex justify-center items-center text-black bg-white rounded-md p-2 shadow-md transition-all duration-300">
+                                                            <span>Read More</span>
+                                                        </div>
+                                                    </Link>
+                                                </motion.div>
+                                                <div className='mt-0 mb-0 pt-[15px] text-sm font-normal leading-[22px] no-underline'>
+                                                    {i.content}
+                                                </div>
                                             </div>
-                                            <button className="bg-secondary hover:bg-secondary-hover cursor-pointer px-8 py-2 text-white rounded-md">Know more</button>
+                                            <motion.button 
+  className="bg-secondary hover:bg-secondary-hover cursor-pointer px-8 py-2 text-white rounded-md shadow-md transition-all duration-300 flex items-center justify-center"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.98 }}
+>
+  Know more
+</motion.button>
                                         </div>
                                     </div>
                                 </SwiperSlide>

@@ -1,12 +1,11 @@
 import React from 'react';
 import { AiFillTwitterCircle } from 'react-icons/ai';
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaLink, FaExternalLinkAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import QuickLinkIcon from "../assets/QuickLinkIcon.png"
 
 const Footer = () => {
     return (
-        <footer className="bg-secondary-light text-text-light py-10 px-4 md:px-8">
+        <footer className="bg-secondary-light text-text-light py-10 px-4 md:px-8 mt-10">
             <div className="mx-auto px-4">
                 <div className="flex flex-row flex-wrap gap-5 justify-start sm:justify-around ">
                     <div className="flex flex-col items-start">
@@ -34,15 +33,17 @@ const Footer = () => {
                     </div>
 
                     <div className="flex flex-col gap-5 justify-center items-start">
-                        <img src={QuickLinkIcon} className='w-12' alt="quick-link" />
+                        <div className="text-white p-2 rounded-full bg-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-accent">
+                            <FaLink className="w-4 h-4" />
+                        </div>
                         <ul className="flex gap-8 flex-wrap max-w-[500px]">
-                            <li className='w-24 '><Link to="/" className="text-text-light hover:opacity-80 transition-opacity">Home</Link></li>
-                            <li className='w-24 '><Link to="/services" className="text-text-light hover:opacity-80 transition-opacity">Services</Link></li>
-                            <li className='w-24 '><Link to="/careers" className="text-text-light hover:opacity-80 transition-opacity">Careers</Link></li>
-                            <li className='w-24 '><Link to="/pricing" className="text-text-light hover:opacity-80 transition-opacity">Pricing</Link></li>
-                            <li className='w-24 '><Link to="/support" className="text-text-light hover:opacity-80 transition-opacity">Support</Link></li>
-                            <li className='w-24 '><Link to="/contact-us" className="text-text-light hover:opacity-80 transition-opacity">Contact</Link></li>
-                            <li className='w-24 '><Link to="/about-us" className="text-text-light hover:opacity-80 transition-opacity">About Us</Link></li>
+                            <li className='w-24 '><Link to="/" className="text-text-light hover:text-accent transition-opacity">Home</Link></li>
+                            <li className='w-24 '><Link to="/services" className="text-text-light hover:text-accent transition-opacity">Services</Link></li>
+                            <li className='w-24 '><Link to="/careers" className="text-text-light hover:text-accent transition-opacity">Careers</Link></li>
+                            <li className='w-24 '><Link to="/pricing" className="text-text-light hover:text-accent transition-opacity">Pricing</Link></li>
+                            <li className='w-24 '><Link to="/support" className="text-text-light hover:text-accent transition-opacity">Support</Link></li>
+                            <li className='w-24 '><Link to="/contact-us" className="text-text-light hover:text-accent transition-opacity">Contact</Link></li>
+                            <li className='w-24 '><Link to="/about-us" className="text-text-light hover:text-accent transition-opacity">About Us</Link></li>
                         </ul>
                     </div>
                     <div></div>
@@ -51,8 +52,8 @@ const Footer = () => {
                 <div className="flex items-center gap-4 justify-between flex-wrap mt-8 pt-8 border-t border-white/20 text-sm text-text-light/80">
                     <p>© {new Date().getFullYear()} CCI Cloud services. All rights reserved.</p>
                     <p className="text-sm flex flex-wrap">
-                        <Link to="/privacy" className="underline mr-4">Privacy Policy</Link>
-                        <Link to="/terms" className="underline">Terms of Service</Link>
+                        <Link to="/privacy" className="underline mr-4 hover:text-accent">Privacy Policy</Link>
+                        <Link to="/terms" className="underline hover:text-accent">Terms of Service</Link>
                     </p>
                 </div>
             </div>
