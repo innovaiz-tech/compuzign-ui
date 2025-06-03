@@ -134,7 +134,7 @@ const TabsContainer = () => {
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
-                    className="relative bg-[#392e53] p-1 rounded-lg mb-0 w-full mx-auto"
+                    className="relative bg-[#392e53] p-1 rounded-lg mb-0 mx-4"
                 >
                     <Tabs.List className="TabsList w-full flex-wrap justify-center" aria-label="Manage your account">
                         <motion.div variants={itemVariants}>

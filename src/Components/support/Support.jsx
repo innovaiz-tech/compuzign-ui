@@ -208,7 +208,7 @@ export const Support = () => {
                         >
                             <Link
                                 to="/login"
-                                className="inline-flex items-center text-text-light text-center tracking-normal capitalize align-baseline bg-primary rounded-[6px] w-[115px] h-[38px] mt-6 mx-auto md:mx-[5px] px-[12px] py-[8px] font-poppins text-[14px] font-medium leading-[20px] no-underline transition-all duration-200 hover:bg-primary/80 shadow-md"
+                                className="inline-flex justify-center items-center text-text-light text-center tracking-normal capitalize align-baseline bg-primary rounded-[6px] w-[115px] h-[38px] mt-6 mx-auto md:mx-[5px] px-[12px] py-[8px] font-poppins text-[14px] font-medium leading-[20px] no-underline transition-all duration-200 hover:bg-primary/80 shadow-md"
                             >
                                 Sign up
                             </Link>

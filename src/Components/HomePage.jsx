@@ -297,7 +297,7 @@ export default function HomePage() {
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <div className="flex flex-col items-center justify-center">
-          <div className="mb-10">
+          <div className="mb-10 px-4 ">
             <motion.div 
               className="inline-block bg-gradient-to-r from-primary/20 to-primary/5 px-5 py-2 rounded-full mb-4"
               whileHover={{ scale: 1.03 }}
