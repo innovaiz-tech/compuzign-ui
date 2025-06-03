@@ -1,14 +1,29 @@
 .TabsRoot {
 	display: flex;
 	flex-direction: column;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	background-color: #392e53;
+	position: relative;
+	min-height: auto;
+	top: 0;
+	margin-bottom: 40px;
 }
 
 .TabsList {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 3.5rem; /* matches px-14 in the original */
-    background-color: #f5f5f5; /* Light gray background for the tab list */
+    width: 100%;
+    justify-content: center;
+    border-radius: 0.75rem;
+    background-color: rgba(92, 154, 167, 0.15);
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(92, 154, 167, 0.2);
+    margin-top: 0;
 }
 
 .TabsTrigger {
@@ -19,46 +34,35 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 15px;
+	font-size: 14px;
 	line-height: 1;
-	color: #666; /* Dark gray text for unselected tabs */
+	color: #e5e5e5; /* Light text for unselected tabs against dark background */
 	font-weight: 500;
 	user-select: none;
-	transition: all 0.2s ease;
+	transition: all 0.3s ease;
 	border: none;
 	background: transparent;
 	cursor: pointer;
+	margin: 0 4px;
+	border-radius: 8px;
 }
 
-/* .TabsTrigger:first-child {
-	border-top-left-radius: 6px;
-}
-.TabsTrigger:last-child {
-	border-top-right-radius: 6px;
-} */
 .TabsTrigger:hover {
-	color: #5DA6A7; /* Teal color on hover */
-	background-color: rgba(93, 166, 167, 0.1); /* Light teal background on hover */
+	color: #fff; /* White text on hover */
+	background-color: rgba(92, 154, 167, 0.3); /* Light teal background on hover */
+	transform: translateY(-1px);
+	box-shadow: 0 2px 6px rgba(92, 154, 167, 0.2);
 }
 
 .TabsTrigger[data-state="active"] {
     color: #fff; /* White text for active tab */
-    background-color: #5DA6A7; /* Teal background for active tab */
+    background-color: #5c9aa7; /* Teal background for active tab (#5c9aa7) */
     text-align: center;
     text-transform: uppercase;
     font-weight: 600;
     position: relative;
-}
-
-/* Add a small teal indicator below active tab */
-.TabsTrigger[data-state="active"]::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background-color: #4D8D8E; /* Slightly darker teal for the indicator */
+    box-shadow: 0 2px 8px rgba(92, 154, 167, 0.5);
+    transform: translateY(-2px);
 }
 
 .TabsTrigger:focus {
@@ -68,9 +72,32 @@
 
 .TabsContent {
   flex-grow: 1;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 0 20px 0;
   outline: none;
   animation: fadeIn 300ms ease-in;
   transform-origin: top center;
+  background-color: #392e53; /* Dark purple background */
+  background-image: linear-gradient(to bottom, #392e53, #392e5e);
+  color: white;
+  height: auto;
+  min-height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.TabsRoot {
+  /* background-color: #392e53; Dark purple background for the entire tabs component */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Global fix to prevent horizontal scrolling */
+body, html {
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 @keyframes fadeIn {

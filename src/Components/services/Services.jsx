@@ -1,5 +1,6 @@
 import ServicesBanner from "../../assets/services-banner.jpg";
 import * as Tabs from "@radix-ui/react-tabs";
+import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   motion,
@@ -14,9 +15,9 @@ import {
 import useSmoothScroll from "../../hooks/useSmoothScroll";
 
 // Import the actual service images
-import SupportImg from "../../assets/iaas.png";
-import MigrationImg from "../../assets/maas.png";
-import InfrastructureImg from "../../assets/iacas.png";
+import SupportImg from "../../assets/csaas.svg";
+import MigrationImg from "../../assets/maas.svg";
+import InfrastructureImg from "../../assets/ciaas.svg";
 
 // Haptic feedback function
 const triggerHapticFeedback = () => {
@@ -97,27 +98,29 @@ export default function Services() {
       id: "support",
       title: "SUPPORT AS A SERVICE",
       subtitle: "SUPPORT AS A SERVICE (SAAS)",
-      heading: "Reliable, 24/7 IT Support for Seamless Operations",
+      heading: "Smart. Scalable. Seamless.",
       description: [
-        "Our dedicated support services provide your business with proactive, around-the-clock technical assistance that ensures stability and efficiency in every operation.",
-        "With a focus on preventing and swiftly resolving issues, our experts work behind the scenes to keep your systems optimized and secure. Count on us to manage disruptions before they impact your productivity, giving you peace of mind and more time to focus on business growth.",
+        "At CompuZign, we understand that seamless technology is essential for uninterrupted business growth. Our Support-as-a-Service offers proactive, 24/7 technical support tailored to the pace and needs of modern organizations.",
+        "Whether you're a startup or an enterprise, we act as your extended IT team—ensuring your systems remain efficient, secure, and stress-free so you can focus on what truly matters: scaling your business.",
       ],
       image: SupportImg,
       buttonText: "Learn More About SaaS",
-      color: "#005B82",
+      color: "#7FBEBF",
+      route: "/csaas",
     },
     {
       id: "migration",
       title: "MIGRATION AS A SERVICE",
       subtitle: "MIGRATION AS A SERVICE",
-      heading: "EFFORTLESS MIGRATION, BUILT AROUND YOUR BUSINESS",
+      heading: "Effortless Migration, Built Around Your Business",
       description: [
-        "Say goodbye to migration headaches. With Migration as a Service, we make moving your data, applications, and infrastructure seamless, secure, and worry-free. Our dedicated experts and proprietary tools ensure every step is smooth, with 24/7 support to keep your business running without a hitch.",
-        "Whether you're moving on-prem to cloud, cloud to on-prem, or working with hybrid setups, we'll handle the heavy lifting so you can focus on what matters most—growing your business.",
+        "At CompuZign, we deliver secure, high-speed migration experiences backed by automation, expert support, and zero business disruption. Say goodbye to downtime and data risks—our team ensures every migration is seamless, secure, and stress-free.",
+        "Whether you're moving on-prem to cloud, cloud to on-prem, or working with hybrid environments, we handle the complexity so you can stay focused on scaling your business.",
       ],
       image: MigrationImg,
       buttonText: "Explore Our Migration Services",
-      color: "#5E3A80",
+      color: "#7FBEBF",
+      route: "/maas",
     },
     {
       id: "infrastructure-cloud",
@@ -130,11 +133,10 @@ export default function Services() {
       ],
       image: InfrastructureImg,
       buttonText: "Discover Our Infrastructure & Cloud Solutions",
-      color: "#2A356B",
+      color: "#7FBEBF",
+      route: "/ciaas",
     },
   ];
-
-  // Set up animations when component mounts
 
   useEffect(() => {
     // Banner animation
@@ -230,9 +232,13 @@ export default function Services() {
             </div>
 
             <div className="mt-4 md:mt-6">
-              <button className="bg-primary hover:bg-primary-hover text-text-light px-6 py-3 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base">
+              <motion.button 
+                className="bg-primary hover:bg-primary/80 text-text-light px-6 py-3 rounded-lg font-medium shadow-md transition-all duration-300 text-sm sm:text-base cursor-pointer flex items-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 Get in Touch
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
@@ -242,7 +248,7 @@ export default function Services() {
       <section className="py-12 bg-white" id="services-tabs">
         <div className="container mx-auto px-4" ref={tabContainerRef}>
           {/* Sticky tab navigation */}
-          <div className="sticky top-0 z-10 bg-white pt-6 pb-4 -mx-4 px-8 mb-10 shadow-sm">
+          <div className="top-0 z-10 bg-white pt-6 pb-4 -mx-4 px-8 mb-10 shadow-sm">
             <Tabs.Root
               value={activeTab}
               className="flex flex-col"
@@ -273,7 +279,7 @@ export default function Services() {
 
               {/* Animated Tab Content */}
               <div
-                className="relative w-full overflow-hidden pt-6"
+                className="relative w-full pt-6"
                 ref={(el) => {
                   tabContentRef.current = el;
                 }}
@@ -317,13 +323,13 @@ export default function Services() {
                         {/* Left side - Image */}
                         <motion.div
                           ref={imageRef}
-                          className="rounded-lg overflow-hidden w-3/4 aspect-square flex items-center justify-center service-image-container mx-auto"
+                          className="rounded-lg w-4/6 aspect-square flex items-center justify-center service-image-container mx-auto"
                           style={{
                             backgroundColor: serviceTabsData.find(
                               (tab) => tab.id === activeTab
                             ).color,
                           }}
-                          initial={{ opacity: 0, scale: 0.97, y: 10 }}
+                          initial={{ opacity: 0, scale: 0.5, y: 10 }}
                           animate={{
                             opacity: 1,
                             scale: 1,
@@ -341,7 +347,7 @@ export default function Services() {
                                 (tab) => tab.id === activeTab
                               ).title
                             }
-                            className="w-2/3 h-2/3 object-contain transition-transform duration-500 hover:scale-105"
+                            className="object-contain transition-transform duration-500 hover:scale-105"
                           />
                         </motion.div>
 
@@ -349,7 +355,7 @@ export default function Services() {
                         <motion.div
                           ref={contentRef}
                           className="flex flex-col gap-4"
-                          initial={{ opacity: 0, scale: 0.97, y: 10 }}
+                          initial={{ opacity: 0, scale: 0.5, y: 10 }}
                           animate={{
                             opacity: 1,
                             scale: 1,
@@ -382,13 +388,25 @@ export default function Services() {
                           </div>
 
                           <div className="mt-6">
-                            <button className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-primary/20">
-                              {
-                                serviceTabsData.find(
-                                  (tab) => tab.id === activeTab
-                                ).buttonText
-                              }
-                            </button>
+                            <motion.div
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              <Link
+                                to={`${window.location.origin}${
+                                  serviceTabsData.find(
+                                    (tab) => tab.id === activeTab
+                                  ).route
+                                }`}
+                                className="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md inline-flex items-center"
+                              >
+                                {
+                                  serviceTabsData.find(
+                                    (tab) => tab.id === activeTab
+                                  ).buttonText
+                                }
+                              </Link>
+                            </motion.div>
                           </div>
                         </motion.div>
                       </motion.div>
