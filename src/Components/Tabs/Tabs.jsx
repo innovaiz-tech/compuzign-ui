@@ -44,7 +44,7 @@ const preloadImages = () => {
 };
 
 const TAB_BG = "bg-gradient-to-b from-[#220142f1] to-[#503d8e] backdrop-blur-sm";
-const CARD_BG = "bg-primary/40 backdrop-blur-md";
+const CARD_BG = "bg-primary/70 backdrop-blur-md";
 const BORDER_STYLE = "border border-white/10 hover:border-white/30";
 
 const containerVariants = {
@@ -206,19 +206,19 @@ const WhoWeAreCard = React.memo(({ item, index }) => {
             className={`max-w-[360px] ${CARD_BG} p-5 rounded-lg shadow-md ${BORDER_STYLE} transition-all duration-300 group`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.3 }}
-            whileHover={{ y: -5 }}
+            transition={{ delay: index * 0.1, duration: 0.2 }}
+            whileHover={{ y: -8 }}
         >
-            <div className="bg-secondary/20 text-white rounded-full p-3 inline-block mb-4 transition-all duration-300 group-hover:bg-secondary/40 group-hover:scale-110">
-                <Icon className="w-10 h-10 text-white transition-all duration-300 group-hover:text-secondary" />
+            <div className="bg-secondary text-white rounded-full p-3 inline-block mb-4 transition-all duration-300 group-hover:scale-110">
+                <Icon className="w-10 h-10 text-white transition-all duration-300 " />
             </div>
-            <h2 className="text-white mt-0 mb-3 text-xl font-semibold leading-tight transition-all duration-300 group-hover:text-secondary/90">
+            <h2 className="text-white mt-0 mb-3 text-xl font-semibold leading-tight transition-all duration-300">
                 {item.title}
             </h2>
-            <div className="text-secondary text-sm leading-relaxed transition-all duration-300 group-hover:text-white">
+            <div className="text-text-light text-sm leading-relaxed transition-all duration-300">
                 {item.content}
             </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/60 to-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg -z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/60 to-primary/90 opacity-0 transition-all duration-300 rounded-lg -z-10"></div>
         </motion.div>
     );
 });
@@ -237,13 +237,13 @@ const TestimonialCard = React.memo(({ testimonial, index }) => (
             </div>
             <div className="ml-4">
                 <h3 className="text-white text-lg font-semibold">{testimonial.name}</h3>
-                <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                <p className="text-sm">{testimonial.role}</p>
             </div>
         </div>
         <p className="text-gray-200 italic">{testimonial.quote}</p>
         <div className="mt-4 flex">
             {[...Array(5)].map((_, i) => (
-                <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor">
+                <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-dark" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
             ))}
@@ -579,8 +579,8 @@ const TabsContainer = () => {
         <div className="relative overflow-hidden w-full pt-0 mt-0">
 
             <section className="pt-12 bg-gradient-to-b from-[#220142f1] to-[#503d8e]" id="services-tabs">
-                <div className="container mx-auto px-4" ref={tabContainerRef}>
-                    <div className="top-0 z-10  pt-6 pb-4 -mx-4 px-8 shadow-sm">
+                <div className="container mx-auto" ref={tabContainerRef}>
+                    <div className="top-0 z-10 pt-6 pb-4 shadow-sm">
                         <Tabs.Root
                             value={activeTab}
                             className="flex flex-col"
