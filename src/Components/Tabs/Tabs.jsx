@@ -578,9 +578,9 @@ const TabsContainer = () => {
     return (
         <div className="relative overflow-hidden w-full pt-0 mt-0">
 
-            <section className="py-12 bg-gradient-to-b from-[#220142f1] to-[#503d8e]" id="services-tabs">
+            <section className="pt-12 bg-gradient-to-b from-[#220142f1] to-[#503d8e]" id="services-tabs">
                 <div className="container mx-auto px-4" ref={tabContainerRef}>
-                    <div className="top-0 z-10 bg-gradient-to-b from-[#220142f1] to-[#503d8e] pt-6 pb-4 -mx-4 px-8 mb-10 shadow-sm">
+                    <div className="top-0 z-10  pt-6 pb-4 -mx-4 px-8 shadow-sm">
                         <Tabs.Root
                             value={activeTab}
                             className="flex flex-col"

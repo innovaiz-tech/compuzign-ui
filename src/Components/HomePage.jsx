@@ -291,7 +291,7 @@ export default function HomePage() {
       </motion.div>
       <motion.div 
         ref={tabsRef}
-        className="py-16 bg-gradient-to-b from-[#392e53] to-[#392e5e] backdrop-blur-sm"
+        className="pt-16 bg-gradient-to-b from-[#392e53] to-[#392e5e] backdrop-blur-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
