@@ -232,10 +232,11 @@ export default function Services() {
             </div>
 
             <div className="mt-4 md:mt-6">
-              <motion.button 
+              <motion.button
                 className="bg-primary hover:bg-primary/80 text-text-light px-6 py-3 rounded-lg font-medium shadow-md transition-all duration-300 text-sm sm:text-base cursor-pointer flex items-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => window.location.href = '/contact-us'}
               >
                 Get in Touch
               </motion.button>
@@ -264,11 +265,10 @@ export default function Services() {
                     key={service.id}
                     value={service.id}
                     className={`px-5 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 rounded-md 
-                    ${
-                      activeTab === service.id
+                    ${activeTab === service.id
                         ? "bg-primary text-white shadow-lg scale-105"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    } 
+                      } 
                     cursor-pointer active:scale-95 select-none`}
                     onClick={() => triggerHapticFeedback()}
                   >
@@ -297,19 +297,19 @@ export default function Services() {
                       animate={
                         isInView
                           ? {
-                              opacity: 1,
-                              scale: 1,
-                              y: 0,
-                              transition: {
-                                duration: 0.4,
-                                ease: [0.16, 1, 0.3, 1],
-                                scale: {
-                                  type: "spring",
-                                  damping: 20,
-                                  stiffness: 400,
-                                },
+                            opacity: 1,
+                            scale: 1,
+                            y: 0,
+                            transition: {
+                              duration: 0.4,
+                              ease: [0.16, 1, 0.3, 1],
+                              scale: {
+                                type: "spring",
+                                damping: 20,
+                                stiffness: 400,
                               },
-                            }
+                            },
+                          }
                           : {}
                       }
                       exit={{
@@ -393,11 +393,10 @@ export default function Services() {
                               whileTap={{ scale: 0.98 }}
                             >
                               <Link
-                                to={`${window.location.origin}${
-                                  serviceTabsData.find(
-                                    (tab) => tab.id === activeTab
-                                  ).route
-                                }`}
+                                to={`${window.location.origin}${serviceTabsData.find(
+                                  (tab) => tab.id === activeTab
+                                ).route
+                                  }`}
                                 className="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md inline-flex items-center"
                               >
                                 {
