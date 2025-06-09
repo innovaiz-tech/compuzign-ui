@@ -31,7 +31,7 @@ export default function SwiperComponent({ slideContent }) {
 
     return (
         <>
-            <div className='flex flex-col bg-secondary/70 backdrop-blur-sm text-text-light'>
+            <div className='flex flex-col backdrop-blur-sm text-text-light'>
                 <h3 className='pt-10 text-center tracking-[.28em] uppercase mt-0 mb-0 px-5 text-xs font-semibold leading-[22px] no-underline'>{slideContent.heading1}</h3>
                 <h2 className='py-5 text-center mt-0 mb-0 pt-[5px] px-5 text-[40px] font-bold leading-[56px] no-underline'>{slideContent.heading2}</h2>
                 <Swiper

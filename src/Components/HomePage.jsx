@@ -107,7 +107,6 @@ export default function HomePage() {
       scroll(
         animate(tabsRef.current, {
           y: [0, 20],
-          scale: [1, 1.05],
         }),
         { target: tabsRef.current, offset: ["start end", "end start"] }
       );
@@ -134,37 +133,7 @@ export default function HomePage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* Very subtle vignette effect for depth without darkening the center content */}
-        {/* <div className="absolute inset-0 bg-gradient-to-r from-secondary/20 via-transparent to-secondary/20 z-0"></div> */}
-        {/* Add a slight brightness boost to the banner */}
-        {/* <div className="absolute inset-0 bg-white/5 backdrop-brightness-110 z-0"></div> */}
-        
-        {/* Decorative floating elements */}
-        {/* <motion.div 
-          className="absolute top-20 right-[10%] w-16 h-16 rounded-full bg-primary/20 blur-xl z-0"
-          animate={floatingAnimation}
-        ></motion.div> */}
-        {/* <motion.div 
-          className="absolute bottom-40 left-[15%] w-20 h-20 rounded-full bg-accent/10 blur-xl z-0"
-          animate={{
-            ...floatingAnimation,
-            transition: {
-              ...floatingAnimation.transition,
-              delay: 0.5
-            }
-          }}
-        ></motion.div>
-        <motion.div 
-          className="absolute top-1/2 right-[20%] w-12 h-12 rounded-full bg-primary/30 blur-lg z-0"
-          animate={{
-            ...floatingAnimation,
-            transition: {
-              ...floatingAnimation.transition,
-              delay: 1.5
-            }
-          }}
-        ></motion.div> */}
-        <div className="m-auto w-full px-6 md:px-10 max-w-[1200px] py-8 md:py-12">
+        <div className="m-auto w-full  max-w-[1200px] px-6 md:px-10 py-8 md:py-12">
           {/* Enhanced subtitle with gradient background */}
           <motion.div 
             className="subtitle inline-block bg-gradient-to-r from-primary/20 to-primary/10 px-4 py-2 rounded-full mb-6 backdrop-blur-sm"
@@ -291,13 +260,13 @@ export default function HomePage() {
       </motion.div>
       <motion.div 
         ref={tabsRef}
-        className="py-16 bg-gradient-to-b from-[#392e53] to-[#392e5e] backdrop-blur-sm"
+        className="pt-16 bg-gradient-to-b from-[#392e53] to-[#392e5e] backdrop-blur-sm -mt-[10px] -mb-[40px]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <div className="flex flex-col items-center justify-center">
-          <div className="mb-10">
+          <div className="mb-10 px-4 ">
             <motion.div 
               className="inline-block bg-gradient-to-r from-primary/20 to-primary/5 px-5 py-2 rounded-full mb-4"
               whileHover={{ scale: 1.03 }}
