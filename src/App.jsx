@@ -1,39 +1,27 @@
-// App.jsx - Main application component
-import './App.css'
-import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
-import About from "./Components/About";
-import RootLayouts from "./Layout/RootLayouts";
-import PageNotFound from "./Components/PageNotFound";
-import HomePage from "./Components/HomePage";
-import Services from "./Components/services/Services.jsx";
-import Support from "./Components/support/Support.jsx";
-import SupportAsAService from "./Components/services/SupportAsAService.jsx";
-import MigrationAsAService from "./Components/services/MigrationAsAService.jsx";
-import CloudAndInfrastructureAsAService from "./Components/services/CloudAndInfrastructureAsAService.jsx";
+import './styles/index.css'
 
 function App() {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path='/' element={<RootLayouts />}>
-        <Route index element={<HomePage />} />
-        <Route path='/about-us' element={<About />} />
-        <Route path='/services' element={<Services />} />
-        <Route path='/support' element={<Support />} />
-        <Route path='/csaas' element={<SupportAsAService />} />
-        {/* <Route path='/maas' element={<MigrationAsAService />} /> */}
-        {/* <Route path='/ciaas' element={<CloudAndInfrastructureAsAService />} /> */}
-
-        {/* <Route path='contact' element={<ContactLayout />} >
-          <Route path='mail' element={<Mail />} />
-          <Route path='phone' element={<Phone />} />
-        </Route> */}
-
-        <Route path='*' element={<PageNotFound />} />
-      </Route>
-    )
+  return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          CompuZign UI v2.0
+        </h1>
+        <p className="text-xl text-gray-600 mb-6">
+          Fresh start for new design and flow
+        </p>
+        <div className="bg-white rounded-lg shadow-md p-6 max-w-md mx-auto">
+          <h2 className="text-lg font-semibold text-gray-800 mb-3">
+            Ready for Development
+          </h2>
+          <p className="text-gray-600 text-sm">
+            This is a clean React + Vite + Tailwind setup. 
+            Start building your new components here!
+          </p>
+        </div>
+      </div>
+    </div>
   )
-
-  return <RouterProvider router={router} />;
 }
 
-export default App;
+export default App 
