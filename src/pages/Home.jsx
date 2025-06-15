@@ -17,11 +17,21 @@ import ExpertiseSolutions1 from "../assets/Expertise-Solutions-1.png";
 import ExpertiseSolutions2 from "../assets/Expertise-Solutions-2.png";
 import ProvenIndustryExperienceFrame1 from "../assets/Proven-Industry-Experience-frame-1.png";
 import ProvenIndustryExperienceFrame2 from "../assets/Proven-Industry-Experience-frame-2.png";
+import InnovatingWithAIBanner from "../assets/Innovating-with-AI-banner.png";
+import InnovatingWithAI from "../assets/Innovating-with-AI.png";
+import Blogs1 from "../assets/Blogs1.png";
+import Blogs2 from "../assets/Blogs2.png";
+import Blogs3 from "../assets/Blogs3.png";
+
 
 import Cards from "../components/ui/cards";
 import SliderCarousel from "../components/ui/carousel";
+import useWindowSize from "../hooks/useWindowSize";
+import { desc } from "framer-motion/client";
+import Cards2 from "../components/ui/cards2";
 
 export default function Home() {
+    const { width } = useWindowSize();
     const ComprehensiveMigrationSolutionsContainer = [
         {
             header: "Streamlined Data Center Migration",
@@ -139,6 +149,30 @@ export default function Home() {
         },
     ]
 
+    const Blogs = [
+        {
+            title: 'Strengthening Digital Resilience with VTG’s Automated DORA Compliance',
+            date: 'May 16, 2025',
+            description: 'In today’s fast-paced digital world, many businesses find themselves held back by outdated IT systems. Imagine trying to keep up with the competition while dealing with slow processes, rising costs, and constant security threats. It’s…',
+            image: Blogs1,
+            href: 'https://virtualtechgurus.com/strengthening-digital-resilience-with-vtg-dora-compliance/'
+        },
+        {
+            title: 'Overcome IT Challenges with Unified Migration and Expertly Managed Services',
+            date: 'December 12, 2024',
+            description: 'In today’s fast-paced digital world, many businesses find themselves held back by outdated IT systems. Imagine trying to keep up with the competition while dealing with slow processes, rising costs, and constant security threats. It’s…',
+            image: Blogs2,
+            href: 'https://virtualtechgurus.com/overcome-it-challenges-unified-migration-managed-services/'
+        },
+        {
+            title: 'Resource as a Service for Cyber Forensics: Your Shield Against Digital Threats!',
+            date: 'December 6, 2024',
+            description: 'In today’s increasingly complex digital landscape, cyber threats are escalating in frequency and sophistication, with cybercrime costs expected to reach $10.5 trillion annually by 2025. VTG’s Cyber Forensics as a Service (CFaaS) offers expert, rapid-response…',
+            image: Blogs3,
+            href: 'https://virtualtechgurus.com/resource-as-a-service-cyber-forensics-digital-threats/'
+        },
+    ]
+
 
 
     return (
@@ -221,6 +255,49 @@ export default function Home() {
             </div>
             <div className="h-36 py-16 w-fit ">
                 <SliderCarousel />
+            </div>
+            <div>
+                Carousel 2
+            </div>
+            <div
+                className="bg-white py-16 flex flex-col lg:flex-row items-center justify-center gap-8 w-full px-4 pt-24 pb-8 md:px-8 lg:px-16"
+                style={{ backgroundImage: width >= 1300 ? `url(${InnovatingWithAIBanner})` : 'none', backgroundPosition: 'right', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }}>
+                <div className="flex flex-col gap-4 w-full lg:w-1/2 lg:max-w-[700px] px-8">
+                    <p className="text-2xl md:text-3xl font-medium text-primary uppercase">
+                        INNOVATING WITH AI-POWERED ZENfra
+                    </p>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+                        Harnessing the Power of AI in Project Management
+                    </h2>
+                    <p className="text-base md:text-lg text-gray-600">
+                        At VTG, we believe in leveraging the latest technology to drive success. Our AI-powered ZENfra platform enhances every stage of project management, from initial planning to execution. This innovative solution provides real-time insights and predictive analytics, enabling you to make informed decisions that lead to superior outcomes.
+                    </p>
+                </div>
+
+                {/* Hidden on mobile and tablet, visible on desktop */}
+                <div className="hidden lg:block">
+                    <img
+                        src={InnovatingWithAI}
+                        className="
+                            w-[450px] h-[450px]
+                            object-cover 
+                            rounded-full 
+                            border-8 
+                            border-primary-bgLight 
+                            hover:border-primary-bgYellow"
+                        alt="Technology landscape"
+                    />
+                </div>
+            </div>
+            <div className="w-full flex flex-col justify-center items-center bg-primary-bgGray py-8">
+                <h2 className="text-xl font-bold leading-tight py-4">BLOGS</h2>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight py-2 text-center">
+                    Guiding You Through the Digital Transformation Journey</h2>
+                <div className="w-full flex flex-wrap gap-5 justify-center m-4">
+                    {Blogs.map((item, index) => (
+                        <Cards2 key={index} data={item} />
+                    ))}
+                </div>
             </div>
         </div>
     );

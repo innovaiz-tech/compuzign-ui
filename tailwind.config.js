@@ -22,6 +22,25 @@ export default {
           textWhite: '#fff',
           textGray: '#808080',
         },
+      },
+      animation: {
+        spin: 'spin 3s linear infinite',
+        spinReverse: 'spinReverse 2s linear infinite',
+        fadeIn: 'fadeIn 0.5s ease-out forwards',
+      },
+      keyframes: {
+        spin: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
+        },
+        spinReverse: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(-360deg)' },
+        },
+        fadeIn: {
+          from: { opacity: 0, transform: 'scale(0.8)' },
+          to: { opacity: 1, transform: 'scale(1)' },
+        }
       }
     },
   },
