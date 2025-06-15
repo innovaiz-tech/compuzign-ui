@@ -177,6 +177,9 @@ export default function Home() {
 
     return (
         <div className="flex flex-col items-center justify-center ">
+            <div className="text-red-600 text-xl">
+                Home page Banner needs to work
+            </div>
             <div className="relative bg-primary-bgLightBlack w-full flex flex-col items-center justify-center">
                 <h2 className="text-primary-textWhite my-8 text-2xl font-bold text-center px-4">Empowering Global Success Through Expert IT Solutions</h2>
                 <div className="flex flex-row gap-4 cursor-pointer flex-wrap w-full justify-center items-center px-4">
@@ -253,12 +256,13 @@ export default function Home() {
                     ))}
                 </div>
             </div>
-            <div className="h-36 py-16 w-fit ">
-                <SliderCarousel />
+            <div className="text-red-600 h-36 text-center text-xl border w-full border-b-orange-800">
+                Carousel needs to work
             </div>
-            <div>
-                Carousel 2
+            <div className="text-red-600 h-36 text-center text-xl border w-full border-b-orange-800">
+                Carousel 2 needs to work
             </div>
+
             <div
                 className="bg-white py-16 flex flex-col lg:flex-row items-center justify-center gap-8 w-full px-4 pt-24 pb-8 md:px-8 lg:px-16"
                 style={{ backgroundImage: width >= 1300 ? `url(${InnovatingWithAIBanner})` : 'none', backgroundPosition: 'right', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }}>
@@ -298,6 +302,9 @@ export default function Home() {
                         <Cards2 key={index} data={item} />
                     ))}
                 </div>
+            </div>
+            <div className="text-red-600 text-xl h-36 text-center text-xl border w-full">
+                Let's Connect needs to work
             </div>
         </div>
     );
