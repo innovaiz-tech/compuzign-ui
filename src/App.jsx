@@ -10,7 +10,10 @@ function App() {
         <Route index element={<Home />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
-    )
+    ),
+    {
+      basename: import.meta.env.DEV ? '/' : '/compuzign-ui'
+    }
   )
 
   return <RouterProvider router={router} />;

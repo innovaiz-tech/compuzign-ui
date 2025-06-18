@@ -4,6 +4,9 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // Base path for GitHub Pages deployment
+  base: '/compuzign-ui/',
+  
   plugins: [
     react({
       // Enable React Fast Refresh for better development performance
