@@ -19,9 +19,9 @@ import ProvenIndustryExperienceFrame1 from "../assets/Proven-Industry-Experience
 import ProvenIndustryExperienceFrame2 from "../assets/Proven-Industry-Experience-frame-2.png";
 import InnovatingWithAIBanner from "../assets/Innovating-with-AI-banner.png";
 import InnovatingWithAI from "../assets/Innovating-with-AI.png";
-import Blogs1 from "../assets/Blogs1.png";
-import Blogs2 from "../assets/Blogs2.png";
-import Blogs3 from "../assets/Blogs3.png";
+import Blogs1 from "../assets/blogs1.png";
+import Blogs2 from "../assets/blogs2.png";
+import Blogs3 from "../assets/blogs3.png";
 
 import HeroBanner from "../components/ui/HeroBanner";
 import TestimonialsCarousel from "../components/ui/TestimonialsCarousel";
