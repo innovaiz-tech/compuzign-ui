@@ -19,9 +19,6 @@ import ProvenIndustryExperienceFrame1 from "../assets/Proven-Industry-Experience
 import ProvenIndustryExperienceFrame2 from "../assets/Proven-Industry-Experience-frame-2.png";
 import InnovatingWithAIBanner from "../assets/Innovating-with-AI-banner.png";
 import InnovatingWithAI from "../assets/Innovating-with-AI.png";
-import Blogs1 from "../assets/blogs1.png";
-import Blogs2 from "../assets/blogs2.png";
-import Blogs3 from "../assets/blogs3.png";
 
 import HeroBanner from "../components/ui/HeroBanner";
 import TestimonialsCarousel from "../components/ui/TestimonialsCarousel";
@@ -151,31 +148,45 @@ export default function Home() {
         },
     ]
 
-    const Blogs = [
+    const ProvenIndustryExperience = [
         {
-            title: "Strengthening Digital Resilience with CompuZign's Automated DORA Compliance",
-            date: 'May 16, 2025',
-            description: "In today's fast-paced digital world, many businesses find themselves held back by outdated IT systems. Imagine trying to keep up with the competition while dealing with slow processes, rising costs, and constant security threats. It's…",
-            image: Blogs1,
-            href: 'https://virtualtechgurus.com/strengthening-digital-resilience-with-vtg-dora-compliance/'
+            title: "Expertise in Technology Solutions for the Financial Services industry",
+            description: "CompuZign brings deep expertise in technology solutions tailored specifically for financial services organizations worldwide. We understand the unique challenges, regulatory requirements, and operational complexities that define this industry, enabling us to deliver targeted solutions that drive efficiency, compliance, and growth.",
+            image: ProvenIndustryExperienceFrame1,
         },
         {
-            title: "Overcome IT Challenges with Unified Migration and Expertly Managed Services",
-            date: 'December 12, 2024',
-            description: "In today's fast-paced digital world, many businesses find themselves held back by outdated IT systems. Imagine trying to keep up with the competition while dealing with slow processes, rising costs, and constant security threats. It's…",
-            image: Blogs2,
-            href: 'https://virtualtechgurus.com/overcome-it-challenges-unified-migration-managed-services/'
+            title: "Deep Expertise in Manufacturing and Industrial Organizations",
+            description: "CompuZign has extensive experience serving manufacturing and industrial organizations across the globe. We understand the unique operational challenges, technology requirements, and efficiency demands that define this sector. Our specialized solutions are designed to optimize processes, enhance productivity, and drive digital transformation in manufacturing environments.",
+            image: ProvenIndustryExperienceFrame2,
         },
-        {
-            title: "Resource as a Service for Cyber Forensics: Your Shield Against Digital Threats!",
-            date: 'December 6, 2024',
-            description: "In today's increasingly complex digital landscape, cyber threats are escalating in frequency and sophistication, with cybercrime costs expected to reach $10.5 trillion annually by 2025. CompuZign's Cyber Forensics as a Service (CFaaS) offers expert, rapid-response…",
-            image: Blogs3,
-            href: 'https://virtualtechgurus.com/resource-as-a-service-cyber-forensics-digital-threats/'
-        },
-    ]
+    ];
 
-
+    const EmpoweringGlobalSuccess = [
+        {
+            title: "CompuZign Operations Center (COC)",
+            description: "Our 24/7 Operations Center provides round-the-clock monitoring, support, and management services. With dedicated teams across multiple time zones, we ensure continuous availability and rapid response to maintain your business operations at peak performance.",
+            icon: EmpoweringGlobalSuccessIcon1,
+            image: EmpoweringGlobalSuccessFrame1,
+        },
+        {
+            title: "Global Network Operations Center",
+            description: "Our strategically located Network Operations Centers provide comprehensive infrastructure monitoring and management services worldwide. With state-of-the-art facilities and expert teams, we deliver proactive network management, ensuring optimal performance and minimal downtime for your critical business operations.",
+            icon: EmpoweringGlobalSuccessIcon2,
+            image: EmpoweringGlobalSuccessFrame2,
+        },
+        {
+            title: "24/7 Support Coverage",
+            description: "Round-the-clock technical support across all time zones, ensuring your business operations never skip a beat. Our global support teams provide immediate assistance, proactive monitoring, and rapid issue resolution to maintain business continuity.",
+            icon: EmpoweringGlobalSuccessIcon3,
+            image: EmpoweringGlobalSuccessFrame3,
+        },
+        {
+            title: "Multi-language Support",
+            description: "Comprehensive support services available in multiple languages to serve our diverse global clientele. Our multilingual support teams ensure clear communication and effective problem resolution regardless of geographical location or language preferences.",
+            icon: EmpoweringGlobalSuccessIcon4,
+            image: EmpoweringGlobalSuccessFrame4,
+        },
+    ];
 
     return (
         <div className="w-full">
@@ -521,16 +532,6 @@ export default function Home() {
                             hover:border-primary-bgYellow"
                         alt="Technology landscape"
                     />
-                </div>
-            </div>
-            <div className="w-full flex flex-col justify-center items-center bg-primary-bgGray py-8">
-                <h2 className="text-xl font-bold leading-tight py-4">BLOGS</h2>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight py-2 text-center">
-                    Guiding You Through the Digital Transformation Journey</h2>
-                <div className="w-full flex flex-wrap gap-5 justify-center m-4">
-                    {Blogs.map((item, index) => (
-                        <Cards2 key={index} data={item} />
-                    ))}
                 </div>
             </div>
             

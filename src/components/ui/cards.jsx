@@ -55,7 +55,7 @@ export default function Cards({ data }) {
             </div>
 
             {/* Enhanced Circular Icon - Always Visible */}
-            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 z-20 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2">
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 z-20 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 overflow-hidden">
                 <div className="relative">
                     {/* Icon container with black shade - always visible */}
                     <div className="rounded-full bg-gradient-to-br from-gray-900 to-black p-1 border-8 border-primary-bgLight shadow-2xl transition-all duration-500 group-hover:shadow-yellow-500/20 group-hover:shadow-2xl">
