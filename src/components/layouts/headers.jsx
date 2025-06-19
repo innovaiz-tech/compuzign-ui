@@ -428,9 +428,9 @@ export default function Headers() {
                 <div className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200/50 p-4 sm:p-6 lg:p-8 max-h-[80vh] overflow-y-auto relative">
                   {/* Featured Section - Moved to Top */}
                   {megaMenuData[activeMegaMenu].featured && (
-                    <div className="mb-6 lg:mb-8 bg-gradient-to-br from-primary-bgYellow/60 to-primary-bgYellow/30 p-4 sm:p-5 rounded-2xl border border-primary-bgYellow/50 backdrop-blur-md hover:backdrop-blur-lg hover:shadow-2xl hover:border-primary-bgYellow/70 hover:scale-[1.01] hover:from-primary-bgYellow/50 hover:to-primary-bgYellow/15 transition-all duration-300 ease-out relative overflow-hidden group shadow-lg">
+                    <div className="mb-6 lg:mb-8 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-600/50 backdrop-blur-md hover:backdrop-blur-lg hover:shadow-2xl hover:border-slate-500/70 hover:scale-[1.01] hover:from-slate-700 hover:to-slate-800 transition-all duration-300 ease-out relative overflow-hidden group shadow-lg">
                         {/* Glassmorphic shimmer effect for featured section */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-bgYellow/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
                         
                         <div className="flex items-center space-x-3 mb-3 relative z-10">
                           {(() => {
@@ -438,20 +438,20 @@ export default function Headers() {
                             return <IconComponent className="w-6 h-6 text-primary-bgYellow group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />;
                           })()}
                           {megaMenuData[activeMegaMenu].featured.badge && (
-                            <span className="px-3 py-1 text-sm font-semibold bg-primary-bgYellow text-black rounded-full group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
+                            <span className="px-3 py-1 text-sm font-semibold bg-primary-bgYellow text-slate-900 rounded-full group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
                               {megaMenuData[activeMegaMenu].featured.badge}
                             </span>
                           )}
                         </div>
-                        <h3 className="text-base font-semibold text-gray-900 mb-2 relative z-10 group-hover:text-gray-800 transition-colors duration-300">
+                        <h3 className="text-lg font-bold text-white mb-2 relative z-10 group-hover:text-primary-bgYellow transition-colors duration-300">
                           {megaMenuData[activeMegaMenu].featured.title}
                         </h3>
-                        <p className="text-sm text-white mb-4 leading-relaxed relative z-10 group-hover:text-primary-bgYellow transition-colors duration-300">
+                        <p className="text-sm font-medium text-gray-100 sm:text-gray-200 mb-4 leading-relaxed relative z-10 group-hover:text-white transition-colors duration-300">
                           {megaMenuData[activeMegaMenu].featured.description}
                         </p>
                         <Link
                           to={megaMenuData[activeMegaMenu].featured.href}
-                          className="inline-flex items-center text-sm font-medium text-primary-bgYellow hover:text-primary-bgYellow/90 hover:underline hover:scale-105 transition-all duration-300 relative z-10"
+                          className="inline-flex items-center text-sm font-medium text-primary-bgYellow hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 relative z-10"
                           onClick={closeMegaMenu}
                         >
                           Learn more →
@@ -548,7 +548,7 @@ export default function Headers() {
                                   to={subItem.href}
                                   className="flex items-center space-x-3 px-3 py-2 text-sm text-gray-700 hover:text-primary-bgYellow hover:bg-gray-50 rounded-md transition-colors"
                                   onClick={() => setIsMenuOpen(false)}
-                                >
+                >
                                   <subItem.icon className="w-4 h-4 text-primary-bgYellow" />
                                   <span>{subItem.name}</span>
                                 </Link>
