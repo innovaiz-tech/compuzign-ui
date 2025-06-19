@@ -10,7 +10,7 @@ import Client4 from '../../assets/client/client-4.png';
 import Client5 from '../../assets/client/client-5.png';
 
 // Memoized Client Card Component for better performance
-const ClientCard = memo(({ client, index, isHovered, onHover, onLeave, onClick, currentSlide }) => (
+const ClientCard = memo(({ client, index, isHovered, onHover, onLeave, onClick }) => (
   <motion.div
     className="group relative bg-white/10 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-white/20 hover:shadow-2xl hover:border-primary-bgYellow/50 transition-all duration-300 cursor-pointer"
     onMouseEnter={() => onHover(index)}
