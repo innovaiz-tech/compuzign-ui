@@ -4,12 +4,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root level overflow prevention and performance optimizations */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+  /* Optimize font rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Improve scrolling performance */
+  scroll-behavior: smooth;
+}
 
-/* Minimal global styles for fresh start */
+/* Minimal global styles for fresh start with performance optimizations */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Performance optimizations for all elements */
+*,
+*::before,
+*::after {
+  /* Enable hardware acceleration for transforms */
+  backface-visibility: hidden;
+  /* Optimize repainting */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Optimize images for performance */
+img {
+  max-width: 100%;
+  height: auto;
+  /* Improve image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  /* Prevent layout shift */
+  vertical-align: middle;
 }
 
 body {
@@ -20,4 +55,330 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   font-family: theme('fontFamily.rubik');
+}
+
+/* Prevent any element from causing horizontal overflow */
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Custom animations for hero banner */
+@keyframes techPulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes dataFlow {
+  0% { 
+    transform: translateX(-100px) translateY(0px);
+    opacity: 0;
+  }
+  10% { 
+    opacity: 1;
+  }
+  90% { 
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(calc(100vw + 100px)) translateY(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes networkGlow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(255, 218, 23, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(255, 218, 23, 0.6), 0 0 30px rgba(255, 218, 23, 0.4);
+  }
+}
+
+/* Utility classes */
+.tech-pulse {
+  animation: techPulse 3s ease-in-out infinite;
+}
+
+.data-flow {
+  animation: dataFlow 8s linear infinite;
+}
+
+.network-glow {
+  animation: networkGlow 2s ease-in-out infinite;
+}
+
+/* Hero banner specific styles */
+.hero-bg-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(36, 36, 36, 0.5) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-title {
+    font-size: 3rem;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hero-title {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* Text highlight effect */
+.text-highlight {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.5rem;
+}
+
+.text-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ffda17, transparent);
+  animation: highlightPulse 2s ease-in-out infinite;
+}
+
+@keyframes highlightPulse {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: scaleX(0.8);
+  }
+  50% { 
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* Optimized animations for better performance */
+@keyframes subtleGlow {
+  0%, 100% { 
+    opacity: 0.3;
+  }
+  50% { 
+    opacity: 0.6;
+  }
+}
+
+/* Utility classes for optimized animations */
+.subtle-glow {
+  animation: subtleGlow 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes slideRight {
+  0% { 
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(calc(100vw + 100px));
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: rotate(45deg) scale(1);
+    opacity: 0.2;
+  }
+  50% { 
+    transform: rotate(45deg) scale(1.2);
+    opacity: 0.4;
+  }
+}
+
+@keyframes gentleFloat {
+  0%, 100% { 
+    transform: translateY(0px) scale(1);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: translateY(-8px) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+/* Line clamp utilities for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Responsive utilities to prevent overflow */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 100% !important;
+    overflow-x: hidden;
+  }
+  
+  /* Ensure mega menu doesn't cause overflow on tablets */
+  .absolute {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Prevent any horizontal scroll on mobile */
+  * {
+    max-width: 100vw;
+  }
+}
+
+/* Glassmorphic design utilities */
+.glass-morphic {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glass-morphic-hover {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Optimized client section animations with hardware acceleration */
+@keyframes shimmer {
+  0% { transform: translate3d(-100%, 0, 0); }
+  100% { transform: translate3d(100%, 0, 0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 4px 20px rgba(255, 218, 23, 0.2);
+    transform: translateZ(0);
+  }
+  50% { 
+    box-shadow: 0 8px 40px rgba(255, 218, 23, 0.4);
+    transform: translateZ(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  to {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+/* Performance-optimized animation classes */
+.gpu-accelerated {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.animate-efficiently {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.client-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.client-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+.client-logo-hover:hover {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 20s linear infinite;
 } 
