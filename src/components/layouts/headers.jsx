@@ -24,7 +24,6 @@ import {
   HiSupport,
   HiCode,
   HiBookOpen,
-  HiNewspaper,
   HiAcademicCap,
   HiUserGroup,
   HiTrendingUp,
@@ -48,10 +47,10 @@ export default function Headers() {
   // Force header to always show on light background pages
   const shouldUseLightTheme = isLightBackgroundPage || isScrolled;
 
-  // Handle scroll effect
+  // Handle scroll effect - make header visible sooner
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -60,11 +59,13 @@ export default function Headers() {
   // Prevent background scroll when mobile menu is open
   useEffect(() => {
     if (isMenuOpen) {
+      document.body.classList.add('mobile-menu-open');
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.top = `-${window.scrollY}px`;
       document.body.style.width = '100%';
     } else {
+      document.body.classList.remove('mobile-menu-open');
       const scrollY = document.body.style.top;
       document.body.style.overflow = '';
       document.body.style.position = '';
@@ -76,6 +77,7 @@ export default function Headers() {
     }
 
     return () => {
+      document.body.classList.remove('mobile-menu-open');
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.top = '';
@@ -254,12 +256,6 @@ export default function Headers() {
           title: 'Content & Insights',
           items: [
             {
-              name: 'Blogs',
-              description: 'Latest insights and industry trends',
-              icon: HiNewspaper,
-              href: '/blogs'
-            },
-            {
               name: 'Case Studies',
               description: 'Customer success stories',
               icon: HiTrendingUp,
@@ -364,9 +360,7 @@ export default function Headers() {
                     className={`flex items-center space-x-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                       activeMegaMenu === item.key
                         ? 'text-primary-bgYellow bg-primary-bgYellow/10'
-                        : shouldUseLightTheme
-                        ? 'text-gray-900 hover:text-primary-bgYellow hover:bg-gray-50'
-                        : 'text-white hover:text-primary-bgYellow hover:bg-white/10'
+                        : `${shouldUseLightTheme ? 'text-gray-900' : 'text-white'} hover:text-primary-bgYellow ${shouldUseLightTheme ? 'hover:bg-gray-50' : 'hover:bg-white/10'}`
                     }`}
                     onMouseEnter={() => setActiveMegaMenu(item.key)}
                   >
@@ -381,9 +375,7 @@ export default function Headers() {
                     className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                       location.pathname === item.href
                         ? 'text-primary-bgYellow bg-primary-bgYellow/10'
-                        : shouldUseLightTheme
-                        ? 'text-gray-900 hover:text-primary-bgYellow hover:bg-gray-50'
-                        : 'text-white hover:text-primary-bgYellow hover:bg-white/10'
+                        : `${shouldUseLightTheme ? 'text-gray-900' : 'text-white'} hover:text-primary-bgYellow ${shouldUseLightTheme ? 'hover:bg-gray-50' : 'hover:bg-white/10'}`
                     }`}
                     onMouseEnter={() => setActiveMegaMenu(null)}
                   >
@@ -395,16 +387,6 @@ export default function Headers() {
             
             {/* CTA Buttons */}
             <div className="flex items-center space-x-3 ml-6" onMouseEnter={() => setActiveMegaMenu(null)}>
-              <Link
-                to="/contact"
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                  shouldUseLightTheme
-                    ? 'text-gray-700 hover:text-primary-bgYellow'
-                    : 'text-gray-200 hover:text-white'
-                }`}
-              >
-                Contact Sales
-              </Link>
               <Button variant="primary" size="sm">
                 Get Started
               </Button>
@@ -414,11 +396,11 @@ export default function Headers() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className={`lg:hidden p-2 rounded-md transition-colors z-50 ${
-              shouldUseLightTheme
-                ? 'text-gray-900 hover:bg-gray-100'
+            className={`lg:hidden p-2 rounded-md transition-colors ${
+              shouldUseLightTheme 
+                ? 'text-gray-900 hover:bg-gray-100' 
                 : 'text-white hover:bg-white/10'
-            }`}
+            } z-50`}
             onClick={toggleMenu}
           >
             {isMenuOpen ? (
@@ -433,7 +415,7 @@ export default function Headers() {
       {/* Mega Menu Content */}
       <AnimatePresence>
         {activeMegaMenu && megaMenuData[activeMegaMenu] && (
-          <div className="absolute top-full left-0 right-0 z-50 mt-2 overflow-hidden">
+          <div className="absolute top-full left-0 right-0 z-[9998] mt-2 overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
@@ -525,136 +507,71 @@ export default function Headers() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <>
-            {/* Mobile Menu Overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-30"
-              onClick={() => setIsMenuOpen(false)}
-            />
-            
-            {/* Mobile Menu Content */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="lg:hidden bg-white shadow-xl border-t border-gray-200 fixed left-0 right-0 top-16 bottom-0 z-40 flex flex-col overflow-hidden"
-            >
-              {/* Scrollable Content */}
-              <div className="flex-1 overflow-y-auto overscroll-contain">
-                <div className="px-4 py-4 space-y-1">
-                  {mainNavigation.map((item) => (
-                    <div key={item.name} className="border-b border-gray-100 last:border-b-0 pb-1 last:pb-0">
-                      {item.key ? (
-                        <div>
-                          <button
-                            onClick={() => handleMegaMenu(item.key)}
-                            className="flex items-center justify-between w-full px-3 py-2.5 text-base font-medium text-gray-900 hover:text-primary-bgYellow hover:bg-gray-50 rounded-lg transition-colors"
-                          >
-                            <span>{item.name}</span>
-                            <HiChevronDown className={`w-5 h-5 transition-transform ${
-                              activeMegaMenu === item.key ? 'rotate-180' : ''
-                            }`} />
-                          </button>
-                          
-                          {/* Mobile Submenu with Animation */}
-                          <AnimatePresence>
-                            {activeMegaMenu === item.key && (
-                              <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="overflow-hidden"
-                              >
-                                <div className="pl-2 mt-2 space-y-2">
-                                  {megaMenuData[item.key].sections.map((section, sectionIndex) => (
-                                    <div key={sectionIndex} className="space-y-1.5">
-                                      <h4 className="text-xs font-semibold text-primary-bgYellow uppercase tracking-wider px-2">
-                                        {section.title}
-                                      </h4>
-                                      <div className="space-y-0.5">
-                                        {section.items.map((subItem, subIndex) => (
-                                          <Link
-                                            key={subIndex}
-                                            to={subItem.href}
-                                            className="flex items-start space-x-3 px-3 py-2 text-sm text-gray-700 hover:text-primary-bgYellow hover:bg-primary-bgYellow/5 rounded-md transition-colors"
-                                            onClick={() => setIsMenuOpen(false)}
-                                          >
-                                            <subItem.icon className="w-4 h-4 text-primary-bgYellow flex-shrink-0 mt-0.5" />
-                                            <div className="flex-1 min-w-0">
-                                              <div className="font-medium text-sm leading-tight">{subItem.name}</div>
-                                              <div className="text-xs text-gray-500 mt-0.5 line-clamp-2">{subItem.description}</div>
-                                            </div>
-                                          </Link>
-                                        ))}
-                                      </div>
-                                    </div>
-                                  ))}
-                                  
-                                  {/* Featured Section for Mobile */}
-                                  {megaMenuData[item.key].featured && (
-                                    <div className="bg-gradient-to-r from-primary-bgYellow/10 to-primary-bgYellow/5 p-3 rounded-lg mt-3 mx-2">
-                                      <div className="flex items-center space-x-2 mb-1.5">
-                                        {(() => {
-                                          const IconComponent = megaMenuData[item.key].featured.icon;
-                                          return <IconComponent className="w-4 h-4 text-primary-bgYellow" />;
-                                        })()}
-                                        {megaMenuData[item.key].featured.badge && (
-                                          <span className="px-2 py-1 text-xs font-semibold bg-primary-bgYellow text-black rounded-full">
-                                            {megaMenuData[item.key].featured.badge}
-                                          </span>
-                                        )}
-                                      </div>
-                                      <h5 className="font-semibold text-gray-900 text-sm mb-1">
-                                        {megaMenuData[item.key].featured.title}
-                                      </h5>
-                                      <p className="text-xs text-gray-600 mb-2 line-clamp-2">
-                                        {megaMenuData[item.key].featured.description}
-                                      </p>
-                                      <Link
-                                        to={megaMenuData[item.key].featured.href}
-                                        className="inline-flex items-center text-sm font-medium text-primary-bgYellow"
-                                        onClick={() => setIsMenuOpen(false)}
-                                      >
-                                        Learn more →
-                                      </Link>
-                                    </div>
-                                  )}
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
+      {/* Mobile Navigation - Simplified and Working */}
+      {isMenuOpen && (
+        <>
+          {/* Overlay */}
+          <div 
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          
+          {/* Mobile Menu */}
+          <div className="fixed top-16 left-0 right-0 bg-white shadow-xl z-40 lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto">
+            <div className="px-4 py-6 space-y-4">
+              {/* Navigation Items */}
+              {mainNavigation.map((item) => (
+                <div key={item.name}>
+                  {item.key ? (
+                    <div>
+                      <button
+                        onClick={() => handleMegaMenu(item.key)}
+                        className="flex items-center justify-between w-full px-4 py-3 text-left text-lg font-medium text-gray-900 hover:text-primary-bgYellow hover:bg-gray-50 rounded-lg transition-colors"
+                      >
+                        <span>{item.name}</span>
+                        <HiChevronDown className={`w-5 h-5 transition-transform ${
+                          activeMegaMenu === item.key ? 'rotate-180' : ''
+                        }`} />
+                      </button>
+                      
+                      {/* Submenu */}
+                      {activeMegaMenu === item.key && (
+                        <div className="mt-2 pl-4 space-y-2">
+                          {megaMenuData[item.key].sections.map((section, sectionIndex) => (
+                            <div key={sectionIndex} className="space-y-1">
+                              <h4 className="text-sm font-semibold text-primary-bgYellow uppercase tracking-wider">
+                                {section.title}
+                              </h4>
+                              {section.items.map((subItem, subIndex) => (
+                                <Link
+                                  key={subIndex}
+                                  to={subItem.href}
+                                  className="flex items-center space-x-3 px-3 py-2 text-sm text-gray-700 hover:text-primary-bgYellow hover:bg-gray-50 rounded-md transition-colors"
+                                  onClick={() => setIsMenuOpen(false)}
+                                >
+                                  <subItem.icon className="w-4 h-4 text-primary-bgYellow" />
+                                  <span>{subItem.name}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          ))}
                         </div>
-                      ) : (
-                        <Link
-                          to={item.href}
-                          className="block px-3 py-2.5 text-base font-medium text-gray-900 hover:text-primary-bgYellow hover:bg-gray-50 rounded-lg transition-colors"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {item.name}
-                        </Link>
                       )}
                     </div>
-                  ))}
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className="block px-4 py-3 text-lg font-medium text-gray-900 hover:text-primary-bgYellow hover:bg-gray-50 rounded-lg transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
                 </div>
-              </div>
+              ))}
               
-              {/* Fixed Mobile CTA */}
-              <div className="flex-shrink-0 border-t border-gray-200 bg-gray-50 px-4 py-4 space-y-3">
-                <Link
-                  to="/contact"
-                  className="block w-full px-4 py-3 text-center text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact Sales
-                </Link>
+              {/* CTA Buttons */}
+              <div className="pt-4 border-t border-gray-200">
                 <Button 
                   variant="primary" 
                   size="md" 
@@ -664,10 +581,10 @@ export default function Headers() {
                   Get Started
                 </Button>
               </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+            </div>
+          </div>
+        </>
+      )}
     </header>
 );
 }
