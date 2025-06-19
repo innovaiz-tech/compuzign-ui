@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Button from '../common/button';
+import homeBanner from '../../assets/home_banner.png';
 
 export default function HeroBanner() {
 
@@ -8,7 +9,7 @@ export default function HeroBanner() {
       {/* Background Image/Video */}
       <div className="absolute inset-0 z-0">
         <img
-          src="src/assets/home_banner.png"
+          src={homeBanner}
           alt="Technology Solutions Background"
           className="w-full h-full object-cover"
         />
