@@ -152,7 +152,7 @@ export default function Headers() {
               name: 'Extended Threat Detection & Response',
               description: 'Advanced threat hunting and response',
               icon: HiEye,
-              href: '/services/threat-detection'
+              href: '/extended-threat-detection'
             },
             {
               name: 'Privileged User Access Risk Assessment',

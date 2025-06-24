@@ -50,6 +50,77 @@ html, body {
   }
 }
 
+/* Tablet-specific fixes to prevent scroll effects */
+@media (max-width: 1024px) and (min-width: 769px) {
+  /* Disable problematic animations on tablets */
+  .animate-ping,
+  .animate-pulse {
+    animation: none !important;
+  }
+  
+  /* Disable text highlight animation that might cause scroll */
+  .text-highlight::after {
+    animation: none !important;
+    opacity: 0.8 !important;
+    transform: none !important;
+  }
+  
+  /* Reduce motion for better tablet experience */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+  }
+  
+  /* Prevent horizontal scroll on tablets */
+  html, body, #root {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+  
+  /* Fix animated elements that might cause scroll */
+  .absolute {
+    max-width: 100vw !important;
+    overflow: hidden !important;
+  }
+  
+  /* Reduce transform animations that might trigger scroll */
+  [style*="transform"] {
+    will-change: auto !important;
+  }
+  
+  /* Prevent any motion that might trigger reflow */
+  .tech-pulse,
+  .data-flow,
+  .network-glow {
+    animation: none !important;
+  }
+}
+
+/* Mobile-specific animation fixes */
+@media (max-width: 768px) {
+  /* Disable heavy animations on mobile */
+  .animate-ping,
+  .animate-pulse,
+  .tech-pulse,
+  .data-flow,
+  .network-glow {
+    animation: none !important;
+  }
+  
+  /* Reduce all animation durations */
+  * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Prevent any transforms that might cause scroll issues */
+  [class*="animate-"],
+  [style*="transform"] {
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
 /* Minimal global styles for fresh start with performance optimizations */
 * {
   margin: 0;
@@ -206,21 +277,19 @@ body {
   }
   50% { 
     opacity: 1;
-    transform: scaleX(1);
+    transform: scaleX(1.1);
   }
 }
 
-/* Optimized animations for better performance */
 @keyframes subtleGlow {
   0%, 100% { 
-    opacity: 0.3;
+    box-shadow: 0 0 10px rgba(255, 218, 23, 0.2);
   }
   50% { 
-    opacity: 0.6;
+    box-shadow: 0 0 25px rgba(255, 218, 23, 0.5);
   }
 }
 
-/* Utility classes for optimized animations */
 .subtle-glow {
   animation: subtleGlow 3s ease-in-out infinite;
 }
@@ -231,36 +300,37 @@ body {
 }
 
 @keyframes slideRight {
-  0% { 
-    transform: translateX(-100px);
+  0% {
     opacity: 0;
+    transform: translateX(-50px);
   }
-  50% {
+  100% {
     opacity: 1;
-  }
-  100% { 
-    transform: translateX(calc(100vw + 100px));
-    opacity: 0;
+    transform: translateX(0);
   }
 }
 
 @keyframes pulse {
-  0%, 100% { 
-    transform: rotate(45deg) scale(1);
-    opacity: 0.2;
+  0% {
+    transform: scale(1);
+    opacity: 1;
   }
-  50% { 
-    transform: rotate(45deg) scale(1.2);
-    opacity: 0.4;
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
 @keyframes gentleFloat {
-  0%, 100% { 
+  0%, 100% {
     transform: translateY(0px) scale(1);
-    opacity: 0.3;
+    opacity: 0.8;
   }
-  50% { 
+  50% {
     transform: translateY(-8px) scale(1.1);
     opacity: 0.6;
   }
