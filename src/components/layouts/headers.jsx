@@ -143,10 +143,10 @@ export default function Headers() {
               href: '/services/cyber-recovery'
             },
             {
-              name: 'Disaster Ready Migration',
+              name: 'Disaster Recovery, Business Data Continuity',
               description: 'Business continuity planning',
               icon: HiRefresh,
-              href: '/services/disaster-migration'
+              href: '/disaster-recovery-business-continuity'
             },
             {
               name: 'Extended Threat Detection & Response',
