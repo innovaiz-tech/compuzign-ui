@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import ExtendedThreatDetection from "./pages/ExtendedThreatDetection";
 import DisasterRecovery from "./pages/DisasterRecovery";
 import PrivilegedAccessStrategies from "./pages/PrivilegedAccessStrategies";
+import VulnerabilityAssessment from "./pages/VulnerabilityAssessment";
 
 function App() {
   const router = createBrowserRouter(
@@ -14,6 +15,7 @@ function App() {
         <Route path='/extended-threat-detection' element={<ExtendedThreatDetection />} />
         <Route path='/disaster-recovery-business-continuity' element={<DisasterRecovery />} />
         <Route path='/privileged-access-strategies' element={<PrivilegedAccessStrategies />} />
+        <Route path='/vulnerability-assessment-remediation' element={<VulnerabilityAssessment />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
