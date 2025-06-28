@@ -136,7 +136,7 @@ export default function PrivilegedAccessStrategies() {
             {/* Enhanced Right Visual - 5 columns */}
             <div className="lg:col-span-5">
               <motion.div 
-                className="relative"
+                className="relative overflow-hidden hero-right-visual"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -144,62 +144,78 @@ export default function PrivilegedAccessStrategies() {
               >
                 
                 {/* Enhanced Central Hub */}
-                <div className="relative mx-auto w-96 h-96 flex items-center justify-center">
+                <div className={`relative mx-auto flex items-center justify-center hero-central-hub ${
+                  isMobile ? 'w-72 h-72' : isTablet ? 'w-80 h-80' : 'w-96 h-96'
+                }`}>
                   
                   {/* Outer Ring */}
-                  <motion.div
-                    className="absolute w-80 h-80 rounded-full border-2 border-primary-bgYellow/20"
-                    animate={{ 
-                      rotate: [0, 360]
-                    }}
-                    transition={{ 
-                      duration: 20, 
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  />
+                  {!isMobile && (
+                    <motion.div
+                      className={`absolute rounded-full border-2 border-primary-bgYellow/20 ${
+                        isTablet ? 'w-72 h-72' : 'w-80 h-80'
+                      }`}
+                      animate={{ 
+                        rotate: [0, 360]
+                      }}
+                      transition={{ 
+                        duration: 20, 
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  )}
 
                   {/* Middle Ring */}
-                  <motion.div
-                    className="absolute w-64 h-64 rounded-full border border-blue-400/20"
-                    animate={{ 
-                      rotate: [360, 0]
-                    }}
-                    transition={{ 
-                      duration: 15, 
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  />
+                  {!isMobile && (
+                    <motion.div
+                      className={`absolute rounded-full border border-blue-400/20 ${
+                        isTablet ? 'w-56 h-56' : 'w-64 h-64'
+                      }`}
+                      animate={{ 
+                        rotate: [360, 0]
+                      }}
+                      transition={{ 
+                        duration: 15, 
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  )}
 
                   {/* Central Shield */}
                   <motion.div
-                    className="relative w-40 h-40 bg-gradient-to-br from-primary-bgYellow/25 via-primary-bgYellow/15 to-transparent rounded-full flex items-center justify-center border-4 border-primary-bgYellow/50 backdrop-blur-sm shadow-2xl"
-                    animate={{ 
+                    className={`relative bg-gradient-to-br from-primary-bgYellow/25 via-primary-bgYellow/15 to-transparent rounded-full flex items-center justify-center border-4 border-primary-bgYellow/50 backdrop-blur-sm shadow-2xl ${
+                      isMobile ? 'w-32 h-32' : isTablet ? 'w-36 h-36' : 'w-40 h-40'
+                    }`}
+                    animate={ !isMobile ? { 
                       scale: [1, 1.08, 1],
                       boxShadow: [
                         "0 0 20px rgba(255, 218, 23, 0.3)",
                         "0 0 40px rgba(255, 218, 23, 0.5)",
                         "0 0 20px rgba(255, 218, 23, 0.3)"
                       ]
-                    }}
-                    transition={{ 
+                    } : {}}
+                    transition={ !isMobile ? { 
                       duration: 3, 
                       repeat: Infinity,
                       ease: "easeInOut"
-                    }}
+                    } : {}}
                   >
-                    <HiShieldCheck className="w-20 h-20 text-primary-bgYellow drop-shadow-lg" />
+                    <HiShieldCheck className={`text-primary-bgYellow drop-shadow-lg ${
+                      isMobile ? 'w-16 h-16' : isTablet ? 'w-20 h-20' : 'w-20 h-20'
+                    }`} />
                   </motion.div>
 
                   {/* Enhanced Floating Security Elements */}
-                  {[
+                  {!isMobile && [
                     { icon: HiKey, top: '8%', left: '18%', delay: 0, label: 'Access Keys' },
                     { icon: HiEye, top: '15%', right: '12%', delay: 0.5, label: 'Monitoring' },
                     { icon: HiUserGroup, bottom: '15%', right: '18%', delay: 1, label: 'User Control' },
                     { icon: HiLockClosed, bottom: '8%', left: '12%', delay: 1.5, label: 'Secure Vault' },
-                    { icon: HiCog, top: '38%', left: '5%', delay: 2, label: 'Policy Engine' },
-                    { icon: HiDocumentReport, top: '42%', right: '5%', delay: 2.5, label: 'Audit Logs' }
+                    ...(isTablet ? [] : [
+                      { icon: HiCog, top: '38%', left: '5%', delay: 2, label: 'Policy Engine' },
+                      { icon: HiDocumentReport, top: '42%', right: '5%', delay: 2.5, label: 'Audit Logs' }
+                    ])
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -223,8 +239,12 @@ export default function PrivilegedAccessStrategies() {
                       whileHover={{ scale: 1.1 }}
                     >
                       <div className="relative">
-                        <div className="w-14 h-14 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/30 shadow-lg group-hover:border-primary-bgYellow/50 transition-all duration-300">
-                          <item.icon className="w-7 h-7 text-primary-bgYellow group-hover:text-primary-bgYellow/80 transition-colors" />
+                        <div className={`bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/30 shadow-lg group-hover:border-primary-bgYellow/50 transition-all duration-300 ${
+                          isTablet ? 'w-12 h-12' : 'w-14 h-14'
+                        }`}>
+                          <item.icon className={`text-primary-bgYellow group-hover:text-primary-bgYellow/80 transition-colors ${
+                            isTablet ? 'w-6 h-6' : 'w-7 h-7'
+                          }`} />
                         </div>
                         
                         {/* Tooltip */}
@@ -238,7 +258,8 @@ export default function PrivilegedAccessStrategies() {
                   ))}
 
                   {/* Connection Lines */}
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                  {!isMobile && (
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none">
                     {[
                       { x1: '50%', y1: '50%', x2: '25%', y2: '15%' },
                       { x1: '50%', y1: '50%', x2: '85%', y2: '22%' },
@@ -267,6 +288,7 @@ export default function PrivilegedAccessStrategies() {
                       </linearGradient>
                     </defs>
                   </svg>
+                  )}
 
                 </div>
 
