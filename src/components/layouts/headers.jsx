@@ -170,7 +170,7 @@ export default function Headers() {
               name: 'Vulnerability Assessment and Remediation',
               description: 'Comprehensive security assessments',
               icon: HiShieldCheck,
-              href: '/services/vulnerability-assessment'
+              href: '/vulnerability-assessment-remediation'
             }
           ]
         },
