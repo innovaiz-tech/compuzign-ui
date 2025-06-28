@@ -560,12 +560,6 @@ export default function PrivilegedAccessStrategies() {
                 Schedule Free Consultation
                 <HiArrowRight className="ml-3 w-6 h-6" />
               </Button>
-              <Button 
-                variant="outline"
-                className="border-2 border-white/30 hover:border-primary-bgYellow text-white hover:text-primary-bgYellow px-10 py-5 rounded-lg text-lg"
-              >
-                Download PAS Guide
-              </Button>
             </div>
 
             {/* Contact Info */}
