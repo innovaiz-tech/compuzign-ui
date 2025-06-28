@@ -158,7 +158,7 @@ export default function Headers() {
               name: 'Privileged User Access Risk Assessment',
               description: 'Secure privileged access management',
               icon: HiLockClosed,
-              href: '/services/privileged-access'
+              href: '/privileged-access-strategies'
             },
             {
               name: 'Ransomware Response Team',

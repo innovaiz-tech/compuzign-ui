@@ -400,14 +400,6 @@ export default function DisasterRecovery() {
                 <HiArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
               </Button>
 
-              <Button 
-                variant="secondary" 
-                size="lg"
-                className="group border-2 border-white/30 text-white hover:bg-white/10 hover:border-white px-10 py-5 text-xl font-semibold rounded-xl transition-all duration-300 backdrop-blur-sm"
-              >
-                <HiPhone className="w-6 h-6 mr-3" />
-                Schedule a Call
-              </Button>
             </motion.div>
 
             <motion.div 
