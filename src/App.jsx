@@ -4,6 +4,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
 import ExtendedThreatDetection from "./pages/ExtendedThreatDetection";
 import DisasterRecovery from "./pages/DisasterRecovery";
+import PrivilegedAccessStrategies from "./pages/PrivilegedAccessStrategies";
 
 function App() {
   const router = createBrowserRouter(
@@ -12,6 +13,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path='/extended-threat-detection' element={<ExtendedThreatDetection />} />
         <Route path='/disaster-recovery-business-continuity' element={<DisasterRecovery />} />
+        <Route path='/privileged-access-strategies' element={<PrivilegedAccessStrategies />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
