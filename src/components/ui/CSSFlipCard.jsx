@@ -1,6 +1,22 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 const CSSFlipCard = ({ title, description, icon: Icon, index }) => {
+  const [isFirefox, setIsFirefox] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    // Detect Firefox for fallback handling
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isFirefoxBrowser = userAgent.includes('firefox');
+    setIsFirefox(isFirefoxBrowser);
+    
+    // Debug log for testing
+    if (isFirefoxBrowser) {
+      console.log('Firefox detected - using opacity-based flip animation');
+    }
+  }, []);
+
   return (
     <motion.div
       className="flip-card-container"
@@ -8,11 +24,50 @@ const CSSFlipCard = ({ title, description, icon: Icon, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        // Firefox-specific styles
+        ...(isFirefox && {
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden'
+        })
+      }}
     >
-      <div className="flip-card">
-        <div className="flip-card-inner">
+              <div className={isFirefox ? "flip-card-firefox" : "flip-card"}>
+        <div className={isFirefox ? "flip-card-firefox-inner" : "flip-card-inner"} style={{
+          // Firefox uses different approach - no 3D transforms
+          ...(isFirefox ? {
+            position: 'relative',
+            width: '100%',
+            height: '100%'
+          } : {
+            transformStyle: 'preserve-3d',
+            WebkitTransformStyle: 'preserve-3d',
+            MozTransformStyle: 'preserve-3d'
+          })
+        }}>
           {/* Front of card */}
-          <div className="flip-card-front">
+          <div className={isFirefox ? "flip-card-firefox-front" : "flip-card-front"} style={{
+            // Firefox-specific opacity-based approach
+            ...(isFirefox ? {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              opacity: isHovered ? 0 : 1,
+              transition: 'opacity 0.6s ease-in-out',
+              zIndex: isHovered ? 1 : 2
+            } : {
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              MozBackfaceVisibility: 'hidden',
+              transform: 'rotateY(0deg) translateZ(1px)',
+              WebkitTransform: 'rotateY(0deg) translateZ(1px)',
+              MozTransform: 'rotateY(0deg) translateZ(1px)'
+            })
+          }}>
             <div className="h-full bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-2xl border-2 border-gray-700 flex flex-col items-center justify-center p-8 relative overflow-hidden">
               {/* Background pattern */}
               <div className="absolute inset-0 opacity-5">
@@ -37,7 +92,26 @@ const CSSFlipCard = ({ title, description, icon: Icon, index }) => {
           </div>
 
           {/* Back of card */}
-          <div className="flip-card-back">
+          <div className={isFirefox ? "flip-card-firefox-back" : "flip-card-back"} style={{
+            // Firefox-specific opacity-based approach
+            ...(isFirefox ? {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              opacity: isHovered ? 1 : 0,
+              transition: 'opacity 0.6s ease-in-out',
+              zIndex: isHovered ? 2 : 1
+            } : {
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              MozBackfaceVisibility: 'hidden',
+              transform: 'rotateY(180deg) translateZ(1px)',
+              WebkitTransform: 'rotateY(180deg) translateZ(1px)',
+              MozTransform: 'rotateY(180deg) translateZ(1px)'
+            })
+          }}>
             <div className="h-full bg-gradient-to-br from-primary-bgYellow via-yellow-500 to-primary-bgYellow rounded-2xl flex flex-col items-center justify-center p-8 relative overflow-hidden">
               {/* Subtle background pattern */}
               <div className="absolute inset-0 opacity-10">

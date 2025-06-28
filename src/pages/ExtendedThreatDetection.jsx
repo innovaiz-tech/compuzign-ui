@@ -254,63 +254,77 @@ export default function ExtendedThreatDetection() {
             {/* Enhanced Right Visual - 5 columns */}
             <div className="lg:col-span-5">
               <motion.div 
-                className="relative"
+                className="relative overflow-hidden hero-right-visual"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
                 
                 {/* Enhanced Central Hub - Threat Detection Theme */}
-                <div className="relative mx-auto w-96 h-96 flex items-center justify-center">
+                <div className={`relative mx-auto flex items-center justify-center hero-central-hub ${
+                  isMobile ? 'w-72 h-72' : isTablet ? 'w-80 h-80' : 'w-96 h-96'
+                }`}>
                   
                   {/* Outer Detection Ring */}
-                  <motion.div
-                    className="absolute w-80 h-80 rounded-full border-2 border-primary-bgYellow/20"
-                    animate={{ 
-                      rotate: [0, 360]
-                    }}
-                    transition={{ 
-                      duration: 25, 
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  />
+                  {!isMobile && (
+                    <motion.div
+                      className={`absolute rounded-full border-2 border-primary-bgYellow/20 ${
+                        isTablet ? 'w-72 h-72' : 'w-80 h-80'
+                      }`}
+                      animate={{ 
+                        rotate: [0, 360]
+                      }}
+                      transition={{ 
+                        duration: 25, 
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  )}
 
                   {/* Middle Scanning Ring */}
-                  <motion.div
-                    className="absolute w-64 h-64 rounded-full border border-blue-400/20"
-                    animate={{ 
-                      rotate: [360, 0]
-                    }}
-                    transition={{ 
-                      duration: 18, 
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  />
+                  {!isMobile && (
+                    <motion.div
+                      className={`absolute rounded-full border border-blue-400/20 ${
+                        isTablet ? 'w-56 h-56' : 'w-64 h-64'
+                      }`}
+                      animate={{ 
+                        rotate: [360, 0]
+                      }}
+                      transition={{ 
+                        duration: 18, 
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  )}
 
                   {/* Central Detection Hub */}
                   <motion.div
-                    className="relative w-40 h-40 bg-gradient-to-br from-primary-bgYellow/25 via-primary-bgYellow/15 to-transparent rounded-full flex items-center justify-center border-4 border-primary-bgYellow/50 backdrop-blur-sm shadow-2xl"
-                    animate={{ 
+                    className={`relative bg-gradient-to-br from-primary-bgYellow/25 via-primary-bgYellow/15 to-transparent rounded-full flex items-center justify-center border-4 border-primary-bgYellow/50 backdrop-blur-sm shadow-2xl ${
+                      isMobile ? 'w-32 h-32' : isTablet ? 'w-36 h-36' : 'w-40 h-40'
+                    }`}
+                    animate={ !isMobile ? { 
                       scale: [1, 1.08, 1],
                       boxShadow: [
                         "0 0 20px rgba(255, 218, 23, 0.3)",
                         "0 0 40px rgba(255, 218, 23, 0.5)",
                         "0 0 20px rgba(255, 218, 23, 0.3)"
                       ]
-                    }}
-                    transition={{ 
+                    } : {}}
+                    transition={ !isMobile ? { 
                       duration: 3, 
                       repeat: Infinity,
                       ease: "easeInOut"
-                    }}
+                    } : {}}
                   >
-                    <HiLocationMarker className="w-20 h-20 text-primary-bgYellow drop-shadow-lg" />
+                    <HiLocationMarker className={`text-primary-bgYellow drop-shadow-lg ${
+                      isMobile ? 'w-16 h-16' : isTablet ? 'w-20 h-20' : 'w-20 h-20'
+                    }`} />
                   </motion.div>
 
                   {/* Enhanced Floating Threat Detection Elements */}
-                  {[
+                  {!isMobile && [
                     { icon: HiEye, top: '8%', left: '18%', delay: 0, label: 'Monitor' },
                     { icon: HiSearch, top: '15%', right: '12%', delay: 0.5, label: 'Detect' },
                     { icon: HiExclamation, bottom: '15%', right: '18%', delay: 1, label: 'Alert' },
@@ -318,7 +332,9 @@ export default function ExtendedThreatDetection() {
                   ].map((item, index) => (
                     <motion.div
                       key={index}
-                      className="absolute w-16 h-16 bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-xl flex items-center justify-center backdrop-blur-sm border border-primary-bgYellow/20 shadow-lg group"
+                      className={`absolute bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-xl flex items-center justify-center backdrop-blur-sm border border-primary-bgYellow/20 shadow-lg group ${
+                        isTablet ? 'w-12 h-12' : 'w-16 h-16'
+                      }`}
                       style={{ [item.top ? 'top' : 'bottom']: item.top || item.bottom, [item.left ? 'left' : 'right']: item.left || item.right }}
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ 
@@ -338,7 +354,9 @@ export default function ExtendedThreatDetection() {
                       }}
                       whileHover={{ scale: 1.1, borderColor: '#ffda17' }}
                     >
-                      <item.icon className="w-8 h-8 text-primary-bgYellow" />
+                      <item.icon className={`text-primary-bgYellow ${
+                        isTablet ? 'w-6 h-6' : 'w-8 h-8'
+                      }`} />
                       <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
                         {item.label}
                       </div>
@@ -346,12 +364,12 @@ export default function ExtendedThreatDetection() {
                   ))}
 
                   {/* Threat Detection Scanning Lines */}
-                  {[...Array(8)].map((_, i) => (
+                  {!isMobile && [...Array(isTablet ? 6 : 8)].map((_, i) => (
                     <motion.div
                       key={`threat-line-${i}`}
                       className="absolute h-px bg-gradient-to-r from-transparent via-primary-bgYellow/40 to-transparent"
                       style={{
-                        width: '120px',
+                        width: isTablet ? '80px' : '100px',
                         top: `${25 + i * 6}%`,
                         left: '50%',
                         transform: 'translateX(-50%)',
@@ -370,20 +388,24 @@ export default function ExtendedThreatDetection() {
                   ))}
 
                   {/* Radar Sweep Effect */}
-                  <motion.div
-                    className="absolute w-36 h-36 rounded-full border-t-2 border-primary-bgYellow/60"
-                    style={{
-                      clipPath: 'polygon(50% 50%, 50% 0%, 100% 50%)',
-                    }}
-                    animate={{
-                      rotate: [0, 360],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  />
+                  {!isMobile && (
+                    <motion.div
+                      className={`absolute rounded-full border-t-2 border-primary-bgYellow/60 ${
+                        isTablet ? 'w-28 h-28' : 'w-36 h-36'
+                      }`}
+                      style={{
+                        clipPath: 'polygon(50% 50%, 50% 0%, 100% 50%)',
+                      }}
+                      animate={{
+                        rotate: [0, 360],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  )}
                 </div>
               </motion.div>
             </div>
