@@ -250,62 +250,153 @@ export default function RansomwareResponse() {
         </div>
       </section>
 
-      {/* 2. WHY TRIPLE RT SECTION - Fully Responsive */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-        <div className="px-4 sm:px-6 lg:px-12 max-w-screen-xl mx-auto">
+      {/* 2. WHY TRIPLE RT SECTION - Modern Dark Design */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-gradient-to-br from-[#0D1117] via-[#161B22] to-[#121212] relative overflow-hidden">
+        {/* Abstract Background Elements */}
+        <div className="absolute inset-0">
+          {/* Radial Overlays */}
+          <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl" style={{
+            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 100%)'
+          }}></div>
+          <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl" style={{
+            background: 'radial-gradient(circle, rgba(255, 212, 23, 0.1) 0%, rgba(255, 212, 23, 0.05) 50%, transparent 100%)'
+          }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full blur-3xl" style={{
+            background: 'radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.04) 50%, transparent 100%)'
+          }}></div>
           
-          {/* Section Header - Responsive Typography */}
-          <motion.div className="text-center mb-10 sm:mb-12 md:mb-16" {...fadeInUp}>
+          {/* Abstract Tech Lines */}
+          <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 1200 800" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="techGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.3"/>
+                <stop offset="50%" stopColor="#10B981" stopOpacity="0.2"/>
+                <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.3"/>
+              </linearGradient>
+              <linearGradient id="techGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#EF4444" stopOpacity="0.2"/>
+                <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.3"/>
+              </linearGradient>
+            </defs>
+            
+            {/* Curved Tech Lines */}
+            <path d="M0,200 Q300,100 600,200 T1200,150" stroke="url(#techGradient1)" strokeWidth="2" fill="none"/>
+            <path d="M0,400 Q400,300 800,400 T1200,350" stroke="url(#techGradient2)" strokeWidth="1.5" fill="none"/>
+            <path d="M0,600 Q200,500 400,600 T800,550 Q1000,500 1200,600" stroke="url(#techGradient1)" strokeWidth="1" fill="none"/>
+            
+            {/* Geometric Circles */}
+            <circle cx="100" cy="150" r="40" fill="none" stroke="#3B82F6" strokeWidth="1" opacity="0.3"/>
+            <circle cx="1100" cy="300" r="60" fill="none" stroke="#F59E0B" strokeWidth="1" opacity="0.2"/>
+            <circle cx="200" cy="650" r="30" fill="none" stroke="#10B981" strokeWidth="1" opacity="0.4"/>
+            <circle cx="900" cy="100" r="50" fill="none" stroke="#EF4444" strokeWidth="1" opacity="0.3"/>
+            
+            {/* Abstract Waves */}
+            <path d="M0,0 Q300,50 600,0 T1200,50 L1200,0 Z" fill="url(#techGradient1)" opacity="0.1"/>
+            <path d="M0,800 Q400,750 800,800 T1200,750 L1200,800 Z" fill="url(#techGradient2)" opacity="0.1"/>
+          </svg>
+          
+          {/* Floating Geometric Shapes */}
+          <div className="absolute top-20 left-10 w-4 h-4 bg-blue-500/30 rotate-45 animate-pulse"></div>
+          <div className="absolute top-40 right-20 w-6 h-6 bg-primary-bgYellow/30 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-32 left-20 w-5 h-5 bg-green-500/30 rotate-12 animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute bottom-20 right-32 w-3 h-3 bg-red-500/30 rotate-45 animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+        </div>
+
+        <div className="px-4 sm:px-6 lg:px-12 max-w-screen-xl mx-auto relative z-10">
+          
+          {/* Section Header - Modern Typography */}
+          <motion.div className="text-center mb-12 sm:mb-16 md:mb-20" {...fadeInUp}>
             <motion.h2 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight sm:leading-snug md:leading-normal"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              Why Choose <span className="text-yellow-400">Triple RT</span>?
+              Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-bgYellow via-yellow-300 to-primary-bgYellow">Triple RT</span>?
             </motion.h2>
             <motion.p 
-              className="text-lg sm:text-xl md:text-xl text-gray-600 max-w-none sm:max-w-2xl md:max-w-3xl mx-auto leading-relaxed sm:leading-relaxed md:leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-none sm:max-w-3xl md:max-w-4xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Rapid Real-time Response Team - Your first line of defense against ransomware attacks
+              <span className="text-primary-bgYellow font-semibold">Rapid Real-time Response Team</span> — Your first line of defense against ransomware attacks
             </motion.p>
           </motion.div>
 
-          {/* Features Grid - Responsive Grid Layout */}
+          {/* Enhanced Features Grid - Modern Card Design */}
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 mb-12 sm:mb-16"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12"
             variants={staggerChildren}
             initial="initial"
             whileInView="whileInView"
             viewport={{ once: true }}
           >
-            {tripleRTFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 group"
-                variants={{
-                  initial: { opacity: 0, y: 30 },
-                  whileInView: { opacity: 1, y: 0 }
-                }}
-                whileHover={{ scale: 1.02, y: -5 }}
-              >
-                <div className="flex flex-col sm:flex-row items-start mb-4 sm:mb-6">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary-bgYellow/20 to-primary-bgYellow/10 rounded-xl flex items-center justify-center mb-4 sm:mb-0 sm:mr-4 group-hover:from-primary-bgYellow/30 group-hover:to-primary-bgYellow/20 transition-all duration-300">
-                    <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary-bgYellow" />
+            {tripleRTFeatures.map((feature, index) => {
+              const iconColors = [
+                { bg: 'bg-gradient-to-br from-yellow-400 to-yellow-500', icon: 'text-black' },
+                { bg: 'bg-gradient-to-br from-blue-400 to-blue-500', icon: 'text-white' },
+                { bg: 'bg-gradient-to-br from-green-400 to-green-500', icon: 'text-white' },
+                { bg: 'bg-gradient-to-br from-red-400 to-red-500', icon: 'text-white' }
+              ];
+              const colorScheme = iconColors[index];
+              
+              return (
+                <motion.div
+                  key={index}
+                  className="group relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-xl border border-gray-200/20 hover:shadow-2xl hover:shadow-primary-bgYellow/10 transition-all duration-500 hover:-translate-y-2"
+                  variants={{
+                    initial: { opacity: 0, y: 30 },
+                    whileInView: { opacity: 1, y: 0 }
+                  }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 212, 23, 0.1)"
+                  }}
+                >
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-bgYellow/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Icon with Colored Background - Top Left */}
+                  <div className="relative mb-6">
+                    <div className={`w-14 h-14 sm:w-16 sm:h-16 ${colorScheme.bg} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <feature.icon className={`w-7 h-7 sm:w-8 sm:h-8 ${colorScheme.icon}`} />
+                    </div>
                   </div>
-                  <div className="flex-1 text-center sm:text-left">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-tight sm:leading-snug">{feature.title}</h3>
-                    <p className="text-primary-bgYellow font-semibold text-sm mb-2 sm:mb-3 italic">{feature.subtitle}</p>
+                  
+                  {/* Content */}
+                  <div className="relative">
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-gray-800 transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                    
+                    <p className="text-yellow-500 font-semibold text-sm sm:text-base mb-4 italic">
+                      {feature.subtitle}
+                    </p>
+                    
+                    <p className="text-gray-600 leading-relaxed text-sm sm:text-base group-hover:text-gray-700 transition-colors duration-300">
+                      {feature.description}
+                    </p>
                   </div>
-                </div>
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed text-center sm:text-left">{feature.description}</p>
-              </motion.div>
-            ))}
+                  
+                  {/* Subtle Corner Accent */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary-bgYellow/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+          
+          {/* Bottom Accent Line */}
+          <motion.div 
+            className="mt-16 sm:mt-20 flex justify-center"
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <div className="w-32 sm:w-48 h-1 bg-gradient-to-r from-transparent via-primary-bgYellow to-transparent rounded-full"></div>
           </motion.div>
         </div>
       </section>
