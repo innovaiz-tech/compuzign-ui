@@ -140,7 +140,7 @@ export default function Headers() {
               name: 'Cyber Recovery & Monitoring',
               description: '24/7 threat detection and response',
               icon: HiShieldCheck,
-              href: '/services/cyber-recovery'
+              href: '/cyber-recovery-monitoring'
             },
             {
               name: 'Disaster Recovery, Business Data Continuity',

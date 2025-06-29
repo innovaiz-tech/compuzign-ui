@@ -7,12 +7,14 @@ import DisasterRecovery from "./pages/DisasterRecovery";
 import PrivilegedAccessStrategies from "./pages/PrivilegedAccessStrategies";
 import VulnerabilityAssessment from "./pages/VulnerabilityAssessment";
 import RansomwareResponse from "./pages/RansomwareResponse";
+import CyberRecoveryMonitoring from "./pages/CyberRecoveryMonitoring";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RootLayouts />}>
         <Route index element={<Home />} />
+        <Route path='/cyber-recovery-monitoring' element={<CyberRecoveryMonitoring />} />
         <Route path='/extended-threat-detection' element={<ExtendedThreatDetection />} />
         <Route path='/disaster-recovery-business-continuity' element={<DisasterRecovery />} />
         <Route path='/privileged-access-strategies' element={<PrivilegedAccessStrategies />} />
