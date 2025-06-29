@@ -175,7 +175,7 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
         {/* Central Content Circle - Scaled up and enhanced */}
         <motion.div
           className={`relative bg-gradient-to-br ${currentFeature.bgColor} rounded-full flex flex-col items-center justify-center border-4 ${currentFeature.borderColor} backdrop-blur-sm shadow-2xl ${
-            isMobile ? 'w-56 h-56 p-5' : isTablet ? 'w-64 h-64 p-7' : 'w-80 h-80 p-10'
+            isMobile ? 'w-56 h-56 p-5' : isTablet ? 'w-72 h-72 p-8' : 'w-96 h-96 p-12'
           }`}
           key={activeFeature} // Force re-render for smooth transitions
           initial={{ opacity: 0, scale: 0.8 }}
@@ -200,7 +200,7 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
           {/* Icon - Enhanced size */}
           <motion.div
             className={`${currentFeature.iconBg} rounded-full flex items-center justify-center mb-4 ${
-              isMobile ? 'w-10 h-10' : isTablet ? 'w-12 h-12' : 'w-16 h-16'
+              isMobile ? 'w-12 h-12' : isTablet ? 'w-16 h-16' : 'w-20 h-20'
             }`}
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
@@ -208,7 +208,7 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
           >
             <currentFeature.icon 
               className={`${
-                isMobile ? 'w-5 h-5' : isTablet ? 'w-6 h-6' : 'w-8 h-8'
+                isMobile ? 'w-6 h-6' : isTablet ? 'w-8 h-8' : 'w-10 h-10'
               }`}
               style={{ color: currentFeature.color }}
             />
@@ -216,8 +216,8 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
 
           {/* Title - Enhanced typography */}
           <motion.h3 
-            className={`font-bold text-white text-center leading-tight mb-3 ${
-              isMobile ? 'text-base' : isTablet ? 'text-lg' : 'text-xl'
+            className={`font-bold text-white text-center leading-tight mb-4 ${
+              isMobile ? 'text-lg' : isTablet ? 'text-xl' : 'text-2xl'
             }`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -229,7 +229,7 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
           {/* Description - Enhanced typography */}
           <motion.p 
             className={`text-gray-200 text-center leading-relaxed ${
-              isMobile ? 'text-xs' : isTablet ? 'text-sm' : 'text-base'
+              isMobile ? 'text-sm' : isTablet ? 'text-base' : 'text-lg'
             }`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -241,7 +241,7 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
           {/* Progress Indicator */}
           {!isMobile && (
             <motion.div 
-              className="flex gap-2 mt-6"
+              className={`flex gap-2 ${isTablet ? 'mt-6' : 'mt-8'}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.6 }}
@@ -249,7 +249,7 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
               {features.map((_, index) => (
                 <div
                   key={index}
-                  className={`w-2 h-2 rounded-full transition-all duration-500 ${
+                  className={`${isTablet ? 'w-2 h-2' : 'w-3 h-3'} rounded-full transition-all duration-500 ${
                     index === activeFeature 
                       ? 'scale-150' 
                       : 'scale-100 opacity-40'
@@ -271,17 +271,19 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
           return (
             <motion.div
               key={index}
-              className={`absolute bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-xl flex items-center justify-center backdrop-blur-sm border shadow-lg group cursor-pointer transition-all duration-300 ${
-                isTablet ? 'w-14 h-14' : 'w-20 h-20'
+              className={`absolute rounded-xl flex items-center justify-center backdrop-blur-sm border shadow-lg group cursor-pointer transition-all duration-300 ${
+                isTablet ? 'w-16 h-16' : 'w-24 h-24'
               } ${
                 isActive 
-                  ? `border-2 shadow-2xl` 
-                  : 'border-gray-700/30 hover:border-primary-bgYellow/50'
+                  ? `border-2 bg-gradient-to-br from-gray-800/90 to-gray-900/90 shadow-2xl` 
+                  : 'bg-[#1f2937]/50 hover:bg-[#1f2937]/80 border-gray-700/30 hover:border-primary-bgYellow/50 shadow-md hover:shadow-lg'
               }`}
               style={{ 
                 ...item.position,
                 borderColor: isActive ? feature.color : undefined,
-                boxShadow: isActive ? `0 0 25px ${feature.color}60, 0 0 50px ${feature.color}30` : undefined
+                boxShadow: isActive 
+                  ? `0 0 25px ${feature.color}60, 0 0 50px ${feature.color}30` 
+                  : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
               }}
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ 
@@ -301,7 +303,9 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
               }}
               whileHover={{ 
                 scale: 1.2,
-                boxShadow: `0 0 20px ${feature.color}60`
+                boxShadow: isActive 
+                  ? `0 0 30px ${feature.color}70, 0 0 60px ${feature.color}40`
+                  : `0 0 20px ${feature.color}40, 0 10px 25px -5px rgba(0, 0, 0, 0.25)`
               }}
               onClick={() => handleIconClick(item.index)}
             >
@@ -322,20 +326,34 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
                 />
               )}
               
+              {/* Subtle glow for non-active icons */}
+              {!isActive && (
+                <motion.div
+                  className="absolute inset-0 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+                  style={{ 
+                    background: `radial-gradient(circle, ${feature.color}20 0%, transparent 70%)`
+                  }}
+                />
+              )}
+              
               <item.icon 
                 className={`${
-                  isTablet ? 'w-7 h-7' : 'w-10 h-10'
-                } transition-colors duration-300`}
+                  isTablet ? 'w-8 h-8' : 'w-12 h-12'
+                } transition-all duration-300 ${
+                  isActive ? 'drop-shadow-lg' : 'group-hover:drop-shadow-md'
+                }`}
                 style={{ 
-                  color: isActive ? feature.color : '#9CA3AF'
+                  color: isActive ? feature.color : '#9CA3AF',
+                  filter: isActive ? `drop-shadow(0 0 8px ${feature.color}60)` : undefined
                 }}
               />
               
               {/* Enhanced Tooltip */}
-              <div className={`absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap px-2 py-1 bg-gray-900/90 rounded backdrop-blur-sm border ${
-                isActive ? 'text-white border-gray-600' : 'text-gray-400 border-gray-700'
+              <div className={`absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap px-3 py-2 bg-gray-900/95 rounded-lg backdrop-blur-sm border shadow-lg ${
+                isActive ? 'text-white border-gray-600' : 'text-gray-300 border-gray-700'
               }`}>
                 {item.label}
+                <div className="absolute top-[-4px] left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900/95 rotate-45 border-l border-t border-gray-700"></div>
               </div>
             </motion.div>
           );

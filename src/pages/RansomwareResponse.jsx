@@ -198,7 +198,6 @@ export default function RansomwareResponse() {
                         transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
                       />
                     </span>
-                    <span className="block text-red-400 text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl">(Live IRR Services)</span>
                   </motion.h1>
                 </div>
 
