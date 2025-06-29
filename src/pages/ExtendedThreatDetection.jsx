@@ -9,7 +9,8 @@ import {
   HiSearch,
   HiExclamation,
   HiRefresh,
-  HiArrowRight
+  HiArrowRight,
+  HiSparkles
 } from 'react-icons/hi';
 import Button from '../components/common/button';
 import { useState, useEffect } from 'react';
@@ -514,31 +515,94 @@ export default function ExtendedThreatDetection() {
         </section>
 
         {/* Call to Action Section - TierPoint Style */}
-        <section className="py-16 lg:py-24 w-full relative z-10">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <section className="py-20 bg-gradient-to-br from-primary-bgLightBlack to-gray-800 relative overflow-hidden">
+        {/* Background Animation */}
+        <div className="absolute inset-0">
+          {[...Array(6)].map((_, i) => (
             <motion.div
-              {...getAnimationProps()}
-              className="max-w-4xl mx-auto text-center"
+              key={i}
+              className="absolute w-32 h-32 border border-primary-bgYellow/20 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.1, 0.3, 0.1],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            className="text-center max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-bgYellow/10 border border-primary-bgYellow/30 rounded-full text-primary-bgYellow text-sm font-medium backdrop-blur-sm mb-8"
+              whileHover={{ scale: 1.05 }}
             >
-              <div className="bg-white/5 backdrop-blur-sm border border-primary-bgYellow/20 rounded-2xl p-8 lg:p-12">
-                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-                  Talk To Us
-                </h2>
-                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                  Get Your CompuZign Customized XDR Plan
-                </p>
-                <Button 
-                  variant="primary" 
-                  size="lg" 
-                  className={`bg-primary-bgYellow hover:bg-yellow-500 text-black font-semibold px-8 py-4 rounded-lg transition-all duration-300 ${
-                    !isMobile ? 'transform hover:scale-105 hover:shadow-lg hover:shadow-primary-bgYellow/25' : ''
-                  }`}
-                >
-                  Get Your CompuZign Customized XDR Plan
-                </Button>
+              <HiSparkles className="w-4 h-4" />
+              Advanced Threat Protection
+            </motion.div>
+
+            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+              Secure Your Digital{' '}
+              <span className="text-primary-bgYellow">Infrastructure</span>
+            </h2>
+
+            <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+              Don't let cyber threats compromise your business. Our comprehensive XDR solution provides 
+              advanced threat detection and response across all layers of your IT environment.
+            </p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+              whileHover={{ scale: 1.02 }}
+            >
+              <Button 
+                variant="primary" 
+                size="lg"
+                className="group bg-primary-bgYellow text-black hover:bg-yellow-400 px-10 py-5 text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-bgYellow/25"
+              >
+                Get Your Customized XDR Strategy
+                <HiArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
+              </Button>
+
+            </motion.div>
+
+            <motion.div 
+              className="mt-12 flex flex-wrap justify-center gap-8 text-gray-400"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+            >
+              <div className="flex items-center gap-2">
+                <HiCheckCircle className="w-5 h-5 text-primary-bgYellow" />
+                <span>Advanced Threat Detection</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <HiCheckCircle className="w-5 h-5 text-primary-bgYellow" />
+                <span>24/7 Monitoring</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <HiCheckCircle className="w-5 h-5 text-primary-bgYellow" />
+                <span>Rapid Response</span>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
+        </div>
         </section>
       </div>
     </div>

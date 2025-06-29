@@ -550,39 +550,89 @@ export default function PrivilegedAccessStrategies() {
 
 
 
-      {/* CTA Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-primary-bgYellow/10 to-transparent">
-        <div className="container mx-auto px-6 lg:px-8 max-w-5xl text-center">
+      {/* Enhanced CTA Section */}
+      <section className="py-20 lg:py-28 bg-gradient-to-br from-primary-bgYellow/10 to-transparent relative overflow-hidden">
+        {/* Background Animation */}
+        <div className="absolute inset-0">
+          {[...Array(4)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-32 h-32 border border-primary-bgYellow/20 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.1, 0.2, 0.1],
+              }}
+              transition={{
+                duration: 5 + Math.random() * 3,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-8 max-w-5xl text-center relative z-10">
           <motion.div {...fadeInUp}>
             
-            {/* Icon */}
-            <div className="flex justify-center mb-8">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary-bgYellow/20 to-primary-bgYellow/30 rounded-full flex items-center justify-center border-4 border-primary-bgYellow/40">
-                <HiPhone className="w-10 h-10 text-primary-bgYellow" />
-              </div>
-            </div>
+            {/* Enhanced Badge */}
+            <motion.div
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-bgYellow/10 border border-primary-bgYellow/30 rounded-full text-primary-bgYellow text-sm font-medium backdrop-blur-sm mb-8"
+              whileHover={{ scale: 1.05 }}
+            >
+              <HiSparkles className="w-4 h-4" />
+              Secure Your Privileged Access
+            </motion.div>
             
-            {/* Heading */}
-            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
-              Get Your CompuZign Customized <br />
-              <span className="text-primary-bgYellow">Privileged Access Strategy</span>
+            {/* Enhanced Heading */}
+            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              Protect Your Most{' '}
+              <span className="text-primary-bgYellow">Critical Assets</span>
             </h2>
             
-            {/* Description */}
+            {/* Enhanced Description */}
             <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Protect your critical systems and data with our comprehensive privileged access management solutions.
-              Let our experts design a customized strategy for your enterprise.
+              Don't let privileged account vulnerabilities expose your organization to insider threats. 
+              Our comprehensive PAM solutions provide discovery, auditing, vaulting, and continuous monitoring 
+              for complete privileged access protection.
             </p>
             
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            {/* CTA Button */}
+            <motion.div className="mb-16" whileHover={{ scale: 1.02 }}>
               <Button 
-                className="bg-primary-bgYellow hover:bg-primary-bgYellow/90 text-black font-bold px-10 py-5 rounded-lg text-lg"
+                variant="primary" 
+                size="lg"
+                className="group bg-primary-bgYellow text-black hover:bg-yellow-400 px-10 py-5 text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-bgYellow/25"
               >
-                Schedule Free Consultation
-                <HiArrowRight className="ml-3 w-6 h-6" />
+                Get Your Customized PAM Strategy
+                <HiArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
               </Button>
-            </div>
+            </motion.div>
+
+            {/* Enhanced Features */}
+            <motion.div 
+              className="flex flex-wrap justify-center gap-8 text-gray-400 mb-12"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+            >
+              <div className="flex items-center gap-2">
+                <HiLockClosed className="w-5 h-5 text-primary-bgYellow" />
+                <span>Privileged Account Vaulting</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <HiEye className="w-5 h-5 text-primary-bgYellow" />
+                <span>Continuous Monitoring</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <HiShieldCheck className="w-5 h-5 text-primary-bgYellow" />
+                <span>Access Control & Enforcement</span>
+              </div>
+            </motion.div>
 
             {/* Contact Info */}
             <div className="flex flex-col sm:flex-row justify-center items-center gap-8 text-gray-400">
