@@ -9,41 +9,28 @@ import {
   HiGlobe,
   HiArrowRight,
   HiSparkles,
-  HiPhone
+  HiPhone,
+  HiRefresh,
+  HiClipboardCheck,
+  HiEye
 } from 'react-icons/hi';
 import Button from '../components/common/button';
 import useWindowSize from '../hooks/useWindowSize';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import AnimatedStat from '../components/ui/AnimatedStat';
-import FlipCard from '../components/ui/FlipCard';
+import CSSFlipCard from '../components/ui/CSSFlipCard';
 import { section1Cards, statsData, benefitsData } from '../data/disasterRecoveryData';
 
 /**
- * DisasterRecovery Component - Optimized Version
+ * DisasterRecovery Component - Aligned with Cyber Resilience Services Design
  * 
  * Following the exact content structure from disaster-recovery-business-data-continuity.md:
- * 1. Banner - Hero section with sophisticated animations
+ * 1. Banner - Hero section with sophisticated animations (aligned with VulnerabilityAssessment design)
  * 2. Section 1 - Flip cards with 3 key points + paragraph
  * 3. Section 2 - Stats section + disaster recovery benefits
  * 4. Talk to Us - CTA section
  */
 export default function DisasterRecovery() {
-  // Refs for scroll animations
-  const containerRef = useRef(null);
-  const heroRef = useRef(null);
-  
-  // Scroll-based animations
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   // State management for responsive behavior
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
@@ -58,83 +45,286 @@ export default function DisasterRecovery() {
     checkDevice();
   }, [width]);
 
-  // Transform values for parallax effects
-  const heroY = useTransform(smoothProgress, [0, 1], ['0%', '50%']);
-  const heroOpacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    // Reset any potential animation conflicts
+    document.body.style.overflow = 'auto';
+  }, []);
+
+  // Animation props - Banner animations are immediate, others use viewport
+  const bannerFadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-50px" },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerChildren = {
+    initial: { opacity: 0 },
+    whileInView: { opacity: 1 },
+    viewport: { once: true, margin: "-50px" },
+    transition: { 
+      duration: 0.6,
+      staggerChildren: 0.1
+    }
+  };
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-white overflow-x-hidden">
-      {/* 1. BANNER SECTION */}
-      <motion.section 
-        ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 lg:pt-20"
-        style={{ y: heroY, opacity: heroOpacity }}
-      >
-        {/* Background with enhanced gradient */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-primary-bgLightBlack to-gray-800"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+    <div key="disaster-recovery-page" className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+      
+      {/* 1. BANNER SECTION - Aligned with VulnerabilityAssessment Design */}
+      <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden z-20">
+        {/* Enhanced Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-bgYellow/5 via-transparent to-blue-500/5"></div>
+          <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-primary-bgYellow/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-1/4 h-1/4 bg-gradient-to-tl from-blue-500/10 to-transparent rounded-full blur-3xl"></div>
         </div>
-
-        <AnimatedBackground isMobile={isMobile} />
-
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 100 }}
-            className="space-y-8"
-          >
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-primary-bgYellow/10 border border-primary-bgYellow/30 rounded-full text-primary-bgYellow text-sm font-medium backdrop-blur-sm"
-            >
-              <HiShieldCheck className="w-4 h-4" />
-              Disaster Recovery-as-a-Service (DRaaS) Solution
-            </motion.div>
-
-            <h1 className="hero-title font-bold text-white leading-tight text-center">
-              Disaster Recovery,{' '}
-              <span className="text-primary-bgYellow text-highlight">Business Data Continuity</span>
-            </h1>
+        
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-30">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             
-            <motion.h2 
-              className="text-lg sm:text-xl lg:text-2xl text-gray-300 font-medium max-w-4xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              Rapid, secure recovery of your data, applications, and systems with DRaaS
-              <br className="hidden sm:block" />
-              A flexible and reliable cloud-based disaster-recovery-as-a-service solution custom fit 
-              <br className="hidden sm:block" />
-              for expedited recovery of your business-critical environment.
-            </motion.h2>
+            {/* Left Content - 7 columns */}
+            <div className="lg:col-span-7">
+              <motion.div className="space-y-10" {...bannerFadeInUp}>
+                
+                {/* Enhanced Badge */}
+                <motion.div 
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-bgYellow/15 to-primary-bgYellow/10 border border-primary-bgYellow/30 rounded-full backdrop-blur-sm"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <HiShieldCheck className="w-5 h-5 text-primary-bgYellow mr-3" />
+                  <span className="text-sm font-semibold text-primary-bgYellow uppercase tracking-wider">
+                    Disaster Recovery-as-a-Service (DRaaS) Solution
+                  </span>
+                </motion.div>
 
-            {/* Enhanced CTA Button */}
-            <motion.div 
-              className="flex justify-center items-center pt-6 lg:pt-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-            >
-              <Button 
-                variant="primary" 
-                size="lg"
-                className="group bg-primary-bgYellow text-black hover:bg-yellow-400 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary-bgYellow/25"
-                aria-label="Get your customized DRaaS strategy consultation"
+                {/* Enhanced Main Heading */}
+                <div className="space-y-6">
+                  <motion.h1 
+                    className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-[0.9] tracking-tight"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                  >
+                    <span className="block text-white mb-2">Disaster Recovery,</span>
+                    <span className="block text-primary-bgYellow mb-2 relative">
+                      Business Data
+                      <motion.div
+                        className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary-bgYellow/60 to-transparent rounded-full"
+                        initial={{ scaleX: 0, originX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+                      />
+                    </span>
+                    <span className="block text-white">Continuity</span>
+                  </motion.h1>
+                </div>
+
+                {/* Subheading */}
+                <motion.p 
+                  className="text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-2xl"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+                >
+                  Rapid, secure recovery of your data, applications, and systems with <span className="text-primary-bgYellow font-semibold">DRaaS</span> - A flexible and reliable cloud-based disaster-recovery-as-a-service solution.
+                </motion.p>
+
+                {/* Key Features */}
+                <motion.div 
+                  className="flex flex-wrap gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+                >
+                  {[
+                    { name: "Zerto Platform", icon: HiDatabase },
+                    { name: "Multi-Cloud", icon: HiGlobe },
+                    { name: "24/7 Support", icon: HiShieldCheck }
+                  ].map((feature, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-center px-4 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg backdrop-blur-sm"
+                      whileHover={{ scale: 1.05, borderColor: '#ffda17' }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <feature.icon className="w-4 h-4 text-primary-bgYellow mr-2" />
+                      <span className="text-primary-bgYellow font-bold text-sm">{feature.name}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
+
+                {/* CTA Button */}
+                <motion.div 
+                  className="pt-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
+                >
+                  <Button 
+                    variant="primary" 
+                    size="lg"
+                    className="group"
+                  >
+                    Get Your DRaaS Strategy
+                    <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                  </Button>
+                </motion.div>
+                
+              </motion.div>
+            </div>
+
+            {/* Enhanced Right Visual - 5 columns */}
+            <div className="lg:col-span-5">
+              <motion.div 
+                className="relative overflow-hidden hero-right-visual"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
               >
-                Get Your DRaaS Strategy
-                <HiArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
-          </motion.div>
+                
+                {/* Enhanced Central Hub */}
+                <div className={`relative mx-auto flex items-center justify-center hero-central-hub ${
+                  isMobile ? 'w-72 h-72' : isTablet ? 'w-80 h-80' : 'w-96 h-96'
+                }`}>
+                  
+                  {/* Outer Ring */}
+                  {!isMobile && (
+                    <motion.div
+                      className={`absolute rounded-full border-2 border-primary-bgYellow/20 ${
+                        isTablet ? 'w-72 h-72' : 'w-80 h-80'
+                      }`}
+                      animate={{ 
+                        rotate: [0, 360]
+                      }}
+                      transition={{ 
+                        duration: 20, 
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  )}
+
+                  {/* Middle Ring */}
+                  {!isMobile && (
+                    <motion.div
+                      className={`absolute rounded-full border border-blue-400/20 ${
+                        isTablet ? 'w-56 h-56' : 'w-64 h-64'
+                      }`}
+                      animate={{ 
+                        rotate: [360, 0]
+                      }}
+                      transition={{ 
+                        duration: 15, 
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  )}
+
+                  {/* Central Shield */}
+                  <motion.div
+                    className={`relative bg-gradient-to-br from-primary-bgYellow/25 via-primary-bgYellow/15 to-transparent rounded-full flex items-center justify-center border-4 border-primary-bgYellow/50 backdrop-blur-sm shadow-2xl ${
+                      isMobile ? 'w-32 h-32' : isTablet ? 'w-36 h-36' : 'w-40 h-40'
+                    }`}
+                    animate={ !isMobile ? { 
+                      scale: [1, 1.08, 1],
+                      boxShadow: [
+                        "0 0 20px rgba(255, 218, 23, 0.3)",
+                        "0 0 40px rgba(255, 218, 23, 0.5)",
+                        "0 0 20px rgba(255, 218, 23, 0.3)"
+                      ]
+                    } : {}}
+                    transition={ !isMobile ? { 
+                      duration: 3, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    } : {}}
+                  >
+                    <HiDatabase className={`text-primary-bgYellow drop-shadow-lg ${
+                      isMobile ? 'w-16 h-16' : isTablet ? 'w-20 h-20' : 'w-20 h-20'
+                    }`} />
+                  </motion.div>
+
+                  {/* Enhanced Floating Security Elements */}
+                  {!isMobile && [
+                    { icon: HiShieldCheck, top: '8%', left: '18%', delay: 0, label: 'Protect' },
+                    { icon: HiEye, top: '15%', right: '12%', delay: 0.5, label: 'Monitor' },
+                    { icon: HiClipboardCheck, bottom: '15%', right: '18%', delay: 1, label: 'Backup' },
+                    { icon: HiRefresh, bottom: '8%', left: '12%', delay: 1.5, label: 'Recover' },
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className={`absolute bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-xl flex items-center justify-center backdrop-blur-sm border border-primary-bgYellow/20 shadow-lg group ${
+                        isTablet ? 'w-12 h-12' : 'w-16 h-16'
+                      }`}
+                      style={{ [item.top ? 'top' : 'bottom']: item.top || item.bottom, [item.left ? 'left' : 'right']: item.left || item.right }}
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ 
+                        opacity: 1, 
+                        scale: 1,
+                        y: [0, -10, 0]
+                      }}
+                      transition={{ 
+                        opacity: { delay: 1.2 + item.delay, duration: 0.5, ease: "easeOut" },
+                        scale: { delay: 1.2 + item.delay, duration: 0.5, ease: "easeOut" },
+                        y: { 
+                          delay: 2.5 + item.delay, 
+                          duration: 2 + index * 0.3, 
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }
+                      }}
+                      whileHover={{ scale: 1.1, borderColor: '#ffda17' }}
+                    >
+                      <item.icon className={`text-primary-bgYellow ${
+                        isTablet ? 'w-6 h-6' : 'w-8 h-8'
+                      }`} />
+                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                        {item.label}
+                      </div>
+                    </motion.div>
+                  ))}
+
+                  {/* Data Flow Animation Lines */}
+                  {!isMobile && [...Array(isTablet ? 4 : 6)].map((_, i) => (
+                    <motion.div
+                      key={`data-line-${i}`}
+                      className="absolute h-px bg-gradient-to-r from-transparent via-primary-bgYellow/40 to-transparent"
+                      style={{
+                        width: isTablet ? '70px' : '90px',
+                        top: `${30 + i * 8}%`,
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                      }}
+                      animate={{
+                        opacity: [0, 1, 0],
+                        scaleX: [0, 1, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: i * 0.3,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* 2. SECTION 1 - FLIP CARDS */}
       <section className="py-20 lg:py-32 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
@@ -162,9 +352,15 @@ export default function DisasterRecovery() {
           </motion.div>
 
           {/* Flip Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+          >
             {section1Cards.map((card, index) => (
-              <FlipCard
+              <CSSFlipCard
                 key={card.title}
                 title={card.title}
                 description={card.description}
@@ -172,7 +368,7 @@ export default function DisasterRecovery() {
                 index={index}
               />
             ))}
-          </div>
+          </motion.div>
 
           {/* Enhanced Paragraph Content */}
           <motion.div

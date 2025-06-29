@@ -164,7 +164,7 @@ export default function Headers() {
               name: 'Ransomware Response Team',
               description: 'Rapid ransomware incident response',
               icon: HiSupport,
-              href: '/services/ransomware-response'
+              href: '/ransomware-response'
             },
             {
               name: 'Vulnerability Assessment and Remediation',
