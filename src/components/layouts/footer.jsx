@@ -17,7 +17,7 @@ export default function Footer() {
     {
       category: "Cyber Resilience",
       items: [
-        { name: "Cyber Recovery & Monitoring", href: "/services/cyber-recovery" },
+        { name: "Cyber Recovery & Monitoring", href: "/cyber-recovery-monitoring" },
         { name: "Disaster Ready Migration", href: "/services/disaster-migration" },
         { name: "Extended Threat Detection", href: "/services/threat-detection" }
       ]
