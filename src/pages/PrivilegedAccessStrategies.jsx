@@ -26,6 +26,7 @@ import useWindowSize from '../hooks/useWindowSize';
 import AnimatedStat from '../components/ui/AnimatedStat';
 import FlipCard from '../components/ui/FlipCard';
 import { section1Cards, statsData, benefitsData, keyStrategies, partnerInfo, externalReference } from '../data/privilegedAccessData';
+import ScrollToTop from '../components/ui/ScrollToTop';
 
 /**
  * PrivilegedAccessStrategies Component - Clean & Well-Aligned Design
@@ -650,6 +651,8 @@ export default function PrivilegedAccessStrategies() {
         </div>
       </section>
 
+      {/* ScrollToTop FAB */}
+      <ScrollToTop />
     </div>
   );
 } 

@@ -14,6 +14,7 @@ import {
 } from 'react-icons/hi';
 import Button from '../components/common/button';
 import { useState, useEffect } from 'react';
+import ScrollToTop from '../components/ui/ScrollToTop';
 
 export default function ExtendedThreatDetection() {
   const [isMobile, setIsMobile] = useState(false);
@@ -74,7 +75,7 @@ export default function ExtendedThreatDetection() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section with Enhanced Right Visual */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 lg:pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24 lg:pt-16">
         {/* Background with gradient overlay */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-bgLightBlack via-gray-900 to-primary-bgLightBlack"></div>
@@ -605,6 +606,9 @@ export default function ExtendedThreatDetection() {
         </div>
         </section>
       </div>
+
+      {/* ScrollToTop FAB */}
+      <ScrollToTop />
     </div>
   );
 } 

@@ -20,6 +20,7 @@ import AnimatedBackground from '../components/ui/AnimatedBackground';
 import AnimatedStat from '../components/ui/AnimatedStat';
 import CSSFlipCard from '../components/ui/CSSFlipCard';
 import { section1Cards, statsData, benefitsData } from '../data/disasterRecoveryData';
+import ScrollToTop from '../components/ui/ScrollToTop';
 
 /**
  * DisasterRecovery Component - Aligned with Cyber Resilience Services Design
@@ -621,6 +622,9 @@ export default function DisasterRecovery() {
           </motion.div>
         </div>
       </section>
+
+      {/* ScrollToTop FAB */}
+      <ScrollToTop />
     </div>
   );
 } 

@@ -21,6 +21,7 @@ import {
 import Button from '../components/common/button';
 import useWindowSize from '../hooks/useWindowSize';
 import IRRVisualComponent from '../components/ui/IRRVisualComponent';
+import ScrollToTop from '../components/ui/ScrollToTop';
 
 /**
  * RansomwareResponse Component - Live IRR Services
@@ -139,7 +140,7 @@ export default function RansomwareResponse() {
     <div key="ransomware-response-page" className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-x-hidden">
       
       {/* 1. HERO BANNER - Emergency Response Theme - Fully Responsive */}
-      <section className="relative pt-16 pb-12 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20 lg:pt-32 lg:pb-28 overflow-hidden z-20">
+      <section className="relative pt-20 pb-12 sm:pt-24 sm:pb-16 md:pt-28 md:pb-20 lg:pt-32 lg:pb-28 overflow-hidden z-20">
         {/* Enhanced Background Elements with Red Alert Theme - Responsive */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-transparent to-primary-bgYellow/10"></div>
@@ -604,6 +605,9 @@ export default function RansomwareResponse() {
           </motion.div>
         </div>
       </section>
+
+      {/* ScrollToTop FAB */}
+      <ScrollToTop />
     </div>
   );
 }

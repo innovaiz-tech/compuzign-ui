@@ -19,6 +19,7 @@ import {
   whyChooseData,
   finalCTAData
 } from '../data/cyberRecoveryMonitoringData';
+import ScrollToTop from '../components/ui/ScrollToTop';
 
 /**
  * CyberRecoveryMonitoring Component - 24/7 Threat Detection & Recovery
@@ -519,6 +520,9 @@ export default function CyberRecoveryMonitoring() {
           </motion.div>
         </div>
       </section>
+
+      {/* ScrollToTop FAB */}
+      <ScrollToTop />
     </div>
   );
 } 
