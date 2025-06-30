@@ -435,7 +435,7 @@ export default function Headers() {
                         <div className="flex items-center space-x-3 mb-3 relative z-10">
                           {(() => {
                             const IconComponent = megaMenuData[activeMegaMenu].featured.icon;
-                            return <IconComponent className="w-6 h-6 text-primary-bgYellow group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />;
+                            return <IconComponent className="w-6 h-6 text-yellow-400 group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />;
                           })()}
                           {megaMenuData[activeMegaMenu].featured.badge && (
                             <span className="px-3 py-1 text-sm font-semibold bg-primary-bgYellow text-slate-900 rounded-full group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
@@ -484,7 +484,7 @@ export default function Headers() {
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
                           
                           <div className="flex-shrink-0 relative z-10">
-                            <item.icon className="w-5 h-5 text-primary-bgYellow group-hover:text-primary-bgYellow group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />
+                            <item.icon className="w-5 h-5 text-yellow-500 group-hover:text-yellow-400 group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />
                           </div>
                           <div className="flex-1 min-w-0 relative z-10">
                             <h4 className="text-sm font-medium text-gray-900 group-hover:text-gray-800 group-hover:font-semibold mb-1 transition-all duration-300">
@@ -549,7 +549,7 @@ export default function Headers() {
                                   className="flex items-center space-x-3 px-3 py-2 text-sm text-gray-700 hover:text-primary-bgYellow hover:bg-gray-50 rounded-md transition-colors"
                                   onClick={() => setIsMenuOpen(false)}
                 >
-                                  <subItem.icon className="w-4 h-4 text-primary-bgYellow" />
+                                  <subItem.icon className="w-4 h-4 text-yellow-400" />
                                   <span>{subItem.name}</span>
                                 </Link>
                               ))}
