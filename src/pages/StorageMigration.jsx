@@ -383,47 +383,124 @@ export default function StorageMigration() {
             </div>
           </motion.div>
 
-          {/* Other Migration Types - Compact Cards */}
+          {/* Other Migration Types - Enhanced Cards */}
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
             variants={staggerChildren}
           >
             {migrationApproaches.slice(1).map((approach, index) => {
               const IconComponent = approach.icon;
+              
+              // Different color themes for each card
+              const colorThemes = [
+                {
+                  gradient: "from-blue-500/20 to-cyan-500/20",
+                  iconBg: "bg-gradient-to-br from-blue-500/30 to-cyan-500/30",
+                  iconColor: "text-blue-400",
+                  accentColor: "blue-400"
+                },
+                {
+                  gradient: "from-green-500/20 to-emerald-500/20",
+                  iconBg: "bg-gradient-to-br from-green-500/30 to-emerald-500/30",
+                  iconColor: "text-green-400",
+                  accentColor: "green-400"
+                },
+                {
+                  gradient: "from-purple-500/20 to-pink-500/20",
+                  iconBg: "bg-gradient-to-br from-purple-500/30 to-pink-500/30",
+                  iconColor: "text-purple-400",
+                  accentColor: "purple-400"
+                }
+              ];
+              
+              const theme = colorThemes[index];
+              
               return (
                 <motion.div
                   key={index + 1}
                   className="relative group"
                   variants={fadeInUp}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -10,
+                    rotateY: 5,
+                    transition: { duration: 0.4, ease: "easeOut" }
+                  }}
+                  initial={{ opacity: 0, y: 60, rotateX: 15 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  transition={{ 
+                    duration: 0.7, 
+                    delay: index * 0.2,
+                    ease: "easeOut"
+                  }}
                 >
-                  <div className="relative h-full bg-gradient-to-br from-gray-800/60 to-gray-900/60 rounded-2xl p-6 border border-gray-700/30 backdrop-blur-sm hover:border-primary-bgYellow/30 transition-all duration-300">
+                  <div className={`
+                    relative h-full overflow-hidden
+                    bg-gradient-to-br ${theme.gradient} backdrop-blur-sm
+                    rounded-3xl p-8 border border-gray-700/30
+                    hover:border-primary-bgYellow/50 
+                    transition-all duration-500 
+                    shadow-xl hover:shadow-2xl
+                    transform-gpu
+                  `}>
                     
-                    {/* Icon */}
-                    <div className="text-center mb-4">
-                      <div className="w-16 h-16 bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-xl flex items-center justify-center mx-auto group-hover:bg-primary-bgYellow/10 transition-colors duration-300">
-                        <IconComponent className="w-8 h-8 text-gray-300 group-hover:text-primary-bgYellow transition-colors duration-300" />
+                    {/* Animated Background Pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-primary-bgYellow/20 rounded-full blur-3xl animate-pulse"></div>
+                      <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="relative z-10 h-full flex flex-col">
+                      
+                      {/* Icon */}
+                      <div className="text-center mb-6">
+                        <motion.div 
+                          className={`
+                            w-20 h-20 ${theme.iconBg} rounded-2xl 
+                            flex items-center justify-center mx-auto 
+                            group-hover:scale-110 group-hover:rotate-6
+                            transition-all duration-500
+                            shadow-lg backdrop-blur-sm
+                          `}
+                          whileHover={{ rotate: 12, scale: 1.1 }}
+                        >
+                          <IconComponent className={`w-10 h-10 ${theme.iconColor} drop-shadow-lg`} />
+                        </motion.div>
                       </div>
-                    </div>
 
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-white text-center mb-3 group-hover:text-primary-bgYellow transition-colors duration-300">
-                      {approach.title}
-                    </h3>
+                      {/* Title */}
+                      <h3 className="text-2xl font-bold text-white text-center mb-4 group-hover:text-primary-bgYellow transition-colors duration-300">
+                        {approach.title}
+                      </h3>
 
-                    {/* Description */}
-                    <p className="text-gray-400 text-sm text-center leading-relaxed mb-4">
-                      {approach.description}
-                    </p>
-
-                    {/* Full Description */}
-                    <div className="border-t border-gray-700/30 pt-4">
-                      <p className="text-gray-500 text-xs leading-relaxed">
-                        {approach.fullDescription}
+                      {/* Description */}
+                      <p className="text-gray-300 text-center leading-relaxed mb-6 flex-grow group-hover:text-gray-200 transition-colors duration-300">
+                        {approach.description}
                       </p>
-                    </div>
 
-                    {/* Hover Accent Line */}
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-bgYellow/0 via-primary-bgYellow/50 to-primary-bgYellow/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-2xl"></div>
+                      {/* Full Description */}
+                      <div className="border-t border-gray-700/30 pt-6 mt-auto">
+                        <p className="text-gray-400 text-sm leading-relaxed text-center group-hover:text-gray-300 transition-colors duration-300">
+                          {approach.fullDescription}
+                        </p>
+                      </div>
+
+                      {/* Learn More Link */}
+                      <motion.div 
+                        className="flex items-center justify-center mt-6 text-primary-bgYellow font-semibold group-hover:translate-y-1 transition-transform duration-300"
+                        whileHover={{ x: 5 }}
+                      >
+                        <span className="text-sm">Learn More</span>
+                        <HiArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                      </motion.div>
+                    </div>
+                    
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-bgYellow/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+                    
+                    {/* Enhanced Hover Accent Line */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-bgYellow/0 via-primary-bgYellow/70 to-primary-bgYellow/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-3xl"></div>
                   </div>
                 </motion.div>
               );
