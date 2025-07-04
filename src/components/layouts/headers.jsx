@@ -116,7 +116,7 @@ export default function Headers() {
               name: 'Storage Migration',
               description: 'Migrate data with zero downtime',
               icon: HiDatabase,
-              href: '/services/storage-migration'
+              href: '/storage-migration'
             },
             {
               name: 'Compute Migration',
