@@ -9,6 +9,7 @@ import VulnerabilityAssessment from "./pages/VulnerabilityAssessment";
 import RansomwareResponse from "./pages/RansomwareResponse";
 import CyberRecoveryMonitoring from "./pages/CyberRecoveryMonitoring";
 import StorageMigration from "./pages/StorageMigration";
+import Careers from "./pages/Careers";
 
 function App() {
   const router = createBrowserRouter(
@@ -22,6 +23,7 @@ function App() {
         <Route path='/ransomware-response' element={<RansomwareResponse />} />
         <Route path='/vulnerability-assessment-remediation' element={<VulnerabilityAssessment />} />
         <Route path='/storage-migration' element={<StorageMigration />} />
+        <Route path='/careers' element={<Careers />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
