@@ -8,6 +8,9 @@ import PrivilegedAccessStrategies from "./pages/PrivilegedAccessStrategies";
 import VulnerabilityAssessment from "./pages/VulnerabilityAssessment";
 import RansomwareResponse from "./pages/RansomwareResponse";
 import CyberRecoveryMonitoring from "./pages/CyberRecoveryMonitoring";
+import StorageMigration from "./pages/StorageMigration";
+import Careers from "./pages/Careers";
+import JobDetail from "./pages/JobDetail";
 
 function App() {
   const router = createBrowserRouter(
@@ -20,6 +23,9 @@ function App() {
         <Route path='/privileged-access-strategies' element={<PrivilegedAccessStrategies />} />
         <Route path='/ransomware-response' element={<RansomwareResponse />} />
         <Route path='/vulnerability-assessment-remediation' element={<VulnerabilityAssessment />} />
+        <Route path='/storage-migration' element={<StorageMigration />} />
+        <Route path='/careers' element={<Careers />} />
+        <Route path='/careers/:jobId' element={<JobDetail />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
