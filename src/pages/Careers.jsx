@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   HiLocationMarker, 
   HiArrowRight,
@@ -74,6 +75,7 @@ export default function Careers() {
       type: "Full-time",
       icon: HiSparkles,
       color: "text-blue-400",
+      published: "Dec. 15",
       overview: "Lead the design and implementation of scalable, high-performance AI and HPC infrastructure for enterprise clients. You'll assess existing systems, develop tailored blueprints, and ensure architectures support advanced AI workloads, from model training to real-time inference.",
       responsibilities: [
         "Conduct comprehensive infrastructure assessments for AI readiness",
@@ -95,6 +97,7 @@ export default function Careers() {
       type: "Full-time",
       icon: HiCloud,
       color: "text-green-400",
+      published: "Dec. 15",
       overview: "Transform legacy systems into agile, cloud-native architectures. You'll drive application modernization projects, leveraging microservices, containerization, and orchestration to enhance performance and scalability.",
       responsibilities: [
         "Refactor legacy code and migrate applications to cloud-native environments",
@@ -116,6 +119,7 @@ export default function Careers() {
       type: "Full-time",
       icon: HiCog,
       color: "text-purple-400",
+      published: "Dec. 15",
       overview: "Design and deploy intelligent automation solutions to streamline IT and business processes. You'll use RPA, low-code platforms, and API integrations to drive efficiency and scalability for global clients.",
       responsibilities: [
         "Analyze workflows and identify automation opportunities",
@@ -137,6 +141,7 @@ export default function Careers() {
       type: "Full-time",
       icon: HiCurrencyDollar,
       color: "text-yellow-400",
+      published: "Dec. 15",
       overview: "Lead cost optimization initiatives to maximize ROI across IT budgets. You'll analyze cloud spend, licensing, and vendor contracts to deliver sustainable savings while enhancing infrastructure value.",
       responsibilities: [
         "Conduct deep-dive analyses of IT expenditures and cloud resource utilization",
@@ -158,6 +163,7 @@ export default function Careers() {
       type: "Full-time",
       icon: HiHeart,
       color: "text-red-400",
+      published: "Dec. 15",
       overview: "Partner with healthcare organizations to deliver data-driven strategies that optimize operations and enhance patient outcomes. You'll leverage analytics, AI, and industry expertise to navigate regulatory challenges and drive innovation.",
       responsibilities: [
         "Develop data-driven strategies for healthcare transformation",
@@ -288,128 +294,50 @@ export default function Careers() {
           </motion.div>
 
           <motion.div 
-            className="space-y-8"
+            className="space-y-4"
             {...staggerChildren}
           >
             {jobOpenings.map((job, index) => (
               <motion.div 
                 key={job.id}
-                className="group relative overflow-hidden"
+                className="group relative"
                 {...fadeInUp}
-                whileHover={{ y: -8 }}
+                whileHover={{ y: -2 }}
               >
-                {/* Optimized Card Container */}
-                <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/70 backdrop-blur-sm border border-gray-700/40 rounded-2xl p-8 lg:p-10 group-hover:border-primary-bgYellow/50 group-hover:shadow-xl group-hover:shadow-primary-bgYellow/10 transition-all duration-300">
-                    
-                    <div className="relative z-10">
-                      {/* Enhanced Header Section */}
-                      <div className="mb-8">
-                        <div className="flex items-start space-x-6 mb-6">
-                          {/* Enhanced Icon Container */}
-                          <div className="relative">
-                            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center border border-gray-600 group-hover:border-primary-bgYellow/60 transition-all duration-300">
-                              <job.icon className={`w-7 h-7 ${job.color} group-hover:scale-110 transition-transform duration-300`} />
-                            </div>
-                          </div>
-                          
-                          <div className="flex-1">
-                            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 group-hover:text-primary-bgYellow transition-colors duration-500 leading-tight">
-                              {job.title}
-                            </h3>
-                            <div className="flex flex-wrap items-center gap-6 text-gray-400">
-                              <div className="flex items-center bg-gray-800/50 px-3 py-2 rounded-full border border-gray-700/50 backdrop-blur-sm">
-                                <HiLocationMarker className="w-4 h-4 mr-2 text-primary-bgYellow" />
-                                <span className="text-sm font-medium">{job.location}</span>
-                              </div>
-                              <div className="flex items-center bg-gray-800/50 px-3 py-2 rounded-full border border-gray-700/50 backdrop-blur-sm">
-                                <HiOfficeBuilding className="w-4 h-4 mr-2 text-primary-bgYellow" />
-                                <span className="text-sm font-medium">{job.type}</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Simplified Application Instructions */}
-                        <div className="bg-gradient-to-r from-primary-bgYellow/12 to-primary-bgYellow/5 p-5 rounded-xl border border-primary-bgYellow/30 group-hover:border-primary-bgYellow/50 transition-all duration-300">
-                          <div className="flex items-center mb-3">
-                            <div className="w-9 h-9 bg-primary-bgYellow/20 rounded-full flex items-center justify-center mr-3">
-                              <HiMail className="w-4 h-4 text-primary-bgYellow" />
-                            </div>
-                            <span className="text-sm font-semibold text-primary-bgYellow uppercase tracking-wider">
-                              Apply Now
-                            </span>
-                          </div>
-                          <p className="text-gray-200 leading-relaxed pl-12">
-                            {job.applicationInstructions}
-                          </p>
-                        </div>
+                <Link 
+                  to={`/careers/${job.id}`}
+                  className="block bg-white/5 backdrop-blur-sm border border-gray-700/40 rounded-xl p-6 hover:border-primary-bgYellow/50 hover:bg-white/8 transition-all duration-300 cursor-pointer"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      {/* Company Logo Placeholder */}
+                      <div className="w-12 h-12 bg-gray-700/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <job.icon className={`w-6 h-6 ${job.color}`} />
                       </div>
-
-                      {/* Enhanced Content Section */}
-                      <div className="space-y-8">
-                        {/* Role Overview */}
-                        <div className="bg-gray-800/40 p-5 rounded-xl border border-gray-700/40">
-                          <h4 className="text-lg font-semibold text-primary-bgYellow mb-3 flex items-center">
-                            <HiSparkles className="w-5 h-5 mr-2" />
-                            Role Overview
-                          </h4>
-                          <p className="text-gray-200 leading-relaxed">
-                            {job.overview}
-                          </p>
-                        </div>
-
-                        {/* Responsibilities and Qualifications Grid */}
-                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                          {/* Key Responsibilities */}
-                          <div className="bg-blue-500/5 p-5 rounded-xl border border-blue-500/20">
-                            <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
-                              <HiChartBar className="w-5 h-5 mr-2 text-blue-400" />
-                              Key Responsibilities
-                            </h4>
-                            <ul className="space-y-2">
-                              {job.responsibilities.map((item, idx) => (
-                                <li key={idx} className="flex items-start">
-                                  <HiArrowRight className="w-4 h-4 text-primary-bgYellow mr-3 mt-1 flex-shrink-0" />
-                                  <span className="text-gray-300 leading-relaxed">
-                                    {item}
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          
-                          {/* Qualifications */}
-                          <div className="bg-green-500/5 p-5 rounded-xl border border-green-500/20">
-                            <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
-                              <HiShieldCheck className="w-5 h-5 mr-2 text-green-400" />
-                              Qualifications
-                            </h4>
-                            <ul className="space-y-2">
-                              {job.qualifications.map((item, idx) => (
-                                <li key={idx} className="flex items-start">
-                                  <HiShieldCheck className="w-4 h-4 text-green-400 mr-3 mt-1 flex-shrink-0" />
-                                  <span className="text-gray-300 leading-relaxed">
-                                    {item}
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-
-                        {/* Why Join Us Section */}
-                        <div className="bg-gradient-to-r from-primary-bgYellow/10 to-primary-bgYellow/5 p-6 rounded-xl border border-primary-bgYellow/30">
-                          <h4 className="text-lg font-semibold text-primary-bgYellow mb-3 flex items-center">
-                            <HiUserGroup className="w-5 h-5 mr-2" />
-                            Why Join CompuZign?
-                          </h4>
-                          <p className="text-gray-200 leading-relaxed">
-                            {job.impact}
-                          </p>
+                      
+                      <div className="flex-1 min-w-0">
+                        {/* Job Title */}
+                        <h3 className="text-lg font-semibold text-primary-bgYellow mb-1 group-hover:text-yellow-300 transition-colors duration-300">
+                          {job.title}
+                        </h3>
+                        
+                        {/* Company Name */}
+                        <p className="text-gray-400 text-sm mb-2">CompuZign</p>
+                        
+                        {/* Location */}
+                        <div className="flex items-center text-gray-400 text-sm">
+                          <HiLocationMarker className="w-4 h-4 mr-1" />
+                          <span>{job.location}</span>
                         </div>
                       </div>
                     </div>
-                </div>
+                    
+                    {/* Date */}
+                    <div className="text-gray-400 text-sm flex-shrink-0">
+                      <span>{job.published}</span>
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
