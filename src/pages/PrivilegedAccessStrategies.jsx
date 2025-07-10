@@ -632,7 +632,7 @@ export default function PrivilegedAccessStrategies() {
               <div className="flex items-center gap-2">
                 <HiShieldCheck className="w-5 h-5 text-primary-bgYellow" />
                 <span>Access Control & Enforcement</span>
-              </div>
+            </div>
             </motion.div>
 
             {/* Contact Info */}

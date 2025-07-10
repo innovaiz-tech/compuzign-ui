@@ -360,7 +360,7 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
         })}
 
         {/* Enhanced Connecting Lines */}
-        {!isMobile && [...Array(isTablet ? 4 : 6)].map((_, i) => (
+        {/* {!isMobile && [...Array(isTablet ? 4 : 6)].map((_, i) => (
           <motion.div
             key={`line-${i}`}
             className="absolute h-px bg-gradient-to-r from-transparent to-transparent"
@@ -382,7 +382,7 @@ const IRRVisualComponent = ({ isMobile, isTablet }) => {
               ease: "easeInOut"
             }}
           />
-        ))}
+        ))} */}
 
         {/* Auto-rotation pause indicator */}
         {isPaused && !isMobile && (
