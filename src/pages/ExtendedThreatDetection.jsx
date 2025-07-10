@@ -560,7 +560,7 @@ export default function ExtendedThreatDetection() {
             <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight">
               Secure Your Digital{' '}
               <span className="text-primary-bgYellow">Infrastructure</span>
-            </h2>
+                </h2>
 
             <p className="text-xl text-gray-300 mb-12 leading-relaxed">
               Don't let cyber threats compromise your business. Our comprehensive XDR solution provides 
@@ -571,14 +571,14 @@ export default function ExtendedThreatDetection() {
               className="flex flex-col sm:flex-row gap-6 justify-center items-center"
               whileHover={{ scale: 1.02 }}
             >
-              <Button 
-                variant="primary" 
-                size="lg"
+                <Button 
+                  variant="primary" 
+                  size="lg" 
                 className="group bg-primary-bgYellow text-black hover:bg-yellow-400 px-10 py-5 text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-bgYellow/25"
-              >
+                >
                 Get Your Customized XDR Strategy
                 <HiArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
-              </Button>
+                </Button>
 
             </motion.div>
 
@@ -602,8 +602,8 @@ export default function ExtendedThreatDetection() {
                 <span>Rapid Response</span>
               </div>
             </motion.div>
-          </motion.div>
-        </div>
+            </motion.div>
+          </div>
         </section>
       </div>
 

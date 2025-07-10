@@ -9,17 +9,17 @@ export default function Footer() {
     {
       category: "Mobility Management",
       items: [
-        { name: "Storage Migration", href: "/services/storage-migration" },
-        { name: "Compute Migration", href: "/services/compute-migration" },
-        { name: "Cloud Migration", href: "/services/cloud-migration" }
+        { name: "Storage Migration", href: "/storage-migration" },
+        { name: "Compute Migration", href: "/compute-migration" },
+        { name: "Cloud Migration", href: "/cloud-migration" }
       ]
     },
     {
       category: "Cyber Resilience",
       items: [
         { name: "Cyber Recovery & Monitoring", href: "/cyber-recovery-monitoring" },
-        { name: "Disaster Ready Migration", href: "/services/disaster-migration" },
-        { name: "Extended Threat Detection", href: "/services/threat-detection" }
+        { name: "Disaster Ready Migration", href: "/disaster-recovery-business-continuity" },
+        { name: "Extended Threat Detection", href: "/extended-threat-detection" }
       ]
     },
     {

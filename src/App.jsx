@@ -12,6 +12,8 @@ import StorageMigration from "./pages/StorageMigration";
 import DataDrivenConsulting from "./pages/DataDrivenConsulting";
 import Careers from "./pages/Careers";
 import JobDetail from "./pages/JobDetail";
+import ComputeMigration from "./pages/ComputeMigration";
+import CloudMigration from "./pages/CloudMigration";
 
 function App() {
   const router = createBrowserRouter(
@@ -28,6 +30,8 @@ function App() {
         <Route path='/data-driven-consulting' element={<DataDrivenConsulting />} />
         <Route path='/careers' element={<Careers />} />
         <Route path='/careers/:jobId' element={<JobDetail />} />
+        <Route path='/compute-migration' element={<ComputeMigration />} />
+        <Route path='/cloud-migration' element={<CloudMigration />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),

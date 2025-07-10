@@ -235,7 +235,7 @@ export default function CyberRecoveryMonitoring() {
                   })}
 
                   {/* Connecting Lines */}
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                  {/* <svg className="absolute inset-0 w-full h-full pointer-events-none">
                     {interactiveProtectionData.features.map((_, index) => {
                       const angle = (index * 90) - 45;
                       const startRadius = 120;
@@ -259,7 +259,7 @@ export default function CyberRecoveryMonitoring() {
                         />
                       );
                     })}
-                  </svg>
+                  </svg> */}
 
                   {/* Floating Elements */}
                   <motion.div
