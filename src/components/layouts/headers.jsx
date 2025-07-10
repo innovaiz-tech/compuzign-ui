@@ -122,13 +122,13 @@ export default function Headers() {
               name: 'Compute Migration',
               description: 'Server and workload transitions',
               icon: HiServer,
-              href: '/services/compute-migration'
+              href: '/compute-migration'
             },
             {
               name: 'Cloud Migration',
               description: 'AWS, Azure, Google Cloud expertise',
               icon: HiCloud,
-              href: '/services/cloud-migration'
+              href: '/cloud-migration'
             }
           ]
         },
