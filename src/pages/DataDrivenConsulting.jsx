@@ -137,15 +137,46 @@ export default function DataDrivenConsulting() {
   ];
 
   return (
-    <div key="data-driven-consulting-page" className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+    <div key="data-driven-consulting-page" className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white relative overflow-hidden">
+      
+      {/* Enhanced Background Pattern */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(255,218,23,0.1)_0%,transparent_50%)] animate-pulse"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.1)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_30%,rgba(255,218,23,0.02)_50%,transparent_70%)]"></div>
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]"></div>
+      </div>
       
       {/* 1. HERO BANNER SECTION */}
       <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden z-20">
         {/* Enhanced Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-bgYellow/5 via-transparent to-blue-500/5"></div>
-          <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-primary-bgYellow/10 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-1/4 h-1/4 bg-gradient-to-tl from-blue-500/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-bgYellow/8 via-transparent to-blue-500/8"></div>
+          <motion.div 
+            className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-primary-bgYellow/15 to-transparent rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-0 right-0 w-1/4 h-1/4 bg-gradient-to-tl from-blue-500/15 to-transparent rounded-full blur-3xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.4, 0.2, 0.4]
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
         </div>
         
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-30">
@@ -157,11 +188,11 @@ export default function DataDrivenConsulting() {
                 
                 {/* Enhanced Badge */}
                 <motion.div 
-                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-bgYellow/15 to-primary-bgYellow/10 border border-primary-bgYellow/30 rounded-full backdrop-blur-sm"
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-bgYellow/20 to-primary-bgYellow/10 border border-primary-bgYellow/40 rounded-full backdrop-blur-md shadow-2xl"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(255, 218, 23, 0.3)" }}
                 >
                   <HiChartBar className="w-5 h-5 text-primary-bgYellow mr-3" />
                   <span className="text-sm font-semibold text-primary-bgYellow uppercase tracking-wider">
@@ -180,30 +211,30 @@ export default function DataDrivenConsulting() {
                     <span className="block text-primary-bgYellow mb-2 relative">
                       Data-Driven
                       <motion.div
-                        className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary-bgYellow/60 to-transparent rounded-full"
+                        className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary-bgYellow/80 via-primary-bgYellow/60 to-transparent rounded-full"
                         initial={{ scaleX: 0, originX: 0 }}
                         animate={{ scaleX: 1 }}
-                        transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+                        transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
                       />
                     </span>
-                    <span className="block text-white">Consulting</span>
+                    <span className="block text-white drop-shadow-2xl">Consulting</span>
                   </motion.h1>
                 </div>
 
-                {/* Subheading */}
+                {/* Enhanced Subheading */}
                 <motion.p 
-                  className="text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-2xl"
+                  className="text-xl lg:text-2xl text-gray-200 leading-relaxed max-w-2xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
                 >
-                  <span className="text-white font-semibold text-2xl lg:text-3xl block mb-4">
+                  <span className="text-white font-semibold text-2xl lg:text-3xl block mb-4 drop-shadow-lg">
                     Empowering Decisions with Actionable Insights
                   </span>
-                  We transform raw data into strategic advantages, enabling organizations to make informed decisions that drive growth and innovation.
+                  We transform raw data into strategic advantages, enabling organizations to make informed decisions that drive <span className="text-primary-bgYellow font-semibold">growth and innovation</span>.
                 </motion.p>
 
-                {/* Key Features */}
+                {/* Enhanced Key Features */}
                 <motion.div 
                   className="flex flex-wrap gap-4"
                   initial={{ opacity: 0, y: 20 }}
@@ -217,8 +248,12 @@ export default function DataDrivenConsulting() {
                   ].map((feature, index) => (
                     <motion.div
                       key={index}
-                      className="flex items-center px-4 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg backdrop-blur-sm"
-                      whileHover={{ scale: 1.05, borderColor: '#ffda17' }}
+                      className="flex items-center px-4 py-2 bg-gradient-to-r from-gray-800/70 to-gray-900/70 border border-gray-700/60 rounded-lg backdrop-blur-md shadow-lg"
+                      whileHover={{ 
+                        scale: 1.05, 
+                        borderColor: '#ffda17',
+                        boxShadow: "0 10px 25px rgba(255, 218, 23, 0.2)"
+                      }}
                       transition={{ duration: 0.2 }}
                     >
                       <feature.icon className="w-4 h-4 text-primary-bgYellow mr-2" />
@@ -227,7 +262,7 @@ export default function DataDrivenConsulting() {
                   ))}
                 </motion.div>
 
-                {/* CTA Buttons */}
+                {/* Enhanced CTA Buttons */}
                 <motion.div 
                   className="flex flex-col sm:flex-row gap-4 pt-6"
                   initial={{ opacity: 0, y: 20 }}
@@ -237,7 +272,7 @@ export default function DataDrivenConsulting() {
                   <Button 
                     variant="primary" 
                     size="lg"
-                    className="group"
+                    className="group shadow-2xl hover:shadow-primary-bgYellow/25"
                   >
                     Start Your Transformation
                     <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -246,7 +281,7 @@ export default function DataDrivenConsulting() {
                   <Button 
                     variant="secondary" 
                     size="lg"
-                    className="group"
+                    className="group shadow-lg hover:shadow-xl"
                   >
                     Speak to an Expert
                     <HiPhone className="ml-2 w-5 h-5" />
@@ -506,7 +541,24 @@ export default function DataDrivenConsulting() {
 
       {/* 2. OUR APPROACH SECTION */}
       <section className="py-20 lg:py-28 relative overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+        {/* Enhanced Section Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-800/30 via-gray-900/30 to-black/30"></div>
+          <motion.div 
+            className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-to-l from-primary-bgYellow/10 to-transparent rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             {/* Left Content */}
@@ -516,8 +568,9 @@ export default function DataDrivenConsulting() {
             >
               <div className="space-y-6">
                 <motion.div 
-                  className="inline-flex items-center px-4 py-2 bg-primary-bgYellow/10 border border-primary-bgYellow/30 rounded-full"
+                  className="inline-flex items-center px-5 py-3 bg-gradient-to-r from-primary-bgYellow/15 to-primary-bgYellow/10 border border-primary-bgYellow/40 rounded-full backdrop-blur-md shadow-xl"
                   {...fadeInUp}
+                  whileHover={{ scale: 1.05, boxShadow: "0 15px 35px rgba(255, 218, 23, 0.25)" }}
                 >
                   <HiLightningBolt className="w-4 h-4 text-primary-bgYellow mr-2" />
                   <span className="text-sm font-semibold text-primary-bgYellow uppercase tracking-wider">
@@ -526,16 +579,16 @@ export default function DataDrivenConsulting() {
                 </motion.div>
 
                 <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-                  Redefining <span className="text-primary-bgYellow">Digital Transformation</span>
+                  Redefining <span className="text-primary-bgYellow bg-gradient-to-r from-primary-bgYellow to-yellow-400 bg-clip-text text-transparent">Digital Transformation</span>
                 </h2>
               </div>
 
-              <p className="text-xl text-gray-300 leading-relaxed">
+              <p className="text-xl text-gray-200 leading-relaxed">
                 At CompuZign, we redefine digital transformation by anchoring it in <span className="text-primary-bgYellow font-semibold">data, insight, and strategic execution</span>. Our Data-Driven Consulting services empower organizations to not just navigate change but to <span className="text-white font-semibold">shape the future of their industries</span>.
               </p>
 
               <motion.div 
-                className="flex flex-wrap gap-4 pt-4"
+                className="flex flex-wrap gap-4 pt-6"
                 {...fadeInUp}
               >
                 {[
@@ -545,11 +598,16 @@ export default function DataDrivenConsulting() {
                 ].map((feature, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-center px-4 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg backdrop-blur-sm"
-                    whileHover={{ scale: 1.05, borderColor: '#ffda17' }}
-                    transition={{ duration: 0.2 }}
+                    className="flex items-center px-5 py-3 bg-gradient-to-r from-gray-800/70 to-gray-900/70 border border-gray-600/60 rounded-xl backdrop-blur-md shadow-lg"
+                    whileHover={{ 
+                      scale: 1.08, 
+                      borderColor: '#ffda17',
+                      boxShadow: "0 15px 30px rgba(255, 218, 23, 0.25)",
+                      background: "linear-gradient(135deg, rgba(255, 218, 23, 0.1) 0%, rgba(31, 41, 55, 0.8) 100%)"
+                    }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <feature.icon className="w-4 h-4 text-primary-bgYellow mr-2" />
+                    <feature.icon className="w-5 h-5 text-primary-bgYellow mr-3" />
                     <span className="text-primary-bgYellow font-semibold text-sm">{feature.name}</span>
                   </motion.div>
                 ))}
@@ -561,32 +619,52 @@ export default function DataDrivenConsulting() {
               className="relative"
               {...fadeInUp}
             >
-              <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-3xl p-8 border border-gray-700/50 backdrop-blur-sm">
+              <div className="relative bg-gradient-to-br from-slate-800/60 to-gray-900/80 rounded-3xl p-8 border border-gray-600/40 backdrop-blur-md shadow-2xl">
                 
-                {/* Background glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-bgYellow/5 via-transparent to-blue-500/5 rounded-3xl"></div>
+                {/* Enhanced Background glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-bgYellow/8 via-transparent to-blue-500/8 rounded-3xl"></div>
+                <motion.div 
+                  className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-primary-bgYellow/20 to-transparent rounded-full blur-2xl"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.6, 0.3]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
                 
                 {/* Content grid */}
                 <div className="relative space-y-8">
                   {[
-                    { icon: HiChartBar, title: "Data Intelligence", desc: "Transform data into strategic insights" },
-                    { icon: HiCog, title: "Strategic Execution", desc: "Turn insights into actionable outcomes" },
-                    { icon: HiGlobe, title: "Industry Leadership", desc: "Shape the future of your sector" }
+                    { icon: HiChartBar, title: "Data Intelligence", desc: "Transform data into strategic insights", color: "#3b82f6" },
+                    { icon: HiCog, title: "Strategic Execution", desc: "Turn insights into actionable outcomes", color: "#10b981" },
+                    { icon: HiGlobe, title: "Industry Leadership", desc: "Shape the future of your sector", color: "#f59e0b" }
                   ].map((item, index) => (
                     <motion.div
                       key={index}
-                      className="flex items-start space-x-4"
+                      className="flex items-start space-x-4 group"
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.2 }}
+                      whileHover={{ scale: 1.02 }}
                     >
-                      <div className="w-12 h-12 bg-primary-bgYellow/10 rounded-xl flex items-center justify-center border border-primary-bgYellow/30">
-                        <item.icon className="w-6 h-6 text-primary-bgYellow" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                        <p className="text-gray-300">{item.desc}</p>
+                      <motion.div 
+                        className="w-14 h-14 bg-gradient-to-br from-primary-bgYellow/15 to-primary-bgYellow/5 rounded-xl flex items-center justify-center border border-primary-bgYellow/40 shadow-lg"
+                        whileHover={{ 
+                          scale: 1.1,
+                          boxShadow: `0 10px 25px ${item.color}40`
+                        }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <item.icon className="w-7 h-7 text-primary-bgYellow" />
+                      </motion.div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-primary-bgYellow transition-colors duration-200">{item.title}</h3>
+                        <p className="text-gray-300 group-hover:text-gray-200 transition-colors duration-200">{item.desc}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -598,8 +676,37 @@ export default function DataDrivenConsulting() {
       </section>
 
       {/* 3. OUR SOLUTIONS SECTION */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-gray-900/50 via-gray-800/50 to-black/50 relative overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+      <section className="py-20 lg:py-28 bg-gradient-to-br from-slate-900/60 via-gray-800/60 to-black/60 relative overflow-hidden">
+        {/* Enhanced Background Elements */}
+        <div className="absolute inset-0">
+          <motion.div 
+            className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.4, 1],
+              opacity: [0.2, 0.5, 0.2]
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-primary-bgYellow/10 to-transparent rounded-full blur-3xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.3, 0.1, 0.3]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 3
+            }}
+          />
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             {/* Left Visual */}
@@ -616,17 +723,39 @@ export default function DataDrivenConsulting() {
                 ].map((item, index) => (
                   <motion.div
                     key={index}
-                    className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 rounded-2xl p-6 border border-gray-700/50 text-center backdrop-blur-sm"
+                    className="bg-gradient-to-br from-slate-800/70 to-gray-900/80 rounded-2xl p-6 border border-gray-600/40 text-center backdrop-blur-md shadow-xl"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05, borderColor: item.color + '50' }}
+                    whileHover={{ 
+                      scale: 1.08, 
+                      borderColor: item.color + '80',
+                      boxShadow: `0 20px 40px ${item.color}30`
+                    }}
                   >
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center" style={{ backgroundColor: item.color + '20', border: `2px solid ${item.color}40` }}>
-                      <item.icon className="w-8 h-8" style={{ color: item.color }} />
-                    </div>
-                    <h3 className="text-white font-semibold text-sm leading-tight">{item.title}</h3>
+                    <motion.div 
+                      className="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center relative overflow-hidden" 
+                      style={{ backgroundColor: item.color + '20', border: `2px solid ${item.color}50` }}
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <motion.div
+                        className="absolute inset-0 rounded-xl"
+                        style={{ backgroundColor: item.color }}
+                        animate={{
+                          opacity: [0.1, 0.2, 0.1]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: index * 0.5
+                        }}
+                      />
+                      <item.icon className="w-8 h-8 relative z-10" style={{ color: item.color }} />
+                    </motion.div>
+                    <h3 className="text-white font-semibold text-sm leading-tight hover:text-gray-200 transition-colors duration-200">{item.title}</h3>
                   </motion.div>
                 ))}
               </div>
@@ -694,22 +823,66 @@ export default function DataDrivenConsulting() {
 
       {/* 4. BENEFITS SECTION */}
       <section className="py-20 lg:py-28 relative overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
-          
-          {/* Section Header */}
+        {/* Enhanced Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-800/20 via-gray-900/20 to-black/20"></div>
           <motion.div 
-            className="text-center mb-16"
+            className="absolute top-1/3 left-1/4 w-72 h-72 bg-gradient-to-br from-primary-bgYellow/8 to-transparent rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.2, 0.4, 0.2],
+              x: [0, 50, 0],
+              y: [0, -30, 0]
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-1/3 right-1/4 w-56 h-56 bg-gradient-to-br from-blue-500/8 to-transparent rounded-full blur-3xl"
+            animate={{
+              scale: [1.3, 1, 1.3],
+              opacity: [0.3, 0.1, 0.3],
+              x: [0, -40, 0],
+              y: [0, 20, 0]
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 4
+            }}
+          />
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10">
+          
+          {/* Enhanced Section Header */}
+          <motion.div 
+            className="text-center mb-20"
             {...fadeInUp}
           >
+            <motion.div 
+              className="inline-flex items-center px-5 py-3 bg-gradient-to-r from-primary-bgYellow/15 to-primary-bgYellow/10 border border-primary-bgYellow/40 rounded-full backdrop-blur-md shadow-xl mb-8"
+              whileHover={{ scale: 1.05, boxShadow: "0 15px 35px rgba(255, 218, 23, 0.25)" }}
+            >
+              <HiSparkles className="w-4 h-4 text-primary-bgYellow mr-2" />
+              <span className="text-sm font-semibold text-primary-bgYellow uppercase tracking-wider">
+                Why Choose Us
+              </span>
+            </motion.div>
+            
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-              Why Choose <span className="text-primary-bgYellow">CompuZign</span>
+              Why Choose <span className="text-primary-bgYellow bg-gradient-to-r from-primary-bgYellow to-yellow-400 bg-clip-text text-transparent">CompuZign</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
               Blending visionary strategy with unparalleled technical expertise to deliver transformative business outcomes.
             </p>
           </motion.div>
 
-          {/* Benefits Grid */}
+          {/* Enhanced Benefits Grid */}
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
             {...staggerChildren}
@@ -717,17 +890,32 @@ export default function DataDrivenConsulting() {
             {benefitsData.map((benefit, index) => (
               <motion.div
                 key={index}
-                className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-8 border border-gray-700/50 text-center hover:border-primary-bgYellow/50 transition-all duration-300"
+                className="bg-gradient-to-br from-slate-800/60 to-gray-900/80 rounded-2xl p-8 border border-gray-600/40 text-center backdrop-blur-md shadow-xl group relative overflow-hidden"
                 {...fadeInUp}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  borderColor: 'rgba(255, 218, 23, 0.6)',
+                  boxShadow: "0 25px 50px rgba(255, 218, 23, 0.15)"
+                }}
+                transition={{ duration: 0.3 }}
               >
-                <div className="w-16 h-16 bg-primary-bgYellow/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                {/* Hover Background Effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-primary-bgYellow/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+                
+                <motion.div 
+                  className="w-16 h-16 bg-gradient-to-br from-primary-bgYellow/20 to-primary-bgYellow/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-primary-bgYellow/30 relative z-10"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <benefit.icon className="w-8 h-8 text-primary-bgYellow" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-4">
+                </motion.div>
+                
+                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-primary-bgYellow transition-colors duration-300 relative z-10">
                   {benefit.title}
                 </h3>
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300 relative z-10">
                   {benefit.description}
                 </p>
               </motion.div>
@@ -737,17 +925,59 @@ export default function DataDrivenConsulting() {
       </section>
 
       {/* 5. CALL TO ACTION SECTION */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-primary-bgYellow/10 via-transparent to-blue-500/10 relative overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+      <section className="py-20 lg:py-28 bg-gradient-to-br from-primary-bgYellow/12 via-slate-900/40 to-blue-500/12 relative overflow-hidden">
+        {/* Enhanced Background Elements */}
+        <div className="absolute inset-0">
+          <motion.div 
+            className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-primary-bgYellow/15 to-transparent rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.6, 1],
+              opacity: [0.3, 0.6, 0.3],
+              rotate: [0, 180, 360]
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-blue-500/15 to-transparent rounded-full blur-3xl"
+            animate={{
+              scale: [1.4, 1, 1.4],
+              opacity: [0.4, 0.2, 0.4],
+              rotate: [360, 180, 0]
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 5
+            }}
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,218,23,0.05)_0%,transparent_70%)]"></div>
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10">
           <motion.div 
             className="text-center max-w-4xl mx-auto"
             {...fadeInUp}
           >
-            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8">
-              Ready to Transform Your <span className="text-primary-bgYellow">Business?</span>
+            <motion.div 
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-bgYellow/20 to-primary-bgYellow/10 border border-primary-bgYellow/50 rounded-full backdrop-blur-md shadow-2xl mb-8"
+              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(255, 218, 23, 0.3)" }}
+            >
+              <HiSparkles className="w-5 h-5 text-primary-bgYellow mr-3" />
+              <span className="text-sm font-semibold text-primary-bgYellow uppercase tracking-wider">
+                Ready to Get Started?
+              </span>
+            </motion.div>
+
+            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+              Ready to Transform Your <span className="text-primary-bgYellow bg-gradient-to-r from-primary-bgYellow via-yellow-400 to-primary-bgYellow bg-clip-text text-transparent">Business?</span>
             </h2>
-            <p className="text-xl lg:text-2xl text-gray-300 mb-10 leading-relaxed">
-              Let's discuss how our data-driven consulting services can unlock exponential value for your organization through strategic innovation and technical excellence.
+            <p className="text-xl lg:text-2xl text-gray-200 mb-12 leading-relaxed">
+              Let's discuss how our data-driven consulting services can unlock exponential value for your organization through <span className="text-primary-bgYellow font-semibold">strategic innovation and technical excellence</span>.
             </p>
             
             <motion.div 
@@ -760,7 +990,7 @@ export default function DataDrivenConsulting() {
               <Button 
                 variant="primary" 
                 size="xl"
-                className="group"
+                className="group shadow-2xl hover:shadow-primary-bgYellow/30 transform hover:scale-105 transition-all duration-300"
               >
                 Schedule a Strategy Session
                 <HiArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform duration-200" />
@@ -769,7 +999,7 @@ export default function DataDrivenConsulting() {
               <Button 
                 variant="secondary" 
                 size="xl"
-                className="group"
+                className="group shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
               >
                 Download Our Consulting Guide
                 <HiDocumentReport className="ml-2 w-6 h-6" />
