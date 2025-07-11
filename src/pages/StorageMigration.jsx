@@ -687,8 +687,8 @@ export default function StorageMigration() {
                   >
                     <div className="w-1 h-1 bg-[#FACC15] rounded-full animate-pulse"></div>
                   </motion.div>
-                </div>
-              </div>
+                        </div>
+                      </div>
 
               {/* Step 2 */}
               <motion.div
@@ -745,8 +745,8 @@ export default function StorageMigration() {
                   >
                     <div className="w-1 h-1 bg-[#FACC15] rounded-full animate-pulse"></div>
                   </motion.div>
-                </div>
-              </div>
+                    </div>
+                  </div>
 
               {/* Step 3 */}
               <motion.div
@@ -775,7 +775,7 @@ export default function StorageMigration() {
 
               {/* Connector 3 - Enhanced Dotted Line */}
               <div className="flex-1 px-8">
-                <motion.div 
+          <motion.div 
                   className="relative h-px bg-gradient-to-r from-transparent via-[#FACC15] to-transparent"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
@@ -1032,7 +1032,7 @@ export default function StorageMigration() {
                           />
                         ))}
                         <span className="text-sm font-bold text-gray-800 ml-2">98%</span>
-                      </div>
+                    </div>
                     </div>
                   </div>
                 </motion.div>

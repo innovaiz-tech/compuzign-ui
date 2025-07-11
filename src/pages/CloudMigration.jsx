@@ -153,7 +153,7 @@ export default function CloudMigration() {
       pros: "Avoids unnecessary cost.",
       cons: "Adds hybrid complexity.",
       example: "Keeping a latency-sensitive legacy system on-premises while moving others to Azure, GCP or AWS.",
-      gradient: "from-yellow-400 via-amber-500 to-orange-600",
+      gradient: "from-yellow-600 via-amber-500 to-orange-600",
       glowColor: "yellow",
       bgPattern: "from-yellow-500/20 to-amber-500/20"
     }
@@ -222,7 +222,7 @@ export default function CloudMigration() {
             }}
           />
           <motion.div 
-            className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-purple-500/15 to-blue-500/10 rounded-full blur-3xl"
+            className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-purple-500/15 to-blue-500/10 rounded-full blur-3xl"
             animate={{
               x: [0, -30, 0],
               y: [0, -40, 0],
@@ -311,7 +311,7 @@ export default function CloudMigration() {
                 </div>
 
                 <motion.p 
-                  className="text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl"
+                  className="text-lg lg:text-xl text-white leading-relaxed max-w-2xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
@@ -347,7 +347,7 @@ export default function CloudMigration() {
                 transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
               >
                 
-                <div className="relative mx-auto flex items-center justify-center w-80 md:w-96 lg:w-[28rem] h-80 md:h-96 lg:h-[28rem]">
+                <div className="relative mx-auto flex items-center justify-center w-96 md:w-96 lg:w-[27rem] h-96 md:h-96 lg:h-[27rem]">
                   
                   {/* Enhanced Central Content */}
                   <motion.div 
@@ -367,8 +367,6 @@ export default function CloudMigration() {
                   >
                     <motion.div 
                       className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mb-6"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                     >
                       <HiCloud className="w-7 h-7 text-black" />
                     </motion.div>
@@ -447,34 +445,7 @@ export default function CloudMigration() {
                       </motion.button>
                     );
                   })}
-
-                  {/* Orbital rings */}
-                  <motion.div
-                    className="absolute inset-0 rounded-full border border-yellow-400/20"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                    style={{
-                      width: '320px',
-                      height: '320px',
-                      left: '50%',
-                      top: '50%',
-                      transform: 'translate(-50%, -50%)'
-                    }}
-                  />
-                  <motion.div
-                    className="absolute inset-0 rounded-full border border-purple-400/10"
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                    style={{
-                      width: '360px',
-                      height: '360px',
-                      left: '50%',
-                      top: '50%',
-                      transform: 'translate(-50%, -50%)'
-                    }}
-                  />
                 </div>
-
               </motion.div>
             </div>
           </div>

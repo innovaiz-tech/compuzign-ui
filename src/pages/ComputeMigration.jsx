@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { 
   HiServer, 
@@ -40,6 +40,7 @@ import proxmoxLogo from '../assets/compute-assets/proxmox.svg';
 const ComputeMigration = () => {
   const { width } = useWindowSize();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [activeMigrationPath, setActiveMigrationPath] = useState(0);
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -55,6 +56,14 @@ const ComputeMigration = () => {
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Auto-rotate compute migration paths
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveMigrationPath((prev) => (prev + 1) % migrationPaths.length);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   // Animation variants
@@ -209,13 +218,80 @@ const ComputeMigration = () => {
     <div className="min-h-screen bg-gradient-to-br from-primary-bgLightBlack via-gray-900 to-primary-bgLightBlack">
       <ScrollToTop />
       
-      {/* 1. HERO BANNER SECTION - Improved with Planet Orbit Style */}
+      {/* 1. HERO BANNER SECTION - Enhanced with Advanced Animations */}
       <section className="relative pt-20 pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
-        {/* Enhanced Background Elements */}
+        {/* Enhanced Animated Background */}
         <div className="absolute inset-0">
+          {/* Base gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 via-transparent to-purple-500/5"></div>
-          <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-yellow-400/10 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-1/4 h-1/4 bg-gradient-to-tl from-purple-500/10 to-transparent rounded-full blur-3xl"></div>
+          
+          {/* Animated floating orbs */}
+          <motion.div 
+            className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-yellow-400/20 to-orange-500/10 rounded-full blur-3xl"
+            animate={{
+              x: [0, 50, 0],
+              y: [0, 30, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-purple-500/15 to-blue-500/10 rounded-full blur-3xl"
+            animate={{
+              x: [0, -30, 0],
+              y: [0, -40, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+          <motion.div 
+            className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 rounded-full blur-3xl"
+            animate={{
+              x: [0, 40, 0],
+              y: [0, -20, 0],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 4
+            }}
+          />
+          
+          {/* Animated grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_100%)]"></div>
+          
+          {/* Floating particles */}
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-yellow-400/30 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -100, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 8,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
         </div>
         
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-30">
@@ -301,87 +377,104 @@ const ComputeMigration = () => {
               >
                 
                 {/* Central Hub */}
-                <div className="relative mx-auto flex items-center justify-center w-64 md:w-72 lg:w-80 h-64 md:h-72 lg:h-80">
+                <div className="relative mx-auto flex items-center justify-center w-96 md:w-96 lg:w-[27rem] h-96 md:h-96 lg:h-[27rem]">
                   
-                  {/* Central Content Display */}
-                  <div className="absolute inset-6 bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-full flex flex-col items-center justify-center border-4 border-yellow-400/50 backdrop-blur-sm">
-                    <div className="w-10 h-10 bg-yellow-400/20 rounded-full flex items-center justify-center mb-3">
-                      <HiServer className="w-5 h-5 text-yellow-400" />
-                    </div>
-                    <h3 className="text-lg font-bold text-white text-center mb-2">
-                      Compute Migration
-                    </h3>
-                    <p className="text-sm text-gray-300 text-center leading-relaxed px-3">
-                      Seamless transitions across Physical, Virtual, and Cloud environments
-                    </p>
-                  </div>
+                  {/* Enhanced Central Content Display */}
+                  <motion.div 
+                    className="absolute inset-8 bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-full flex flex-col items-center justify-center border-4 border-yellow-400/50 backdrop-blur-sm"
+                    animate={{
+                      boxShadow: [
+                        "0 0 20px rgba(251, 191, 36, 0.3)",
+                        "0 0 40px rgba(251, 191, 36, 0.5)",
+                        "0 0 20px rgba(251, 191, 36, 0.3)"
+                      ]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <motion.div 
+                      className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mb-6"
+                    >
+                      <HiServer className="w-7 h-7 text-black" />
+                    </motion.div>
+                    
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeMigrationPath}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-center"
+                      >
+                        <h3 className="text-xl lg:text-2xl font-bold text-white text-center mb-3">
+                          {migrationPaths[activeMigrationPath].title}
+                        </h3>
+                        <p className="text-sm lg:text-base text-gray-300 text-center leading-relaxed px-4">
+                          {migrationPaths[activeMigrationPath].description.length > 60 
+                            ? `${migrationPaths[activeMigrationPath].description.substring(0, 60)}...`
+                            : migrationPaths[activeMigrationPath].description
+                          }
+                        </p>
+                      </motion.div>
+                    </AnimatePresence>
+                  </motion.div>
 
-                  {/* Orbiting Feature Icons */}
-                  {[
-                    { icon: HiServer, title: "Physical", color: "#facc15", angle: 0 },
-                    { icon: HiCloud, title: "Virtual", color: "#60a5fa", angle: 90 },
-                    { icon: HiDatabase, title: "Cloud", color: "#34d399", angle: 180 },
-                    { icon: HiCog, title: "Hybrid", color: "#f59e0b", angle: 270 }
-                  ].map((feature, index) => {
-                    const radius = 120;
-                    const x = Math.cos((feature.angle * Math.PI) / 180) * radius;
-                    const y = Math.sin((feature.angle * Math.PI) / 180) * radius;
-                    const IconComponent = feature.icon;
+                  {/* Enhanced Orbiting Migration Path Icons with Colors */}
+                  {migrationPaths.map((path, index) => {
+                    const angle = (index * 90) - 45;
+                    const radius = 160; // Increased radius to accommodate larger circle
+                    const x = Math.cos((angle * Math.PI) / 180) * radius;
+                    const y = Math.sin((angle * Math.PI) / 180) * radius;
+                    const isActive = index === activeMigrationPath;
+                    const IconComponent = path.icon;
+                    
+                    // Enhanced color mapping for each migration path
+                    const pathColors = {
+                      0: { bg: 'from-emerald-500 to-green-600', icon: '#10b981', glow: 'emerald' }, // Physical to Cloud/Virtual
+                      1: { bg: 'from-blue-500 to-indigo-600', icon: '#3b82f6', glow: 'blue' }, // Virtual to Cloud/Physical
+                      2: { bg: 'from-purple-500 to-violet-600', icon: '#8b5cf6', glow: 'purple' }, // Cloud to Cloud/Physical
+                      3: { bg: 'from-orange-500 to-red-600', icon: '#f59e0b', glow: 'orange' }, // Cloud to Virtual
+                    };
+                    
+                    const colors = pathColors[index];
                     
                     return (
                       <motion.button
                         key={index}
-                        className="absolute w-14 h-14 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 bg-gray-700/70 hover:bg-gray-600/70 hover:scale-105"
+                        className={`absolute w-12 h-12 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-500 border-2 ${
+                          isActive 
+                            ? `bg-gradient-to-br ${colors.bg} scale-110 shadow-2xl border-white/50` 
+                            : `bg-gradient-to-br from-gray-700/80 to-gray-800/80 hover:${colors.bg.replace('to-', 'hover:to-')} hover:scale-105 border-gray-600/50 hover:border-white/30`
+                        }`}
                         style={{
-                          left: `calc(50% + ${x}px - 28px)`,
-                          top: `calc(50% + ${y}px - 28px)`,
+                          left: `calc(50% + ${x}px - 24px)`,
+                          top: `calc(50% + ${y}px - 24px)`,
+                          boxShadow: isActive ? `0 0 25px ${colors.icon}60, 0 0 50px ${colors.icon}30` : undefined
                         }}
+                        onClick={() => setActiveMigrationPath(index)}
                         animate={{
-                          rotate: [0, 360],
+                          rotate: isActive ? [0, 360] : 0,
+                          y: isActive ? [0, -3, 0] : 0,
                         }}
                         transition={{
-                          duration: 20,
-                          repeat: Infinity,
-                          ease: "linear"
+                          rotate: { duration: 2, repeat: Infinity, ease: "linear" },
+                          y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
                         }}
+                        whileHover={{ scale: isActive ? 1.15 : 1.1 }}
                       >
                         <IconComponent 
-                          className="w-6 h-6" 
-                          style={{ color: feature.color }}
+                          className="w-5 h-5 drop-shadow-lg" 
+                          style={{ color: isActive ? '#ffffff' : colors.icon }}
                         />
                       </motion.button>
                     );
                   })}
 
-                  {/* Connecting Lines */}
-                  {/* <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                    {[0, 90, 180, 270].map((angle, index) => {
-                      const startRadius = 100;
-                      const endRadius = 140;
-                      const centerX = 160;
-                      const centerY = 160;
-                      const x1 = Math.cos((angle * Math.PI) / 180) * startRadius + centerX;
-                      const y1 = Math.sin((angle * Math.PI) / 180) * startRadius + centerY;
-                      const x2 = Math.cos((angle * Math.PI) / 180) * endRadius + centerX;
-                      const y2 = Math.sin((angle * Math.PI) / 180) * endRadius + centerY;
-                      
-                      return (
-                        <line
-                          key={index}
-                          x1={x1}
-                          y1={y1}
-                          x2={x2}
-                          y2={y2}
-                          stroke="#fbbf24"
-                          strokeWidth="2"
-                          opacity="0.6"
-                          className="transition-all duration-300"
-                        />
-                      );
-                    })}
-                  </svg> */}
-
-                  {/* Floating Elements */}
+                  {/* Enhanced Floating Elements */}
                   <motion.div
                     className="absolute top-4 right-4 w-3 h-3 bg-yellow-400/60 rounded-full"
                     animate={{
@@ -404,6 +497,30 @@ const ComputeMigration = () => {
                       duration: 2.5,
                       repeat: Infinity,
                       delay: 1.4,
+                    }}
+                  />
+                  <motion.div
+                    className="absolute top-1/3 left-4 w-2 h-2 bg-blue-400/60 rounded-full"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.4, 0.8, 0.4],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: 0.8,
+                    }}
+                  />
+                  <motion.div
+                    className="absolute bottom-1/3 right-6 w-1.5 h-1.5 bg-green-400/60 rounded-full"
+                    animate={{
+                      scale: [1, 1.4, 1],
+                      opacity: [0.3, 0.7, 0.3],
+                    }}
+                    transition={{
+                      duration: 2.8,
+                      repeat: Infinity,
+                      delay: 2.2,
                     }}
                   />
                 </div>
