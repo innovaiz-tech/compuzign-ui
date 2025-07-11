@@ -19,7 +19,8 @@ import {
   HiDesktopComputer,
   HiSupport,
   HiDocumentReport,
-  HiUserGroup
+  HiUserGroup,
+  HiCurrencyDollar
 } from 'react-icons/hi';
 import Button from '../components/common/button';
 import useWindowSize from '../hooks/useWindowSize';
@@ -540,135 +541,62 @@ export default function DataDrivenConsulting() {
       </section>
 
       {/* 2. OUR APPROACH SECTION */}
-      <section className="py-20 lg:py-28 relative overflow-hidden">
-        {/* Enhanced Section Background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-800/30 via-gray-900/30 to-black/30"></div>
-          <motion.div 
-            className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-to-l from-primary-bgYellow/10 to-transparent rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.2, 0.4, 0.2]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+      <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
+        {/* Animated background pattern */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-100" />
+          {/* Subtle teal accent shapes */}
+          <motion.div
+            className="absolute top-10 left-10 w-40 h-40 bg-teal-400/10 rounded-full blur-3xl"
+            animate={{ y: [0, 30, 0], opacity: [0.2, 0.4, 0.2] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            className="absolute bottom-10 right-20 w-56 h-56 bg-cyan-400/10 rounded-full blur-3xl"
+            animate={{ y: [0, -40, 0], opacity: [0.1, 0.3, 0.1] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
           />
         </div>
-
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            {/* Left Content */}
-            <motion.div 
-              className="space-y-8"
-              {...fadeInUp}
-            >
-              <div className="space-y-6">
-                <motion.div 
-                  className="inline-flex items-center px-5 py-3 bg-gradient-to-r from-primary-bgYellow/15 to-primary-bgYellow/10 border border-primary-bgYellow/40 rounded-full backdrop-blur-md shadow-xl"
-                  {...fadeInUp}
-                  whileHover={{ scale: 1.05, boxShadow: "0 15px 35px rgba(255, 218, 23, 0.25)" }}
-                >
-                  <HiLightningBolt className="w-4 h-4 text-primary-bgYellow mr-2" />
-                  <span className="text-sm font-semibold text-primary-bgYellow uppercase tracking-wider">
-                    Our Approach
-                  </span>
-                </motion.div>
-
-                <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-                  Redefining <span className="text-primary-bgYellow bg-gradient-to-r from-primary-bgYellow to-yellow-400 bg-clip-text text-transparent">Digital Transformation</span>
-                </h2>
+            {/* Left: Text Content */}
+            <motion.div className="space-y-8" {...fadeInUp}>
+              <div className="inline-flex items-center px-5 py-3 bg-gradient-to-r from-primary-bgYellow/15 to-primary-bgYellow/10 border border-primary-bgYellow/40 rounded-full backdrop-blur-md shadow-xl mb-4">
+                <HiLightningBolt className="w-4 h-4 text-primary-bgYellow mr-2" />
+                <span className="text-sm font-semibold text-primary-bgYellow uppercase tracking-wider">Our Approach</span>
               </div>
-
+              <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
+                Redefining <span className="text-primary-bgYellow bg-gradient-to-r from-primary-bgYellow to-yellow-400 bg-clip-text text-transparent">Digital Transformation</span>
+              </h2>
               <p className="text-xl text-gray-200 leading-relaxed">
                 At CompuZign, we redefine digital transformation by anchoring it in <span className="text-primary-bgYellow font-semibold">data, insight, and strategic execution</span>. Our Data-Driven Consulting services empower organizations to not just navigate change but to <span className="text-white font-semibold">shape the future of their industries</span>.
               </p>
-
-              <motion.div 
-                className="flex flex-wrap gap-4 pt-6"
-                {...fadeInUp}
-              >
-                {[
-                  { name: "Data-Anchored", icon: HiDatabase },
-                  { name: "Strategic Insight", icon: HiLightningBolt },
-                  { name: "Future-Focused", icon: HiTrendingUp }
-                ].map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-center px-5 py-3 bg-gradient-to-r from-gray-800/70 to-gray-900/70 border border-gray-600/60 rounded-xl backdrop-blur-md shadow-lg"
-                    whileHover={{ 
-                      scale: 1.08, 
-                      borderColor: '#ffda17',
-                      boxShadow: "0 15px 30px rgba(255, 218, 23, 0.25)",
-                      background: "linear-gradient(135deg, rgba(255, 218, 23, 0.1) 0%, rgba(31, 41, 55, 0.8) 100%)"
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
+              <div className="flex flex-wrap gap-4 pt-2">
+                {[{ name: "Data-Anchored", icon: HiDatabase }, { name: "Strategic Insight", icon: HiLightningBolt }, { name: "Future-Focused", icon: HiTrendingUp }].map((feature, index) => (
+                  <div key={index} className="flex items-center px-5 py-3 bg-gradient-to-r from-gray-800 to-gray-900 border border-gray-700 rounded-xl shadow-sm">
                     <feature.icon className="w-5 h-5 text-primary-bgYellow mr-3" />
                     <span className="text-primary-bgYellow font-semibold text-sm">{feature.name}</span>
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             </motion.div>
-
-            {/* Right Visual */}
-            <motion.div 
-              className="relative"
-              {...fadeInUp}
-            >
-              <div className="relative bg-gradient-to-br from-slate-800/60 to-gray-900/80 rounded-3xl p-8 border border-gray-600/40 backdrop-blur-md shadow-2xl">
-                
-                {/* Enhanced Background glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-bgYellow/8 via-transparent to-blue-500/8 rounded-3xl"></div>
-                <motion.div 
-                  className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-primary-bgYellow/20 to-transparent rounded-full blur-2xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.6, 0.3]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                
-                {/* Content grid */}
-                <div className="relative space-y-8">
-                  {[
-                    { icon: HiChartBar, title: "Data Intelligence", desc: "Transform data into strategic insights", color: "#3b82f6" },
-                    { icon: HiCog, title: "Strategic Execution", desc: "Turn insights into actionable outcomes", color: "#10b981" },
-                    { icon: HiGlobe, title: "Industry Leadership", desc: "Shape the future of your sector", color: "#f59e0b" }
-                  ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      className="flex items-start space-x-4 group"
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.2 }}
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      <motion.div 
-                        className="w-14 h-14 bg-gradient-to-br from-primary-bgYellow/15 to-primary-bgYellow/5 rounded-xl flex items-center justify-center border border-primary-bgYellow/40 shadow-lg"
-                        whileHover={{ 
-                          scale: 1.1,
-                          boxShadow: `0 10px 25px ${item.color}40`
-                        }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <item.icon className="w-7 h-7 text-primary-bgYellow" />
-                      </motion.div>
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-primary-bgYellow transition-colors duration-200">{item.title}</h3>
-                        <p className="text-gray-300 group-hover:text-gray-200 transition-colors duration-200">{item.desc}</p>
-                      </div>
-                    </motion.div>
-                  ))}
+            {/* Right: 2x2 Icon Grid */}
+            <motion.div className="grid grid-cols-2 gap-6" {...fadeInUp}>
+              {/* Card 1 with diagonal accent */}
+              <div className="relative bg-[#23406e] rounded-xl flex items-center justify-center h-40 shadow-lg">
+                <div className="absolute top-0 left-0 w-full h-full rounded-xl overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-full bg-[#4269a3]" style={{clipPath: 'polygon(0 0, 100% 0, 0 100%)'}}></div>
                 </div>
+                <HiCog className="w-12 h-12 text-white z-10" />
+              </div>
+              <div className="bg-[#23406e] rounded-xl flex items-center justify-center h-40 shadow-lg">
+                <HiCloud className="w-12 h-12 text-white" />
+              </div>
+              <div className="bg-[#23406e] rounded-xl flex items-center justify-center h-40 shadow-lg">
+                <HiCurrencyDollar className="w-12 h-12 text-white" />
+              </div>
+              <div className="bg-[#23406e] rounded-xl flex items-center justify-center h-40 shadow-lg">
+                <HiTrendingUp className="w-12 h-12 text-white" />
               </div>
             </motion.div>
           </div>
@@ -676,145 +604,55 @@ export default function DataDrivenConsulting() {
       </section>
 
       {/* 3. OUR SOLUTIONS SECTION */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-slate-900/60 via-gray-800/60 to-black/60 relative overflow-hidden">
-        {/* Enhanced Background Elements */}
-        <div className="absolute inset-0">
-          <motion.div 
-            className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.4, 1],
-              opacity: [0.2, 0.5, 0.2]
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-primary-bgYellow/10 to-transparent rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.3, 0.1, 0.3]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 3
-            }}
-          />
+      <section className="py-20 lg:py-28 relative overflow-hidden bg-[#eaf6f0]">
+        {/* Soft green background pattern */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#d2f1e1] via-[#eaf6f0] to-[#eaf6f0]"></div>
+          <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-[#b6e5d0]/40 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-[#b6e5d0]/30 to-transparent rounded-full blur-3xl"></div>
         </div>
-
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            {/* Left Visual */}
-            <motion.div 
-              className="relative order-2 lg:order-1"
-              {...fadeInUp}
-            >
-              <div className="grid grid-cols-2 gap-6">
-                {[
-                  { icon: HiDesktopComputer, title: "Infrastructure Optimization", color: "#3b82f6" },
-                  { icon: HiRefresh, title: "Legacy Modernization", color: "#10b981" },
-                  { icon: HiCog, title: "Automation Scaling", color: "#f59e0b" },
-                  { icon: HiTrendingUp, title: "Performance Acceleration", color: "#ef4444" }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    className="bg-gradient-to-br from-slate-800/70 to-gray-900/80 rounded-2xl p-6 border border-gray-600/40 text-center backdrop-blur-md shadow-xl"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    whileHover={{ 
-                      scale: 1.08, 
-                      borderColor: item.color + '80',
-                      boxShadow: `0 20px 40px ${item.color}30`
-                    }}
-                  >
-                    <motion.div 
-                      className="w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center relative overflow-hidden" 
-                      style={{ backgroundColor: item.color + '20', border: `2px solid ${item.color}50` }}
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <motion.div
-                        className="absolute inset-0 rounded-xl"
-                        style={{ backgroundColor: item.color }}
-                        animate={{
-                          opacity: [0.1, 0.2, 0.1]
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: index * 0.5
-                        }}
-                      />
-                      <item.icon className="w-8 h-8 relative z-10" style={{ color: item.color }} />
-                    </motion.div>
-                    <h3 className="text-white font-semibold text-sm leading-tight hover:text-gray-200 transition-colors duration-200">{item.title}</h3>
-                  </motion.div>
-                ))}
+          <div className="text-center mb-16">
+            <div className="text-sm font-bold text-[#1e88e5] flex items-center justify-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-[#1e88e5] inline-block"></span>
+              POWERING DATA-DRIVEN DECISIONS WITH AI INTELLIGENCE
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">Transformative Business Outcomes</h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              By blending <span className="text-primary-bgYellow font-semibold">visionary strategy with unparalleled technical expertise</span>, we deliver customized solutions that optimize infrastructure, modernize legacy systems, and scale automation to achieve transformative business outcomes—reducing costs, accelerating performance, and unlocking exponential value.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center">
+              <div className="w-16 h-16 mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 bg-[#1e88e5] flex items-center justify-center rounded-lg rotate-45">
+                  <HiTrendingUp className="w-8 h-8 text-white -rotate-45" />
+                </div>
               </div>
-            </motion.div>
-
-            {/* Right Content */}
-            <motion.div 
-              className="space-y-8 order-1 lg:order-2"
-              {...fadeInUp}
-            >
-              <div className="space-y-6">
-                <motion.div 
-                  className="inline-flex items-center px-4 py-2 bg-primary-bgYellow/10 border border-primary-bgYellow/30 rounded-full"
-                  {...fadeInUp}
-                >
-                  <HiBeaker className="w-4 h-4 text-primary-bgYellow mr-2" />
-                  <span className="text-sm font-semibold text-primary-bgYellow uppercase tracking-wider">
-                    Our Solutions
-                  </span>
-                </motion.div>
-
-                <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-                  <span className="text-primary-bgYellow">Transformative</span> Business Outcomes
-                </h2>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Reducing Costs</h3>
+              <p className="text-gray-600">Strategic optimization that cuts operational expenses</p>
+            </div>
+            {/* Card 2 */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center">
+              <div className="w-16 h-16 mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 bg-[#1e88e5] flex items-center justify-center rounded-lg rotate-45">
+                  <HiLightningBolt className="w-8 h-8 text-white -rotate-45" />
+                </div>
               </div>
-
-              <p className="text-xl text-gray-300 leading-relaxed">
-                By blending <span className="text-primary-bgYellow font-semibold">visionary strategy with unparalleled technical expertise</span>, we deliver customized solutions that optimize infrastructure, modernize legacy systems, and scale automation to achieve transformative business outcomes.
-              </p>
-
-              {/* Key Benefits */}
-              <motion.div 
-                className="space-y-4"
-                {...fadeInUp}
-              >
-                {[
-                  { icon: HiTrendingUp, title: "Reducing Costs", desc: "Strategic optimization that cuts operational expenses" },
-                  { icon: HiLightningBolt, title: "Accelerating Performance", desc: "Enhanced system efficiency and speed" },
-                  { icon: HiSparkles, title: "Unlocking Exponential Value", desc: "Maximize ROI through data-driven insights" }
-                ].map((benefit, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-start space-x-4"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                  >
-                    <div className="w-8 h-8 bg-primary-bgYellow/10 rounded-lg flex items-center justify-center border border-primary-bgYellow/30 mt-1">
-                      <benefit.icon className="w-4 h-4 text-primary-bgYellow" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-white mb-1">{benefit.title}</h3>
-                      <p className="text-gray-300 text-sm">{benefit.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Accelerating Performance</h3>
+              <p className="text-gray-600">Enhanced system efficiency and speed</p>
+            </div>
+            {/* Card 3 */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center">
+              <div className="w-16 h-16 mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 bg-[#1e88e5] flex items-center justify-center rounded-lg rotate-45">
+                  <HiSparkles className="w-8 h-8 text-white -rotate-45" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Unlocking Exponential Value</h3>
+              <p className="text-gray-600">Maximize ROI through data-driven insights</p>
+            </div>
           </div>
         </div>
       </section>
@@ -825,9 +663,9 @@ export default function DataDrivenConsulting() {
       <section className="py-20 lg:py-28 relative overflow-hidden">
         {/* Enhanced Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-800/20 via-gray-900/20 to-black/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-gray-900/80 to-black/90"></div>
           <motion.div 
-            className="absolute top-1/3 left-1/4 w-72 h-72 bg-gradient-to-br from-primary-bgYellow/8 to-transparent rounded-full blur-3xl"
+            className="absolute top-1/3 left-1/4 w-72 h-72 bg-gradient-to-br from-teal-400/8 to-transparent rounded-full blur-3xl"
             animate={{
               scale: [1, 1.5, 1],
               opacity: [0.2, 0.4, 0.2],
@@ -841,7 +679,7 @@ export default function DataDrivenConsulting() {
             }}
           />
           <motion.div 
-            className="absolute bottom-1/3 right-1/4 w-56 h-56 bg-gradient-to-br from-blue-500/8 to-transparent rounded-full blur-3xl"
+            className="absolute bottom-1/3 right-1/4 w-56 h-56 bg-gradient-to-br from-cyan-400/8 to-transparent rounded-full blur-3xl"
             animate={{
               scale: [1.3, 1, 1.3],
               opacity: [0.3, 0.1, 0.3],
@@ -890,7 +728,7 @@ export default function DataDrivenConsulting() {
             {benefitsData.map((benefit, index) => (
               <motion.div
                 key={index}
-                className="bg-gradient-to-br from-slate-800/60 to-gray-900/80 rounded-2xl p-8 border border-gray-600/40 text-center backdrop-blur-md shadow-xl group relative overflow-hidden"
+                className="bg-gradient-to-br from-gray-900/60 to-black/80 rounded-2xl p-8 border border-primary-bgYellow/30 text-center backdrop-blur-md shadow-xl group relative overflow-hidden"
                 {...fadeInUp}
                 whileHover={{ 
                   scale: 1.05,
