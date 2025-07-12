@@ -14,6 +14,7 @@ import Careers from "./pages/Careers";
 import JobDetail from "./pages/JobDetail";
 import ComputeMigration from "./pages/ComputeMigration";
 import CloudMigration from "./pages/CloudMigration";
+import AIInfrastructureHPC from "./pages/AIInfrastructureHPC";
 
 function App() {
   const router = createBrowserRouter(
@@ -32,6 +33,7 @@ function App() {
         <Route path='/careers/:jobId' element={<JobDetail />} />
         <Route path='/compute-migration' element={<ComputeMigration />} />
         <Route path='/cloud-migration' element={<CloudMigration />} />
+        <Route path='/services/ai-infrastructure' element={<AIInfrastructureHPC />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
