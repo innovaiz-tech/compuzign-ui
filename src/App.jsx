@@ -9,6 +9,7 @@ import VulnerabilityAssessment from "./pages/VulnerabilityAssessment";
 import RansomwareResponse from "./pages/RansomwareResponse";
 import CyberRecoveryMonitoring from "./pages/CyberRecoveryMonitoring";
 import StorageMigration from "./pages/StorageMigration";
+import DataDrivenConsulting from "./pages/DataDrivenConsulting";
 import Careers from "./pages/Careers";
 import JobDetail from "./pages/JobDetail";
 import ComputeMigration from "./pages/ComputeMigration";
@@ -26,6 +27,7 @@ function App() {
         <Route path='/ransomware-response' element={<RansomwareResponse />} />
         <Route path='/vulnerability-assessment-remediation' element={<VulnerabilityAssessment />} />
         <Route path='/storage-migration' element={<StorageMigration />} />
+        <Route path='/data-driven-consulting' element={<DataDrivenConsulting />} />
         <Route path='/careers' element={<Careers />} />
         <Route path='/careers/:jobId' element={<JobDetail />} />
         <Route path='/compute-migration' element={<ComputeMigration />} />

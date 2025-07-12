@@ -463,13 +463,32 @@ export default function Headers() {
                 {megaMenuData[activeMegaMenu].sections.map((section, index) => (
                   <div key={index} className="space-y-4">
                     <div>
-                      <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-2">
-                        {section.title}
-                      </h3>
-                      {section.description && (
-                        <p className="text-sm text-gray-500 mb-3">
-                          {section.description}
-                        </p>
+                      {section.title === 'Data-Driven Consulting' ? (
+                        <Link
+                          to="/data-driven-consulting"
+                          className="group block mb-3 hover:bg-gradient-to-br hover:from-primary-bgYellow/5 hover:to-primary-bgYellow/10 rounded-lg p-2 -m-2 transition-all duration-200"
+                          onClick={closeMegaMenu}
+                        >
+                          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider group-hover:text-primary-bgYellow transition-colors duration-200 mb-1">
+                            {section.title}
+                          </h3>
+                          {section.description && (
+                            <p className="text-sm text-gray-500 group-hover:text-gray-700 transition-colors duration-200">
+                              {section.description}
+                            </p>
+                          )}
+                        </Link>
+                      ) : (
+                        <>
+                          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-2">
+                            {section.title}
+                          </h3>
+                          {section.description && (
+                            <p className="text-sm text-gray-500 mb-3">
+                              {section.description}
+                            </p>
+                          )}
+                        </>
                       )}
                     </div>
                     <div className="space-y-2">
