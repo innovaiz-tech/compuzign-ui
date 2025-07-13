@@ -580,10 +580,6 @@ export default function AIInfrastructureHPC() {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   {service.fullDescription}
                 </p>
-
-                <Button variant="secondary" size="md" className="w-full">
-                  Learn More
-                </Button>
               </motion.div>
             ))}
           </div>
@@ -736,42 +732,6 @@ export default function AIInfrastructureHPC() {
         </div>
       </section>
 
-      {/* 6. SUPPORTED PLATFORMS SECTION - Dark Theme */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10">
-          <motion.div className="text-center mb-16" {...fadeInUp}>
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6">
-              Supported AI & HPC Platforms
-            </h2>
-            <p className="text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto">
-              We support all major cloud providers and on-premises platforms for comprehensive AI infrastructure solutions.
-            </p>
-          </motion.div>
-
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8"
-            {...staggerChildren}
-          >
-            {vendorLogos.map((vendor, index) => (
-              <motion.div 
-                key={index}
-                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-purple-400/50 transition-all duration-300 group flex flex-col items-center justify-center"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.05 }}
-              >
-                <img 
-                  src={vendor.logo} 
-                  alt={vendor.alt} 
-                  className="w-12 h-12 lg:w-16 lg:h-16 mb-4 filter brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                />
-                <p className="text-sm text-gray-300 text-center font-medium">
-                  {vendor.name}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* 7. CTA SECTION */}
       <section className="py-20 lg:py-28 bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 relative overflow-hidden">

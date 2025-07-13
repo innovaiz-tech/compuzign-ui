@@ -194,17 +194,141 @@ export default function CostOptimization() {
               </motion.div>
             </div>
 
-            {/* Right Visual Placeholder */}
+            {/* Right Visual - Modern Cost Dashboard - 5 columns */}
             <div className="lg:col-span-5">
               <motion.div 
-                className="relative overflow-hidden hero-right-visual h-[500px] lg:h-[600px]"
+                className="relative overflow-hidden"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
               >
-                {/* Placeholder for cost optimization visual */}
-                <div className="w-full h-full bg-gradient-to-br from-gray-800/20 to-gray-900/20 rounded-2xl border border-primary-bgYellow/20 flex items-center justify-center">
-                  <HiCurrencyDollar className="w-24 h-24 text-primary-bgYellow/40" />
+                
+                {/* Main Dashboard Container */}
+                <div className="relative bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-2xl p-6 border border-primary-bgYellow/30 backdrop-blur-md shadow-2xl">
+                  
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-primary-bgYellow/20 rounded-lg flex items-center justify-center">
+                        <HiCurrencyDollar className="w-5 h-5 text-primary-bgYellow" />
+                      </div>
+                      <div>
+                        <h3 className="text-white font-bold text-lg">Cost Optimization</h3>
+                        <p className="text-gray-400 text-sm">Real-time savings tracker</p>
+                      </div>
+                    </div>
+                    <motion.div 
+                      className="w-3 h-3 bg-green-400 rounded-full"
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  </div>
+
+                  {/* Central Chart Area */}
+                  <div className="relative h-32 mb-6 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-xl border border-gray-600/30 flex items-center justify-center">
+                    {/* Animated Chart Bars */}
+                    <div className="flex items-end space-x-2 h-20">
+                      {[60, 80, 45, 90, 70, 85].map((height, index) => (
+                        <motion.div
+                          key={index}
+                          className="w-3 bg-gradient-to-t from-primary-bgYellow to-yellow-400 rounded-t"
+                          style={{ height: `${height}%` }}
+                          initial={{ height: 0 }}
+                          animate={{ height: `${height}%` }}
+                          transition={{ duration: 0.8, delay: index * 0.1 }}
+                        />
+                      ))}
+                    </div>
+                    
+                    {/* Trend Line */}
+                    <motion.div
+                      className="absolute inset-0 flex items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1 }}
+                    >
+                      <svg className="w-full h-full absolute inset-0" viewBox="0 0 200 80">
+                        <motion.path
+                          d="M20 60 Q50 40 80 20 T140 10 T200 15"
+                          stroke="url(#gradient)"
+                          strokeWidth="2"
+                          fill="none"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 2, delay: 0.5 }}
+                        />
+                        <defs>
+                          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="#facc15" />
+                            <stop offset="100%" stopColor="#fbbf24" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </motion.div>
+                  </div>
+
+                  {/* Cost Savings Cards Grid */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { 
+                        title: "Cloud Optimization", 
+                        value: "Optimize", 
+                        icon: HiCloud, 
+                        color: "from-blue-500 to-blue-600"
+                      },
+                      { 
+                        title: "Infrastructure", 
+                        value: "Analyze", 
+                        icon: HiServer, 
+                        color: "from-green-500 to-green-600"
+                      },
+                      { 
+                        title: "Licensing Review", 
+                        value: "Audit", 
+                        icon: HiDocumentReport, 
+                        color: "from-amber-500 to-amber-600"
+                      },
+                      { 
+                        title: "ROI Tracking", 
+                        value: "Monitor", 
+                        icon: HiTrendingUp, 
+                        color: "from-purple-500 to-purple-600"
+                      }
+                    ].map((card, index) => (
+                      <motion.div
+                        key={index}
+                        className="bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-xl p-4 border border-gray-600/30 hover:border-primary-bgYellow/50 transition-all duration-300"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8 + index * 0.1 }}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                      >
+                        <div className="flex items-center justify-center mb-2">
+                          <card.icon className={`w-5 h-5 bg-gradient-to-r ${card.color} bg-clip-text text-transparent`} />
+                        </div>
+                        <div className="text-lg font-bold text-white mb-1">{card.value}</div>
+                        <div className="text-xs text-gray-400">{card.title}</div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Bottom Status Bar */}
+                  <motion.div 
+                    className="mt-6 flex items-center justify-between text-sm"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                      <span className="text-gray-400">Optimization Active</span>
+                    </div>
+                    <div className="text-primary-bgYellow font-semibold">
+                      Track Savings
+                    </div>
+                  </motion.div>
+
+
                 </div>
               </motion.div>
             </div>
@@ -470,7 +594,7 @@ export default function CostOptimization() {
             {[
               {
                 title: 'Proven Savings',
-                description: 'Average 25-40% cost reduction across infrastructure, cloud, and licensing with measurable ROI.',
+                description: 'Comprehensive cost reduction strategies across infrastructure, cloud, and licensing with measurable ROI.',
                 icon: HiLightningBolt
               },
               {

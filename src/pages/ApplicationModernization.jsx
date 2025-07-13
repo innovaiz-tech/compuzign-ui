@@ -256,23 +256,23 @@ export default function ApplicationModernization() {
               </motion.div>
 
               {/* Enhanced Main Heading */}
-              <div className="space-y-8">
+              <div className="text-center mx-auto">
                 <motion.h1 
-                  className="text-5xl lg:text-7xl xl:text-8xl font-bold leading-[0.9] tracking-tight"
+                  className="text-5xl lg:text-7xl xl:text-8xl font-bold leading-[0.9] tracking-tight mx-auto"
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                 >
-                  <span className="block text-primary-bgYellow mb-4 relative">
+                  <span className="inline-block text-primary-bgYellow mb-4 relative">
                     Application
-                    <motion.div
-                      className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-primary-bgYellow/80 to-transparent rounded-full"
-                      initial={{ scaleX: 0, originX: 0.5 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
-                    />
                   </span>
-                  <span className="block text-white drop-shadow-2xl">Modernization</span>
+                  <motion.div
+                    className="h-1 w-2/3 mx-auto bg-gradient-to-r from-transparent via-primary-bgYellow/80 to-transparent rounded-full mb-4"
+                    initial={{ scaleX: 0, originX: 0.5 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
+                  />
+                  <span className="block text-white drop-shadow-2xl mx-auto">Modernization</span>
                 </motion.h1>
               </div>
 
@@ -444,7 +444,7 @@ export default function ApplicationModernization() {
                   </div>
                   
                   {/* Content Card */}
-                  <div className={`flex-1 max-w-lg ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
+                  <div className={`flex-1 max-w-lg ${index % 2 === 0 ? 'lg:text-right lg:ml-12' : 'lg:text-left lg:mr-12'}`}>
                     <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
                       <div className="flex items-center mb-4">
                         <div 
