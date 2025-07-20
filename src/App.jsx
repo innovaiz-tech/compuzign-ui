@@ -21,6 +21,7 @@ import IntelligentAutomation from "./pages/IntelligentAutomation";
 import CostOptimization from "./pages/CostOptimization";
 import CloudTransformation from "./pages/CloudTransformation";
 import MonitoringAutomation from "./pages/MonitoringAutomation";
+import NetworkOperationsCenter from "./pages/NetworkOperationsCenter";
 
 function App() {
   const router = createBrowserRouter(
@@ -47,6 +48,7 @@ function App() {
         <Route path='/services/cost-optimization' element={<CostOptimization />} />
         <Route path='/services/cloud-transformation' element={<CloudTransformation />} />
         <Route path='/services/monitoring-automation' element={<MonitoringAutomation />} />
+        <Route path='/services/noc' element={<NetworkOperationsCenter />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
