@@ -34,7 +34,7 @@ import proxmoxLogo from '../assets/compute-assets/proxmox.svg';
 
 /**
  * ComputeMigration Component - Following StorageMigration Template
- * Based on VTG's compute-migration page structure with exact content from compute-migration.md
+ * Based on Compuzign's compute-migration page structure with exact content from compute-migration.md
  */
 
 const ComputeMigration = () => {
@@ -133,7 +133,7 @@ const ComputeMigration = () => {
     }
   ];
 
-  // Migration path data from VTG content
+  // Migration path data from Compuzign content
   const migrationPaths = [
     {
       title: "Physical to Cloud or Virtual",

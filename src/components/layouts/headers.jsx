@@ -179,10 +179,10 @@ export default function Headers() {
           description: 'Comprehensive IT operations support',
           items: [
             {
-              name: 'Application Programmer',
-              description: 'Custom software development',
+              name: 'Application Manager',
+              description: 'AI-Powered Data Curation & Management',
               icon: HiCode,
-              href: '/services/application-programmer'
+              href: '/application-manager'
             },
             {
               name: 'Cloud Transformation',
