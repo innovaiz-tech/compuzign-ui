@@ -22,6 +22,7 @@ import CostOptimization from "./pages/CostOptimization";
 import CloudTransformation from "./pages/CloudTransformation";
 import MonitoringAutomation from "./pages/MonitoringAutomation";
 import NetworkOperationsCenter from "./pages/NetworkOperationsCenter";
+import SecurityOperationsCenter from "./pages/SecurityOperationsCenter";
 
 function App() {
   const router = createBrowserRouter(
@@ -49,6 +50,7 @@ function App() {
         <Route path='/services/cloud-transformation' element={<CloudTransformation />} />
         <Route path='/services/monitoring-automation' element={<MonitoringAutomation />} />
         <Route path='/services/noc' element={<NetworkOperationsCenter />} />
+        <Route path='/services/soc' element={<SecurityOperationsCenter />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
