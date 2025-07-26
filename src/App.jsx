@@ -27,6 +27,8 @@ import CyberResilience from "./pages/CyberResilience";
 import MobilityManagement from "./pages/MobilityManagement";
 import ManagedServices from "./pages/ManagedServices";
 import Contact from "./pages/Contact";
+import RaaS from "./pages/RaaS";
+import SupportAsAService from "./pages/SupportAsAService";
 
 function App() {
   const router = createBrowserRouter(
@@ -46,7 +48,6 @@ function App() {
         <Route path='/compute-migration' element={<ComputeMigration />} />
         <Route path='/cloud-migration' element={<CloudMigration />} />
         <Route path='/application-manager' element={<ApplicationManager />} />
-        <Route path='/application-manager' element={<ApplicationManager />} />
         <Route path='/ai-infrastructure' element={<AIInfrastructureHPC />} />
         <Route path='/app-modernization' element={<ApplicationModernization />} />
         <Route path='/automation' element={<IntelligentAutomation />} />
@@ -59,6 +60,8 @@ function App() {
         <Route path='/mobility-management' element={<MobilityManagement />} />
         <Route path='/managed-services' element={<ManagedServices />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/raas' element={<RaaS />} />
+        <Route path='/support-as-a-service' element={<SupportAsAService />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
