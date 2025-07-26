@@ -213,7 +213,7 @@ export default function RaaS() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-16 pb-8 md:pt-20 md:pb-16">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -227,7 +227,7 @@ export default function RaaS() {
         {/* Hero Content */}
         <motion.div 
           style={{ y: y1 }}
-          className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-5xl"
+          className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-5xl py-8 md:py-16"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -376,8 +376,28 @@ export default function RaaS() {
       </section>
 
       {/* RaaS Roles Section */}
-      <section id="raas-roles" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="raas-roles" className="py-20 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 relative overflow-hidden">
+        {/* Enhanced Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-yellow-400/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-1/4 h-1/4 bg-gradient-to-tl from-blue-400/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yellow-400/5 rounded-full blur-3xl"></div>
+          
+          {/* Tech Pattern Overlay */}
+          <div className="absolute inset-0 opacity-[0.02]">
+            <svg className="w-full h-full" viewBox="0 0 60 60" fill="none">
+              <defs>
+                <pattern id="techGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <circle cx="15" cy="15" r="1" fill="#FFD60A"/>
+                  <path d="M0 15h30M15 0v30" stroke="#FFD60A" strokeWidth="0.5" opacity="0.3"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#techGrid)" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -386,21 +406,30 @@ export default function RaaS() {
           >
             <motion.span 
               variants={itemVariants}
-              className="inline-block px-4 py-2 bg-slate-100 text-slate-800 text-sm font-semibold rounded-full mb-4"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-yellow-400/20 to-yellow-400/10 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-semibold mb-6 backdrop-blur-sm"
             >
-              Talent Categories
+              <span className="flex items-center">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clipRule="evenodd" />
+                  <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
+                </svg>
+                Expert Talent Categories
+              </span>
             </motion.span>
             <motion.h2 
               variants={itemVariants}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
             >
-              RaaS Roles We Provide
+              <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                RaaS Roles We
+              </span>
+              <span className="block text-yellow-400 mt-2">Provide</span>
             </motion.h2>
             <motion.p 
               variants={itemVariants}
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
             >
-              Access specialized professionals across diverse technology domains
+              Access specialized professionals across diverse technology domains with proven expertise and industry certifications
             </motion.p>
           </motion.div>
 
@@ -410,37 +439,83 @@ export default function RaaS() {
             animate={isVisible['raas-roles'] ? "visible" : "hidden"}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {raasRoles.map((category, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="group h-full flex flex-col bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-slate-200 hover:scale-[1.02] relative overflow-hidden"
-              >
-                {/* Subtle background hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-50/0 to-gray-50/0 group-hover:from-slate-50/60 group-hover:to-gray-50/40 transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
-                
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex items-center mb-6">
-                    <div className="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center group-hover:bg-slate-200 group-hover:scale-110 transition-all duration-300">
-                      <category.icon className="w-7 h-7 text-slate-600" />
+            {raasRoles.map((category, index) => {
+              // Define unique gradient colors for each category
+              const gradients = [
+                { from: 'from-blue-500', to: 'to-cyan-500', iconBg: 'bg-blue-500', iconColor: 'text-white' },
+                { from: 'from-green-500', to: 'to-emerald-500', iconBg: 'bg-green-500', iconColor: 'text-white' },
+                { from: 'from-purple-500', to: 'to-pink-500', iconBg: 'bg-purple-500', iconColor: 'text-white' },
+                { from: 'from-orange-500', to: 'to-red-500', iconBg: 'bg-orange-500', iconColor: 'text-white' },
+                { from: 'from-indigo-500', to: 'to-blue-500', iconBg: 'bg-indigo-500', iconColor: 'text-white' },
+                { from: 'from-yellow-500', to: 'to-orange-500', iconBg: 'bg-yellow-500', iconColor: 'text-black' },
+              ];
+              const gradient = gradients[index % gradients.length];
+
+              return (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="group h-full flex flex-col bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm p-8 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 border border-gray-700/50 hover:border-yellow-400/30 hover:scale-[1.05] relative overflow-hidden"
+                  whileHover={{ y: -5 }}
+                >
+                  {/* Animated Background Gradient */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${gradient.from} ${gradient.to} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                  
+                  {/* Shimmer Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                  
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Enhanced Icon Section */}
+                    <div className="flex items-center mb-8">
+                      <div className={`w-16 h-16 ${gradient.iconBg} rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg group-hover:shadow-xl`}>
+                        <category.icon className={`w-8 h-8 ${gradient.iconColor} drop-shadow-sm`} />
+                      </div>
                     </div>
+                    
+                    <h3 className="text-2xl font-bold text-white mb-6 group-hover:text-yellow-400 transition-colors duration-300 leading-tight">
+                      {category.category}
+                    </h3>
+                    
+                    {/* Enhanced Role List */}
+                    <ul className="space-y-4 flex-grow">
+                      {category.roles.map((role, roleIndex) => (
+                        <motion.li 
+                          key={roleIndex} 
+                          className="flex items-start text-gray-300 group-hover:text-gray-200 transition-colors duration-300"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: roleIndex * 0.1 }}
+                        >
+                          <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mr-3 mt-0.5 shadow-sm">
+                            <HiCheckCircle className="w-4 h-4 text-white" />
+                          </div>
+                          <span className="text-sm font-medium leading-relaxed hover:text-yellow-400 transition-colors duration-200">
+                            {role}
+                          </span>
+                        </motion.li>
+                      ))}
+                    </ul>
                   </div>
-                  
-                  <h3 className="text-xl font-bold text-gray-900 mb-6 group-hover:text-slate-600 transition-colors duration-300 min-h-[3rem] flex items-center">
-                    {category.category}
-                  </h3>
-                  
-                  <ul className="space-y-3 flex-grow">
-                    {category.roles.map((role, roleIndex) => (
-                      <li key={roleIndex} className="flex items-center text-gray-600">
-                        <HiCheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                        <span className="text-sm">{role}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
+          >
+            <p className="text-gray-400 mb-6">
+              Don't see the exact role you need? We have access to a broader network of professionals.
+            </p>
+            <button className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold rounded-xl hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-yellow-400/25 flex items-center mx-auto">
+              <HiUsers className="w-5 h-5 mr-2" />
+              Request Custom Talent
+            </button>
           </motion.div>
         </div>
       </section>

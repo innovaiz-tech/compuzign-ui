@@ -214,7 +214,7 @@ export default function SupportAsAService() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-16 pb-8 md:pt-20 md:pb-16">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -228,7 +228,7 @@ export default function SupportAsAService() {
         {/* Hero Content */}
         <motion.div 
           style={{ y: y1 }}
-          className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-5xl"
+          className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-5xl py-8 md:py-16"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
