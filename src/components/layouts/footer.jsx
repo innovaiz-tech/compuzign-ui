@@ -25,9 +25,9 @@ export default function Footer() {
     {
       category: "Managed Services",
       items: [
-        { name: "AI Data Curation", href: "/services/ai-data-curation" },
-        { name: "Cloud Transformation", href: "/services/cloud-transformation" },
-        { name: "Network Operations Center", href: "/services/noc" }
+        { name: "AI Data Curation", href: "/ai-data-curation" },
+        { name: "Cloud Transformation", href: "/cloud-transformation" },
+        { name: "Network Operations Center", href: "/noc" }
       ]
     }
   ];
