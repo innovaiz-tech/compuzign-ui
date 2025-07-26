@@ -224,8 +224,10 @@ export default function RansomwareResponse() {
                     size="lg"
                     className="group bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-green-600/25 animate-pulse w-full sm:w-auto"
                   >
-                    <HiPhone className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
-                    +1 (904) 685-2138
+                    <a href="tel:+19046852138" className="flex items-center">
+                      <HiPhone className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+                      +1 (904) 685-2138
+                    </a>
                   </Button>
                   
                   <Button 
@@ -566,8 +568,10 @@ export default function RansomwareResponse() {
                 size="xl"
                 className="group bg-red-500 hover:bg-red-600 text-white px-8 sm:px-12 py-4 sm:py-6 text-lg sm:text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-600/25 animate-pulse w-full sm:w-auto"
               >
-                <HiPhone className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
-                +1 (904) 685-2138
+                <a href="tel:+19046852138" className="flex items-center">
+                  <HiPhone className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+                  +1 (904) 685-2138
+                </a>
               </Button>
 
               <Button 

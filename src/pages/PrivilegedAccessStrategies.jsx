@@ -638,8 +638,13 @@ export default function PrivilegedAccessStrategies() {
             {/* Contact Info */}
             <div className="flex flex-col sm:flex-row justify-center items-center gap-8 text-gray-400">
               <div className="flex items-center">
-                <HiPhone className="w-6 h-6 text-primary-bgYellow mr-3" />
-                <span className="text-lg">+1 (214) 269-1314</span>
+                <a href="tel:+19046852138" className="flex items-center">
+                  <HiPhone className="w-6 h-6 text-primary-bgYellow mr-3" />
+                  <div>
+                    <span className="text-lg">+1 (904) 685-2138</span>
+                    <div className="text-sm text-gray-400">Call us directly</div>
+                  </div>
+                </a>
               </div>
               <div className="flex items-center">
                 <HiGlobe className="w-6 h-6 text-primary-bgYellow mr-3" />
