@@ -511,32 +511,32 @@ export default function SecurityOperationsCenter() {
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-6">
               Your 24/7 Cybersecurity Shield
             </h2>
-            <h3 className="text-2xl lg:text-3xl font-bold text-green-600 mb-6">
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
               Why Compuzign's SOC Stands Out
             </h3>
             <p className="text-xl text-gray-800 max-w-4xl mx-auto">
               We deliver more than monitoring - we provide security confidence:
             </p>
-            <p className="text-lg text-green-600 font-semibold mt-4">
+            <p className="text-lg text-gray-800 font-semibold mt-4">
               Sleep better knowing our security experts are always on watch.
             </p>
           </motion.div>
 
           {/* Why Choose Grid - Shuttering Animation Cards */}
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4"
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 h-full"
             {...staggerChildren}
           >
             {whyChooseData.map((item, index) => (
               <motion.div
                 key={index}
-                className="group relative"
+                className="group relative h-full"
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border-r border-b border-gray-100 h-full relative overflow-hidden">
+                <div className="bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border-r border-b border-gray-100 h-full min-h-[340px] relative overflow-hidden flex flex-col justify-between">
                   {/* Icon and Heading Container - Visible by default, hidden on hover */}
-                  <div className="relative z-30 transition-all duration-500 group-hover:opacity-0 group-hover:scale-95">
+                  <div className="relative z-30 transition-all duration-500 group-hover:opacity-0 group-hover:scale-95 h-full flex flex-col justify-center">
                     {/* Icon Container */}
                     <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl mx-auto mt-8 mb-4">
                       <item.icon className="w-8 h-8 text-white" />
@@ -547,7 +547,7 @@ export default function SecurityOperationsCenter() {
                   </div>
                   
                   {/* Description - Hidden by default, revealed on hover */}
-                  <div className="absolute inset-0 bg-white group-hover:bg-green-50 transition-all duration-500 opacity-0 group-hover:opacity-100">
+                  <div className="absolute inset-0 bg-white group-hover:bg-green-50 transition-all duration-500 opacity-0 group-hover:opacity-100 h-full flex flex-col justify-center">
                     <div className="flex flex-col items-center justify-center h-full px-6">
                       {/* Shuttering Animation Container */}
                       <div className="relative w-full h-full flex items-center justify-center">
@@ -725,9 +725,9 @@ export default function SecurityOperationsCenter() {
         <div className="container mx-auto px-6 lg:px-8 max-w-4xl relative z-10">
           <motion.div className="text-center" {...fadeInUp}>
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6">
-              Ready for Unbreakable Security?
+              Ready for <span className="text-yellow-400">Unbreakable Security</span>?
             </h2>
-            <h3 className="text-2xl lg:text-3xl font-bold text-red-400 mb-8">
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-300 mb-8">
               Experience the Compuzign Difference - Where AI meets elite security expertise to keep your business protected against today's sophisticated threats.
             </h3>
             

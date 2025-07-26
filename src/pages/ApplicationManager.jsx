@@ -546,29 +546,47 @@ export default function ApplicationManager() {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className={`relative p-8 rounded-2xl bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 ${
-                  index === activeFeature ? 'ring-2 ring-primary-bgYellow shadow-primary-bgYellow/20' : ''
-                }`}
-                whileHover={{ 
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                tabIndex={0}
+                className={`relative p-8 rounded-2xl bg-gray-800/80 backdrop-blur-sm border transition-all duration-100 focus:outline-none`}
+                initial={false}
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: '0 0 0 4px #3b82f633, 0 25px 50px -12px rgba(0,0,0,0.25)',
+                  borderColor: '#3b82f6',
                 }}
+                whileFocus={{
+                  scale: 1.02,
+                  boxShadow: '0 0 0 4px #3b82f633, 0 25px 50px -12px rgba(0,0,0,0.25)',
+                  borderColor: '#3b82f6',
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                style={{ borderColor: '#a3a3a3' }}
               >
                 {/* Gradient border effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary-bgYellow/20 via-yellow-400/20 to-primary-bgYellow/20 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                
+                <motion.div
+                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary-bgYellow/20 via-yellow-400/20 to-primary-bgYellow/20 pointer-events-none"
+                  initial={{ opacity: 0, scale: 1 }}
+                  whileHover={{ opacity: 1, scale: 1.04 }}
+                  whileFocus={{ opacity: 1, scale: 1.04 }}
+                  transition={{ duration: 0.4 }}
+                  style={{ zIndex: 1 }}
+                ></motion.div>
                 <div className="relative z-10">
-                  <div 
+                  <motion.div
                     className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6 mx-auto shadow-lg"
-                    style={{ 
+                    style={{
                       background: `linear-gradient(135deg, ${feature.color}20, ${feature.color}40)`,
-                      border: `1px solid ${feature.color}30`
+                      border: `1px solid ${feature.color}30`,
                     }}
+                    whileHover={{ scale: 1.12, boxShadow: `0 0 16px 2px ${feature.color}55` }}
+                    whileFocus={{ scale: 1.12, boxShadow: `0 0 16px 2px ${feature.color}55` }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   >
-                    <feature.icon 
+                    <feature.icon
                       className="w-10 h-10"
                       style={{ color: feature.color }}
                     />
-                  </div>
+                  </motion.div>
                   <h3 className="text-2xl font-bold text-white mb-4 text-center">
                     {feature.title}
                   </h3>
@@ -745,13 +763,6 @@ export default function ApplicationManager() {
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                 }}
               >
-                {/* Hover background effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ scale: 0.8 }}
-                  whileHover={{ scale: 1 }}
-                />
-                
                 <div className="relative z-10">
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-yellow-400/25">
                     <item.icon className="w-8 h-8 text-black" />
@@ -843,13 +854,6 @@ export default function ApplicationManager() {
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                 }}
               >
-                {/* Hover background effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-                  initial={{ scale: 0.8 }}
-                  whileHover={{ scale: 1 }}
-                />
-                
                 <div className="relative z-10">
                   <div 
                     className="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg"
@@ -956,13 +960,6 @@ export default function ApplicationManager() {
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                 }}
               >
-                {/* Hover background effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ scale: 0.8 }}
-                  whileHover={{ scale: 1 }}
-                />
-                
                 <div className="relative z-10">
                   <div 
                     className="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg"

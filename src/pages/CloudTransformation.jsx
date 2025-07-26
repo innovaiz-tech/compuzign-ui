@@ -481,14 +481,21 @@ export default function CloudTransformation() {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className={`relative p-8 rounded-2xl bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
-                  index === activeFeature ? 'ring-2 ring-blue-500 shadow-blue-500/20' : ''
-                }`}
-                whileHover={{ 
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                tabIndex={0}
+                className="relative p-8 rounded-2xl bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 transition-all duration-100 focus:outline-none"
+                initial={false}
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: '0 0 0 4px #3b82f633, 0 25px 50px -12px rgba(0,0,0,0.25)',
+                  borderColor: '#3b82f6',
                 }}
+                whileFocus={{
+                  scale: 1.02,
+                  boxShadow: '0 0 0 4px #3b82f633, 0 25px 50px -12px rgba(0,0,0,0.25)',
+                  borderColor: '#3b82f6',
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 via-blue-400/20 to-blue-500/20 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                 
                 <div className="relative z-10 flex items-center space-x-6">
                   <div 
@@ -667,12 +674,6 @@ export default function CloudTransformation() {
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                 }}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-                  initial={{ scale: 0.8 }}
-                  whileHover={{ scale: 1 }}
-                />
-                
                 <div className="relative z-10">
                   <div 
                     className="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg"
@@ -773,12 +774,6 @@ export default function CloudTransformation() {
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                 }}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ scale: 0.8 }}
-                  whileHover={{ scale: 1 }}
-                />
-                
                 <div className="relative z-10">
                   <div 
                     className="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg"
@@ -882,12 +877,6 @@ export default function CloudTransformation() {
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                 }}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ scale: 0.8 }}
-                  whileHover={{ scale: 1 }}
-                />
-                
                 <div className="relative z-10">
                   <div 
                     className="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg"
