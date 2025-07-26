@@ -26,23 +26,29 @@ const ServicesMegaMenu = ({ onClose }) => {
 
   // Close menu when clicking outside and manage body scroll
   useEffect(() => {
+    // Prevent background scroll when menu is open
+    document.body.style.overflow = 'hidden';
+
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         onClose();
       }
     };
 
-    // Prevent background scroll when menu is open
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
 
     document.addEventListener('mousedown', handleClickOutside);
-    
-    // Cleanup function
+    document.addEventListener('keydown', handleEscape);
+
+    // Cleanup function to restore body scroll
     return () => {
+      document.body.style.overflow = '';
       document.removeEventListener('mousedown', handleClickOutside);
-      // Restore original overflow when menu closes
-      document.body.style.overflow = originalOverflow;
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [onClose]);
 
@@ -175,7 +181,7 @@ const ServicesMegaMenu = ({ onClose }) => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200/50">
           {/* Scrollable Container */}
-          <div className="max-h-[80vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400">
+          <div className="max-h-[80vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400">
             <div className="px-6 py-4">
               {/* Desktop: Two-column layout, Mobile: Stacked */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">

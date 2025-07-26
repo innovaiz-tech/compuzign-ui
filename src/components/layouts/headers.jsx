@@ -32,6 +32,7 @@ import {
   HiSparkles
 } from 'react-icons/hi';
 import Button from '../common/button';
+import ServicesMegaMenu from '../ui/ServicesMegaMenu';
 
 export default function Headers() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -111,6 +112,7 @@ export default function Headers() {
         {
           title: 'Mobility Management',
           description: 'Seamless migration and transformation solutions',
+          href: '/mobility-management',
           items: [
             {
               name: 'Storage Migration',
@@ -135,6 +137,7 @@ export default function Headers() {
         {
           title: 'Cyber Resilience',
           description: 'Advanced security and threat protection',
+          href: '/cyber-resilience',
           items: [
             {
               name: 'Cyber Recovery & Monitoring',
@@ -177,6 +180,7 @@ export default function Headers() {
         {
           title: 'Managed Services',
           description: 'Comprehensive IT operations support',
+          href: '/managed-services',
           items: [
             {
               name: 'Application Manager',
@@ -188,55 +192,56 @@ export default function Headers() {
               name: 'Cloud Transformation',
               description: 'End-to-end cloud adoption',
               icon: HiCubeTransparent,
-              href: '/services/cloud-transformation'
+              href: '/cloud-transformation'
             },
             {
               name: 'Monitoring & Automation',
               description: 'Automated infrastructure monitoring',
               icon: HiChartBar,
-              href: '/services/monitoring-automation'
+              href: '/monitoring-automation'
             },
             {
               name: 'Network Operation Centre',
               description: 'Infrastructure monitoring & support',
               icon: HiDesktopComputer,
-              href: '/services/noc'
+              href: '/noc'
             },
             {
               name: 'Security Operations Center',
               description: '24/7 security monitoring and response',
               icon: HiEye,
-              href: '/services/soc'
+              href: '/soc'
             }
           ]
         },
         {
           title: 'Data-Driven Consulting',
           description: 'Strategic IT consulting and optimization',
+          href: '/data-driven-consulting',
           items: [
             {
               name: 'AI Infrastructure and HPC Assessment',
               description: 'High-performance computing solutions',
               icon: HiSparkles,
-              href: '/services/ai-infrastructure'
+              href: '/ai-infrastructure'
             },
             {
               name: 'Application Modernization and Orchestration',
               description: 'Legacy system modernization',
               icon: HiRefresh,
-              href: '/services/app-modernization'
+              href: '/app-modernization'
             },
             {
               name: 'Automation',
               description: 'Process automation and optimization',
               icon: HiCog,
-              href: '/services/automation'
+              href: '/automation'
             },
             {
               name: 'Cost Optimization',
               description: 'Reduce IT operational costs',
               icon: HiCurrencyDollar,
-              href: '/services/cost-optimization'
+              href: '/cost-optimization'
             }
           ]
         }
@@ -247,6 +252,13 @@ export default function Headers() {
         icon: HiUsers,
         href: '/raas',
         badge: 'Popular'
+      },
+      featured2: {
+        title: 'Support as a Service (SaaS)',
+        description: 'Comprehensive support solutions for seamless IT operations and business continuity',
+        icon: HiSupport,
+        href: '/support-as-a-service',
+        badge: 'Primary'
       }
     },
     resources: {
@@ -260,12 +272,6 @@ export default function Headers() {
               description: 'Customer success stories',
               icon: HiTrendingUp,
               href: '/case-studies'
-            },
-            {
-              name: 'Whitepapers',
-              description: 'Industry insights and research',
-              icon: HiBookOpen,
-              href: '/whitepapers'
             }
           ]
         },
@@ -277,12 +283,6 @@ export default function Headers() {
               description: 'Join our growing team',
               icon: HiUsers,
               href: '/careers'
-            },
-            {
-              name: 'Company Culture',
-              description: 'Learn about our values',
-              icon: HiOfficeBuilding,
-              href: '/culture'
             }
           ]
         },
@@ -317,7 +317,6 @@ export default function Headers() {
     { name: 'About Us', href: '/about-us' },
     { name: 'Services', key: 'services' },
     { name: 'Resources', key: 'resources' },
-    { name: 'Contact Us', href: '/contact-us' },
     { name: 'Partners', href: '/partners' }
   ];
 
@@ -387,9 +386,11 @@ export default function Headers() {
             
             {/* CTA Buttons */}
             <div className="flex items-center space-x-3 ml-6" onMouseEnter={() => setActiveMegaMenu(null)}>
-              <Button variant="primary" size="sm">
-                Get Started
-              </Button>
+              <Link to="/contact">
+                <Button variant="primary" size="sm">
+                  Contact Us
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -414,7 +415,11 @@ export default function Headers() {
 
       {/* Mega Menu Content */}
       <AnimatePresence>
-        {activeMegaMenu && megaMenuData[activeMegaMenu] && (
+        {activeMegaMenu === 'services' && (
+          <ServicesMegaMenu onClose={closeMegaMenu} />
+        )}
+        
+        {activeMegaMenu === 'resources' && megaMenuData[activeMegaMenu] && (
           <div className="absolute top-full left-0 right-0 z-[9998] mt-2 overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
@@ -426,98 +431,41 @@ export default function Headers() {
                 onMouseLeave={closeMegaMenu}
               >
                 <div className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200/50 p-4 sm:p-6 lg:p-8 max-h-[80vh] overflow-y-auto relative">
-                  {/* Featured Section - Moved to Top */}
-                  {megaMenuData[activeMegaMenu].featured && (
-                    <div className="mb-6 lg:mb-8 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-600/50 backdrop-blur-md hover:backdrop-blur-lg hover:shadow-2xl hover:border-slate-500/70 hover:scale-[1.01] hover:from-slate-700 hover:to-slate-800 transition-all duration-300 ease-out relative overflow-hidden group shadow-lg">
-                        {/* Glassmorphic shimmer effect for featured section */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
-                        
-                        <div className="flex items-center space-x-3 mb-3 relative z-10">
-                          {(() => {
-                            const IconComponent = megaMenuData[activeMegaMenu].featured.icon;
-                            return <IconComponent className="w-6 h-6 text-yellow-400 group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />;
-                          })()}
-                          {megaMenuData[activeMegaMenu].featured.badge && (
-                            <span className="px-3 py-1 text-sm font-semibold bg-primary-bgYellow text-slate-900 rounded-full group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
-                              {megaMenuData[activeMegaMenu].featured.badge}
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="text-lg font-bold text-white mb-2 relative z-10 group-hover:text-primary-bgYellow transition-colors duration-300">
-                          {megaMenuData[activeMegaMenu].featured.title}
-                        </h3>
-                        <p className="text-sm font-medium text-gray-100 sm:text-gray-200 mb-4 leading-relaxed relative z-10 group-hover:text-white transition-colors duration-300">
-                          {megaMenuData[activeMegaMenu].featured.description}
-                        </p>
-                        <Link
-                          to={megaMenuData[activeMegaMenu].featured.href}
-                          className="inline-flex items-center text-sm font-medium text-primary-bgYellow hover:text-yellow-300 hover:underline hover:scale-105 transition-all duration-300 relative z-10"
-                          onClick={closeMegaMenu}
-                        >
-                          Learn more →
-                        </Link>
-                    </div>
-                  )}
-
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-                {megaMenuData[activeMegaMenu].sections.map((section, index) => (
-                  <div key={index} className="space-y-4">
-                    <div>
-                      {section.title === 'Data-Driven Consulting' ? (
-                        <Link
-                          to="/data-driven-consulting"
-                          className="group block mb-3 hover:bg-gradient-to-br hover:from-primary-bgYellow/5 hover:to-primary-bgYellow/10 rounded-lg p-2 -m-2 transition-all duration-200"
-                          onClick={closeMegaMenu}
-                        >
-                          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider group-hover:text-primary-bgYellow transition-colors duration-200 mb-1">
+                    {megaMenuData[activeMegaMenu].sections.map((section, index) => (
+                      <div key={index} className="space-y-4">
+                        <div>
+                          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3">
                             {section.title}
                           </h3>
-                          {section.description && (
-                            <p className="text-sm text-gray-500 group-hover:text-gray-700 transition-colors duration-200">
-                              {section.description}
-                            </p>
-                          )}
-                        </Link>
-                      ) : (
-                        <>
-                          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-2">
-                            {section.title}
-                          </h3>
-                          {section.description && (
-                            <p className="text-sm text-gray-500 mb-3">
-                              {section.description}
-                            </p>
-                          )}
-                        </>
-                      )}
-                    </div>
-                    <div className="space-y-2">
-                      {section.items.map((item, itemIndex) => (
-                        <Link
-                          key={itemIndex}
-                          to={item.href}
-                          className="group flex items-start space-x-3 p-3 rounded-xl border border-transparent hover:bg-gradient-to-br hover:from-white/20 hover:to-white/10 hover:backdrop-blur-md hover:shadow-2xl hover:border-white/30 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ease-out relative overflow-hidden"
-                          onClick={closeMegaMenu}
-                        >
-                          {/* Glassmorphic shimmer effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-                          
-                          <div className="flex-shrink-0 relative z-10">
-                            <item.icon className="w-5 h-5 text-yellow-500 group-hover:text-yellow-400 group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />
-                          </div>
-                          <div className="flex-1 min-w-0 relative z-10">
-                            <h4 className="text-sm font-medium text-gray-900 group-hover:text-gray-800 group-hover:font-semibold mb-1 transition-all duration-300">
-                              {item.name}
-                            </h4>
-                            <p className="text-sm text-gray-500 group-hover:text-gray-600 line-clamp-2 transition-colors duration-300">
-                              {item.description}
-                            </p>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                        </div>
+                        <div className="space-y-2">
+                          {section.items.map((item, itemIndex) => (
+                            <Link
+                              key={itemIndex}
+                              to={item.href}
+                              className="group flex items-start space-x-3 p-3 rounded-xl border border-transparent hover:bg-gradient-to-br hover:from-white/20 hover:to-white/10 hover:backdrop-blur-md hover:shadow-2xl hover:border-white/30 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ease-out relative overflow-hidden"
+                              onClick={closeMegaMenu}
+                            >
+                              {/* Glassmorphic shimmer effect */}
+                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+                              
+                              <div className="flex-shrink-0 relative z-10">
+                                <item.icon className="w-5 h-5 text-yellow-500 group-hover:text-yellow-400 group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />
+                              </div>
+                              <div className="flex-1 min-w-0 relative z-10">
+                                <h4 className="text-sm font-medium text-gray-900 group-hover:text-gray-800 group-hover:font-semibold mb-1 transition-all duration-300">
+                                  {item.name}
+                                </h4>
+                                <p className="text-sm text-gray-500 group-hover:text-gray-600 line-clamp-2 transition-colors duration-300">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </motion.div>
@@ -591,17 +539,19 @@ export default function Headers() {
               
               {/* CTA Buttons */}
               <div className="pt-4 border-t border-gray-200">
-                <Button 
-                  variant="primary" 
-                  size="md" 
-                  className="w-full"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Get Started
-                </Button>
+                <Link to="/contact">
+                  <Button 
+                    variant="primary" 
+                    size="md" 
+                    className="w-full"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Button>
+                </Link>
               </div>
             </div>
-          </div>
+            </div>
         </>
       )}
     </header>

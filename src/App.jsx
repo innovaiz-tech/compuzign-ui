@@ -23,6 +23,9 @@ import CloudTransformation from "./pages/CloudTransformation";
 import MonitoringAutomation from "./pages/MonitoringAutomation";
 import NetworkOperationsCenter from "./pages/NetworkOperationsCenter";
 import SecurityOperationsCenter from "./pages/SecurityOperationsCenter";
+import CyberResilience from "./pages/CyberResilience";
+import MobilityManagement from "./pages/MobilityManagement";
+import ManagedServices from "./pages/ManagedServices";
 
 function App() {
   const router = createBrowserRouter(
@@ -42,15 +45,18 @@ function App() {
         <Route path='/compute-migration' element={<ComputeMigration />} />
         <Route path='/cloud-migration' element={<CloudMigration />} />
         <Route path='/application-manager' element={<ApplicationManager />} />
-        <Route path='/services/application-programmer' element={<ApplicationManager />} />
-        <Route path='/services/ai-infrastructure' element={<AIInfrastructureHPC />} />
-        <Route path='/services/app-modernization' element={<ApplicationModernization />} />
-        <Route path='/services/automation' element={<IntelligentAutomation />} />
-        <Route path='/services/cost-optimization' element={<CostOptimization />} />
-        <Route path='/services/cloud-transformation' element={<CloudTransformation />} />
-        <Route path='/services/monitoring-automation' element={<MonitoringAutomation />} />
-        <Route path='/services/noc' element={<NetworkOperationsCenter />} />
-        <Route path='/services/soc' element={<SecurityOperationsCenter />} />
+        <Route path='/application-manager' element={<ApplicationManager />} />
+        <Route path='/ai-infrastructure' element={<AIInfrastructureHPC />} />
+        <Route path='/app-modernization' element={<ApplicationModernization />} />
+        <Route path='/automation' element={<IntelligentAutomation />} />
+        <Route path='/cost-optimization' element={<CostOptimization />} />
+        <Route path='/cloud-transformation' element={<CloudTransformation />} />
+        <Route path='/monitoring-automation' element={<MonitoringAutomation />} />
+        <Route path='/noc' element={<NetworkOperationsCenter />} />
+        <Route path='/soc' element={<SecurityOperationsCenter />} />
+        <Route path='/cyber-resilience' element={<CyberResilience />} />
+        <Route path='/mobility-management' element={<MobilityManagement />} />
+        <Route path='/managed-services' element={<ManagedServices />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
