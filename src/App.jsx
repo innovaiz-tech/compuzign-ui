@@ -26,6 +26,7 @@ import SecurityOperationsCenter from "./pages/SecurityOperationsCenter";
 import CyberResilience from "./pages/CyberResilience";
 import MobilityManagement from "./pages/MobilityManagement";
 import ManagedServices from "./pages/ManagedServices";
+import Contact from "./pages/Contact";
 
 function App() {
   const router = createBrowserRouter(
@@ -57,6 +58,7 @@ function App() {
         <Route path='/cyber-resilience' element={<CyberResilience />} />
         <Route path='/mobility-management' element={<MobilityManagement />} />
         <Route path='/managed-services' element={<ManagedServices />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
