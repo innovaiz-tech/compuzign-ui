@@ -15,9 +15,14 @@ import JobDetail from "./pages/JobDetail";
 import ComputeMigration from "./pages/ComputeMigration";
 import CloudMigration from "./pages/CloudMigration";
 import AIInfrastructureHPC from "./pages/AIInfrastructureHPC";
+import ApplicationManager from "./pages/ApplicationManager";
 import ApplicationModernization from "./pages/ApplicationModernization";
 import IntelligentAutomation from "./pages/IntelligentAutomation";
 import CostOptimization from "./pages/CostOptimization";
+import CloudTransformation from "./pages/CloudTransformation";
+import MonitoringAutomation from "./pages/MonitoringAutomation";
+import NetworkOperationsCenter from "./pages/NetworkOperationsCenter";
+import SecurityOperationsCenter from "./pages/SecurityOperationsCenter";
 
 function App() {
   const router = createBrowserRouter(
@@ -36,10 +41,16 @@ function App() {
         <Route path='/careers/:jobId' element={<JobDetail />} />
         <Route path='/compute-migration' element={<ComputeMigration />} />
         <Route path='/cloud-migration' element={<CloudMigration />} />
+        <Route path='/application-manager' element={<ApplicationManager />} />
+        <Route path='/services/application-programmer' element={<ApplicationManager />} />
         <Route path='/services/ai-infrastructure' element={<AIInfrastructureHPC />} />
         <Route path='/services/app-modernization' element={<ApplicationModernization />} />
         <Route path='/services/automation' element={<IntelligentAutomation />} />
         <Route path='/services/cost-optimization' element={<CostOptimization />} />
+        <Route path='/services/cloud-transformation' element={<CloudTransformation />} />
+        <Route path='/services/monitoring-automation' element={<MonitoringAutomation />} />
+        <Route path='/services/noc' element={<NetworkOperationsCenter />} />
+        <Route path='/services/soc' element={<SecurityOperationsCenter />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
