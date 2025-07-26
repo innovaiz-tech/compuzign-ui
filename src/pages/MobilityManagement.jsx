@@ -1028,8 +1028,10 @@ export default function MobilityManagement() {
                 to="/contact"
                 className="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-all duration-300 hover:shadow-lg hover:shadow-white/25 flex items-center justify-center"
               >
-                <HiPhone className="w-5 h-5 mr-2" />
-                Talk to Migration Experts
+                <a href="tel:+19046852138" className="flex items-center">
+                  <HiPhone className="w-5 h-5 mr-2" />
+                  Talk to Migration Experts
+                </a>
               </Link>
             </div>
           </motion.div>
