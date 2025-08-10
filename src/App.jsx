@@ -26,14 +26,21 @@ import SecurityOperationsCenter from "./pages/SecurityOperationsCenter";
 import CyberResilience from "./pages/CyberResilience";
 import MobilityManagement from "./pages/MobilityManagement";
 import ManagedServices from "./pages/ManagedServices";
+import Contact from "./pages/Contact";
 import RaaS from "./pages/RaaS";
 import SupportAsAService from "./pages/SupportAsAService";
+import Partner from "./pages/Partner";
+import CaseStudies from "./pages/CaseStudies";
+import CaseStudyDetail from "./pages/CaseStudyDetail";
+import About from "./pages/About";
+import OurLeaders from "./pages/OurLeaders";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RootLayouts />}>
         <Route index element={<Home />} />
+        <Route path='/about-us' element={<About />} />
         <Route path='/cyber-recovery-monitoring' element={<CyberRecoveryMonitoring />} />
         <Route path='/extended-threat-detection' element={<ExtendedThreatDetection />} />
         <Route path='/disaster-recovery-business-continuity' element={<DisasterRecovery />} />
@@ -58,8 +65,13 @@ function App() {
         <Route path='/cyber-resilience' element={<CyberResilience />} />
         <Route path='/mobility-management' element={<MobilityManagement />} />
         <Route path='/managed-services' element={<ManagedServices />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path='/raas' element={<RaaS />} />
         <Route path='/support-as-a-service' element={<SupportAsAService />} />
+        <Route path='/partners' element={<Partner />} />
+        <Route path='/case-studies' element={<CaseStudies />} />
+        <Route path='/case-studies/:slug' element={<CaseStudyDetail />} />
+        <Route path='/our-leaders' element={<OurLeaders />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),
