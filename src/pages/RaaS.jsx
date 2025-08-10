@@ -258,8 +258,10 @@ export default function RaaS() {
               size="lg"
               className="bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-semibold px-8 py-4 text-lg"
             >
-              Get Started Today
-              <HiArrowRight className="ml-2 w-5 h-5" />
+              <Link to="/contact" className="flex items-center">
+                Get Started Today
+                <HiArrowRight className="ml-2 w-5 h-5" />
+              </Link>
             </Button>
           </motion.div>
 
@@ -512,10 +514,10 @@ export default function RaaS() {
             <p className="text-gray-400 mb-6">
               Don't see the exact role you need? We have access to a broader network of professionals.
             </p>
-            <button className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold rounded-xl hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-yellow-400/25 flex items-center mx-auto">
+            <Link to="/case-studies" className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold rounded-xl hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-yellow-400/25 mx-auto">
               <HiUsers className="w-5 h-5 mr-2" />
-              Request Custom Talent
-            </button>
+              View Case Studies
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -556,14 +558,6 @@ export default function RaaS() {
                   <HiPhone className="mr-2 w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                   Schedule Consultation
                 </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg"
-              >
-                View Case Studies
-                <HiArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </div>
 

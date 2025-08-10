@@ -903,6 +903,7 @@ export default function MobilityManagement() {
                 result: "Zero downtime migration of 500+ servers",
                 metric: "100% Uptime",
                 industry: "Financial Services",
+                slug: "global-financial-services-uptime",
               },
               {
                 company: "Healthcare Network",
@@ -910,6 +911,7 @@ export default function MobilityManagement() {
                 result: "Reduced infrastructure costs by 60%",
                 metric: "60% Cost Savings",
                 industry: "Healthcare",
+                slug: "healthcare-network-cost-savings",
               },
               {
                 company: "Manufacturing Giant",
@@ -917,6 +919,7 @@ export default function MobilityManagement() {
                 result: "Improved performance by 3x",
                 metric: "3x Performance",
                 industry: "Manufacturing",
+                slug: "manufacturing-giant-performance",
               },
             ].map((story, index) => (
               <motion.div
@@ -946,13 +949,13 @@ export default function MobilityManagement() {
                   </div>
 
                   <div className="pt-4 border-t border-gray-700/50">
-                    <div className="flex items-center text-primary-bgYellow font-medium">
+                    <Link to={`/case-studies/${story.slug}`} className="flex items-center text-primary-bgYellow font-medium">
                       <span>View Case Study</span>
                       <HiArrowRight
                         size={16}
                         className="ml-2 group-hover:translate-x-1 transition-transform"
                       />
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </motion.div>

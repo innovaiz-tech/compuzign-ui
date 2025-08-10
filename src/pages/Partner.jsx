@@ -18,6 +18,7 @@ import {
 } from 'react-icons/hi';
 import Button from '../components/common/button';
 import partnerHeroBg from '../assets/partner-image.jpg';
+import partnerBanner from '../assets/partner-banner.png';
 
 // Import cloud vendor logos
 import awsLogo from '../assets/compute-assets/aws-2.svg';
@@ -202,14 +203,20 @@ export default function Partner() {
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
       <section
-        className="relative bg-cover bg-center bg-no-repeat h-[90vh] flex items-center justify-center text-white px-6 transition-all duration-700 ease-in-out overflow-hidden"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1950&q=80')",
-        }}
+        className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-white px-0 md:px-6 transition-all duration-700 ease-in-out overflow-hidden pt-16 md:pt-20 pb-8 md:pb-16"
       >
+        {/* Background Image - spans full width and covers */}
+        <div className="absolute inset-0 z-0 w-full">
+          <img
+            src={partnerBanner}
+            alt="Partners Banner"
+            className="min-w-[100vw] w-[100vw] h-full object-cover max-w-none"
+          />
+          <div className="absolute inset-0 bg-black/35" />
+        </div>
+
         {/* Animated Background Elements */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-10">
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
@@ -233,7 +240,7 @@ export default function Partner() {
         </div>
 
         <motion.div
-          className={`bg-black/70 backdrop-blur-sm p-8 rounded-2xl shadow-2xl max-w-4xl text-center transform transition duration-1000 ease-out z-10 ${
+          className={`bg-black/70 backdrop-blur-sm p-8 rounded-2xl shadow-2xl max-w-4xl text-center transform transition duration-1000 ease-out z-20 ${
             heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -264,15 +271,7 @@ export default function Partner() {
             Driving Business Success Through Collaborative Technology Solutions
           </motion.p>
           
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={heroVisible ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <Button className="bg-yellow-400 text-black hover:bg-yellow-300 px-8 py-4 text-lg font-semibold">
-              Become a Partner
-            </Button>
-          </motion.div>
+
         </motion.div>
       </section>
 
@@ -595,9 +594,6 @@ export default function Partner() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-black hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
-                Become a Partner
-              </Button>
               <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-semibold">
                 Learn More
               </Button>

@@ -30,7 +30,10 @@ import Contact from "./pages/Contact";
 import RaaS from "./pages/RaaS";
 import SupportAsAService from "./pages/SupportAsAService";
 import Partner from "./pages/Partner";
+import CaseStudies from "./pages/CaseStudies";
+import CaseStudyDetail from "./pages/CaseStudyDetail";
 import About from "./pages/About";
+import OurLeaders from "./pages/OurLeaders";
 
 function App() {
   const router = createBrowserRouter(
@@ -66,6 +69,9 @@ function App() {
         <Route path='/raas' element={<RaaS />} />
         <Route path='/support-as-a-service' element={<SupportAsAService />} />
         <Route path='/partners' element={<Partner />} />
+        <Route path='/case-studies' element={<CaseStudies />} />
+        <Route path='/case-studies/:slug' element={<CaseStudyDetail />} />
+        <Route path='/our-leaders' element={<OurLeaders />} />
         <Route path='*' element={<PageNotFound />} />
       </Route>
     ),

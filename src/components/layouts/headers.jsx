@@ -272,6 +272,12 @@ export default function Headers() {
               description: 'Customer success stories',
               icon: HiTrendingUp,
               href: '/case-studies'
+            },
+            {
+              name: 'Our Leaders',
+              description: 'Meet our executive team',
+              icon: HiUserGroup,
+              href: '/our-leaders'
             }
           ]
         },
@@ -299,7 +305,8 @@ export default function Headers() {
               name: 'Support Center',
               description: '24/7 technical assistance',
               icon: HiSupport,
-              href: '/support'
+              href: 'https://compuzign.atlassian.net/servicedesk/customer/user/login',
+              external: true
             },
             {
               name: 'Partners',
@@ -441,27 +448,53 @@ export default function Headers() {
                         </div>
                         <div className="space-y-2">
                           {section.items.map((item, itemIndex) => (
-                            <Link
-                              key={itemIndex}
-                              to={item.href}
-                              className="group flex items-start space-x-3 p-3 rounded-xl border border-transparent hover:bg-gradient-to-br hover:from-white/20 hover:to-white/10 hover:backdrop-blur-md hover:shadow-2xl hover:border-white/30 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ease-out relative overflow-hidden"
-                              onClick={closeMegaMenu}
-                            >
-                              {/* Glassmorphic shimmer effect */}
-                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-                              
-                              <div className="flex-shrink-0 relative z-10">
-                                <item.icon className="w-5 h-5 text-yellow-500 group-hover:text-yellow-400 group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />
-                              </div>
-                              <div className="flex-1 min-w-0 relative z-10">
-                                <h4 className="text-sm font-medium text-gray-900 group-hover:text-gray-800 group-hover:font-semibold mb-1 transition-all duration-300">
-                                  {item.name}
-                                </h4>
-                                <p className="text-sm text-gray-500 group-hover:text-gray-600 line-clamp-2 transition-colors duration-300">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </Link>
+                            item.external ? (
+                              <a
+                                key={itemIndex}
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex items-start space-x-3 p-3 rounded-xl border border-transparent hover:bg-gradient-to-br hover:from-white/20 hover:to-white/10 hover:backdrop-blur-md hover:shadow-2xl hover:border-white/30 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ease-out relative overflow-hidden"
+                                onClick={closeMegaMenu}
+                              >
+                                {/* Glassmorphic shimmer effect */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+                                
+                                <div className="flex-shrink-0 relative z-10">
+                                  <item.icon className="w-5 h-5 text-yellow-500 group-hover:text-yellow-400 group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />
+                                </div>
+                                <div className="flex-1 min-w-0 relative z-10">
+                                  <h4 className="text-sm font-medium text-gray-900 group-hover:text-gray-800 group-hover:font-semibold mb-1 transition-all duration-300">
+                                    {item.name}
+                                  </h4>
+                                  <p className="text-sm text-gray-500 group-hover:text-gray-600 line-clamp-2 transition-colors duration-300">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </a>
+                            ) : (
+                              <Link
+                                key={itemIndex}
+                                to={item.href}
+                                className="group flex items-start space-x-3 p-3 rounded-xl border border-transparent hover:bg-gradient-to-br hover:from-white/20 hover:to-white/10 hover:backdrop-blur-md hover:shadow-2xl hover:border-white/30 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ease-out relative overflow-hidden"
+                                onClick={closeMegaMenu}
+                              >
+                                {/* Glassmorphic shimmer effect */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
+                                
+                                <div className="flex-shrink-0 relative z-10">
+                                  <item.icon className="w-5 h-5 text-yellow-500 group-hover:text-yellow-400 group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />
+                                </div>
+                                <div className="flex-1 min-w-0 relative z-10">
+                                  <h4 className="text-sm font-medium text-gray-900 group-hover:text-gray-800 group-hover:font-semibold mb-1 transition-all duration-300">
+                                    {item.name}
+                                  </h4>
+                                  <p className="text-sm text-gray-500 group-hover:text-gray-600 line-clamp-2 transition-colors duration-300">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </Link>
+                            )
                           ))}
                         </div>
                       </div>
@@ -510,21 +543,35 @@ export default function Headers() {
                                 {section.title}
                               </h4>
                               {section.items.map((subItem, subIndex) => (
-                                <Link
-                                  key={subIndex}
-                                  to={subItem.href}
-                                  className="flex items-center space-x-3 px-3 py-2 text-sm text-gray-700 hover:text-primary-bgYellow hover:bg-gray-50 rounded-md transition-colors"
-                                  onClick={() => setIsMenuOpen(false)}
-                >
-                                  <subItem.icon className="w-4 h-4 text-yellow-400" />
-                                  <span>{subItem.name}</span>
-                                </Link>
+                                subItem.external ? (
+                                  <a
+                                    key={subIndex}
+                                    href={subItem.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center space-x-3 px-3 py-2 text-sm text-gray-700 hover:text-primary-bgYellow hover:bg-gray-50 rounded-md transition-colors"
+                                    onClick={() => setIsMenuOpen(false)}
+                                  >
+                                    <subItem.icon className="w-4 h-4 text-yellow-400" />
+                                    <span>{subItem.name}</span>
+                                  </a>
+                                ) : (
+                                  <Link
+                                    key={subIndex}
+                                    to={subItem.href}
+                                    className="flex items-center space-x-3 px-3 py-2 text-sm text-gray-700 hover:text-primary-bgYellow hover:bg-gray-50 rounded-md transition-colors"
+                                    onClick={() => setIsMenuOpen(false)}
+                                  >
+                                    <subItem.icon className="w-4 h-4 text-yellow-400" />
+                                    <span>{subItem.name}</span>
+                                  </Link>
+                                )
                               ))}
                             </div>
                           ))}
                         </div>
                       )}
-                    </div>
+                     </div>
                   ) : (
                     <Link
                       to={item.href}
@@ -550,7 +597,7 @@ export default function Headers() {
                   </Button>
                 </Link>
               </div>
-            </div>
+                    </div>
             </div>
         </>
       )}

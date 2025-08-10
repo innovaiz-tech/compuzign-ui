@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { 
   HiCog,
   HiArrowRight,
@@ -255,21 +255,24 @@ export default function ManagedServices() {
       challenge: "Complex multi-location IT infrastructure management",
       solution: "Comprehensive managed services with 24/7 NOC support",
       result: "99.9% uptime achieved with 40% reduction in IT costs",
-      industry: "Healthcare"
+      industry: "Healthcare",
+      slug: "healthcare-provider-managed-services"
     },
     {
       company: "Financial Services Firm",
       challenge: "Security compliance and data protection requirements",
       solution: "Integrated SOC and managed services with AI monitoring",
       result: "100% compliance maintained with zero security incidents",
-      industry: "Finance"
+      industry: "Finance",
+      slug: "finance-zero-incidents"
     },
     {
       company: "Manufacturing Enterprise",
       challenge: "Legacy system modernization and cloud migration",
       solution: "Phased cloud transformation with managed support",
       result: "50% improvement in operational efficiency post-migration",
-      industry: "Manufacturing"
+      industry: "Manufacturing",
+      slug: "manufacturing-operational-efficiency"
     }
   ];
 
@@ -1259,13 +1262,13 @@ export default function ManagedServices() {
                   </div>
 
                   <div className="pt-4 border-t border-gray-700/50">
-                    <div className="flex items-center text-primary-bgYellow font-medium">
+                    <Link to={`/case-studies/${story.slug}`} className="flex items-center text-primary-bgYellow font-medium">
                       <span>View Case Study</span>
                       <HiArrowRight
                         size={16}
                         className="ml-2 group-hover:translate-x-1 transition-transform"
                       />
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </motion.div>

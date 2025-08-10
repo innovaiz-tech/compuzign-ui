@@ -1,5 +1,18 @@
+/*
+README - Asset Requirements:
+- Hero banner: homeBanner (existing asset)
+- Team avatars: team-1.jpg, team-2.jpg, team-3.jpg, team-4.jpg, team-5.jpg, team-6.jpg (600×600px square, 2x retina)
+- Trust logos: logo-1.png, logo-2.png, logo-3.png, logo-4.png (300×100px)
+- World map background: world-map.svg (optional for locations section)
+
+Placeholder content to replace:
+- Team member bios: Replace with actual leadership team information
+- Trust logos: Replace with actual client/partner logos
+- Team member names and titles: Update with real data
+*/
+
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { 
   HiUserGroup, 
   HiTrendingUp, 
@@ -24,32 +37,26 @@ import {
   HiSparkles,
   HiEye,
   HiCloud,
-  HiPhone
+  HiPhone,
+  HiChevronDown,
+  HiChevronLeft,
+  HiChevronRight,
+  HiX
 } from 'react-icons/hi';
 import Button from '../components/common/button';
-import homeBanner from '../assets/home_banner.png';
+import StepTimeline from '../components/ui/StepTimeline';
+import ProcessTimeline from '../components/ui/ProcessTimeline';
+import aboutBanner from '../assets/about-banner.jpg';
 
 export default function About() {
-  const [heroVisible, setHeroVisible] = useState(false);
-  const [missionVisible, setMissionVisible] = useState(false);
-  const [statsVisible, setStatsVisible] = useState(false);
-  const [expertiseVisible, setExpertiseVisible] = useState(false);
-  const [locationsVisible, setLocationsVisible] = useState(false);
-  const [ctaVisible, setCtaVisible] = useState(false);
+  const [activeExpertise, setActiveExpertise] = useState(null);
+  const [activeTeamMember, setActiveTeamMember] = useState(0);
+  const [countersStarted, setCountersStarted] = useState(false);
   
-  const missionRef = useRef(null);
   const statsRef = useRef(null);
-  const expertiseRef = useRef(null);
-  const locationsRef = useRef(null);
-  const ctaRef = useRef(null);
+  const isStatsInView = useInView(statsRef, { once: true });
 
-  // Animation props - Banner animations are immediate, others use viewport
-  const bannerFadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" }
-  };
-
+  // Animation variants
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
@@ -57,49 +64,9 @@ export default function About() {
     transition: { duration: 0.6 }
   };
 
-  const staggerChildren = {
-    initial: { opacity: 0 },
-    whileInView: { opacity: 1 },
-    viewport: { once: true, margin: "-50px" },
-    transition: { 
-      duration: 0.6,
-      staggerChildren: 0.1
-    }
-  };
 
-  // Intersection Observer for animations
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    const heroTimer = setTimeout(() => setHeroVisible(true), 100);
 
-    const observers = [
-      { ref: missionRef, setter: setMissionVisible },
-      { ref: statsRef, setter: setStatsVisible },
-      { ref: expertiseRef, setter: setExpertiseVisible },
-      { ref: locationsRef, setter: setLocationsVisible },
-      { ref: ctaRef, setter: setCtaVisible }
-    ];
-
-    const observerInstances = observers.map(({ ref, setter }) => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setter(true);
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.3 }
-      );
-      if (ref.current) observer.observe(ref.current);
-      return observer;
-    });
-
-    return () => {
-      clearTimeout(heroTimer);
-      observerInstances.forEach(observer => observer.disconnect());
-    };
-  }, []);
-
+  // Data arrays (keeping existing content)
   const stats = [
     { icon: HiStar, number: "25+", label: "Years of Experience", description: "Since 1998" },
     { icon: HiGlobe, number: "3", label: "Countries", description: "Global Presence" },
@@ -107,49 +74,106 @@ export default function About() {
     { icon: HiLightningBolt, number: "1000+", label: "Projects Completed", description: "Success Stories" }
   ];
 
-  const locations = [
-    {
-      name: "Mandeville, JM",
-      type: "Primary",
-      mapUrl: "https://www.bing.com/maps?where=Mandeville+JM&trk=org-locations_url",
-      description: "Headquarters"
-    },
-    {
-      name: "Florida, 33304, US",
-      type: "Secondary",
-      mapUrl: "https://www.bing.com/maps?where=Florida+33304+US&trk=org-locations_url",
-      description: "US Operations"
-    },
-    {
-      name: "Hyderabad, IN",
-      type: "Secondary",
-      mapUrl: "https://www.bing.com/maps?where=Hyderabad+IN&trk=org-locations_url",
-      description: "India Operations"
-    }
-  ];
-
   const expertise = [
+    {
+      icon: HiCog,
+      title: "Support as a Service (SaaS)",
+      description: "Comprehensive support operations with ZENfra-powered workflows",
+      details: "24/7 monitoring, incident management, and automated resolution workflows powered by our proprietary ZENfra AI platform."
+    },
+    {
+      icon: HiUsers,
+      title: "Resource as a Service (RaaS)",
+      description: "Flexible talent solutions for cloud, security, data and DevOps",
+      details: "Access to specialized talent pools across cloud architecture, cybersecurity, data engineering, and DevOps practices."
+    },
     {
       icon: HiCloud,
       title: "Cloud Technology",
-      description: "Cutting-edge cloud solutions and migration services"
+      description: "Cutting-edge cloud solutions and managed services",
+      details: "Multi-cloud strategy, infrastructure optimization, and cloud-native application development across AWS, Azure, and GCP."
     },
     {
       icon: HiServer,
       title: "Cloud Migration",
-      description: "Seamless data center and workload transitions"
+      description: "Seamless data center and workload transitions",
+      details: "End-to-end migration services including assessment, planning, execution, and optimization with minimal downtime."
     },
     {
       icon: HiShieldCheck,
       title: "IT Consulting",
-      description: "Strategic technology consulting and planning"
-    },
-    {
-      icon: HiCog,
-      title: "Support as a Service",
-      description: "Comprehensive SaaS and PSaaS solutions"
+      description: "Strategic technology consulting and planning",
+      details: "Technology roadmapping, digital transformation strategies, and IT governance frameworks tailored to your business needs."
     }
   ];
+
+  const locations = [
+    {
+      name: "Mandeville, JM",
+      type: "Primary",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Mandeville%2C+Jamaica",
+      description: "Headquarters",
+      coordinates: { x: 45, y: 65 } // Percentage position on map
+    },
+    {
+      name: "Florida, 33304, US",
+      type: "Secondary",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Fort+Lauderdale%2C+FL+33304%2C+USA",
+      description: "US Operations",
+      coordinates: { x: 25, y: 45 }
+    },
+    {
+      name: "Hyderabad, IN",
+      type: "Secondary",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Hyderabad%2C+Telangana%2C+India",
+      description: "India Operations",
+      coordinates: { x: 75, y: 55 }
+    }
+  ];
+
+  const teamMembers = [
+    {
+      name: "Haniff Tingling",
+      location: "Jamaica",
+      title: "Director of Engineering – Cloud Technologies & SaaS Platform",
+      bio: "With over 25 years of experience in engineering leadership, Haniff specializes in designing and delivering innovative cloud solutions across SaaS platforms. A certified PMP and accredited by Dell, AWS, GCP, and Azure, he brings deep expertise in scalable architectures and enterprise-grade deployments. Beyond technology, Haniff is passionate about cricket and enjoys traveling to experience Formula 1 races worldwide.",
+      image: "/src/assets/team-haniff.jpg"
+    },
+    {
+      name: "Vijay Krishnamoorthy",
+      location: "India",
+      title: "Director of Delivery – Legacy, Cloud, and Application Services (SaaS Platform)",
+      bio: "Vijay brings 25 years of proven expertise in delivering complex legacy, cloud, and application transformation projects. As a strategic leader, he ensures seamless execution from planning to deployment, enabling clients to maximize value from their technology investments. His focus on quality, collaboration, and innovation has driven numerous successful global initiatives.",
+      image: "/src/assets/team-vijay.jpg"
+    }
+  ];
+
+  const trustLogos = [
+    { name: "AWS", image: "/src/assets/logo-1.png" },
+    { name: "Microsoft", image: "/src/assets/logo-2.png" },
+    { name: "Google Cloud", image: "/src/assets/logo-3.png" },
+    { name: "Cisco", image: "/src/assets/logo-4.png" }
+  ];
+
+  // Auto-rotate team carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTeamMember((prev) => (prev + 1) % teamMembers.length);
+    }, 6000); // Increased interval for better reading time
+    return () => clearInterval(interval);
+  }, [teamMembers.length]);
+
+  // Counter animation trigger
+  useEffect(() => {
+    if (isStatsInView && !countersStarted) {
+      setCountersStarted(true);
+    }
+  }, [isStatsInView, countersStarted]);
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white relative overflow-hidden">
@@ -162,119 +186,188 @@ export default function About() {
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]"></div>
       </div>
 
-      {/* Hero Section - Updated to match RaaS style */}
-      <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-16 pb-8 md:pt-20 md:pb-16">
-        {/* Background Image */}
+      {/* Hero Section - Left-aligned layout */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 pb-8 md:pt-20 md:pb-16">
+        {/* Background Image with Animated Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src={homeBanner} 
+            src={aboutBanner} 
             alt="About Us Banner" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-800/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-800/70 to-slate-900/40"></div>
+          
+          {/* Animated Particles */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-yellow-400/30 rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [-20, -40, -20],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2,
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Hero Content */}
-        <motion.div 
-          className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-5xl py-8 md:py-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <motion.div className="mb-8">
-            <motion.span 
-              className="inline-block px-4 py-2 bg-primary-bgYellow text-slate-900 text-sm font-semibold rounded-full mb-6"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            >
-              About CompuZign
-            </motion.span>
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             
-            <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            {/* Left Column - Content */}
+            <motion.div 
+              className="text-center lg:text-left"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Let's Innovate
-              <span className="text-primary-bgYellow block">Together</span>
-            </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
-            >
-              Building the Future with Expertise and Innovation. Empowering businesses by providing seamless, 
-              reliable IT services that enhance productivity, streamline operations, and foster growth.
-            </motion.p>
-          </motion.div>
-
-          {/* Enhanced Key Features */}
-          <motion.div 
-            className="flex flex-wrap gap-4 justify-center mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
-          >
-            {[
-              { name: "25+ Years Experience", icon: HiStar },
-              { name: "Global Presence", icon: HiGlobe },
-              { name: "Innovation Focus", icon: HiLightningBolt }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg"
-                whileHover={{ 
-                  scale: 1.05, 
-                  backgroundColor: 'rgba(255, 218, 23, 0.2)',
-                  borderColor: '#ffda17'
-                }}
-                transition={{ duration: 0.2 }}
+              <motion.span 
+                className="inline-block px-4 py-2 bg-primary-bgYellow text-slate-900 text-sm font-semibold rounded-full mb-6"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <feature.icon className="w-4 h-4 text-primary-bgYellow mr-2" />
-                <span className="text-primary-bgYellow font-bold text-sm">{feature.name}</span>
-              </motion.div>
-            ))}
-          </motion.div>
+                About CompuZign
+              </motion.span>
+              
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                Let's Innovate
+                <span className="text-primary-bgYellow block">Together</span>
+              </motion.h1>
+              
+              <motion.p 
+                className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                Building the Future with Expertise and Innovation. Empowering businesses by providing seamless, 
+                reliable IT services that enhance productivity, streamline operations, and foster growth.
+              </motion.p>
 
-          {/* Enhanced CTA Buttons */}
+              {/* Mobile Feature Chips */}
+              <motion.div 
+                className="flex flex-wrap gap-3 justify-center lg:hidden mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
+              >
+                {[
+                  { name: "25+ Years Experience", icon: HiStar },
+                  { name: "Global Presence", icon: HiGlobe },
+                  { name: "Innovation Focus", icon: HiLightningBolt }
+                ].map((feature, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center px-3 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg"
+                  >
+                    <feature.icon className="w-4 h-4 text-primary-bgYellow mr-2" />
+                    <span className="text-primary-bgYellow font-bold text-sm">{feature.name}</span>
+                  </div>
+                ))}
+              </motion.div>
+
+              {/* CTA Buttons */}
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+              >
+                <Button 
+                  variant="primary" 
+                  size="lg"
+                  className="group shadow-2xl hover:shadow-primary-bgYellow/25"
+                  onClick={() => window.location.href = '/contact'}
+                >
+                  Get Started Today
+                  <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                </Button>
+                
+                <Button 
+                  variant="secondary" 
+                  size="lg"
+                  className="group shadow-lg hover:shadow-xl"
+                  onClick={() => window.location.href = '/partners'}
+                >
+                  Learn More
+                  <HiPhone className="ml-2 w-5 h-5" />
+                </Button>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Column - Feature Wheel (Desktop Only) */}
+            <motion.div 
+              className="hidden lg:flex justify-center"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div className="relative">
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 max-w-md">
+                  <h3 className="text-2xl font-bold text-white mb-6 text-center">Why Choose Us</h3>
+                  <div className="space-y-4">
+                    {[
+                      { name: "25+ Years Experience", icon: HiStar, desc: "Since 1998" },
+                      { name: "Global Presence", icon: HiGlobe, desc: "3 Countries" },
+                      { name: "Innovation Focus", icon: HiLightningBolt, desc: "AI-Powered" }
+                    ].map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        className="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors"
+                        whileHover={{ scale: 1.02 }}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.6 + index * 0.1 }}
+                      >
+                        <div className="bg-gradient-to-br from-primary-bgYellow to-yellow-500 rounded-lg p-3 mr-4">
+                          <feature.icon className="w-6 h-6 text-black" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white">{feature.name}</h4>
+                          <p className="text-gray-300 text-sm">{feature.desc}</p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Scroll Down Indicator */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            <Button 
-              variant="primary" 
-              size="lg"
-              className="group shadow-2xl hover:shadow-primary-bgYellow/25"
-              onClick={() => window.location.href = '/contact'}
-            >
-              Get Started Today
-              <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
-            </Button>
-            
-            <Button 
-              variant="secondary" 
-              size="lg"
-              className="group shadow-lg hover:shadow-xl"
-              onClick={() => window.location.href = '/partners'}
-            >
-              Learn More
-              <HiPhone className="ml-2 w-5 h-5" />
-            </Button>
+            <HiChevronDown className="w-6 h-6 text-white/60" />
           </motion.div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Company Overview */}
+      {/* Our Story + Mission & Vision */}
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+          
+          {/* Our Story */}
           <motion.div
-            ref={missionRef}
             {...fadeInUp}
             className="text-center mb-16"
           >
@@ -289,12 +382,12 @@ export default function About() {
             </p>
           </motion.div>
 
-          {/* Mission & Vision */}
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
+          {/* Mission & Vision Cards */}
+          <div className="grid md:grid-cols-2 gap-8">
             <motion.div
               {...fadeInUp}
               transition={{ delay: 0.2 }}
-              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-8 shadow-2xl border border-gray-700/50 backdrop-blur-md"
+              className="bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 hover:border-blue-400/30 transition-all duration-300"
             >
               <div className="flex items-center mb-6">
                 <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 mr-4">
@@ -304,14 +397,14 @@ export default function About() {
               </div>
               <p className="text-gray-300 leading-relaxed">
                 To empower businesses by providing seamless, reliable IT services that enhance productivity, 
-                streamline operations, and foster growth.
+                streamline operations, and foster growth through innovation and dedicated support.
               </p>
             </motion.div>
 
             <motion.div
               {...fadeInUp}
               transition={{ delay: 0.4 }}
-              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-8 shadow-2xl border border-gray-700/50 backdrop-blur-md"
+              className="bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 hover:border-indigo-400/30 transition-all duration-300"
             >
               <div className="flex items-center mb-6">
                 <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl p-3 mr-4">
@@ -328,11 +421,10 @@ export default function About() {
         </div>
       </section>
 
-      {/* Stats Section - Updated with ZENfra AI Platform Theme */}
-      <section className="py-20 bg-gradient-to-br from-gray-900/50 to-black/50 relative z-10">
+      {/* Impact / Stats Section */}
+      <section className="py-20 bg-white/5 relative z-10" ref={statsRef}>
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
           <motion.div
-            ref={statsRef}
             {...fadeInUp}
             className="text-center mb-16"
           >
@@ -344,20 +436,29 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                {...fadeInUp}
-                transition={{ delay: index * 0.1 }}
-                className="text-center bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl p-6 border border-gray-700/50 backdrop-blur-md hover:shadow-primary-bgYellow/10 transition-all duration-300 group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="text-center bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-primary-bgYellow/30 hover:shadow-lg hover:shadow-primary-bgYellow/10 transition-all duration-300 group"
               >
-                <div className="bg-gradient-to-br from-primary-bgYellow to-yellow-500 rounded-2xl p-6 mb-4 inline-block shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                  <stat.icon className="w-12 h-12 text-black mx-auto" />
+                <div className="bg-gradient-to-br from-primary-bgYellow to-yellow-500 rounded-2xl p-4 mb-4 inline-block shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <stat.icon className="w-8 h-8 lg:w-10 lg:h-10 text-black mx-auto" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                <motion.div 
+                  className="text-2xl lg:text-3xl font-bold text-white mb-2"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                >
                   {stat.number}
-                </div>
+                </motion.div>
                 <div className="text-lg font-semibold text-primary-bgYellow mb-1">
                   {stat.label}
                 </div>
@@ -370,11 +471,10 @@ export default function About() {
         </div>
       </section>
 
-      {/* Expertise Section */}
+      {/* Expertise / Services Section */}
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
           <motion.div
-            ref={expertiseRef}
             {...fadeInUp}
             className="text-center mb-16"
           >
@@ -386,187 +486,234 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {expertise.map((item, index) => (
               <motion.div
                 key={index}
                 {...fadeInUp}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-6 shadow-2xl border border-gray-700/50 backdrop-blur-md hover:shadow-primary-bgYellow/10 transition-all duration-300"
+                className="relative"
               >
-                <div className="bg-gradient-to-br from-primary-bgYellow to-yellow-500 rounded-xl p-4 mb-4 inline-block">
-                  <item.icon className="w-8 h-8 text-black" />
+                <div 
+                  className={`bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-primary-bgYellow/30 transition-all duration-300 cursor-pointer ${
+                    activeExpertise === index ? 'border-primary-bgYellow/50 bg-white/10' : ''
+                  }`}
+                  onClick={() => setActiveExpertise(activeExpertise === index ? null : index)}
+                >
+                  <div className="bg-gradient-to-br from-primary-bgYellow to-yellow-500 rounded-xl p-4 mb-4 inline-block">
+                    <item.icon className="w-8 h-8 text-black" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed mb-4">
+                    {item.description}
+                  </p>
+                  
+                  {/* Expandable Details */}
+                  <AnimatePresence>
+                    {activeExpertise === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="border-t border-white/10 pt-4 mt-4"
+                      >
+                        <p className="text-gray-400 text-sm leading-relaxed">
+                          {item.details}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="text-primary-bgYellow text-sm font-medium">
+                      {activeExpertise === index ? 'Less Details' : 'More Details'}
+                    </span>
+                    <HiChevronDown 
+                      className={`w-5 h-5 text-primary-bgYellow transition-transform duration-200 ${
+                        activeExpertise === index ? 'rotate-180' : ''
+                      }`} 
+                    />
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-300 leading-relaxed">
-                  {item.description}
-                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Company Details - Updated with AI-Driven Monitoring Theme */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-800 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 right-1/4 w-1/3 h-1/3 bg-gradient-to-br from-green-400/5 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-gradient-to-tl from-blue-400/5 to-transparent rounded-full blur-3xl"></div>
-        </div>
+      {/* Team Carousel Section */}
+      <section className="py-20 bg-white/5 relative z-10">
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+          <motion.div
+            {...fadeInUp}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Meet Our <span className="text-primary-bgYellow">Leadership</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Experienced professionals driving innovation and excellence in IT services
+            </p>
+          </motion.div>
 
-        <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10">
-          <motion.div className="text-center mb-16" {...fadeInUp}>
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6">
+          {/* Desktop Carousel */}
+          <div className="hidden md:block">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              {/* Team Avatars */}
+              <div className="relative">
+                <div className="flex flex-wrap justify-center gap-4">
+                  {teamMembers.map((member, index) => (
+                    <motion.button
+                      key={index}
+                      className={`relative w-20 h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden border-4 transition-all duration-300 ${
+                        activeTeamMember === index 
+                          ? 'border-primary-bgYellow scale-110 shadow-lg shadow-primary-bgYellow/30' 
+                          : 'border-white/30 hover:border-white/60'
+                      }`}
+                      onClick={() => setActiveTeamMember(index)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      aria-label={`View ${member.name}'s profile`}
+                    >
+                      <img 
+                        src={member.image} 
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=ffda17&color=000&size=200`;
+                        }}
+                      />
+                      {activeTeamMember === index && (
+                        <motion.div
+                          className="absolute inset-0 bg-primary-bgYellow/20 backdrop-blur-sm"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                        />
+                      )}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Team Member Details */}
+              <motion.div
+                key={activeTeamMember}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4 }}
+                className="bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <h3 className="text-2xl font-bold text-white">
+                    {teamMembers[activeTeamMember].name}
+                  </h3>
+                  <span className="px-3 py-1 bg-primary-bgYellow/20 text-primary-bgYellow border border-primary-bgYellow/40 rounded-full text-sm font-medium">
+                    {teamMembers[activeTeamMember].location}
+                  </span>
+                </div>
+                <p className="text-primary-bgYellow font-semibold mb-4 leading-relaxed">
+                  {teamMembers[activeTeamMember].title}
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  {teamMembers[activeTeamMember].bio}
+                </p>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Mobile Carousel */}
+          <div className="md:hidden">
+            <div className="relative overflow-hidden">
+              <motion.div 
+                className="flex transition-transform duration-300"
+                style={{ transform: `translateX(-${activeTeamMember * 100}%)` }}
+              >
+                {teamMembers.map((member, index) => (
+                  <div key={index} className="w-full flex-shrink-0 px-4">
+                    <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 text-center">
+                      <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary-bgYellow">
+                        <img 
+                          src={member.image} 
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=ffda17&color=000&size=200`;
+                          }}
+                        />
+                      </div>
+                      <div className="flex items-center justify-center gap-2 mb-2">
+                        <h3 className="text-xl font-bold text-white">{member.name}</h3>
+                        <span className="px-2 py-1 bg-primary-bgYellow/20 text-primary-bgYellow border border-primary-bgYellow/40 rounded-full text-xs font-medium">
+                          {member.location}
+                        </span>
+                      </div>
+                      <p className="text-primary-bgYellow font-semibold mb-3 text-sm leading-relaxed">{member.title}</p>
+                      <p className="text-gray-300 text-sm leading-relaxed">{member.bio}</p>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+              
+              {/* Mobile Navigation */}
+              <div className="flex justify-center mt-6 space-x-2">
+                <button
+                  onClick={() => setActiveTeamMember(prev => prev > 0 ? prev - 1 : teamMembers.length - 1)}
+                  className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+                  aria-label="Previous team member"
+                >
+                  <HiChevronLeft className="w-5 h-5 text-white" />
+                </button>
+                <button
+                  onClick={() => setActiveTeamMember(prev => (prev + 1) % teamMembers.length)}
+                  className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+                  aria-label="Next team member"
+                >
+                  <HiChevronRight className="w-5 h-5 text-white" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Company Info / StepTimeline */}
+      <section className="py-20 bg-gradient-to-br from-blue-900/20 via-indigo-900/20 to-blue-800/20 relative z-10">
+        <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+          <motion.div {...fadeInUp} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Company Information & Capabilities
             </h2>
-            <h3 className="text-2xl lg:text-3xl font-bold text-blue-400 mb-6">
-              Comprehensive Details About Our Organization
-            </h3>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto">
               Discover the foundation of our success and the comprehensive capabilities that make CompuZign your trusted technology partner.
             </p>
           </motion.div>
 
-          {/* Company Information Grid - Connected Cards */}
-          <motion.div 
-            className="relative"
-            {...staggerChildren}
-          >
-            {/* Connection Lines - Horizontal Flow */}
-            <div className="absolute inset-0 pointer-events-none">
-              {/* Main Horizontal Line - Desktop Only */}
-              <div className="hidden xl:block absolute top-1/2 left-0 right-0 h-px bg-white/30"></div>
-              {/* Vertical Connection Lines - Desktop Only */}
-              <div className="hidden xl:block absolute top-1/4 bottom-1/4 left-1/5 w-px bg-white/20"></div>
-              <div className="hidden xl:block absolute top-1/4 bottom-1/4 left-2/5 w-px bg-white/20"></div>
-              <div className="hidden xl:block absolute top-1/4 bottom-1/4 left-3/5 w-px bg-white/20"></div>
-              <div className="hidden xl:block absolute top-1/4 bottom-1/4 left-4/5 w-px bg-white/20"></div>
-            </div>
-
-            {/* Company Information Cards - Horizontal Flow */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-6 relative z-10">
-              {[
-                { 
-                  icon: HiOfficeBuilding, 
-                  title: "Headquarters", 
-                  value: "Mandeville", 
-                  description: "Our primary operations center",
-                  subDescription: "Central hub for all operations",
-                  phase: "01"
-                },
-                { 
-                  icon: HiBriefcase, 
-                  title: "Company Type", 
-                  value: "Self-Owned", 
-                  description: "Independent technology firm",
-                  subDescription: "Privately held organization",
-                  phase: "02"
-                },
-                { 
-                  icon: HiCalendar, 
-                  title: "Founded", 
-                  value: "1998", 
-                  description: "Over 25 years of excellence",
-                  subDescription: "Decades of industry experience",
-                  phase: "03"
-                },
-                { 
-                  icon: HiGlobeAlt, 
-                  title: "Website", 
-                  value: "www.compuzign.com", 
-                  link: "https://www.compuzign.com/", 
-                  description: "Visit our online presence",
-                  subDescription: "Digital platform and services",
-                  phase: "04"
-                },
-                { 
-                  icon: HiAcademicCap, 
-                  title: "Industry", 
-                  value: "IT Services and IT Consulting", 
-                  description: "Professional technology services",
-                  subDescription: "Expert consulting and solutions",
-                  phase: "05"
-                },
-                { 
-                  icon: HiSparkles, 
-                  title: "Specialties", 
-                  value: "IT CONSULTING, Cloud Technology, Cloud Migration, and Support as a Service (SaaS)", 
-                  description: "Core areas of expertise",
-                  subDescription: "Comprehensive IT solutions",
-                  phase: "06"
-                }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="group relative"
-                  variants={fadeInUp}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 lg:p-6 border border-gray-700/50 hover:border-blue-400/30 transition-all duration-300 h-full min-h-[200px] lg:min-h-[240px] flex flex-col justify-between">
-                    {/* Phase Number */}
-                    <div className="flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                      <span className="text-xs lg:text-sm font-bold text-white">{item.phase}</span>
-                    </div>
-                    
-                    {/* Icon */}
-                    <div className="flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl mx-auto mb-3 lg:mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <item.icon className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
-                    </div>
-                    
-                    <div className="flex-1 flex flex-col justify-center text-center">
-                      <h3 className="text-sm lg:text-base font-bold text-white mb-2">{item.title}</h3>
-                      <p className="text-xs lg:text-sm text-gray-300 mb-2">{item.description}</p>
-                      <p className="text-xs text-gray-400 mb-3">{item.subDescription}</p>
-                      
-                      {item.link ? (
-                        <a 
-                          href={item.link}
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-blue-400 hover:text-blue-300 transition-colors block font-semibold text-xs lg:text-sm"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-white font-semibold text-xs lg:text-sm">{item.value}</p>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Additional Company Highlights */}
-          <motion.div className="mt-16" {...fadeInUp}>
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-              <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-gray-700/50">
-                <h3 className="text-xl lg:text-2xl font-bold text-white mb-4">Our Mission</h3>
-                <p className="text-gray-300 leading-relaxed text-sm lg:text-base">
-                  To empower businesses by providing seamless, reliable IT services that enhance productivity, 
-                  streamline operations, and foster growth through innovation and dedicated support.
-                </p>
-              </div>
-              <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-gray-700/50">
-                <h3 className="text-xl lg:text-2xl font-bold text-white mb-4">Our Vision</h3>
-                <p className="text-gray-300 leading-relaxed text-sm lg:text-base">
-                  A world where businesses of all sizes can leverage top-tier IT solutions without barriers. 
-                  Through innovation and dedicated support, we aim to be the trusted partner for organizations worldwide.
-                </p>
-              </div>
-            </div>
+          <motion.div {...fadeInUp}>
+            {(() => {
+              const companySteps = [
+                { step: '01', title: 'Headquarters — Mandeville', description: 'Primary operations center and central hub for all operations.' },
+                { step: '02', title: 'Company Type — Self‑Owned', description: 'Independent technology firm, privately held organization.' },
+                { step: '03', title: 'Founded — 1998', description: 'Over 25 years of excellence and industry experience.' },
+                { step: '04', title: 'Industry — IT Services & Consulting', description: 'Professional technology services, expert consulting and solutions.' },
+                { step: '05', title: 'Specialties — SaaS, RaaS, Cloud & Consulting', description: 'IT Consulting, Cloud Technology & Migration, Support as a Service (SaaS), Resource as a Service (RaaS).' }
+              ];
+              return (
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 lg:p-10 backdrop-blur-sm">
+                  <ProcessTimeline steps={companySteps} />
+                </div>
+              );
+            })()}
           </motion.div>
         </div>
       </section>
 
-      {/* Locations Section */}
+      {/* Interactive Locations */}
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
           <motion.div
-            ref={locationsRef}
             {...fadeInUp}
             className="text-center mb-16"
           >
@@ -578,13 +725,14 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* Location Cards */}
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {locations.map((location, index) => (
               <motion.div
                 key={index}
                 {...fadeInUp}
-                transition={{ delay: index * 0.2 }}
-                className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-6 shadow-2xl border border-gray-700/50 backdrop-blur-md hover:shadow-primary-bgYellow/10 transition-all duration-300"
+                transition={{ delay: index * 0.1 }}
+                className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-primary-bgYellow/30 transition-all duration-300"
               >
                 <div className="flex items-center mb-4">
                   <div className="bg-gradient-to-br from-primary-bgYellow to-yellow-500 rounded-xl p-3 mr-3">
@@ -617,11 +765,10 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section - Fixed Button Rendering */}
+      {/* Final CTA */}
       <section className="py-20 bg-gradient-to-br from-primary-bgYellow/10 to-blue-500/10 relative z-10">
         <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
           <motion.div
-            ref={ctaRef}
             {...fadeInUp}
             className="text-center"
           >
@@ -632,7 +779,9 @@ export default function About() {
               Whether you're scaling up, consolidating, or future-proofing your IT strategy, 
               our experts take the guesswork out of migration planning and execution.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button 
                 variant="primary"
                 size="lg"
@@ -652,6 +801,22 @@ export default function About() {
                 <HiPhone className="ml-2 w-5 h-5" />
               </Button>
             </div>
+
+            {/* Trust Logos */}
+            <motion.div
+              {...fadeInUp}
+              transition={{ delay: 0.3 }}
+              className="border-t border-white/10 pt-8"
+            >
+              <p className="text-gray-400 mb-6">Trusted by industry leaders</p>
+              <div className="flex flex-wrap justify-center items-center gap-8 opacity-60 hover:opacity-80 transition-opacity">
+                {trustLogos.map((logo, index) => (
+                  <div key={index} className="h-8 w-20 bg-white/10 rounded flex items-center justify-center">
+                    <span className="text-white/60 text-xs font-medium">{logo.name}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

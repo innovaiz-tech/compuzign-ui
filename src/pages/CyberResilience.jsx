@@ -738,6 +738,7 @@ export default function CyberResilience() {
                 result: "Prevented 99.7% of cyber attacks with zero data breaches",
                 metric: "Zero Breaches",
                 industry: "Financial Services",
+                slug: "financial-institution-zero-breaches",
               },
               {
                 company: "Healthcare Network",
@@ -745,6 +746,7 @@ export default function CyberResilience() {
                 result: "Achieved 100% compliance with sub-1-hour incident response",
                 metric: "100% Compliance",
                 industry: "Healthcare",
+                slug: "healthcare-100-compliance",
               },
               {
                 company: "Manufacturing Enterprise",
@@ -752,6 +754,7 @@ export default function CyberResilience() {
                 result: "Secured 10,000+ IoT devices with 24/7 monitoring",
                 metric: "10K+ Devices Secured",
                 industry: "Manufacturing",
+                slug: "manufacturing-10k-devices-secured",
               },
             ].map((story, index) => (
               <motion.div
@@ -781,13 +784,13 @@ export default function CyberResilience() {
                   </div>
 
                   <div className="pt-4 border-t border-gray-700/50">
-                    <div className="flex items-center text-primary-bgYellow font-medium">
+                    <Link to={`/case-studies/${story.slug}`} className="flex items-center text-primary-bgYellow font-medium">
                       <span>View Case Study</span>
                       <HiArrowRight
                         size={16}
                         className="ml-2 group-hover:translate-x-1 transition-transform"
                       />
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
