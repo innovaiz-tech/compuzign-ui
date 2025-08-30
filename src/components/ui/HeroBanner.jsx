@@ -195,22 +195,24 @@ export default function HeroBanner() {
 
           {/* Subheadline */}
           <h2 className="text-lg sm:text-xl lg:text-2xl text-gray-200 font-medium max-w-4xl mx-auto leading-relaxed">
-            Leverage AI-Driven ZENfra for Seamless Migration Project Management
+            Building the Future with Expertise and Innovation. Empowering businesses
             <br className="hidden sm:block" />
-            and Resource-as-a-Service (RaaS) Solutions
+            by providing seamless, reliable IT services that enhance productivity,
+            <br className="hidden sm:block" />
+            streamline operations, and foster growth
           </h2>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6 lg:pt-8">
-            <Button 
-              variant="primary" 
+            <Button
+              variant="primary"
               size="lg"
               className="bg-primary-bgYellow text-black hover:bg-yellow-400 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 hover:scale-105"
             >
               Book a Consultation
             </Button>
-            <Button 
-              variant="secondary" 
+            <Button
+              variant="secondary"
               size="lg"
               className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300"
             >
@@ -222,12 +224,12 @@ export default function HeroBanner() {
         {/* Tech Orbs */}
         <motion.div
           className="absolute top-1/4 right-1/4 w-24 h-24 border-2 border-primary-bgYellow/30 rounded-full tech-pulse"
-          animate={{ 
+          animate={{
             rotate: [0, 360],
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.7, 0.3]
           }}
-          transition={{ 
+          transition={{
             duration: 8,
             repeat: Infinity,
             ease: "easeInOut"
@@ -237,15 +239,15 @@ export default function HeroBanner() {
             <div className="absolute inset-2 bg-primary-bgYellow/10 rounded-full blur-sm"></div>
           </div>
         </motion.div>
-        
+
         <motion.div
           className="absolute bottom-1/3 left-1/4 w-20 h-20 border border-white/20 rounded-full"
-          animate={{ 
+          animate={{
             rotate: [360, 0],
             y: [20, -20, 20],
             opacity: [0.2, 0.6, 0.2]
           }}
-          transition={{ 
+          transition={{
             duration: 6,
             repeat: Infinity,
             ease: "easeInOut",
@@ -258,11 +260,11 @@ export default function HeroBanner() {
         {/* Pulse Rings */}
         <motion.div
           className="absolute top-1/2 left-1/3 w-32 h-32"
-          animate={{ 
+          animate={{
             scale: [0.8, 1.5, 0.8],
             opacity: [0.8, 0, 0.8]
           }}
-          transition={{ 
+          transition={{
             duration: 3,
             repeat: Infinity,
             ease: "easeOut"

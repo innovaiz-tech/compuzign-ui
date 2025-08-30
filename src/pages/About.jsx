@@ -70,7 +70,7 @@ export default function About() {
   const stats = [
     { icon: HiStar, number: "25+", label: "Years of Experience", description: "Since 1998" },
     { icon: HiGlobe, number: "3", label: "Countries", description: "Global Presence" },
-    { icon: HiUsers, number: "50k+", label: "Talent Network", description: "Worldwide" },
+    { icon: HiUsers, number: "120+", label: "Talent Network", description: "Worldwide" },
     { icon: HiLightningBolt, number: "1000+", label: "Projects Completed", description: "Success Stories" }
   ];
 
@@ -257,8 +257,8 @@ export default function About() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                Building the Future with Expertise and Innovation. Empowering businesses by providing seamless, 
-                reliable IT services that enhance productivity, streamline operations, and foster growth.
+                With over 25 years expertise, our proven IT SaaS Delivery Model and or 
+                {" "}<b>11 / 11</b>{" "}(eleven/eleven) Step-by-Step recovery plan approach not only protect against attackers, but also secure your critical data and ensure operational recovery in hours, not days, not weeks. Saving money, reputation and operational excellence.
               </motion.p>
 
               {/* Mobile Feature Chips */}

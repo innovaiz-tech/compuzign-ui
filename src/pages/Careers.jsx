@@ -250,11 +250,11 @@ export default function Careers() {
                 transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
               >
                 <div className="group text-center bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-primary-bgYellow/40 transition-all duration-500 hover:scale-105">
-                  <div className="text-4xl font-bold text-primary-bgYellow mb-3 group-hover:scale-110 transition-transform duration-300">50k+</div>
+                  <div className="text-4xl font-bold text-primary-bgYellow mb-3 group-hover:scale-110 transition-transform duration-300">120+</div>
                   <div className="text-sm text-gray-300 font-medium group-hover:text-white transition-colors duration-300">Global Talent Network</div>
                 </div>
                 <div className="group text-center bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-primary-bgYellow/40 transition-all duration-500 hover:scale-105">
-                  <div className="text-4xl font-bold text-primary-bgYellow mb-3 group-hover:scale-110 transition-transform duration-300">16</div>
+                  <div className="text-4xl font-bold text-primary-bgYellow mb-3 group-hover:scale-110 transition-transform duration-300">25</div>
                   <div className="text-sm text-gray-300 font-medium group-hover:text-white transition-colors duration-300">Years of Excellence</div>
                 </div>
                 <div className="group text-center bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-primary-bgYellow/40 transition-all duration-500 hover:scale-105">

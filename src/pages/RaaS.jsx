@@ -273,7 +273,7 @@ export default function RaaS() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-white/20"
           >
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-yellow-400 mb-2">50K+</div>
+              <div className="text-3xl md:text-4xl font-bold text-yellow-400 mb-2">120+</div>
               <div className="text-sm text-gray-300">Global Talent Network</div>
             </div>
             <div className="text-center">
