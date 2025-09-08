@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import React from 'react';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { 
   HiCloud, 
   HiServer,
@@ -40,6 +42,7 @@ export default function CloudMigration() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -995,6 +998,7 @@ export default function CloudMigration() {
                 variant="primary" 
                 size="lg"
                 className="group"
+                onClick={openModal}
               >
                 <HiPhone className="w-5 h-5 mr-2" />
                 Get Your Migration Started Today
@@ -1005,6 +1009,7 @@ export default function CloudMigration() {
                 variant="secondary" 
                 size="lg"
                 className="bg-white/10 text-white border-white/30 hover:bg-white/20"
+                onClick={openModal}
               >
                 <HiSupport className="w-5 h-5 mr-2" />
                 Schedule Free Consultation
@@ -1045,6 +1050,14 @@ export default function CloudMigration() {
           transform: rotateY(180deg);
         }
       `}</style>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
       
     </div>
   );

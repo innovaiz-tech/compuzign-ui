@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { 
   HiShieldCheck, 
   HiArrowRight,
@@ -31,6 +33,7 @@ export default function CyberRecoveryMonitoring() {
   const [isTablet, setIsTablet] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   useEffect(() => {
     const checkDevice = () => {
@@ -155,6 +158,7 @@ export default function CyberRecoveryMonitoring() {
                     variant="primary" 
                     size="lg"
                     className="group"
+                    onClick={openModal}
                   >
                     {heroBannerData.primaryCTA}
                     <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -164,6 +168,7 @@ export default function CyberRecoveryMonitoring() {
                     variant="secondary" 
                     size="lg"
                     className="group"
+                    onClick={openModal}
                   >
                     {heroBannerData.secondaryCTA}
                     <HiPhone className="ml-2 w-5 h-5" />
@@ -491,6 +496,7 @@ export default function CyberRecoveryMonitoring() {
                 variant="primary" 
                 size="xl"
                 className="bg-primary-bgYellow hover:bg-yellow-400 text-black px-12 py-6 text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-bgYellow/25 w-full sm:w-auto group"
+                onClick={openModal}
               >
                 {finalCTAData.primaryCTA}
                 <HiUserGroup className="w-6 h-6 ml-3 group-hover:scale-110 transition-transform duration-200" />
@@ -500,6 +506,7 @@ export default function CyberRecoveryMonitoring() {
                 variant="secondary" 
                 size="xl"
                 className="bg-transparent border-2 border-white hover:bg-white hover:text-black text-white px-12 py-6 text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto group"
+                onClick={openModal}
               >
                 {finalCTAData.secondaryCTA}
                 <HiSparkles className="w-6 h-6 ml-3 group-hover:scale-110 transition-transform duration-200" />
@@ -523,6 +530,14 @@ export default function CyberRecoveryMonitoring() {
 
       {/* ScrollToTop FAB */}
       <ScrollToTop />
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

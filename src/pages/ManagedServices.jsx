@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { 
   HiCog,
   HiArrowRight,
@@ -42,6 +44,7 @@ export default function ManagedServices() {
   const [activeService, setActiveService] = useState(0);
   const { width } = useWindowSize();
   const navigate = useNavigate();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -1321,6 +1324,7 @@ export default function ManagedServices() {
                 variant="primary" 
                 size="lg"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/25 group flex items-center justify-center"
+                onClick={openModal}
               >
                 Get Started with CompuZign Today
                 <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -1329,6 +1333,7 @@ export default function ManagedServices() {
                 variant="secondary" 
                 size="lg"
                 className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-white/25 flex items-center justify-center"
+                onClick={openModal}
               >
                 <HiPhone className="mr-2 w-5 h-5" />
                 Schedule Free Consultation
@@ -1337,6 +1342,14 @@ export default function ManagedServices() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

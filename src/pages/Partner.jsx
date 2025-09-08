@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   HiUserGroup, 
   HiTrendingUp, 
@@ -19,6 +19,8 @@ import {
 import Button from '../components/common/button';
 import partnerHeroBg from '../assets/partner-image.jpg';
 import partnerBanner from '../assets/partner-banner.png';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 
 // Import cloud vendor logos
 import awsLogo from '../assets/compute-assets/aws-2.svg';
@@ -42,29 +44,18 @@ export default function Partner() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [partnerSectionVisible, setPartnerSectionVisible] = useState(false);
   const [cardsVisible, setCardsVisible] = useState(false);
-  const [cardVisible, setCardVisible] = useState(false);
   const [testimonialsVisible, setTestimonialsVisible] = useState(false);
   const [partnersVisible, setPartnersVisible] = useState(false);
-  const [statsVisible, setStatsVisible] = useState(false);
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
   const [ctaVisible, setCtaVisible] = useState(false);
   
   const partnerRef = useRef(null);
   const cardsRef = useRef(null);
-  const cardRef = useRef(null);
   const testimonialsRef = useRef(null);
   const partnersRef = useRef(null);
-  const statsRef = useRef(null);
   const ctaRef = useRef(null);
 
   // Intersection Observer for animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setCardVisible(entry.isIntersecting),
-      { threshold: 0.3 }
-    );
-    if (cardRef.current) observer.observe(cardRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -75,7 +66,6 @@ export default function Partner() {
       { ref: cardsRef, setter: setCardsVisible },
       { ref: testimonialsRef, setter: setTestimonialsVisible },
       { ref: partnersRef, setter: setPartnersVisible },
-      { ref: statsRef, setter: setStatsVisible },
       { ref: ctaRef, setter: setCtaVisible }
     ];
 
@@ -102,46 +92,32 @@ export default function Partner() {
   // Partner benefits data
   const partnerBenefits = [
     {
-      icon: HiTrendingUp,
-      title: 'Revenue Growth',
-      description: 'Access to high-margin IT services with attractive commission structures and recurring revenue opportunities.',
-      gradient: 'from-green-500 to-emerald-700',
+      icon: HiLightningBolt,
+      title: 'Technical Expertise',
+      description: 'Leverage our certified professionals and proven methodologies for successful project delivery.',
+      gradient: 'from-yellow-400 to-orange-500',
       delay: 0.1
     },
     {
-      icon: HiGlobe,
-      title: 'Market Expansion',
-      description: 'Expand your service portfolio with cutting-edge cloud, security, and AI solutions to meet growing market demands.',
-      gradient: 'from-blue-500 to-indigo-700',
+      icon: HiChartBar,
+      title: 'Business Intelligence',
+      description: 'Access advanced analytics and reporting tools to make data-driven decisions and optimize your business performance.',
+      gradient: 'from-indigo-500 to-purple-700',
       delay: 0.2
+    },
+    {
+      icon: HiServer,
+      title: 'Infrastructure Solutions',
+      description: 'Comprehensive infrastructure management including cloud migration, hybrid solutions, and scalable architectures.',
+      gradient: 'from-cyan-500 to-blue-700',
+      delay: 0.3
     },
     {
       icon: HiUsers,
       title: 'Client Retention',
       description: 'Enhance client relationships with comprehensive IT solutions that address their evolving technology needs.',
       gradient: 'from-purple-500 to-pink-700',
-      delay: 0.3
-    },
-    {
-      icon: HiLightningBolt,
-      title: 'Technical Expertise',
-      description: 'Leverage our certified professionals and proven methodologies for successful project delivery.',
-      gradient: 'from-yellow-400 to-orange-500',
       delay: 0.4
-    },
-    {
-      icon: HiShieldCheck,
-      title: 'Risk Mitigation',
-      description: 'Reduce project risks with our established processes, quality assurance, and comprehensive support.',
-      gradient: 'from-red-500 to-rose-700',
-      delay: 0.5
-    },
-    {
-      icon: HiCog,
-      title: 'Operational Efficiency',
-      description: 'Streamline operations with our automated tools, standardized processes, and dedicated support teams.',
-      gradient: 'from-teal-500 to-cyan-700',
-      delay: 0.6
     }
   ];
 
@@ -170,13 +146,6 @@ export default function Partner() {
     }
   ];
 
-  // Partner statistics
-  const partnerStats = [
-    { value: '500+', label: 'Active Partners', icon: HiUserGroup },
-    { value: '95%', label: 'Partner Satisfaction', icon: HiStar },
-    { value: '$50M+', label: 'Revenue Generated', icon: HiTrendingUp },
-    { value: '24/7', label: 'Support Available', icon: HiShieldCheck }
-  ];
 
   // Technology partners
   const technologyPartners = [
@@ -301,21 +270,21 @@ export default function Partner() {
               className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
               style={{ color: 'rgb(255 218 23)' }}
             >
-              Partner with Us to Transform the Future of IT
+              Why Choose CompuZign as Your Partner
             </h2>
             
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
-              At Compuzign, we understand that innovation thrives through collaboration.
-              That's why we seek to build strong alliances with organizations that share our
-              vision for delivering cutting-edge IT services.
+              Join forces with CompuZign to unlock unprecedented growth opportunities. Our strategic partnership program 
+              provides you with cutting-edge technology solutions, comprehensive support, and the expertise needed to 
+              dominate your market and exceed client expectations.
             </p>
             
             <div className="grid grid-cols-2 gap-4 text-sm">
               {[
-                { icon: HiCheckCircle, text: 'Proven Expertise' },
+                { icon: HiCheckCircle, text: 'Strategic Partnership' },
                 { icon: HiCheckCircle, text: 'Revenue Growth' },
                 { icon: HiCheckCircle, text: '24/7 Support' },
-                { icon: HiCheckCircle, text: 'Market Expansion' }
+                { icon: HiCheckCircle, text: 'Market Leadership' }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -359,16 +328,16 @@ export default function Partner() {
             className="text-4xl md:text-5xl font-bold mb-6"
             style={{ color: 'rgb(255 218 23)' }}
           >
-            Why Choose Compuzign as Your Partner
+            Our Experience & Our Expertise
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Unlock new growth opportunities and strengthen your business by partnering with Compuzign.
+            Leverage our comprehensive IT expertise and proven track record to accelerate your business growth and deliver exceptional value to your clients.
           </p>
         </motion.div>
 
         <div
           ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
         >
           {partnerBenefits.map((benefit, index) => (
             <motion.div
@@ -395,47 +364,6 @@ export default function Partner() {
             </motion.div>
           ))}
         </div>
-      </section>
-
-      {/* Partner Statistics Section */}
-      <section ref={statsRef} className="bg-gradient-to-r from-[#0a0f2c] to-[#1a1f3c] py-20 px-6">
-        <motion.div 
-          className="max-w-6xl mx-auto"
-          initial={{ y: 30, opacity: 0 }}
-          animate={statsVisible ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="text-center mb-16">
-            <HiChartBar className="w-12 h-12 text-yellow-400 mx-auto mb-6" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Partnership Success Metrics
-            </h2>
-            <p className="text-xl text-gray-300">
-              Our partnerships deliver measurable results and sustainable growth
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {partnerStats.map((stat, index) => (
-              <motion.div
-                key={index}
-                className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
-                initial={{ opacity: 0, y: 30 }}
-                animate={statsVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <div className="w-12 h-12 bg-yellow-400/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="w-6 h-6 text-yellow-400" />
-                </div>
-                <div className="text-3xl md:text-4xl font-bold text-yellow-400 mb-2">
-                  {stat.value}
-                </div>
-                <p className="text-gray-300 font-medium">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </section>
 
       {/* Technology Partners Section */}
@@ -594,13 +522,21 @@ export default function Partner() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-semibold">
-                Learn More
+              <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-semibold" onClick={openModal}>
+                Start Your Partnership Journey
               </Button>
             </div>
           </motion.div>
         </motion.div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 }

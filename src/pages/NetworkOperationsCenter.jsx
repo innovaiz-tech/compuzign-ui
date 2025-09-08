@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { 
   HiServer, 
   HiArrowRight,
@@ -64,6 +66,7 @@ export default function NetworkOperationsCenter() {
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeProcess, setActiveProcess] = useState(0);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   useEffect(() => {
     const checkDevice = () => {
@@ -337,6 +340,7 @@ export default function NetworkOperationsCenter() {
                     variant="primary" 
                     size="lg"
                     className="group"
+                    onClick={openModal}
                   >
                     Get Your Custom NOC Solution
                     <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -496,7 +500,7 @@ export default function NetworkOperationsCenter() {
 
           {/* CTA Section */}
           <motion.div className="text-center mt-16" {...fadeInUp}>
-            <Button variant="primary" size="lg" className="group">
+            <Button variant="primary" size="lg" className="group" onClick={openModal}>
               Build Your Custom Solution
               <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </Button>
@@ -553,7 +557,7 @@ export default function NetworkOperationsCenter() {
 
           {/* CTA Section */}
           <motion.div className="text-center mt-16" {...fadeInUp}>
-            <Button variant="primary" size="lg" className="group">
+            <Button variant="primary" size="lg" className="group" onClick={openModal}>
               Start with a Free Network Assessment
               <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </Button>
@@ -717,11 +721,11 @@ export default function NetworkOperationsCenter() {
             </h3>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" size="lg" className="group">
+              <Button variant="primary" size="lg" className="group" onClick={openModal}>
                 Get Your Custom NOC Solution Today
                 <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
               </Button>
-              <Button variant="secondary" size="lg" className="group">
+              <Button variant="secondary" size="lg" className="group" onClick={openModal}>
                 <HiPhone className="mr-2 w-5 h-5" />
                 Contact Us
               </Button>
@@ -729,6 +733,14 @@ export default function NetworkOperationsCenter() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

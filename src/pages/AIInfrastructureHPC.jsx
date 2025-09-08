@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { 
   HiServer, 
   HiArrowRight,
@@ -58,6 +60,7 @@ export default function AIInfrastructureHPC() {
   const [activeService, setActiveService] = useState(0);
   const [activeProcess, setActiveProcess] = useState(0);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   useEffect(() => {
     const checkDevice = () => {
@@ -355,6 +358,7 @@ export default function AIInfrastructureHPC() {
                     variant="primary" 
                     size="lg"
                     className="group"
+                    onClick={openModal}
                   >
                     Get Your AI Infrastructure Assessment
                     <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -522,7 +526,7 @@ export default function AIInfrastructureHPC() {
                     </p>
                   </div>
 
-                  <Button variant="primary" size="lg" className="w-full sm:w-auto">
+                  <Button variant="primary" size="lg" className="w-full sm:w-auto" onClick={openModal}>
                     {aiServices[0].cta}
                   </Button>
                 </div>
@@ -745,17 +749,25 @@ export default function AIInfrastructureHPC() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg">
+              <Button variant="secondary" size="lg" onClick={openModal}>
                 <HiPhone className="w-5 h-5 mr-2" />
                 Contact Our AI Experts
               </Button>
-              <Button variant="primary" size="lg">
+              <Button variant="primary" size="lg" onClick={openModal}>
                 Get Free Assessment
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

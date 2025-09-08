@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { 
   HiSupport,
   HiClock,
@@ -36,6 +38,7 @@ export default function SupportAsAService() {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
   const y2 = useTransform(scrollY, [0, 300], [0, 25]);
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   const observerRef = useRef();
 
@@ -240,11 +243,12 @@ export default function SupportAsAService() {
               Support as a Service
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Comprehensive Support Solutions for 
-              <span className="text-blue-400 block">Seamless IT Operations</span>
+            Focus on Your Business
+              <span className="text-blue-400 block">Leave IT to the Experts</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
-              24/7 expert support, proactive monitoring, and rapid issue resolution to keep your business running smoothly
+            You wouldn’t take your car to a plumber—so why handle IT on your own?
+            Your business isn’t IT, but it’s ours. Bad actors know the risks—don’t let them win.
             </p>
           </motion.div>
 
@@ -259,7 +263,7 @@ export default function SupportAsAService() {
               size="lg"
               className="bg-blue-400 hover:bg-blue-500 text-blue-900 font-semibold px-8 py-4 text-lg"
             >
-              Get Started Today
+              Start with CompuZign
               <HiArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </motion.div>
@@ -476,16 +480,18 @@ export default function SupportAsAService() {
                   variant="primary" 
                   size="lg"
                   className="bg-blue-400 hover:bg-blue-300 text-blue-900 font-semibold px-8 py-4 text-lg group"
+                  onClick={openModal}
                 >
-                  <a href="tel:+19046852138" className="flex items-center">
+                  <span className="flex items-center">
                     <HiPhone className="mr-2 w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                     Talk to Us
-                  </a>
+                  </span>
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg"
                   className="border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 text-lg"
+                  onClick={openModal}
                 >
                   Schedule Demo
                   <HiArrowRight className="ml-2 w-5 h-5" />
@@ -535,6 +541,14 @@ export default function SupportAsAService() {
           </div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

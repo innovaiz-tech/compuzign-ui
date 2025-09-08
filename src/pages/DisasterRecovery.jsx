@@ -18,6 +18,8 @@ import Button from '../components/common/button';
 import useWindowSize from '../hooks/useWindowSize';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import AnimatedStat from '../components/ui/AnimatedStat';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import CSSFlipCard from '../components/ui/CSSFlipCard';
 import { section1Cards, statsData, benefitsData } from '../data/disasterRecoveryData';
 import ScrollToTop from '../components/ui/ScrollToTop';
@@ -36,6 +38,7 @@ export default function DisasterRecovery() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   // Responsive breakpoint detection
   useEffect(() => {
@@ -176,6 +179,7 @@ export default function DisasterRecovery() {
                     variant="primary" 
                     size="lg"
                     className="group"
+                    onClick={openModal}
                   >
                     Get Your DRaaS Strategy
                     <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -592,6 +596,7 @@ export default function DisasterRecovery() {
                 variant="primary" 
                 size="lg"
                 className="group bg-primary-bgYellow text-black hover:bg-yellow-400 px-10 py-5 text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-bgYellow/25"
+                onClick={openModal}
               >
                 Get Your Customized DRaaS Strategy
                 <HiArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
@@ -625,6 +630,14 @@ export default function DisasterRecovery() {
 
       {/* ScrollToTop FAB */}
       <ScrollToTop />
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

@@ -1,4 +1,5 @@
 import { HiPhone, HiMail, HiLocationMarker, HiArrowRight, HiGlobeAlt } from 'react-icons/hi';
+import { FaInstagram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
@@ -17,7 +18,6 @@ export default function Footer() {
     { name: 'About Us', href: '/about-us' },
     { name: 'Careers', href: '/careers' },
     { name: 'Contact Us', href: '/contact' },
-    { name: 'Blog', href: '/blog' },
   ];
 
   const resources = [
@@ -53,7 +53,7 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-bgYellow hover:text-black transition-all duration-300">
-                <HiGlobeAlt className="w-5 h-5" />
+                <FaInstagram className="w-5 h-5" />
               </a>
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-bgYellow hover:text-black transition-all duration-300">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -128,7 +128,7 @@ export default function Footer() {
               <HiLocationMarker className="w-5 h-5 text-primary-bgYellow mt-1" />
               <div>
                 <h4 className="font-semibold text-white mb-2">Headquarters</h4>
-                <p className="font-medium">Atlanta, GA</p>
+                <p className="font-medium">Mandeville, JM</p>
                 <p>IT Services and IT Consulting</p>
                 <p className="text-sm text-gray-400 mt-1">Founded 1998 • 11-50 employees</p>
               </div>

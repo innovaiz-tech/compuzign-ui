@@ -75,7 +75,6 @@ export default function Careers() {
       type: "Full-time",
       icon: HiSparkles,
       color: "text-blue-400",
-      published: "Dec. 15",
       overview: "Lead the design and implementation of scalable, high-performance AI and HPC infrastructure for enterprise clients. You'll assess existing systems, develop tailored blueprints, and ensure architectures support advanced AI workloads, from model training to real-time inference.",
       responsibilities: [
         "Conduct comprehensive infrastructure assessments for AI readiness",
@@ -97,7 +96,6 @@ export default function Careers() {
       type: "Full-time",
       icon: HiCloud,
       color: "text-green-400",
-      published: "Dec. 15",
       overview: "Transform legacy systems into agile, cloud-native architectures. You'll drive application modernization projects, leveraging microservices, containerization, and orchestration to enhance performance and scalability.",
       responsibilities: [
         "Refactor legacy code and migrate applications to cloud-native environments",
@@ -119,7 +117,6 @@ export default function Careers() {
       type: "Full-time",
       icon: HiCog,
       color: "text-purple-400",
-      published: "Dec. 15",
       overview: "Design and deploy intelligent automation solutions to streamline IT and business processes. You'll use RPA, low-code platforms, and API integrations to drive efficiency and scalability for global clients.",
       responsibilities: [
         "Analyze workflows and identify automation opportunities",
@@ -141,7 +138,6 @@ export default function Careers() {
       type: "Full-time",
       icon: HiCurrencyDollar,
       color: "text-yellow-400",
-      published: "Dec. 15",
       overview: "Lead cost optimization initiatives to maximize ROI across IT budgets. You'll analyze cloud spend, licensing, and vendor contracts to deliver sustainable savings while enhancing infrastructure value.",
       responsibilities: [
         "Conduct deep-dive analyses of IT expenditures and cloud resource utilization",
@@ -163,7 +159,6 @@ export default function Careers() {
       type: "Full-time",
       icon: HiHeart,
       color: "text-red-400",
-      published: "Dec. 15",
       overview: "Partner with healthcare organizations to deliver data-driven strategies that optimize operations and enhance patient outcomes. You'll leverage analytics, AI, and industry expertise to navigate regulatory challenges and drive innovation.",
       responsibilities: [
         "Develop data-driven strategies for healthcare transformation",
@@ -330,11 +325,6 @@ export default function Careers() {
                           <span>{job.location}</span>
                         </div>
                       </div>
-                    </div>
-                    
-                    {/* Date */}
-                    <div className="text-gray-400 text-sm flex-shrink-0">
-                      <span>{job.published}</span>
                     </div>
                   </div>
                 </Link>

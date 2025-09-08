@@ -43,6 +43,8 @@ import Button from '../components/common/button';
 import useWindowSize from '../hooks/useWindowSize';
 import ScrollToTop from '../components/ui/ScrollToTop';
 import React from 'react';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 
 /**
  * MonitoringAutomation Component - Unlock Peak Efficiency & Security
@@ -54,6 +56,7 @@ export default function MonitoringAutomation() {
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeProcess, setActiveProcess] = useState(0);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   useEffect(() => {
     const checkDevice = () => {
@@ -329,6 +332,7 @@ export default function MonitoringAutomation() {
                     variant="primary" 
                     size="lg"
                     className="group"
+                    onClick={openModal}
                   >
                     Get Your Monitoring Solution
                     <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -488,7 +492,7 @@ export default function MonitoringAutomation() {
 
           {/* CTA Section */}
           <motion.div className="text-center mt-16" {...fadeInUp}>
-            <Button variant="primary" size="lg" className="group">
+            <Button variant="primary" size="lg" className="group" onClick={openModal}>
               Explore Seamless Integration
               <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </Button>
@@ -669,11 +673,11 @@ export default function MonitoringAutomation() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" size="lg" className="group">
+              <Button variant="primary" size="lg" className="group" onClick={openModal}>
                 Get Started Today
                 <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
               </Button>
-              <Button variant="secondary" size="lg" className="group">
+              <Button variant="secondary" size="lg" className="group" onClick={openModal}>
                 <HiPhone className="mr-2 w-5 h-5" />
                 Contact Us
               </Button>
@@ -681,6 +685,14 @@ export default function MonitoringAutomation() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 
