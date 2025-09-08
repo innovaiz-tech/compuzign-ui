@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect, useMemo, useCallback, memo } from 'react';
 import { HiStar, HiTrendingUp, HiGlobe, HiUserGroup } from 'react-icons/hi';
-
+import { useNavigate } from 'react-router-dom';
 // Import actual client logos from assets
 import Client1 from '../../assets/client/client-1.png';
 import Client2 from '../../assets/client/client-2.png';
@@ -79,6 +79,7 @@ const StatCard = memo(({ stat, index }) => (
 function ClientLogos() {
   const [hoveredClient, setHoveredClient] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   // Memoized client data to prevent unnecessary re-renders
   const clients = useMemo(() => [
@@ -320,6 +321,7 @@ function ClientLogos() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="button"
+                onClick={() => navigate('/contact')}
               >
                 Start Your Project Today
               </motion.button>

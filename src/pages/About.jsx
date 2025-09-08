@@ -323,7 +323,6 @@ export default function About() {
                   onClick={() => navigate('/partners')}
                 >
                   Learn More
-                  <HiPhone className="ml-2 w-5 h-5" />
                 </Button>
               </motion.div>
             </motion.div>

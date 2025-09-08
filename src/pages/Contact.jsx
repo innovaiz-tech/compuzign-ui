@@ -1,5 +1,5 @@
 import Button from '../components/common/button';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import contactHeroBg from '../assets/contact-hero-bg.jpg';
 import { motion } from 'framer-motion';
 import { 
@@ -17,6 +17,7 @@ import {
   HiClock,
   HiShieldCheck
 } from 'react-icons/hi';
+import useScrollToTop from '../hooks/useScrollToTop';
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -123,6 +124,8 @@ export default function Contact() {
     viewport: { once: true, margin: "-50px" },
     transition: { duration: 0.6 }
   };
+
+  useScrollToTop()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
