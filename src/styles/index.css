@@ -8,13 +8,9 @@
 html, body {
   overflow-x: hidden;
   max-width: 100vw;
-  /* Enable hardware acceleration */
-  transform: translateZ(0);
-  /* Optimize font rendering */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Improve scrolling performance */
   scroll-behavior: smooth;
 }
 
@@ -132,11 +128,7 @@ html, body {
 *,
 *::before,
 *::after {
-  /* Enable hardware acceleration for transforms */
   backface-visibility: hidden;
-  /* Optimize repainting */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
 }
 
 /* Optimize images for performance */

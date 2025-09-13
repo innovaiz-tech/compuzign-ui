@@ -25,6 +25,8 @@ import Button from '../components/common/button';
 import useWindowSize from '../hooks/useWindowSize';
 import AnimatedStat from '../components/ui/AnimatedStat';
 import FlipCard from '../components/ui/FlipCard';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { section1Cards, statsData, benefitsData, keyStrategies, partnerInfo, externalReference } from '../data/privilegedAccessData';
 import ScrollToTop from '../components/ui/ScrollToTop';
 
@@ -36,6 +38,7 @@ export default function PrivilegedAccessStrategies() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   useEffect(() => {
     const checkDevice = () => {
@@ -607,6 +610,7 @@ export default function PrivilegedAccessStrategies() {
                 variant="primary" 
                 size="lg"
                 className="group bg-primary-bgYellow text-black hover:bg-yellow-400 px-10 py-5 text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-bgYellow/25"
+                onClick={openModal}
               >
                 Get Your Customized PAM Strategy
                 <HiArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
@@ -635,29 +639,20 @@ export default function PrivilegedAccessStrategies() {
             </div>
             </motion.div>
 
-            {/* Contact Info */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-8 text-gray-400">
-              <div className="flex items-center">
-                <a href="tel:+19046852138" className="flex items-center">
-                  <HiPhone className="w-6 h-6 text-primary-bgYellow mr-3" />
-                  <div>
-                    <span className="text-lg">+1 (904) 685-2138</span>
-                    <div className="text-sm text-gray-400">Call us directly</div>
-                  </div>
-                </a>
-              </div>
-              <div className="flex items-center">
-                <HiGlobe className="w-6 h-6 text-primary-bgYellow mr-3" />
-                <span className="text-lg">info@compuzign.com</span>
-              </div>
-            </div>
-
           </motion.div>
         </div>
       </section>
 
       {/* ScrollToTop FAB */}
       <ScrollToTop />
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

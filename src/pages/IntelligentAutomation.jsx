@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import {
   HiCog,
   HiLightningBolt,
@@ -26,6 +28,7 @@ export default function IntelligentAutomation() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   useEffect(() => {
     setIsMobile(width <= 768);
@@ -242,15 +245,6 @@ export default function IntelligentAutomation() {
                   >
                     Start Your Automation Journey
                     <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
-                  </Button>
-                  
-                  <Button 
-                    variant="secondary" 
-                    size="lg"
-                    className="group shadow-lg hover:shadow-xl"
-                  >
-                    Speak to an Expert
-                    <HiPhone className="ml-2 w-5 h-5" />
                   </Button>
                 </motion.div>
                 
@@ -857,18 +851,10 @@ export default function IntelligentAutomation() {
                 variant="primary" 
                 size="xl"
                 className="group shadow-2xl hover:shadow-primary-bgYellow/30 transform hover:scale-105 transition-all duration-300"
+                onClick={openModal}
               >
                 Schedule a Consultation
                 <HiArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform duration-200" />
-              </Button>
-              
-              <Button 
-                variant="secondary" 
-                size="xl"
-                className="group shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-              >
-                Download Automation Guide
-                <HiDocumentReport className="ml-2 w-6 h-6" />
               </Button>
             </motion.div>
           </motion.div>
@@ -876,6 +862,14 @@ export default function IntelligentAutomation() {
       </section>
 
       <ScrollToTop />
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

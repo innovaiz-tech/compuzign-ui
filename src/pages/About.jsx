@@ -13,6 +13,7 @@ Placeholder content to replace:
 
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   HiUserGroup, 
   HiTrendingUp, 
@@ -47,14 +48,28 @@ import Button from '../components/common/button';
 import StepTimeline from '../components/ui/StepTimeline';
 import ProcessTimeline from '../components/ui/ProcessTimeline';
 import aboutBanner from '../assets/about-banner.jpg';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 
 export default function About() {
-  const [activeExpertise, setActiveExpertise] = useState(null);
   const [activeTeamMember, setActiveTeamMember] = useState(0);
   const [countersStarted, setCountersStarted] = useState(false);
+  const navigate = useNavigate();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
   
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true });
+
+  // Service navigation mapping
+  const getServiceRoute = (title) => {
+    const routeMap = {
+      'Resource as a Service (RaaS)': '/raas',
+      'Cloud Technology': '/managed-services',
+      'Cloud Migration': '/cloud-migration',
+      'IT Consulting': '/data-driven-consulting'
+    };
+    return routeMap[title] || '/services';
+  };
 
   // Animation variants
   const fadeInUp = {
@@ -70,7 +85,7 @@ export default function About() {
   const stats = [
     { icon: HiStar, number: "25+", label: "Years of Experience", description: "Since 1998" },
     { icon: HiGlobe, number: "3", label: "Countries", description: "Global Presence" },
-    { icon: HiUsers, number: "50k+", label: "Talent Network", description: "Worldwide" },
+    { icon: HiUsers, number: "120+", label: "Talent Network", description: "Worldwide" },
     { icon: HiLightningBolt, number: "1000+", label: "Projects Completed", description: "Success Stories" }
   ];
 
@@ -116,9 +131,9 @@ export default function About() {
       coordinates: { x: 45, y: 65 } // Percentage position on map
     },
     {
-      name: "Florida, 33304, US",
+      name: "Jacksonville, FL",
       type: "Secondary",
-      mapUrl: "https://www.google.com/maps/search/?api=1&query=Fort+Lauderdale%2C+FL+33304%2C+USA",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Jacksonville%2C+FL",
       description: "US Operations",
       coordinates: { x: 25, y: 45 }
     },
@@ -136,7 +151,8 @@ export default function About() {
       name: "Haniff Tingling",
       location: "Jamaica",
       title: "Director of Engineering – Cloud Technologies & SaaS Platform",
-      bio: "With over 25 years of experience in engineering leadership, Haniff specializes in designing and delivering innovative cloud solutions across SaaS platforms. A certified PMP and accredited by Dell, AWS, GCP, and Azure, he brings deep expertise in scalable architectures and enterprise-grade deployments. Beyond technology, Haniff is passionate about cricket and enjoys traveling to experience Formula 1 races worldwide.",
+      bio: `With over 25 years of experience in engineering leadership, Haniff specializes in designing and delivering innovative cloud solutions across SaaS platforms. A certified PMP and accredited by Dell, AWS, GCP, and Azure, he brings deep expertise in scalable architectures and enterprise-grade deployments. Beyond technology, Haniff is Passionate about cricket and enjoys traveling to experience Formula 1 races worldwide
+      Favorite driver: Lewis "The GOAT" Hamilton and Oscar Piastri.`,
       image: "/src/assets/team-haniff.jpg"
     },
     {
@@ -257,8 +273,8 @@ export default function About() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                Building the Future with Expertise and Innovation. Empowering businesses by providing seamless, 
-                reliable IT services that enhance productivity, streamline operations, and foster growth.
+                With over 25 years expertise, our proven IT SaaS Delivery Model and or 
+                {" "}<b>11 / 11</b>{" "}(eleven/eleven) Step-by-Step recovery plan approach not only protect against attackers, but also secure your critical data and ensure operational recovery in hours, not days, not weeks. Saving money, reputation and operational excellence.
               </motion.p>
 
               {/* Mobile Feature Chips */}
@@ -294,7 +310,7 @@ export default function About() {
                   variant="primary" 
                   size="lg"
                   className="group shadow-2xl hover:shadow-primary-bgYellow/25"
-                  onClick={() => window.location.href = '/contact'}
+                  onClick={openModal}
                 >
                   Get Started Today
                   <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -304,10 +320,9 @@ export default function About() {
                   variant="secondary" 
                   size="lg"
                   className="group shadow-lg hover:shadow-xl"
-                  onClick={() => window.location.href = '/partners'}
+                  onClick={() => navigate('/partners')}
                 >
                   Learn More
-                  <HiPhone className="ml-2 w-5 h-5" />
                 </Button>
               </motion.div>
             </motion.div>
@@ -486,56 +501,97 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {expertise.map((item, index) => (
-              <motion.div
-                key={index}
-                {...fadeInUp}
-                transition={{ delay: index * 0.1 }}
-                className="relative"
-              >
-                <div 
-                  className={`bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-primary-bgYellow/30 transition-all duration-300 cursor-pointer ${
-                    activeExpertise === index ? 'border-primary-bgYellow/50 bg-white/10' : ''
-                  }`}
-                  onClick={() => setActiveExpertise(activeExpertise === index ? null : index)}
-                >
-                  <div className="bg-gradient-to-br from-primary-bgYellow to-yellow-500 rounded-xl p-4 mb-4 inline-block">
-                    <item.icon className="w-8 h-8 text-black" />
+          {/* Primary Service - SaaS */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center mb-16"
+          >
+            <div className="relative max-w-xl w-full">
+              {/* Primary Service Badge */}
+              
+              <div className="bg-gradient-to-br from-primary-bgYellow/20 to-yellow-500/10 backdrop-blur-md rounded-3xl p-6 border-2 border-primary-bgYellow/40 hover:border-primary-bgYellow/60 transition-all duration-300 relative overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,218,23,0.3)_0%,transparent_70%)]"></div>
+                </div>
+                
+                <div className="relative z-10 text-center">
+                  <div className="bg-gradient-to-br from-primary-bgYellow to-yellow-500 rounded-2xl p-4 mb-4 inline-block">
+                    <HiCog className="w-8 h-8 text-black" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">
-                    {item.title}
+                  
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    Support as a Service (SaaS)
                   </h3>
-                  <p className="text-gray-300 leading-relaxed mb-4">
+                  
+                  <p className="text-lg text-gray-300 leading-relaxed mb-4">
+                    Comprehensive support operations with ZENfra-powered workflows
+                  </p>
+                  
+                  <p className="text-gray-400 mb-6 max-w-md mx-auto">
+                    24/7 monitoring, incident management, and automated resolution workflows powered by our proprietary ZENfra AI platform.
+                  </p>
+                  
+                  <Button 
+                    variant="primary"
+                    size="md"
+                    className="bg-primary-bgYellow hover:bg-yellow-400 text-black font-semibold px-6 py-2"
+                    onClick={() => navigate('/support-as-a-service')}
+                  >
+                    Explore SaaS
+                    <HiArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Connecting Lines */}
+          <div className="flex justify-center mb-8">
+            <div className="relative">
+              <div className="w-px h-16 bg-gradient-to-b from-primary-bgYellow/60 to-primary-bgYellow/20"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-primary-bgYellow rounded-full"></div>
+            </div>
+          </div>
+
+          {/* Child Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+            {expertise.slice(1).map((item, index) => (
+              <motion.div
+                key={index + 1}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.8 + (index * 0.15) }}
+                className="relative group"
+              >
+                {/* Connector Line for Desktop */}
+                <div className="hidden md:block absolute -top-8 left-1/2 transform -translate-x-1/2">
+                  <div className="w-px h-8 bg-gradient-to-b from-primary-bgYellow/40 to-transparent group-hover:from-primary-bgYellow/60 transition-colors duration-300"></div>
+                </div>
+                
+                <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-primary-bgYellow/30 hover:bg-white/10 transition-all duration-300 h-full">
+                  <div className="bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl p-3 mb-4 inline-block group-hover:from-primary-bgYellow/20 group-hover:to-primary-bgYellow/10 transition-all duration-300">
+                    <item.icon className="w-6 h-6 text-primary-bgYellow" />
+                  </div>
+                  
+                  <h4 className="text-lg font-bold text-white mb-3">
+                    {item.title}
+                  </h4>
+                  
+                  <p className="text-gray-300 text-sm leading-relaxed mb-4">
                     {item.description}
                   </p>
                   
-                  {/* Expandable Details */}
-                  <AnimatePresence>
-                    {activeExpertise === index && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="border-t border-white/10 pt-4 mt-4"
-                      >
-                        <p className="text-gray-400 text-sm leading-relaxed">
-                          {item.details}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                  
-                  <div className="flex items-center justify-between mt-4">
-                    <span className="text-primary-bgYellow text-sm font-medium">
-                      {activeExpertise === index ? 'Less Details' : 'More Details'}
-                    </span>
-                    <HiChevronDown 
-                      className={`w-5 h-5 text-primary-bgYellow transition-transform duration-200 ${
-                        activeExpertise === index ? 'rotate-180' : ''
-                      }`} 
-                    />
+                  <div 
+                    className="flex items-center text-primary-bgYellow text-sm font-medium hover:text-yellow-300 transition-colors cursor-pointer"
+                    onClick={() => navigate(getServiceRoute(item.title))}
+                  >
+                    More Details
+                    <HiArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
                   </div>
                 </div>
               </motion.div>
@@ -552,7 +608,7 @@ export default function About() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Meet Our <span className="text-primary-bgYellow">Leadership</span>
+              Meet Our <span className="text-primary-bgYellow">Peoples</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Experienced professionals driving innovation and excellence in IT services
@@ -698,7 +754,7 @@ export default function About() {
                 { step: '02', title: 'Company Type — Self‑Owned', description: 'Independent technology firm, privately held organization.' },
                 { step: '03', title: 'Founded — 1998', description: 'Over 25 years of excellence and industry experience.' },
                 { step: '04', title: 'Industry — IT Services & Consulting', description: 'Professional technology services, expert consulting and solutions.' },
-                { step: '05', title: 'Specialties — SaaS, RaaS, Cloud & Consulting', description: 'IT Consulting, Cloud Technology & Migration, Support as a Service (SaaS), Resource as a Service (RaaS).' }
+                { step: '05', title: 'Specialties — SaaS, RaaS, Cloud & Consulting', description: 'IT Consulting, Primary SIEM integration partner, Cloud Technology & Migration, Support as a Service (SaaS), Resource as a Service (RaaS).' }
               ];
               return (
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-6 lg:p-10 backdrop-blur-sm">
@@ -786,7 +842,7 @@ export default function About() {
                 variant="primary"
                 size="lg"
                 className="group shadow-2xl hover:shadow-primary-bgYellow/25"
-                onClick={() => window.location.href = '/contact'}
+                onClick={openModal}
               >
                 Get Started Today
                 <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -795,7 +851,7 @@ export default function About() {
                 variant="secondary"
                 size="lg"
                 className="group shadow-lg hover:shadow-xl"
-                onClick={() => window.location.href = '/partners'}
+                onClick={() => navigate('/partners')}
               >
                 Learn More
                 <HiPhone className="ml-2 w-5 h-5" />
@@ -820,6 +876,14 @@ export default function About() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 }

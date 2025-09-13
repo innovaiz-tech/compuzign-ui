@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import ScrollToTop from "../components/ui/ScrollToTop";
 import ProcessTimeline from "../components/ui/ProcessTimeline";
 import { 
@@ -29,6 +31,7 @@ import {
 
 export default function CyberResilience() {
   const [activeOrbitItem, setActiveOrbitItem] = React.useState(0);
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   const services = [
     {
@@ -274,15 +277,15 @@ export default function CyberResilience() {
                   transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
                 >
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Link
-                      to="/contact"
+                    <button
+                      onClick={openModal}
                       className="group relative px-8 py-4 bg-primary-bgYellow text-black font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary-bgYellow/25"
                     >
                       <span className="relative z-10 flex items-center gap-2">
                         Secure Your Business
                         <HiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                       </span>
-                    </Link>
+                    </button>
                     
                     <Link
                       to="#services"
@@ -679,13 +682,13 @@ export default function CyberResilience() {
             viewport={{ once: true }}
             className="text-center mt-16"
           >
-            <Link
-              to="/contact"
+            <button
+              onClick={openModal}
               className="inline-flex items-center px-8 py-4 bg-primary-bgYellow text-black font-semibold rounded-lg hover:bg-yellow-400 transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
               Experience ZENfra Security
               <HiArrowRight size={20} className="ml-2" />
-            </Link>
+            </button>
           </motion.div>
         </div>
       </section>
@@ -875,6 +878,14 @@ export default function CyberResilience() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

@@ -341,7 +341,7 @@ export default function Headers() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         shouldUseLightTheme
-          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
+          ? 'bg-white/30 backdrop-blur-3xl shadow-xl' 
           : 'bg-transparent'
       }`}
     >
@@ -349,11 +349,14 @@ export default function Headers() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 z-50">
-            <div className="text-2xl font-bold">
-              <span className={`${shouldUseLightTheme ? 'text-black' : 'text-white'} transition-colors`}>
-                Compu
-              </span>
-              <span className="text-primary-bgYellow">Zign</span>
+            <div className='flex flex-col items-start gap-0'>
+              <div className="text-2xl font-bold">
+                <span className={`${shouldUseLightTheme ? 'text-black' : 'text-white'} transition-colors`}>
+                  Compu
+                </span>
+                <span className="text-primary-bgYellow">Zign</span>
+              </div>
+              <span className='text-primary-bgYellow text-xs italic'>Let us do IT for you!!!</span>
             </div>
           </Link>
 

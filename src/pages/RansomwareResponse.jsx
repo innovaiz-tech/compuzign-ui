@@ -22,6 +22,8 @@ import Button from '../components/common/button';
 import useWindowSize from '../hooks/useWindowSize';
 import IRRVisualComponent from '../components/ui/IRRVisualComponent';
 import ScrollToTop from '../components/ui/ScrollToTop';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 
 /**
  * RansomwareResponse Component - Live IRR Services
@@ -31,6 +33,7 @@ export default function RansomwareResponse() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   useEffect(() => {
     const checkDevice = () => {
@@ -234,6 +237,7 @@ export default function RansomwareResponse() {
                     variant="secondary" 
                     size="lg"
                     className="group bg-primary-bgYellow hover:bg-yellow-400 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-bgYellow/25 w-full sm:w-auto"
+                    onClick={openModal}
                   >
                     Fill Response Form
                     <HiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -578,6 +582,7 @@ export default function RansomwareResponse() {
                 variant="secondary" 
                 size="xl"
                 className="group bg-yellow-400 hover:bg-yellow-500 text-white px-8 sm:px-12 py-4 sm:py-6 text-lg sm:text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-bgYellow/25 w-full sm:w-auto"
+                onClick={openModal}
               >
                 <span className="hidden sm:inline">Activate Your Triple RT Engagement Now</span>
                 <span className="sm:hidden">Activate Triple RT Now</span>
@@ -612,6 +617,13 @@ export default function RansomwareResponse() {
 
       {/* ScrollToTop FAB */}
       <ScrollToTop />
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 }

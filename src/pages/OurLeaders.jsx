@@ -23,7 +23,8 @@ export default function OurLeaders() {
       experience: "25+ years",
       image: "/src/assets/team-haniff.jpg",
       bio: "With over 25 years of experience in engineering leadership, Haniff specializes in designing and delivering innovative cloud solutions across SaaS platforms. A certified PMP and accredited by Dell, AWS, GCP, and Azure, he brings deep expertise in scalable architectures and enterprise-grade deployments.",
-      funFact: "Passionate about cricket and enjoys traveling to experience Formula 1 races worldwide",
+      funFact: `Passionate about cricket and enjoys traveling to experience Formula 1 races worldwide
+      Favorite driver: Lewis "The GOAT" Hamilton and Oscar Piastri.`,
       certifications: ["PMP Certified", "Dell Accredited", "AWS Certified", "GCP Certified", "Azure Certified"],
       specialties: ["Cloud Architecture", "SaaS Platforms", "Scalable Systems", "Enterprise Deployments"]
     },

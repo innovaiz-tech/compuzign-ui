@@ -1,5 +1,7 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { 
   HiServer, 
   HiCloud,
@@ -42,6 +44,7 @@ const ComputeMigration = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeMigrationPath, setActiveMigrationPath] = useState(0);
   const heroRef = useRef(null);
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -358,6 +361,7 @@ const ComputeMigration = () => {
                     variant="primary" 
                     size="lg"
                     className="group"
+                    onClick={openModal}
                   >
                     Get Your Compute Migration Plan
                     <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -1119,6 +1123,7 @@ const ComputeMigration = () => {
                 variant="primary" 
                 size="lg"
                 className="group bg-primary-bgYellow text-black hover:bg-yellow-400 px-10 py-5 text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-bgYellow/25"
+                onClick={openModal}
               >
                 Contact Us
                 <HiArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
@@ -1128,6 +1133,7 @@ const ComputeMigration = () => {
                 variant="secondary" 
                 size="lg"
                 className="group border-2 border-white text-white hover:bg-white hover:text-black px-10 py-5 text-xl font-bold rounded-xl transition-all duration-300"
+                onClick={openModal}
               >
                 Book Consultation
                 <HiPhone className="w-6 h-6 ml-3" />
@@ -1138,6 +1144,13 @@ const ComputeMigration = () => {
         </div>
       </section>
 
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 };

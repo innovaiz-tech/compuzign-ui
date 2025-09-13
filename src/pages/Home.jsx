@@ -72,7 +72,7 @@ export default function Home() {
     ]
     const EmpoweringGlobalSuccessContent = [
         {
-            header: "16 Years of Trusted Service",
+            header: "25 Years of Trusted Service",
             content: "",
             icon: EmpoweringGlobalSuccessIcon1,
             hoverImage: EmpoweringGlobalSuccessFrame1,
@@ -84,7 +84,7 @@ export default function Home() {
             height: '180px'
         },
         {
-            header: "50k+ Globally Talent Network",
+            header: "120+ Globally Talent Network",
             content: "",
             icon: EmpoweringGlobalSuccessIcon2,
             hoverImage: EmpoweringGlobalSuccessFrame2,
@@ -108,7 +108,7 @@ export default function Home() {
             height: '180px'
         },
         {
-            header: "250+ Expert Employees",
+            header: "50+ Expert Employees",
             content: "",
             icon: EmpoweringGlobalSuccessIcon4,
             hoverImage: EmpoweringGlobalSuccessFrame4,
@@ -503,37 +503,6 @@ export default function Home() {
             
             {/* Client Logos */}
             <ClientLogos />
-
-            <div
-                className="bg-white py-16 flex flex-col lg:flex-row items-center justify-center gap-8 w-full px-4 pt-24 pb-8 md:px-8 lg:px-16"
-                style={{ backgroundImage: width >= 1300 ? `url(${InnovatingWithAIBanner})` : 'none', backgroundPosition: 'right', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }}>
-                <div className="flex flex-col gap-4 w-full lg:w-1/2 lg:max-w-[700px] px-8">
-                    <p className="text-2xl md:text-3xl font-medium text-primary uppercase">
-                        INNOVATING WITH AI-POWERED ZENfra
-                    </p>
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
-                        Harnessing the Power of AI in Project Management
-                    </h2>
-                    <p className="text-base md:text-lg text-gray-600">
-                        At CompuZign, we believe in leveraging the latest technology to drive success. Our AI-powered ZENfra platform enhances every stage of project management, from initial planning to execution. This innovative solution provides real-time insights and predictive analytics, enabling you to make informed decisions that lead to superior outcomes.
-                    </p>
-                </div>
-
-                {/* Hidden on mobile and tablet, visible on desktop */}
-                <div className="hidden lg:block">
-                    <img
-                        src={InnovatingWithAI}
-                        className="
-                            w-[450px] h-[450px]
-                            object-cover 
-                            rounded-full 
-                            border-8 
-                            border-primary-bgLight 
-                            hover:border-primary-bgYellow"
-                        alt="Technology landscape"
-                    />
-                </div>
-            </div>
             
             {/* Call to Action */}
             <CallToAction />

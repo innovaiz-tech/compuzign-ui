@@ -1,160 +1,590 @@
 import Button from '../components/common/button';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import contactHeroBg from '../assets/contact-hero-bg.jpg';
 import { motion } from 'framer-motion';
+import { 
+  HiPhone, 
+  HiMail, 
+  HiLocationMarker, 
+  HiOfficeBuilding,
+  HiUser,
+  HiBriefcase,
+  HiGlobe,
+  HiChatAlt2,
+  HiCheckCircle,
+  HiExclamationCircle,
+  HiArrowRight,
+  HiClock,
+  HiShieldCheck
+} from 'react-icons/hi';
+import useScrollToTop from '../hooks/useScrollToTop';
 
 export default function Contact() {
-  // Simple form state (no validation for demo)
   const [form, setForm] = useState({
-    name: '', email: '', job: '', org: '', phone: '', industry: '', enquiry: '', message: ''
+    firstName: '', lastName: '', email: '', jobTitle: '', organizationName: '', 
+    phoneNumber: '', countryCode: '+1', industry: '', enquiryType: '', message: ''
   });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
+  // Country codes data
+  const countryCodes = [
+    { code: '+1', country: 'US/CA', flag: '🇺🇸' },
+    { code: '+44', country: 'UK', flag: '🇬🇧' },
+    { code: '+91', country: 'IN', flag: '🇮🇳' },
+    { code: '+61', country: 'AU', flag: '🇦🇺' },
+    { code: '+49', country: 'DE', flag: '🇩🇪' },
+    { code: '+33', country: 'FR', flag: '🇫🇷' },
+    { code: '+81', country: 'JP', flag: '🇯🇵' },
+    { code: '+86', country: 'CN', flag: '🇨🇳' },
+    { code: '+65', country: 'SG', flag: '🇸🇬' },
+    { code: '+971', country: 'AE', flag: '🇦🇪' }
+  ];
 
-  function handleSubmit(e) {
+  // Industry options
+  const industries = [
+    'Technology', 'Healthcare', 'Financial Services', 'Manufacturing',
+    'Retail', 'Education', 'Government', 'Non-profit', 'Media & Entertainment',
+    'Transportation', 'Energy', 'Real Estate', 'Other'
+  ];
+
+  // Enquiry types
+  const enquiryTypes = [
+    'Request for Service', 'Alliance', 'Investor', 'Media', 'Others'
+  ];
+
+  // Form validation
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!form.firstName.trim()) newErrors.firstName = 'First name is required';
+    if (!form.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    if (!form.jobTitle.trim()) newErrors.jobTitle = 'Job title is required';
+    if (!form.organizationName.trim()) newErrors.organizationName = 'Organization name is required';
+    if (!form.phoneNumber.trim()) {
+      newErrors.phoneNumber = 'Phone number is required';
+    } else if (!/^\d{10,15}$/.test(form.phoneNumber.replace(/\s/g, ''))) {
+      newErrors.phoneNumber = 'Please enter a valid phone number';
+    }
+    if (!form.industry.trim()) newErrors.industry = 'Industry is required';
+    if (!form.enquiryType.trim()) newErrors.enquiryType = 'Enquiry type is required';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      console.log('Form submitted:', {
+        ...form,
+        fullPhoneNumber: `${form.countryCode} ${form.phoneNumber}`,
+        source: 'Contact Page',
+        timestamp: new Date().toISOString()
+      });
+      
     setSubmitted(true);
-    // Here you would send the form data to your backend or an email service
-  }
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Animation variants
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-50px" },
+    transition: { duration: 0.6 }
+  };
+
+  useScrollToTop()
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
       {/* Hero Banner */}
-      <section className="relative h-[520px] flex items-center justify-center">
-        <img src={contactHeroBg} alt="Contact background" className="absolute inset-0 w-full h-full object-cover object-center z-0" />
-        <div className="absolute inset-0 bg-black/60 z-10" />
-        <div className="relative z-20 text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 relative inline-block">
-            Contact Us
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <img 
+          src={contactHeroBg} 
+          alt="Contact background" 
+          className="absolute inset-0 w-full h-full object-cover object-center z-0" 
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-blue-900/70 to-indigo-900/80 z-10" />
+        
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10 z-20">
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_30%,rgba(255,255,255,0.1)_50%,transparent_70%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,218,23,0.2)_0%,transparent_50%)]"></div>
+        </div>
+
+        <div className="relative z-30 text-center text-white px-4 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 relative">
+              Contact <span className="text-primary-bgYellow">Us</span>
             <motion.div
-              className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary-bgYellow/60 to-transparent rounded-full"
-              initial={{ scaleX: 0, originX: 0 }}
+                className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-primary-bgYellow to-transparent rounded-full"
+                initial={{ scaleX: 0, originX: 0.5 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
             />
           </h1>
-          <p className="text-lg md:text-2xl font-medium">Let’s connect and drive your digital transformation to success</p>
+            <p className="text-xl md:text-2xl font-medium mb-8 text-gray-200">
+              Let's connect and drive your digital transformation to success
+            </p>
+            
+            {/* Quick Contact Options */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <motion.a
+                href="tel:+19046852138"
+                className="group flex items-center px-6 py-3 bg-primary-bgYellow text-black font-semibold rounded-lg hover:bg-yellow-400 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary-bgYellow/25"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <HiPhone className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                Call Us Now
+              </motion.a>
+              
+              <motion.a
+                href="mailto:contact@compuzign.com"
+                className="group flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white hover:text-slate-900 transition-all duration-300 hover:scale-105"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <HiMail className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
+                Email Us
+              </motion.a>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="relative z-10 -mt-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
         {/* Contact Form */}
-        <div>
-          <h2 className="text-2xl font-bold mb-6 text-primary-bgYellow">Connect with Compuzign</h2>
-          {submitted ? (
-            <div className="p-6 bg-green-50 border border-green-200 rounded-lg text-green-700 font-semibold">Thank you for contacting us! We will get back to you soon.</div>
-          ) : (
-            <form className="space-y-4" onSubmit={handleSubmit} autoComplete="off">
-              <div>
-                <label className="block font-medium mb-1">Name <span className="text-red-500">*</span></label>
-                <input name="name" value={form.name} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-bgYellow outline-none" />
+            <motion.div
+              {...fadeInUp}
+              className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl"
+            >
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold text-white mb-4">
+                  Get in Touch
+                </h2>
+                <p className="text-gray-300 text-lg">
+                  Share your business requirements and let us help you find the perfect solution.
+                </p>
               </div>
+
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center p-8"
+                >
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <HiCheckCircle className="w-12 h-12 text-green-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    Thank you for your submission!
+                  </h3>
+                  <p className="text-gray-300 mb-6">
+                    We've received your request and our team will get back to you within 24 hours.
+                  </p>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="bg-primary-bgYellow hover:bg-yellow-400 text-black font-semibold py-3 px-8 rounded-lg transition-all duration-200"
+                  >
+                    Send Another Message
+                  </button>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Name Row */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block font-medium mb-1">Email <span className="text-red-500">*</span></label>
-                <input name="email" type="email" value={form.email} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-bgYellow outline-none" />
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        <HiUser className="inline w-4 h-4 mr-1" />
+                        First Name*
+                      </label>
+                      <input
+                        type="text"
+                        name="firstName"
+                        value={form.firstName}
+                        onChange={handleChange}
+                        placeholder="Enter your first name"
+                        className={`w-full px-4 py-3 bg-white/10 border rounded-lg focus:ring-2 focus:ring-primary-bgYellow focus:border-transparent transition-all text-white placeholder-gray-400 ${
+                          errors.firstName ? 'border-red-500' : 'border-white/20'
+                        }`}
+                      />
+                      {errors.firstName && (
+                        <p className="mt-1 text-sm text-red-400 flex items-center">
+                          <HiExclamationCircle className="w-4 h-4 mr-1" />
+                          {errors.firstName}
+                        </p>
+                      )}
               </div>
+
               <div>
-                <label className="block font-medium mb-1">Job Title <span className="text-red-500">*</span></label>
-                <input name="job" value={form.job} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-bgYellow outline-none" />
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Last Name
+                      </label>
+                      <input
+                        type="text"
+                        name="lastName"
+                        value={form.lastName}
+                        onChange={handleChange}
+                        placeholder="Enter your last name"
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:ring-2 focus:ring-primary-bgYellow focus:border-transparent transition-all text-white placeholder-gray-400"
+                      />
+                    </div>
               </div>
+
+                  {/* Email & Company Row */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block font-medium mb-1">Organization Name <span className="text-red-500">*</span></label>
-                <input name="org" value={form.org} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-bgYellow outline-none" />
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        <HiMail className="inline w-4 h-4 mr-1" />
+                        Business Email*
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        placeholder="Enter your email"
+                        className={`w-full px-4 py-3 bg-white/10 border rounded-lg focus:ring-2 focus:ring-primary-bgYellow focus:border-transparent transition-all text-white placeholder-gray-400 ${
+                          errors.email ? 'border-red-500' : 'border-white/20'
+                        }`}
+                      />
+                      {errors.email && (
+                        <p className="mt-1 text-sm text-red-400 flex items-center">
+                          <HiExclamationCircle className="w-4 h-4 mr-1" />
+                          {errors.email}
+                        </p>
+                      )}
               </div>
+
               <div>
-                <label className="block font-medium mb-1">Phone Number <span className="text-red-500">*</span></label>
-                <input name="phone" value={form.phone} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-bgYellow outline-none" />
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        <HiOfficeBuilding className="inline w-4 h-4 mr-1" />
+                        Company*
+                      </label>
+                      <input
+                        type="text"
+                        name="organizationName"
+                        value={form.organizationName}
+                        onChange={handleChange}
+                        placeholder="Where do you work?"
+                        className={`w-full px-4 py-3 bg-white/10 border rounded-lg focus:ring-2 focus:ring-primary-bgYellow focus:border-transparent transition-all text-white placeholder-gray-400 ${
+                          errors.organizationName ? 'border-red-500' : 'border-white/20'
+                        }`}
+                      />
+                      {errors.organizationName && (
+                        <p className="mt-1 text-sm text-red-400 flex items-center">
+                          <HiExclamationCircle className="w-4 h-4 mr-1" />
+                          {errors.organizationName}
+                        </p>
+                      )}
+                    </div>
               </div>
+
+                  {/* Job Title */}
               <div>
-                <label className="block font-medium mb-1">Your Industry <span className="text-red-500">*</span></label>
-                <input name="industry" value={form.industry} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-bgYellow outline-none" />
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      <HiBriefcase className="inline w-4 h-4 mr-1" />
+                      Job Title*
+                    </label>
+                    <input
+                      type="text"
+                      name="jobTitle"
+                      value={form.jobTitle}
+                      onChange={handleChange}
+                      placeholder="Enter your job title"
+                      className={`w-full px-4 py-3 bg-white/10 border rounded-lg focus:ring-2 focus:ring-primary-bgYellow focus:border-transparent transition-all text-white placeholder-gray-400 ${
+                        errors.jobTitle ? 'border-red-500' : 'border-white/20'
+                      }`}
+                    />
+                    {errors.jobTitle && (
+                      <p className="mt-1 text-sm text-red-400 flex items-center">
+                        <HiExclamationCircle className="w-4 h-4 mr-1" />
+                        {errors.jobTitle}
+                      </p>
+                    )}
               </div>
+
+                  {/* Phone Number */}
               <div>
-                <label className="block font-medium mb-1">Enquiry Type <span className="text-red-500">*</span></label>
-                <select name="enquiry" value={form.enquiry} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-bgYellow outline-none">
-                  <option value="">Select</option>
-                  <option>Request for Service</option>
-                  <option>General Enquiry</option>
-                  <option>Partnership</option>
-                  <option>Support</option>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      <HiPhone className="inline w-4 h-4 mr-1" />
+                      Phone*
+                    </label>
+                    <div className="flex">
+                      <select
+                        name="countryCode"
+                        value={form.countryCode}
+                        onChange={handleChange}
+                        className="px-3 py-3 bg-white/10 border border-r-0 border-white/20 rounded-l-lg focus:ring-2 focus:ring-primary-bgYellow focus:border-transparent text-white"
+                      >
+                        {countryCodes.map(({ code, flag }) => (
+                          <option key={code} value={code} className="bg-slate-800">
+                            {flag} {code}
+                          </option>
+                        ))}
                 </select>
+                      <input
+                        type="tel"
+                        name="phoneNumber"
+                        value={form.phoneNumber}
+                        onChange={handleChange}
+                        placeholder="Enter your phone number"
+                        className={`flex-1 px-4 py-3 bg-white/10 border rounded-r-lg focus:ring-2 focus:ring-primary-bgYellow focus:border-transparent transition-all text-white placeholder-gray-400 ${
+                          errors.phoneNumber ? 'border-red-500' : 'border-white/20'
+                        }`}
+                      />
+                    </div>
+                    {errors.phoneNumber && (
+                      <p className="mt-1 text-sm text-red-400 flex items-center">
+                        <HiExclamationCircle className="w-4 h-4 mr-1" />
+                        {errors.phoneNumber}
+                      </p>
+                    )}
               </div>
+
+                  {/* Industry */}
               <div>
-                <label className="block font-medium mb-1">Message</label>
-                <textarea name="message" value={form.message} onChange={handleChange} rows={4} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary-bgYellow outline-none" />
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      <HiGlobe className="inline w-4 h-4 mr-1" />
+                      Industry*
+                    </label>
+                    <select
+                      name="industry"
+                      value={form.industry}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 bg-white/10 border rounded-lg focus:ring-2 focus:ring-primary-bgYellow focus:border-transparent transition-all text-white ${
+                        errors.industry ? 'border-red-500' : 'border-white/20'
+                      }`}
+                    >
+                      <option value="" className="bg-slate-800">Select your industry</option>
+                      {industries.map(industry => (
+                        <option key={industry} value={industry} className="bg-slate-800">{industry}</option>
+                      ))}
+                    </select>
+                    {errors.industry && (
+                      <p className="mt-1 text-sm text-red-400 flex items-center">
+                        <HiExclamationCircle className="w-4 h-4 mr-1" />
+                        {errors.industry}
+                      </p>
+                    )}
               </div>
-              <Button type="submit" variant="primary" size="md" className="w-full">Submit</Button>
-            </form>
+
+                  {/* Enquiry Type */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      What type of assistance are you looking for?*
+                    </label>
+                    <select
+                      name="enquiryType"
+                      value={form.enquiryType}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 bg-white/10 border rounded-lg focus:ring-2 focus:ring-primary-bgYellow focus:border-transparent transition-all text-white ${
+                        errors.enquiryType ? 'border-red-500' : 'border-white/20'
+                      }`}
+                    >
+                      <option value="" className="bg-slate-800">Select enquiry type</option>
+                      {enquiryTypes.map(type => (
+                        <option key={type} value={type} className="bg-slate-800">{type}</option>
+                      ))}
+                    </select>
+                    {errors.enquiryType && (
+                      <p className="mt-1 text-sm text-red-400 flex items-center">
+                        <HiExclamationCircle className="w-4 h-4 mr-1" />
+                        {errors.enquiryType}
+                      </p>
           )}
         </div>
 
-        {/* Address & Map */}
-        <div className="flex flex-col gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative p-8 rounded-xl bg-gradient-to-br border border-blue-100 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden"
-          >
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200/20 rounded-full blur-xl -mr-10 -mt-10 group-hover:scale-110 transition-transform duration-500" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary-bgYellow/10 rounded-full blur-lg -ml-8 -mb-8" />
+                  {/* Message */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      <HiChatAlt2 className="inline w-4 h-4 mr-1" />
+                      What can we help you with?
+                    </label>
+                    <textarea
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
+                      rows={4}
+                      placeholder="Tell us more about your requirements..."
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:ring-2 focus:ring-primary-bgYellow focus:border-transparent transition-all resize-none text-white placeholder-gray-400"
+                    />
+                  </div>
 
-            <div className="relative z-10">
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-primary-bgYellow hover:bg-yellow-400 text-black font-semibold py-4 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black mr-2"></div>
+                        Submitting...
+                      </div>
+                    ) : (
+                      <>
+                        Submit Message
+                        <HiArrowRight className="ml-2 w-5 h-5" />
+                      </>
+                    )}
+                  </button>
+
+                  {/* Privacy Notice */}
+                  <p className="text-xs text-gray-400 leading-relaxed">
+                    By clicking Submit, I agree to the use of my personal data in accordance with 
+                    CompuZign Privacy Notice. CompuZign will not sell, trade, lease, or rent your 
+                    personal data to third parties.
+                  </p>
+                </form>
+              )}
+            </motion.div>
+
+            {/* Contact Information */}
+          <motion.div
+              {...fadeInUp}
+              transition={{ delay: 0.2 }}
+              className="space-y-8"
+            >
+              {/* Headquarters */}
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl">
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-blue-600 rounded-lg shadow-md mr-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
+                  <div className="p-4 bg-primary-bgYellow rounded-2xl mr-4">
+                    <HiLocationMarker className="w-8 h-8 text-black" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">Headquarters</h3>
+                    <p className="text-primary-bgYellow font-medium">Mandeville, JM</p>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800">North America</h3>
               </div>
               
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 pt-1">
-                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
+                    <HiLocationMarker className="w-5 h-5 text-primary-bgYellow flex-shrink-0 mt-1" />
+                    <div className="ml-3">
+                      <p className="text-gray-300 font-medium">Mandeville, Jamaica</p>
+                      <p className="text-gray-300 font-medium">IT Services and IT Consulting</p>
+                    </div>
                   </div>
-                  <p className="ml-3 text-gray-600 font-medium">11757 Beach Blvd. Suite#11A<br/>Jacksonville, FL 32246</p>
+                  
+                  <div className="flex items-center">
+                    <HiPhone className="w-5 h-5 text-primary-bgYellow flex-shrink-0" />
+                    <a href="tel:+19046852138" className="ml-3 text-white font-medium hover:text-primary-bgYellow transition-colors">
+                      +1 (904) 685-2138
+                    </a>
                 </div>
                 
                 <div className="flex items-center">
-                  <svg className="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <p className="ml-3 text-gray-600 font-medium">+1 (904) 685-2138 x 408</p>
-                </div>
-                
-                <div className="flex items-center">
-                  <svg className="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <a href="mailto:contact@compuzign.com" className="ml-3 text-blue-600 font-medium hover:underline">contact@compuzign.com</a>
-                </div>
-                <div className="mt-6 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-                  <iframe
-                    title="Compuzign North America Map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3457.073073964479!2d-81.5479636848886!3d30.29449598179206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e5c9e2e2e2e2e2%3A0x2e2e2e2e2e2e2e2e!2s11757%20Beach%20Blvd%20Suite%2011A%2C%20Jacksonville%2C%20FL%2032246%2C%20USA!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
-                    width="100%"
-                    height="180"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
+                    <HiMail className="w-5 h-5 text-primary-bgYellow flex-shrink-0" />
+                    <a href="mailto:contact@compuzign.com" className="ml-3 text-white font-medium hover:text-primary-bgYellow transition-colors">
+                      contact@compuzign.com
+                    </a>
+                  </div>
+                  
+                  <div className="mt-4 p-3 bg-primary-bgYellow/10 rounded-lg border border-primary-bgYellow/20">
+                    <p className="text-primary-bgYellow font-semibold text-sm">
+                      Founded 1998 • 11-50 employees
+                    </p>
+                  </div>
                 </div>
               </div>
+
+              {/* Quick Contact Options */}
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl">
+                <h3 className="text-2xl font-bold text-white mb-6">Quick Contact</h3>
+                
+                <div className="space-y-4">
+                  <motion.a
+                    href="tel:+19046852138"
+                    className="group flex items-center p-4 bg-white/5 rounded-xl border border-white/10 hover:border-primary-bgYellow/50 hover:bg-white/10 transition-all duration-300"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="p-3 bg-green-600 rounded-lg mr-4 group-hover:bg-green-500 transition-colors">
+                      <HiPhone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold">Call Us</p>
+                      <p className="text-gray-400 text-sm">+1 (904) 685-2138</p>
+                    </div>
+                    <HiArrowRight className="w-5 h-5 text-gray-400 ml-auto group-hover:text-primary-bgYellow group-hover:translate-x-1 transition-all" />
+                  </motion.a>
+
+                  <motion.a
+                    href="mailto:contact@compuzign.com"
+                    className="group flex items-center p-4 bg-white/5 rounded-xl border border-white/10 hover:border-primary-bgYellow/50 hover:bg-white/10 transition-all duration-300"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="p-3 bg-blue-600 rounded-lg mr-4 group-hover:bg-blue-500 transition-colors">
+                      <HiMail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold">Email Us</p>
+                      <p className="text-gray-400 text-sm">contact@compuzign.com</p>
+                    </div>
+                    <HiArrowRight className="w-5 h-5 text-gray-400 ml-auto group-hover:text-primary-bgYellow group-hover:translate-x-1 transition-all" />
+                  </motion.a>
+
+                  <motion.a
+                    href="https://compuzign.atlassian.net/servicedesk/customer/user/login"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center p-4 bg-white/5 rounded-xl border border-white/10 hover:border-primary-bgYellow/50 hover:bg-white/10 transition-all duration-300"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="p-3 bg-purple-600 rounded-lg mr-4 group-hover:bg-purple-500 transition-colors">
+                      <HiShieldCheck className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold">Customer Support</p>
+                      <p className="text-gray-400 text-sm">Existing customers</p>
+                </div>
+                    <HiArrowRight className="w-5 h-5 text-gray-400 ml-auto group-hover:text-primary-bgYellow group-hover:translate-x-1 transition-all" />
+                  </motion.a>
+                </div>
+              </div>
+            </motion.div>
             </div>
-          </motion.div>
         </div>
       </div>
     </div>

@@ -15,10 +15,13 @@ import {
 import Button from '../components/common/button';
 import { useState, useEffect } from 'react';
 import ScrollToTop from '../components/ui/ScrollToTop';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 
 export default function ExtendedThreatDetection() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   useEffect(() => {
     const checkDevice = () => {
@@ -244,6 +247,7 @@ export default function ExtendedThreatDetection() {
                     variant="primary" 
                     size="lg"
                     className="group"
+                    onClick={openModal}
                   >
                     Get Your Customized XDR Plan
                     <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -575,6 +579,7 @@ export default function ExtendedThreatDetection() {
                   variant="primary" 
                   size="lg" 
                 className="group bg-primary-bgYellow text-black hover:bg-yellow-400 px-10 py-5 text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-bgYellow/25"
+                onClick={openModal}
                 >
                 Get Your Customized XDR Strategy
                 <HiArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
@@ -609,6 +614,14 @@ export default function ExtendedThreatDetection() {
 
       {/* ScrollToTop FAB */}
       <ScrollToTop />
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

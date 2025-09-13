@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { 
   HiDatabase, 
   HiArrowRight,
@@ -52,6 +54,7 @@ export default function StorageMigration() {
   const [activeApproach, setActiveApproach] = useState(0);
   const [activeProcess, setActiveProcess] = useState(0);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   useEffect(() => {
     const checkDevice = () => {
@@ -1530,18 +1533,10 @@ export default function StorageMigration() {
                 variant="primary" 
                 size="lg"
                 className="group shadow-2xl"
+                onClick={openModal}
               >
-                Contact Sales
+                Start Your Migration Journey
                 <HiPhone className="ml-2 w-5 h-5" />
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="group border-white text-white hover:bg-white hover:text-black"
-              >
-                Book Strategy Call
-                <HiSupport className="ml-2 w-5 h-5" />
               </Button>
             </div>
 
@@ -1561,6 +1556,14 @@ export default function StorageMigration() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

@@ -1,5 +1,7 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { 
   HiDatabase, 
   HiArrowRight,
@@ -51,6 +53,7 @@ export default function ApplicationManager() {
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeFramework, setActiveFramework] = useState(0);
   const { width } = useWindowSize();
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -308,6 +311,7 @@ export default function ApplicationManager() {
                     variant="primary" 
                     size="lg"
                     className="group"
+                    onClick={openModal}
                   >
                     Get Started Today
                     <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -1020,12 +1024,14 @@ export default function ApplicationManager() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Button 
                 className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/25 group"
+                onClick={openModal}
               >
                 Start Your Data Journey
                 <HiArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
                 className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white hover:text-purple-600 px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-white/25"
+                onClick={openModal}
               >
                 Talk to Our Experts
                 <HiPhone className="w-5 h-5 ml-2" />
@@ -1034,6 +1040,14 @@ export default function ApplicationManager() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import { 
   HiUsers, 
   HiClock, 
@@ -32,6 +34,7 @@ export default function RaaS() {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
   const y2 = useTransform(scrollY, [0, 300], [0, 25]);
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
 
   const observerRef = useRef();
 
@@ -257,11 +260,12 @@ export default function RaaS() {
               variant="primary" 
               size="lg"
               className="bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-semibold px-8 py-4 text-lg"
+              onClick={openModal}
             >
-              <Link to="/contact" className="flex items-center">
+              <span className="flex items-center">
                 Get Started Today
                 <HiArrowRight className="ml-2 w-5 h-5" />
-              </Link>
+              </span>
             </Button>
           </motion.div>
 
@@ -273,7 +277,7 @@ export default function RaaS() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-white/20"
           >
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-yellow-400 mb-2">50K+</div>
+              <div className="text-3xl md:text-4xl font-bold text-yellow-400 mb-2">120+</div>
               <div className="text-sm text-gray-300">Global Talent Network</div>
             </div>
             <div className="text-center">
@@ -566,7 +570,7 @@ export default function RaaS() {
               <div className="text-center md:text-left">
                 <h4 className="text-lg font-semibold text-white mb-2">US Headquarters</h4>
                 <p className="text-gray-300 text-sm">
-                  Atlanta, GA<br />
+                  Mandeville, JM<br />
                   IT Services and IT Consulting<br />
                   <a href="tel:+19046852138" className="hover:text-yellow-400 transition-colors">+1 (904) 685-2138</a>
                 </p>
@@ -583,6 +587,14 @@ export default function RaaS() {
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 } 

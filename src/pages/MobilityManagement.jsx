@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import ContactModal from '../components/ui/ContactModal';
+import useContactModal from '../hooks/useContactModal';
 import ScrollToTop from "../components/ui/ScrollToTop";
 import ProcessTimeline from "../components/ui/ProcessTimeline";
 import {
@@ -29,6 +31,7 @@ import {
 
 export default function MobilityManagement() {
   const [activeOrbitItem, setActiveOrbitItem] = React.useState(0);
+  const { isOpen, openModal, closeModal, serviceType, pageName } = useContactModal();
   const migrationServices = [
     {
       title: "Storage Migration",
@@ -276,15 +279,15 @@ export default function MobilityManagement() {
                   transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
                 >
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Link
-                      to="/contact"
+                    <button
+                      onClick={openModal}
                       className="group relative px-8 py-4 bg-primary-bgYellow text-black font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary-bgYellow/25"
                     >
                       <span className="relative z-10 flex items-center gap-2">
                         Start Your Migration
                         <HiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                       </span>
-                    </Link>
+                    </button>
 
                     <Link
                       to="#solutions"
@@ -746,13 +749,13 @@ export default function MobilityManagement() {
             viewport={{ once: true }}
             className="text-center mt-16"
           >
-            <Link
-              to="/contact"
+            <button
+              onClick={openModal}
               className="inline-flex items-center px-8 py-4 bg-primary-bgYellow text-black font-semibold rounded-lg hover:bg-yellow-400 transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
               Experience ZENfra AI
               <HiArrowRight size={20} className="ml-2" />
-            </Link>
+            </button>
           </motion.div>
         </div>
       </section>
@@ -1018,28 +1021,36 @@ export default function MobilityManagement() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-              <Link
-                to="/contact"
+              <button
+                onClick={openModal}
                 className="group relative px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-white/25 flex items-center justify-center"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Start Your Migration Journey
                   <HiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                 </span>
-              </Link>
-              <Link
-                to="/contact"
+              </button>
+              <button
+                onClick={openModal}
                 className="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-all duration-300 hover:shadow-lg hover:shadow-white/25 flex items-center justify-center"
               >
-                <a href="tel:+19046852138" className="flex items-center">
+                <span className="flex items-center">
                   <HiPhone className="w-5 h-5 mr-2" />
                   Talk to Migration Experts
-                </a>
-              </Link>
+                </span>
+              </button>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isOpen}
+        onClose={closeModal}
+        serviceType={serviceType}
+        pageName={pageName}
+      />
     </div>
   );
 }
