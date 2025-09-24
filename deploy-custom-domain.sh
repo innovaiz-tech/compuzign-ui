@@ -22,7 +22,7 @@ if [ -d "dist" ]; then
     du -sh dist/
     echo ""
     echo "🌐 Ready for deployment to:"
-    echo "   - GitHub Pages: https://innovaiz-tech.github.io/compuzign-ui"
+    echo "   - GitHub Pages: https://innovaiz-tech.github.io"
     echo "   - Custom Domain: https://compuzign.com (after DNS setup)"
     echo ""
     echo "📋 Next steps:"

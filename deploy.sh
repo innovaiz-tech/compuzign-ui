@@ -30,5 +30,5 @@ echo "🚀 Deploying to GitHub Pages..."
 npm run deploy
 
 echo "🎉 Deployment process completed!"
-echo "🌐 Website will be available at: https://innovaiz-tech.github.io/compuzign-ui"
+echo "🌐 Website will be available at: https://innovaiz-tech.github.io"
 echo "🔗 Custom domain: https://compuzign.com (after DNS setup)"
