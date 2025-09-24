@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  HiMenuAlt3, 
-  HiX, 
+import {
+  HiMenuAlt3,
+  HiX,
   HiChevronDown,
   HiPhone,
   HiCloud,
@@ -39,12 +39,12 @@ export default function Headers() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState(null);
   const location = useLocation();
-  
+
   // Check if current page has light background
   // Force light theme for any route that's not the home page
   // Since we only have '/' and '*' routes, anything not '/' is the PageNotFound component
   const isLightBackgroundPage = location.pathname !== '/';
-  
+
   // Force header to always show on light background pages
   const shouldUseLightTheme = isLightBackgroundPage || isScrolled;
 
@@ -328,7 +328,7 @@ export default function Headers() {
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  
+
   const handleMegaMenu = (key) => {
     setActiveMegaMenu(activeMegaMenu === key ? null : key);
   };
@@ -337,13 +337,12 @@ export default function Headers() {
     setActiveMegaMenu(null);
   };
 
-    return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        shouldUseLightTheme
-          ? 'bg-white/30 backdrop-blur-3xl shadow-xl' 
-          : 'bg-transparent'
-      }`}
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${shouldUseLightTheme
+          ? 'bg-white/30 backdrop-blur-3xl shadow-xl'
+          : 'bg-black/80 backdrop-blur-3xl shadow-xl'
+        }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
@@ -366,26 +365,23 @@ export default function Headers() {
               <div key={item.name} className="relative">
                 {item.key ? (
                   <button
-                    className={`flex items-center space-x-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                      activeMegaMenu === item.key
+                    className={`flex items-center space-x-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${activeMegaMenu === item.key
                         ? 'text-primary-bgYellow bg-primary-bgYellow/10'
                         : `${shouldUseLightTheme ? 'text-gray-900' : 'text-white'} hover:text-primary-bgYellow ${shouldUseLightTheme ? 'hover:bg-gray-50' : 'hover:bg-white/10'}`
-                    }`}
+                      }`}
                     onMouseEnter={() => setActiveMegaMenu(item.key)}
                   >
                     <span>{item.name}</span>
-                    <HiChevronDown className={`w-4 h-4 transition-transform ${
-                      activeMegaMenu === item.key ? 'rotate-180' : ''
-                    }`} />
+                    <HiChevronDown className={`w-4 h-4 transition-transform ${activeMegaMenu === item.key ? 'rotate-180' : ''
+                      }`} />
                   </button>
                 ) : (
                   <Link
                     to={item.href}
-                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                      location.pathname === item.href
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${location.pathname === item.href
                         ? 'text-primary-bgYellow bg-primary-bgYellow/10'
                         : `${shouldUseLightTheme ? 'text-gray-900' : 'text-white'} hover:text-primary-bgYellow ${shouldUseLightTheme ? 'hover:bg-gray-50' : 'hover:bg-white/10'}`
-                    }`}
+                      }`}
                     onMouseEnter={() => setActiveMegaMenu(null)}
                   >
                     {item.name}
@@ -393,7 +389,7 @@ export default function Headers() {
                 )}
               </div>
             ))}
-            
+
             {/* CTA Buttons */}
             <div className="flex items-center space-x-3 ml-6" onMouseEnter={() => setActiveMegaMenu(null)}>
               <Link to="/contact">
@@ -407,11 +403,10 @@ export default function Headers() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className={`lg:hidden p-2 rounded-md transition-colors ${
-              shouldUseLightTheme 
-                ? 'text-gray-900 hover:bg-gray-100' 
+            className={`lg:hidden p-2 rounded-md transition-colors ${shouldUseLightTheme
+                ? 'text-gray-900 hover:bg-gray-100'
                 : 'text-white hover:bg-white/10'
-            } z-50`}
+              } z-50`}
             onClick={toggleMenu}
           >
             {isMenuOpen ? (
@@ -428,7 +423,7 @@ export default function Headers() {
         {activeMegaMenu === 'services' && (
           <ServicesMegaMenu onClose={closeMegaMenu} />
         )}
-        
+
         {activeMegaMenu === 'resources' && megaMenuData[activeMegaMenu] && (
           <div className="absolute top-full left-0 right-0 z-[9998] mt-2 overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -462,7 +457,7 @@ export default function Headers() {
                               >
                                 {/* Glassmorphic shimmer effect */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-                                
+
                                 <div className="flex-shrink-0 relative z-10">
                                   <item.icon className="w-5 h-5 text-yellow-500 group-hover:text-yellow-400 group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />
                                 </div>
@@ -484,7 +479,7 @@ export default function Headers() {
                               >
                                 {/* Glassmorphic shimmer effect */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-                                
+
                                 <div className="flex-shrink-0 relative z-10">
                                   <item.icon className="w-5 h-5 text-yellow-500 group-hover:text-yellow-400 group-hover:scale-110 group-hover:drop-shadow-lg transition-all duration-300" />
                                 </div>
@@ -514,11 +509,11 @@ export default function Headers() {
       {isMenuOpen && (
         <>
           {/* Overlay */}
-          <div 
+          <div
             className="fixed inset-0 bg-black/50 z-40 lg:hidden"
             onClick={() => setIsMenuOpen(false)}
           />
-          
+
           {/* Mobile Menu */}
           <div className="fixed top-16 left-0 right-0 bg-white shadow-xl z-40 lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto">
             <div className="px-4 py-6 space-y-4">
@@ -532,11 +527,10 @@ export default function Headers() {
                         className="flex items-center justify-between w-full px-4 py-3 text-left text-lg font-medium text-gray-900 hover:text-primary-bgYellow hover:bg-gray-50 rounded-lg transition-colors"
                       >
                         <span>{item.name}</span>
-                        <HiChevronDown className={`w-5 h-5 transition-transform ${
-                          activeMegaMenu === item.key ? 'rotate-180' : ''
-                        }`} />
+                        <HiChevronDown className={`w-5 h-5 transition-transform ${activeMegaMenu === item.key ? 'rotate-180' : ''
+                          }`} />
                       </button>
-                      
+
                       {/* Submenu */}
                       {activeMegaMenu === item.key && (
                         <div className="mt-2 pl-4 space-y-2">
@@ -574,7 +568,7 @@ export default function Headers() {
                           ))}
                         </div>
                       )}
-                     </div>
+                    </div>
                   ) : (
                     <Link
                       to={item.href}
@@ -586,13 +580,13 @@ export default function Headers() {
                   )}
                 </div>
               ))}
-              
+
               {/* CTA Buttons */}
               <div className="pt-4 border-t border-gray-200">
                 <Link to="/contact">
-                  <Button 
-                    variant="primary" 
-                    size="md" 
+                  <Button
+                    variant="primary"
+                    size="md"
                     className="w-full"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -600,10 +594,10 @@ export default function Headers() {
                   </Button>
                 </Link>
               </div>
-                    </div>
             </div>
+          </div>
         </>
       )}
     </header>
-);
+  );
 }
