@@ -104,7 +104,6 @@ export default function Headers() {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
-  // Mega menu data structure - matching CompuZign services
   const megaMenuData = {
     services: {
       title: 'Services',
