@@ -20,7 +20,7 @@
 ## 🌐 **Current Status:**
 
 ### **Local Development:**
-- **URL**: `http://localhost:3000`
+- **URL**: `http://localhost:3001`
 - **Status**: ✅ **RUNNING**
 - **Auto-open**: ✅ **ENABLED**
 
@@ -90,7 +90,7 @@ git push origin main
 ## 🧪 **Testing Checklist:**
 
 ### **Local Testing:**
-- [x] Development server running on port 3000
+- [x] Development server running on port 3001
 - [x] All routes accessible
 - [x] ContactModal working
 - [x] Mobile responsive
@@ -153,7 +153,7 @@ git push origin main
 ## 📋 **Quick Commands:**
 
 ```bash
-# Start development server
+# Start development server (runs on port 3001)
 npm run dev
 
 # Build for production
