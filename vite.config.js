@@ -4,7 +4,7 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // Base path for GitHub Pages deployment
+  // Base path for development and production
   base: '/',
   
   plugins: [
@@ -89,6 +89,7 @@ export default defineConfig({
   server: {
     port: 3001,
     host: true,
+    open: true, // Automatically open browser
     // Enable HMR for faster development
     hmr: {
       overlay: true

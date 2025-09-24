@@ -76,7 +76,7 @@ function App() {
       </Route>
     ),
     {
-      basename: '/compuzign-ui'
+      basename: '/'
     }
   )
 
