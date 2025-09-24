@@ -329,7 +329,7 @@ function ClientLogos() {
                 className="bg-white/80 backdrop-blur-sm text-gray-900 px-8 py-4 rounded-2xl font-semibold hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="/compuzign-ui/case-studies"
+                href="/case-studies"
               >
                 View Case Studies
               </motion.a>

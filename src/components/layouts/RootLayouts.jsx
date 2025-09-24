@@ -6,7 +6,7 @@ import ScrollToTop from '../ui/ScrollToTop';
 
 const RootLayouts = () => {
   const location = useLocation();
-  const isHome = location.pathname === "/compuzign-ui";
+  const isHome = location.pathname === "/";
 
   return (
     <div className="relative flex flex-col min-h-screen bg-white">
